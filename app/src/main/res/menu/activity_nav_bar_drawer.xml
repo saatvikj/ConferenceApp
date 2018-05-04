@@ -2,11 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <group android:checkableBehavior="single">
+    <group android:checkableBehavior="single"
+        android:id="@+id/schedule">
         <item
             android:id="@+id/nav_conference_schedule"
             android:background="#78909c"
-            android:icon="@drawable/femaleuser"
             android:title="Conference Schedule" />
         <item
             android:id="@+id/nav_my_schedule"
@@ -19,7 +19,8 @@
 
     </group>
 
-    <group android:checkableBehavior="single">
+    <group android:checkableBehavior="single"
+        android:id="@+id/informal">
         <item
             android:id="@+id/nav_feed"
             android:background="#78909c"
@@ -39,15 +40,16 @@
 
     </group>
 
-    <group android:checkableBehavior="single">
+    <group android:checkableBehavior="single"
+        android:id="@+id/extra">
         <item
             android:id="@+id/nav_about"
             android:background="#78909c"
-            android:title="Feed" />
+            android:title="About" />
         <item
             android:id="@+id/nav_logout"
             android:background="#78909c"
-            android:title="Location details" />
+            android:title="Logout" />
 
     </group>
 

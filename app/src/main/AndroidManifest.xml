@@ -19,7 +19,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".ActivityLogin" />
-        <activity android:name=".NavBarActivity"></activity>
+        <activity android:name=".NavBarActivity"
+            android:theme="@style/AppTheme.Light.NoActionBar">
+
+        </activity>
     </application>
 
 </manifest>
