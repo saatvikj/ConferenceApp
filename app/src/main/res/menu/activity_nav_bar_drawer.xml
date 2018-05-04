@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_conference_schedule"
+            android:background="#78909c"
+            android:icon="@drawable/femaleuser"
+            android:title="Conference Schedule" />
+        <item
+            android:id="@+id/nav_my_schedule"
+            android:background="#78909c"
+            android:title="My Schedule" />
+        <item
+            android:id="@+id/nav_speaker_wise_schedule"
+            android:background="#78909c"
+            android:title="Speaker wise schedule" />
+
+    </group>
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_feed"
+            android:background="#78909c"
+            android:title="Feed" />
+        <item
+            android:id="@+id/nav_location"
+            android:background="#78909c"
+            android:title="Location details" />
+        <item
+            android:id="@+id/nav_food_guide"
+            android:background="#78909c"
+            android:title="Food Guide" />
+        <item
+            android:id="@+id/nav_event_partners"
+            android:background="#78909c"
+            android:title="Event Partners" />
+
+    </group>
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_about"
+            android:background="#78909c"
+            android:title="Feed" />
+        <item
+            android:id="@+id/nav_logout"
+            android:background="#78909c"
+            android:title="Location details" />
+
+    </group>
+
+
+
+</menu>

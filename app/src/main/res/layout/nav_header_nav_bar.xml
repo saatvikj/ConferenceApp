@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="180dp"
+    android:background="#ffffff"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="8dp">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:paddingTop="8dp"
+        app:srcCompat="@drawable/femaleuser" />
+
+    <com.example.conferenceapp.MyTextView
+        android:id="@+id/nameHeading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/nav_header_vertical_spacing"
+        android:text="Megha"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp" />
+
+    <com.example.conferenceapp.MyTextView
+        android:id="@+id/emailHeading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="mj@example.com"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="24dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:gravity="bottom">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_gravity="bottom"
+            android:background="@color/colorPrimary"
+            android:paddingLeft="48dp"
+            android:paddingRight="48dp" />
+
+    </LinearLayout>
+
+</LinearLayout>
