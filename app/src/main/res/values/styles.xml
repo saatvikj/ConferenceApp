@@ -26,12 +26,14 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:listDivider">@drawable/divider</item>
+        <item name="listPreferredItemPaddingRight">16dp</item>
     </style>
 
     <style name="navBarText" parent="@android:style/TextAppearance.Medium">
         <item name="android:textColor">@color/colorPrimary</item>
-        <item name="android:textSize">12sp</item>
-        <item name="android:fontFamily">monospace</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">sans-serif-light</item>
+
     </style>
 
 

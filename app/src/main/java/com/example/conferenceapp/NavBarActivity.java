@@ -42,6 +42,7 @@ public class NavBarActivity extends AppCompatActivity
         toggle.syncState();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setItemIconTintList(null);
         displaySelectedScreen(R.id.nav_feed);
     }
 
@@ -81,6 +82,9 @@ public class NavBarActivity extends AppCompatActivity
                 break;
             case R.id.nav_feed:
                 fragment = new FragmentFeed();
+                break;
+            case R.id.nav_messages:
+                fragment = new FragmentMessages();
                 break;
             case R.id.nav_location:
                 fragment = new FragmentLocationDetails();

@@ -7,15 +7,18 @@
         <item
             android:id="@+id/nav_conference_schedule"
             android:background="#78909c"
-            android:title="Conference Schedule" />
+            android:icon="@drawable/ic_today_black_24dp"
+            android:title="Program" />
         <item
             android:id="@+id/nav_my_schedule"
             android:background="#78909c"
-            android:title="My Schedule" />
+            android:icon="@drawable/ic_content_paste_black_24dp"
+            android:title="My Agenda" />
         <item
             android:id="@+id/nav_speaker_wise_schedule"
             android:background="#78909c"
-            android:title="Speaker wise schedule" />
+            android:icon="@drawable/ic_record_voice_over_black_24dp"
+            android:title="Speakers" />
 
     </group>
 
@@ -24,19 +27,28 @@
         <item
             android:id="@+id/nav_feed"
             android:background="#78909c"
+            android:icon="@drawable/ic_home_black_24dp"
             android:title="Feed" />
+        <item
+            android:id="@+id/nav_messages"
+            android:background="#78909c"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="Messages" />
         <item
             android:id="@+id/nav_location"
             android:background="#78909c"
-            android:title="Location details" />
+            android:icon="@drawable/ic_location_on_black_24dp"
+            android:title="Location" />
         <item
             android:id="@+id/nav_food_guide"
             android:background="#78909c"
-            android:title="Food Guide" />
+            android:icon="@drawable/ic_help_outline_black_24dp"
+            android:title="Guide" />
         <item
             android:id="@+id/nav_event_partners"
             android:background="#78909c"
-            android:title="Event Partners" />
+            android:icon="@drawable/ic_people_black_24dp"
+            android:title="Partners" />
 
     </group>
 
@@ -45,10 +57,12 @@
         <item
             android:id="@+id/nav_about"
             android:background="#78909c"
+            android:icon="@drawable/ic_info_outline_black_24dp"
             android:title="About" />
         <item
             android:id="@+id/nav_logout"
             android:background="#78909c"
+            android:icon="@drawable/ic_power_settings_new_black_24dp"
             android:title="Logout" />
 
     </group>
