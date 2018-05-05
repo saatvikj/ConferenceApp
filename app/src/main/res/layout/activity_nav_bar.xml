@@ -20,6 +20,7 @@
         android:layout_gravity="start"
         android:background="#ffffff"
         android:fitsSystemWindows="true"
+        app:itemTextAppearance="@style/navBarText"
         app:headerLayout="@layout/nav_header_nav_bar"
         app:menu="@menu/activity_nav_bar_drawer" />
 

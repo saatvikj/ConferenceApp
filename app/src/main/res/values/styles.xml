@@ -28,5 +28,11 @@
         <item name="android:listDivider">@drawable/divider</item>
     </style>
 
+    <style name="navBarText" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">monospace</item>
+    </style>
+
 
 </resources>
