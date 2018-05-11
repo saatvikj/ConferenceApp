@@ -26,6 +26,7 @@ public class FragmentAbout extends Fragment {
         View aboutPage = new AboutPage(getContext()).isRTL(false)
                 .setDescription(getString(R.string.description))
                 .setImage(R.drawable.logo)
+                .addWebsite("https://chi2018.acm.org\n")
                 .addEmail("chi@gmail.com")
                 .addFacebook("acmchi")
                 .addTwitter("sig_chi")

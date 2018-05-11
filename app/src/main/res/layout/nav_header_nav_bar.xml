@@ -12,8 +12,8 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
         android:layout_gravity="center"
         android:paddingTop="8dp"
         app:srcCompat="@drawable/femaleuser" />

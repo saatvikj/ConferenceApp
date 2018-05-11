@@ -21,6 +21,5 @@ public class FragmentProfile extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
-        CardView profileCard = (CardView) view.findViewById(R.id.profileCard);
     }
 }

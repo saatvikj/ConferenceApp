@@ -13,4 +13,8 @@
     <string name="user_research_interest">  \u2022 Blockchain \n\u2022 Cryptocurrency \n\u2022 Cryptography \n\u2022 Group Theory</string>
     <string name="user_papers_presented">  \u2022 Lorem Ipsum \n\u2022 Lorem Ipsum \n\u2022 Lorem Ipsum \n\u2022 Lorem Ipsum</string>
     <string name="user_email">loremipsum@gmail.com</string>
+    <string name="description">The ACM CHI Conference on Human Factors in Computing Systems is the premier international conference of Human-Computer Interaction. For first-time attendees, CHI is a place where researchers and practitioners gather from across the world to discuss the latest in interactive technology. We are a multicultural community from highly diverse backgrounds who together investigate new and creative ways for people to interact.
+
+At this year’s CHI – pronounced ‘kai’ – the theme will be engage. Our focus will be to engage with people, to engage with technology, to engage with newcomers, to engage with world-class research, to engage with your community of designers, researchers, and practitioners… to engage with CHI!
+</string>
 </resources>

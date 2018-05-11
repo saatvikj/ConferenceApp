@@ -1,6 +1,7 @@
 package com.example.conferenceapp;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.graphics.pdf.PdfDocument;
 import android.net.Uri;
 import android.os.Bundle;
@@ -60,6 +61,7 @@ public class NavBarActivity extends AppCompatActivity
 
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
+
             }
         });
     }
