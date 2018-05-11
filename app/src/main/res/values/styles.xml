@@ -27,6 +27,7 @@
         <item name="windowNoTitle">true</item>
         <item name="android:listDivider">@drawable/divider</item>
         <item name="listPreferredItemPaddingRight">16dp</item>
+
     </style>
 
     <style name="navBarText" parent="@android:style/TextAppearance.Medium">

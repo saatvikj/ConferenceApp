@@ -6,4 +6,11 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+    <string name="username">SAATVIK JAIN</string>
+    <string name="user_institute">IIIT DELHI</string>
+    <string name="user_location">New Delhi, India</string>
+    <string name="user_bio">Lorem ipsum dolor sit amet consectetur adipiscing elit suspendisse rutrum vel ex non</string>
+    <string name="user_research_interest">  \u2022 Blockchain \n\u2022 Cryptocurrency \n\u2022 Cryptography \n\u2022 Group Theory</string>
+    <string name="user_papers_presented">  \u2022 Lorem Ipsum \n\u2022 Lorem Ipsum \n\u2022 Lorem Ipsum \n\u2022 Lorem Ipsum</string>
+    <string name="user_email">loremipsum@gmail.com</string>
 </resources>
