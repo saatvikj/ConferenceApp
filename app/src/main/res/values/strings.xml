@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">ConferenceApp</string>
     <string name="title_activity_nav_bar">Conference</string>
+    <string name="google_android_map_api_key">AIzaSyABanDYKPW05HfslxvemTB1r5Nor2p3Khc</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
