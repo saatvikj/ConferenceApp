@@ -7,7 +7,7 @@ public class Partner {
     private String sponsorWebsite;
     private int imageID;
 
-    public Partner(int id, String sponsorName, String sponsorType, String website, int imageI) {
+    public Partner(int id, String sponsorName, String sponsorType, String website, int imageID) {
         this.id = id;
         this.sponsorName = sponsorName;
         this.sponsorType = sponsorType;

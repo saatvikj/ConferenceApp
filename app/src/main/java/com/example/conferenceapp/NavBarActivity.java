@@ -59,6 +59,7 @@ public class NavBarActivity extends AppCompatActivity
                     ft.commit();
                 }
 
+                setActionBarTitle("My Profile");
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
                 drawer.closeDrawer(GravityCompat.START);
 
@@ -93,30 +94,39 @@ public class NavBarActivity extends AppCompatActivity
         switch (itemId) {
             case R.id.nav_conference_schedule:
                 fragment = new FragmentConferenceSchedule();
+                setActionBarTitle("Program");
                 break;
             case R.id.nav_my_schedule:
                 fragment = new FragmentMySchedule();
+                setActionBarTitle("My Agenda");
                 break;
             case R.id.nav_speaker_wise_schedule:
                 fragment = new FragmentSpeakerSchedule();
+                setActionBarTitle("Speakers");
                 break;
             case R.id.nav_feed:
                 fragment = new FragmentFeed();
+                setActionBarTitle("Feed");
                 break;
             case R.id.nav_messages:
                 fragment = new FragmentMessages();
+                setActionBarTitle("Messages");
                 break;
             case R.id.nav_location:
                 fragment = new FragmentLocationDetails();
+                setActionBarTitle("Location");
                 break;
             case R.id.nav_food_guide:
                 fragment = new FragmentGuide();
+                setActionBarTitle("Guide");
                 break;
             case R.id.nav_event_partners:
                 fragment = new FragmentPartners();
+                setActionBarTitle("Partners");
                 break;
             case R.id.nav_about:
                 fragment = new FragmentAbout();
+                setActionBarTitle("About");
                 break;
             case R.id.nav_logout:
                 Intent intent = new Intent(NavBarActivity.this, ActivityLogin.class);
@@ -143,5 +153,9 @@ public class NavBarActivity extends AppCompatActivity
         displaySelectedScreen(item.getItemId());
         //make this method blank
         return true;
+    }
+
+    public void setActionBarTitle(String input){
+        getSupportActionBar().setTitle(input);
     }
 }

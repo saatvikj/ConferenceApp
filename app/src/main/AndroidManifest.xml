@@ -23,8 +23,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyABanDYKPW05HfslxvemTB1r5Nor2p3Khc"/>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyABanDYKPW05HfslxvemTB1r5Nor2p3Khc" />
 
         <activity
             android:name=".MainActivity"
@@ -36,10 +37,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".ActivityLogin" />
-        <activity android:name=".NavBarActivity"
-            android:theme="@style/AppTheme.Light.NoActionBar">
-
-        </activity>
+        <activity
+            android:name=".NavBarActivity"
+            android:theme="@style/AppTheme.Light.NoActionBar"></activity>
+        <activity android:name=".FoodGuide"></activity>
     </application>
 
 </manifest>
