@@ -25,7 +25,7 @@ public class FragmentPartners extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.mPartnersView);
+        RecyclerView recyclerView = view.findViewById(R.id.mPartnersView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         List<Partner> partners = new ArrayList<>();

@@ -15,31 +15,58 @@
             android:layout_height="wrap_content"
             android:id="@+id/foodCard"
             android:layout_gravity="center"
-            android:layout_marginLeft="-4dp"
-            android:layout_marginRight="-4dp"
+            android:padding="16dp"
             android:clickable="true"
             android:foreground="?android:attr/selectableItemBackground"
             card_view:cardBackgroundColor="@android:color/background_light"
-            card_view:cardCornerRadius="2dp"
-            card_view:cardElevation="1dp"
+            card_view:cardCornerRadius="4dp"
+            card_view:cardElevation="2dp"
             card_view:cardUseCompatPadding="true"
-            card_view:contentPaddingBottom="8dp"
-            card_view:contentPaddingTop="5dp">
+            >
             ​
-
             <FrameLayout
-                android:id="@+id/cell_title_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingLeft="8dp"
-                android:paddingRight="8dp"
-                android:paddingTop="8dp">>
+
+                >
 
                 <ImageView
                     android:id="@+id/iconFood"
                     android:layout_width="match_parent"
                     android:layout_height="480px"
                     android:background="@drawable/foodicon" />
+            </FrameLayout>
+
+
+
+        </android.support.v7.widget.CardView>
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/informalCard"
+            android:layout_gravity="center"
+            android:padding="16dp"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            card_view:cardBackgroundColor="@android:color/background_light"
+            card_view:cardCornerRadius="4dp"
+            card_view:cardElevation="2dp"
+            card_view:cardUseCompatPadding="true"
+            >
+            ​
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <ImageView
+                    android:id="@+id/iconInformal"
+                    android:layout_width="match_parent"
+                    android:layout_height="480px"
+                    android:background="@drawable/informal" />
             </FrameLayout>
 
 

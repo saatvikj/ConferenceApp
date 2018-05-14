@@ -14,6 +14,7 @@ import android.widget.ImageView;
 public class FragmentGuide extends Fragment {
 
     private ImageView iconFood;
+    private ImageView iconInformal;
     private CardView foodGuide;
 
     @Nullable
@@ -27,12 +28,17 @@ public class FragmentGuide extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
-        iconFood = (ImageView) view.findViewById(R.id.iconFood);
+        iconFood = view.findViewById(R.id.iconFood);
         iconFood.getLayoutParams().width = Resources.getSystem().getDisplayMetrics().widthPixels;
-        iconFood.getLayoutParams().height = (int) Resources.getSystem().getDisplayMetrics().widthPixels / 3;
+        iconFood.getLayoutParams().height = (int) (Resources.getSystem().getDisplayMetrics().widthPixels*0.8);
         iconFood.requestLayout();
 
-        foodGuide = (CardView) view.findViewById(R.id.foodCard);
+        iconInformal = view.findViewById(R.id.iconInformal);
+        iconInformal.getLayoutParams().width = Resources.getSystem().getDisplayMetrics().widthPixels;
+        iconInformal.getLayoutParams().height = (int) (Resources.getSystem().getDisplayMetrics().widthPixels*0.8);
+        iconInformal.requestLayout();
+
+        foodGuide = view.findViewById(R.id.foodCard);
         foodGuide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
