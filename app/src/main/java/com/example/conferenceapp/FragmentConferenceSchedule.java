@@ -3,9 +3,12 @@ package com.example.conferenceapp;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.ogaclejapan.smarttablayout.SmartTabLayout;
 
 public class FragmentConferenceSchedule extends Fragment {
 
@@ -20,6 +23,10 @@ public class FragmentConferenceSchedule extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
-
+        DayPagerAdapter adapter = new DayPagerAdapter(getFragmentManager());
+        ViewPager viewPager = view.findViewById(R.id.viewpager);
+        viewPager.setAdapter(adapter);
+        SmartTabLayout tabsStrip = (SmartTabLayout) view.findViewById(R.id.viewpagertab);
+        tabsStrip.setViewPager(viewPager);
     }
 }
