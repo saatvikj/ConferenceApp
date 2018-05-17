@@ -4,7 +4,8 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:background="@color/colorPrimary"
-    android:weightSum="3">
+    android:weightSum="3"
+    android:padding="8dp">
 
     <TextView
         android:layout_width="match_parent"
@@ -13,7 +14,7 @@
         android:id="@+id/breakStartTime"
         android:textAlignment="center"
         android:textColor="@android:color/white"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:fontFamily="sans-serif"
         android:text="10:30 AM"/>
 
@@ -21,7 +22,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:id="@+id/breakDescTextView"
         android:textAlignment="center"
         android:textColor="@android:color/white"
@@ -33,7 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:textSize="18sp"
+        android:textSize="20sp"
         android:textAlignment="center"
         android:id="@+id/breakEndTime"
         android:textColor="@android:color/white"
