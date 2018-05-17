@@ -26,7 +26,24 @@ public class FragmentConferenceSchedule extends Fragment {
         DayPagerAdapter adapter = new DayPagerAdapter(getFragmentManager());
         ViewPager viewPager = view.findViewById(R.id.viewpager);
         viewPager.setAdapter(adapter);
-        SmartTabLayout tabsStrip = (SmartTabLayout) view.findViewById(R.id.viewpagertab);
+        final SmartTabLayout tabsStrip = (SmartTabLayout) view.findViewById(R.id.viewpagertab);
         tabsStrip.setViewPager(viewPager);
+        tabsStrip.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                tabsStrip.setDefaultTabTextColor(R.color.selectedtabcolor);
+                tabsStrip.setSelectedIndicatorColors(R.color.selectedtabcolor);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 }
