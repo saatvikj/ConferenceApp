@@ -11,7 +11,6 @@
         android:id="@+id/viewpagertab"
         android:layout_width="match_parent"
         android:layout_height="@dimen/tab_height"
-        android:paddingBottom="4dp"
         app:stl_defaultTabTextColor="@color/tabtextcolor"
         app:stl_defaultTabTextSize="22sp"
         app:stl_distributeEvenly="true"

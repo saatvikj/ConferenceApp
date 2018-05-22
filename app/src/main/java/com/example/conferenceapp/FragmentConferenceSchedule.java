@@ -23,27 +23,10 @@ public class FragmentConferenceSchedule extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
-        DayPagerAdapter adapter = new DayPagerAdapter(getFragmentManager());
+        DayPagerAdapter adapter = new DayPagerAdapter(getChildFragmentManager());
         ViewPager viewPager = view.findViewById(R.id.viewpager);
         viewPager.setAdapter(adapter);
         final SmartTabLayout tabsStrip = (SmartTabLayout) view.findViewById(R.id.viewpagertab);
         tabsStrip.setViewPager(viewPager);
-        tabsStrip.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                tabsStrip.setDefaultTabTextColor(R.color.selectedtabcolor);
-                tabsStrip.setSelectedIndicatorColors(R.color.selectedtabcolor);
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
     }
 }

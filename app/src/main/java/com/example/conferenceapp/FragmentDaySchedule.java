@@ -16,10 +16,10 @@ import android.widget.TextView;
 public class FragmentDaySchedule extends Fragment {
 
     public static final String ARG_PAGE = "ARG_PAGE";
-    public String day1[][] = {{"Quality Assurance","HALL A","10:50 AM -1:00 PM"},{"Free Paper 2(PG)","HALL B","10:30 AM -11:30 AM"},{"Free Paper 1(Member)","HALL B","11:30 AM -12:30 PM"}};
-    public String day2[][] = {{"Free Paper 2(PG)","HALL B","10:30 AM -11:30 AM"},{"Free Paper 1(Member)","HALL B","11:30 AM -12:30 PM"},{"Quality Assurance","HALL A","10:50 AM -1:00 PM"}};
-    public String breakfast[] = {"10:30AM","BREAKFAST","10:50AM"};
-    public String lunch[] = {"1:00PM","LUNCH","2:00PM"};
+    public String day1[][] = {{"Quality Assurance", "HALL A", "10:50 AM -1:00 PM"}, {"Free Paper 2(PG)", "HALL B", "10:30 AM -11:30 AM"}, {"Free Paper 1(Member)", "HALL B", "11:30 AM -12:30 PM"}};
+    public String day2[][] = {{"Free Paper 2(PG)", "HALL B", "10:30 AM -11:30 AM"}, {"Free Paper 1(Member)", "HALL B", "11:30 AM -12:30 PM"}, {"Quality Assurance", "HALL A", "10:50 AM -1:00 PM"}};
+    public String breakfast[] = {"10:30AM", "BREAKFAST", "10:50AM"};
+    public String lunch[] = {"1:00PM", "LUNCH", "2:00PM"};
     private int mPage;
 
     public static FragmentDaySchedule newInstance(int page) {
@@ -49,7 +49,7 @@ public class FragmentDaySchedule extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         LinearLayout root = view.findViewById(R.id.daySchedule);
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        if(mPage == 1) {
+        if (mPage == 1) {
             View bFast = inflater.inflate(R.layout.inflator_break_schedule, null);
             TextView start = bFast.findViewById(R.id.breakStartTime);
             TextView desc = bFast.findViewById(R.id.breakDescTextView);
@@ -66,7 +66,7 @@ public class FragmentDaySchedule extends Fragment {
                     startActivity(intent);
                 }
             });
-            for (int i=0; i<day1.length;i++) {
+            for (int i = 0; i < day1.length; i++) {
                 View paper = inflater.inflate(R.layout.inflator_paper_schedule, null);
                 TextView paperstart = paper.findViewById(R.id.paperName);
                 TextView papervenue = paper.findViewById(R.id.paperVenue);
@@ -79,13 +79,13 @@ public class FragmentDaySchedule extends Fragment {
             }
 
             View lunch = inflater.inflate(R.layout.inflator_break_schedule, null);
-            TextView start1 = lunch.findViewById(R.id.breakStartTime);
-            TextView desc1 = lunch.findViewById(R.id.breakDescTextView);
-            TextView end1 = lunch.findViewById(R.id.breakEndTime);
+            TextView lunchStart = lunch.findViewById(R.id.breakStartTime);
+            TextView lunchDesc = lunch.findViewById(R.id.breakDescTextView);
+            TextView lunchEnd = lunch.findViewById(R.id.breakEndTime);
 
-            start1.setText(this.lunch[0]);
-            desc1.setText(this.lunch[1]);
-            end1.setText(this.lunch[2]);
+            lunchStart.setText(this.lunch[0]);
+            lunchDesc.setText(this.lunch[1]);
+            lunchEnd.setText(this.lunch[2]);
             root.addView(lunch);
             lunch.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -94,7 +94,7 @@ public class FragmentDaySchedule extends Fragment {
                     startActivity(intent);
                 }
             });
-            for (int i=0; i<day2.length;i++) {
+            for (int i = 0; i < day2.length; i++) {
                 View paper = inflater.inflate(R.layout.inflator_paper_schedule, null);
                 TextView paperstart = paper.findViewById(R.id.paperName);
                 TextView papervenue = paper.findViewById(R.id.paperVenue);
@@ -123,7 +123,7 @@ public class FragmentDaySchedule extends Fragment {
                     startActivity(intent);
                 }
             });
-            for (int i=0; i<day2.length;i++) {
+            for (int i = 0; i < day2.length; i++) {
                 View paper = inflater.inflate(R.layout.inflator_paper_schedule, null);
                 TextView paperstart = paper.findViewById(R.id.paperName);
                 TextView papervenue = paper.findViewById(R.id.paperVenue);
@@ -136,13 +136,13 @@ public class FragmentDaySchedule extends Fragment {
             }
 
             View lunch = inflater.inflate(R.layout.inflator_break_schedule, null);
-            TextView start1 = lunch.findViewById(R.id.breakStartTime);
-            TextView desc1 = lunch.findViewById(R.id.breakDescTextView);
-            TextView end1 = lunch.findViewById(R.id.breakEndTime);
+            TextView lunchStart = lunch.findViewById(R.id.breakStartTime);
+            TextView lunchDesc = lunch.findViewById(R.id.breakDescTextView);
+            TextView lunchEnd = lunch.findViewById(R.id.breakEndTime);
 
-            start1.setText(this.lunch[0]);
-            desc1.setText(this.lunch[1]);
-            end1.setText(this.lunch[2]);
+            lunchStart.setText(this.lunch[0]);
+            lunchDesc.setText(this.lunch[1]);
+            lunchEnd.setText(this.lunch[2]);
             root.addView(lunch);
             lunch.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -151,7 +151,7 @@ public class FragmentDaySchedule extends Fragment {
                     startActivity(intent);
                 }
             });
-            for (int i=0; i<day1.length;i++) {
+            for (int i = 0; i < day1.length; i++) {
                 View paper = inflater.inflate(R.layout.inflator_paper_schedule, null);
                 TextView paperstart = paper.findViewById(R.id.paperName);
                 TextView papervenue = paper.findViewById(R.id.paperVenue);
@@ -161,11 +161,7 @@ public class FragmentDaySchedule extends Fragment {
                 papervenue.setText(day1[i][1]);
                 paperend.setText(day1[i][2]);
                 root.addView(paper);
-
             }
-
         }
-
-
     }
 }

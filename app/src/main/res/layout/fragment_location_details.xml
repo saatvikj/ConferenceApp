@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <LinearLayout
@@ -117,12 +118,19 @@
                     android:textAlignment="center"
                     android:padding="8dp"/>
 
-                <ImageView
+                <com.otaliastudios.zoom.ZoomImageView
                     android:layout_width="match_parent"
                     android:layout_height="250dp"
                     android:layout_weight="2"
+                    app:overScrollHorizontal="true"
+                    app:overScrollVertical="true"
+                    app:overPinchable="true"
+                    app:minZoom="0.7"
                     android:id="@+id/mapImageView"
-                    android:src="@drawable/map" />
+                    app:minZoomType="zoom"
+                    app:maxZoom="3.0"
+                    app:maxZoomType="zoom"/>
+
 
             </LinearLayout>
 

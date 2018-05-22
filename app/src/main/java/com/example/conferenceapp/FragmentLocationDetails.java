@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.bogdwellers.pinchtozoom.ImageMatrixTouchHandler;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -23,6 +22,7 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.otaliastudios.zoom.ZoomImageView;
 
 public class FragmentLocationDetails extends Fragment{
 
@@ -87,10 +87,8 @@ public class FragmentLocationDetails extends Fragment{
                 }
             });
 
-            ImageView mapView = view.findViewById(R.id.mapImageView);
-            mapView.setOnTouchListener(new ImageMatrixTouchHandler(view.getContext()));
-
-
+            ZoomImageView mapView = (ZoomImageView) view.findViewById(R.id.mapImageView);
+            mapView.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.map));
         }
     }
 }
