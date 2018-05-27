@@ -2,140 +2,60 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    xmlns:app="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:orientation="vertical">
 
-        <android.support.v7.widget.CardView
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/location"
+            android:layout_gravity="center|center_vertical"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CHI 2018 Montreal, Canada"
+            android:textSize="18sp"
+            android:layout_marginTop="32dp"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif"
+            android:textAlignment="center"
+            android:padding="6dp"/>
+
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginLeft="-4dp"
-            android:layout_marginRight="-4dp"
-            android:clickable="true"
-            android:foreground="?android:attr/selectableItemBackground"
-            card_view:cardBackgroundColor="@android:color/background_light"
-            card_view:cardCornerRadius="2dp"
-            card_view:cardElevation="1dp"
-            card_view:cardUseCompatPadding="true"
-            card_view:contentPaddingBottom="8dp"
-            card_view:contentPaddingTop="5dp">
+            android:text="Palais des congrès de Montréal"
+            android:fontFamily="sans-serif-light"
+            android:textAlignment="center" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="1">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_weight="1">
-                    
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="CHI 2018 Montreal, Canada"
-                        android:textSize="18sp"
-                        android:layout_weight="1"
-                        android:fontFamily="sans-serif"
-                        android:textAlignment="center"
-                        android:padding="6dp"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:text="Palais des congrès de Montréal"
-                        android:fontFamily="sans-serif-light"
-                        android:textAlignment="center" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingBottom="20dp"
-                        android:paddingTop="8dp"
-                        android:text="Montreal, Canada"
-                        android:fontFamily="sans-serif-light"
-                        android:textAlignment="center" />
-
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="250dp"
-                        android:layout_weight="2"
-                        android:name="com.google.android.gms.maps.SupportMapFragment"
-                        android:id="@+id/mapwhere" />
-
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:paddingTop="7dp"
-                        android:fontFamily="sans-serif-light"
-                        android:text="*Tap on the pin marker to get directions"
-                        android:textAlignment="center" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </android.support.v7.widget.CardView>
-
-        <android.support.v7.widget.CardView
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="-4dp"
-            android:layout_marginRight="-4dp"
-            android:clickable="true"
-            android:foreground="?android:attr/selectableItemBackground"
-            card_view:cardBackgroundColor="@android:color/background_light"
-            card_view:cardCornerRadius="2dp"
-            card_view:cardElevation="1dp"
-            card_view:cardUseCompatPadding="true"
-            card_view:contentPaddingBottom="8dp"
-            card_view:contentPaddingTop="5dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="VENUE MAP"
-                    android:fontFamily="sans-serif"
-                    android:textSize="18sp"
-                    android:layout_weight="1"
-                    android:textAlignment="center"
-                    android:padding="8dp"/>
-
-                <com.otaliastudios.zoom.ZoomImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="250dp"
-                    android:layout_weight="2"
-                    app:overScrollHorizontal="true"
-                    app:overScrollVertical="true"
-                    app:overPinchable="true"
-                    app:minZoom="0.7"
-                    android:id="@+id/mapImageView"
-                    app:minZoomType="zoom"
-                    app:maxZoom="3.0"
-                    app:maxZoomType="zoom"/>
+            android:paddingBottom="20dp"
+            android:paddingTop="8dp"
+            android:text="Montreal, Canada"
+            android:fontFamily="sans-serif-light"
+            android:textAlignment="center" />
 
 
-            </LinearLayout>
 
-        </android.support.v7.widget.CardView>
 
     </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="48dp"
+        android:layout_gravity="bottom"
+        android:fontFamily="sans-serif-light"
+        android:text="*Tap the map to get directions"
+        android:textAlignment="center" />
 
 </ScrollView>
