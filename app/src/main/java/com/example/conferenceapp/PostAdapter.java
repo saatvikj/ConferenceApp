@@ -1,6 +1,7 @@
 package com.example.conferenceapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -62,7 +63,8 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
         holder.comments.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(mCtx,"Comment will be made",Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(mCtx,ActivityFeedPost.class);
+                mCtx.startActivity(intent);
             }
         });
 

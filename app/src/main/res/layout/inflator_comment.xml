@@ -37,6 +37,7 @@
                     android:id="@+id/name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/divier"
                     android:textSize="@dimen/feed_item_profile_name"
                     android:textStyle="bold" />
 
@@ -59,8 +60,7 @@
         android:paddingBottom="5dp"
         android:paddingLeft="@dimen/feed_item_status_pad_left_right"
         android:paddingRight="@dimen/feed_item_status_pad_left_right"
-        android:paddingTop="@dimen/feed_item_status_pad_top" />
-
-
+        android:paddingTop="@dimen/feed_item_status_pad_top"
+        android:textColor="#000000"/>
 
 </LinearLayout>
