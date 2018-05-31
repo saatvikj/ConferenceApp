@@ -15,8 +15,9 @@
 
         <ImageView
             android:id="@+id/profilePic"
-            android:layout_width="@dimen/feed_item_profile_pic"
-            android:layout_height="@dimen/feed_item_profile_pic"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
             android:background="@drawable/femaleuser"
             android:scaleType="fitCenter">
 

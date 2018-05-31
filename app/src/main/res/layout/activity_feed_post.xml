@@ -12,7 +12,7 @@
 
         <include layout="@layout/feed_item" />
 
-        <LinearLayout
+        <android.support.design.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/feed_item_margin"
@@ -20,30 +20,22 @@
             android:background="@drawable/bg_parent_rounded_corner"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif"
-                android:padding="8dp"
-                android:text="Comments"
-                android:textColor="@color/divier"
-                android:textSize="20sp" />
-
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/mCommentsView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="@dimen/fab_margin"
+                android:src="@drawable/ic_create_black_24dp" />
 
-        </LinearLayout>
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="@dimen/fab_margin"
-            android:src="@drawable/ic_create_black_24dp" />
+        </android.support.design.widget.CoordinatorLayout>
+
 
     </LinearLayout>
 

@@ -70,7 +70,8 @@ public class FragmentFeed extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getActivity(), CreatePost.class);
+                Intent i = new Intent(getActivity(), ActivityCreatePost.class);
+                startActivity(i);
             }
         });
 

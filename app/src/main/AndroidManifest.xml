@@ -32,7 +32,8 @@
             android:name=".NavBarActivity"
             android:theme="@style/AppTheme.Light.NoActionBar" />
         <activity android:name=".FoodGuide" />
-        <activity android:name=".CreatePost"></activity>
+        <activity android:name=".ActivityFeedPost"></activity>
+        <activity android:name=".ActivityCreatePost"></activity>
     </application>
 
 </manifest>
