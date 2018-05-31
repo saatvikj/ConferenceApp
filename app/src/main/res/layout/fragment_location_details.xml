@@ -44,18 +44,18 @@
             android:fontFamily="sans-serif-light"
             android:textAlignment="center" />
 
-
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="48dp"
+            android:layout_gravity="bottom"
+            android:fontFamily="sans-serif-light"
+            android:text="*Tap the map to get directions"
+            android:textAlignment="center" />
 
 
     </LinearLayout>
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="48dp"
-        android:layout_gravity="bottom"
-        android:fontFamily="sans-serif-light"
-        android:text="*Tap the map to get directions"
-        android:textAlignment="center" />
+
 
 </ScrollView>

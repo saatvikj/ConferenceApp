@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    android:layout_width="match_parent">
+    android:fillViewport="true">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -26,6 +26,12 @@
                 android:textColor="#ffffff"
                 android:textSize="24sp" />
 
+            <ImageView
+                android:id="@+id/testImageView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -36,10 +42,10 @@
             android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/logo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical|center_horizontal"
-                android:id="@+id/logo"
                 android:src="@drawable/logo" />
 
         </LinearLayout>
@@ -61,20 +67,20 @@
                 android:layout_height="wrap_content"
                 android:drawableLeft="@drawable/username"
                 android:drawablePadding="8dp"
-                android:textColor="@color/colorPrimary"
+                android:hint="Email"
                 android:inputType="textEmailAddress"
-                android:hint="Email" />
+                android:textColor="@color/colorPrimary" />
 
             <EditText
                 android:id="@+id/editTextPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawablePadding="8dp"
-                android:textColor="@color/colorPrimary"
                 android:drawableLeft="@drawable/password"
+                android:drawablePadding="8dp"
                 android:hint="Password"
+                android:inputType="textPassword"
 
-                android:inputType="textPassword" />
+                android:textColor="@color/colorPrimary" />
 
         </LinearLayout>
 

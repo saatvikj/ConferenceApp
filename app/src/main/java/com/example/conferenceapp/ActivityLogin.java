@@ -5,6 +5,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+
+import com.bumptech.glide.Glide;
 
 public class ActivityLogin extends AppCompatActivity {
 
@@ -14,6 +17,7 @@ public class ActivityLogin extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         Button login = findViewById(R.id.loginButton);
+        ImageView testImage = findViewById(R.id.testImageView);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -21,5 +25,7 @@ public class ActivityLogin extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Glide.with(this).load("http://i.imgur.com/DvpvklR.png").into(testImage);
     }
 }

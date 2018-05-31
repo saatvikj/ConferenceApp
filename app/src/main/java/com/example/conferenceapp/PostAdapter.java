@@ -11,6 +11,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+
 import java.util.List;
 
 public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder> {
@@ -28,7 +30,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
     @Override
     public PostViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(mCtx);
-        View view = inflater.inflate(R.layout.layout_partners, null);
+        View view = inflater.inflate(R.layout.feed_item, null);
         return new PostViewHolder(view);
     }
 
@@ -38,13 +40,25 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
         holder.name.setText(feedPost.getName());
         holder.timeStamp.setText(feedPost.getTime());
         holder.content.setText(feedPost.getContent());
+        Glide.with(mCtx).load("https://upload.wikimedia.org/wikipedia/commons/0/04/Vivian_Bartley_Green-Armytage_IMS.jpg").into(holder.image);
+        holder.numLikes.setText(Integer.toString(feedPost.getLikes()).concat(" likes"));
         holder.like.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                holder.nLikes.setText(feedPost.getLikes()+1);
-                feedPost.likes++;
+                if(holder.nLikes.getText().toString().equals("Like")) {
+                    holder.nLikes.setText(Integer.toString(feedPost.getLikes() + 1));
+                    feedPost.likes++;
+                    holder.numLikes.setText(Integer.toString(feedPost.getLikes()).concat(" likes"));
+
+                }
+                else{
+                    holder.nLikes.setText("Like");
+                    feedPost.likes--;
+                    holder.numLikes.setText(Integer.toString(feedPost.getLikes()).concat(" likes"));
+                }
             }
         });
+
         holder.comments.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,6 +82,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
         ImageView image;
         LinearLayout like;
         LinearLayout comments;
+        TextView numLikes;
 
         public PostViewHolder(View itemView) {
             super(itemView);
@@ -78,6 +93,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
             like = itemView.findViewById(R.id.like);
             nLikes = itemView.findViewById(R.id.nLikes);
             comments = itemView.findViewById(R.id.comment);
+            numLikes = itemView.findViewById(R.id.number_likes);
         }
     }
 }
