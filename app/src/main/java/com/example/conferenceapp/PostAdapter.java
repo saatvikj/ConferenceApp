@@ -20,6 +20,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
 
     private List<FeedPost> mPosts;
     private Context mCtx;
+    public static FeedPost selectedPost;
 
     public PostAdapter(List<FeedPost> mPosts, Context mCtx) {
         this.mPosts = mPosts;
@@ -64,6 +65,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mCtx,ActivityFeedPost.class);
+                selectedPost = feedPost;
                 mCtx.startActivity(intent);
             }
         });

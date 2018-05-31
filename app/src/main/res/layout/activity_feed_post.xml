@@ -10,7 +10,8 @@
         android:orientation="vertical"
         android:background="#d3d6db">
 
-        <include layout="@layout/feed_item" />
+        <include layout="@layout/feed_item"
+            android:id="@+id/post"/>
 
         <android.support.design.widget.CoordinatorLayout
             android:layout_width="match_parent"

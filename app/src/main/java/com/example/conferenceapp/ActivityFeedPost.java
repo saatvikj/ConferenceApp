@@ -8,6 +8,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +23,32 @@ public class ActivityFeedPost extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feed_post);
+        final FeedPost feedPost = PostAdapter.selectedPost;
+        View post = findViewById(R.id.post);
+        TextView name = post.findViewById(R.id.name);
+        name.setText(feedPost.getName());
+        TextView timeStamp = post.findViewById(R.id.timestamp);
+        timeStamp.setText(feedPost.getTime());
+        TextView content = post.findViewById(R.id.txtStatusMsg);
+        content.setText(feedPost.getContent());
+        final TextView nLikes = post.findViewById(R.id.number_likes);
+        nLikes.setText(Integer.toString(feedPost.getLikes()).concat(" likes"));
+        final TextView numLikes = post.findViewById(R.id.nLikes);
+        LinearLayout like = post.findViewById(R.id.like);
+        like.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (numLikes.getText().toString().equals("Like")) {
+                    numLikes.setText(Integer.toString(feedPost.getLikes()+1));
+                    feedPost.likes++;
+                    nLikes.setText(Integer.toString(feedPost.getLikes()).concat(" likes"));
+                } else {
+                    numLikes.setText("Like");
+                    feedPost.likes--;
+                    nLikes.setText(Integer.toString(feedPost.getLikes()).concat(" likes"));
+                }
+            }
+        });
         RecyclerView recyclerView = findViewById(R.id.mCommentsView);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         fab = findViewById(R.id.fab);
