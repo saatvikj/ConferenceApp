@@ -57,7 +57,7 @@ public class PaperCSVParser {
             String endTime = confTime[1];
             String abs = row.getField("abstract");
             CustomTime paper_schedule = new CustomTime(date, startTime, endTime, day);
-            Paper paper = new Paper(title, venue, paper_schedule, null, topics, abs);
+            Paper paper = new Paper(title, venue, paper_schedule, authors, topics, abs);
             papers.add(paper);
 
         }

@@ -1,11 +1,13 @@
 package com.example.conferenceapp.models;
 
-public class Paper {
+import java.io.Serializable;
+
+public class Paper implements Serializable {
 
     private String title;
     private String venue;
     private CustomTime time;
-    private User authors[];
+    private String authors[];
     private String paper_abstract;
     private String topics[];
 
@@ -21,7 +23,7 @@ public class Paper {
         return time;
     }
 
-    public User[] getAuthors() {
+    public String[] getAuthors() {
         return authors;
     }
 
@@ -33,7 +35,7 @@ public class Paper {
         return paper_abstract;
     }
 
-    public Paper(String title, String venue, CustomTime time, User[] authors, String[] topics, String paper_abstract) {
+    public Paper(String title, String venue, CustomTime time, String[] authors, String[] topics, String paper_abstract) {
         this.title = title;
         this.venue = venue;
         this.time = time;

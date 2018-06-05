@@ -8,16 +8,20 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.conferenceapp.R;
 import com.example.conferenceapp.activities.ActivityFoodGuide;
 import com.example.conferenceapp.activities.ActivityPaperDetails;
+import com.example.conferenceapp.activities.NavBarActivity;
 import com.example.conferenceapp.models.Paper;
 import com.example.conferenceapp.utils.PaperCSVParser;
 
-public class FragmentDaySchedule extends Fragment {
+import java.io.Serializable;
+
+public class FragmentDaySchedule extends Fragment implements Serializable{
 
     public static final String ARG_PAGE = "ARG_PAGE";
     public String breakfast[] = {"10:30AM", "BREAKFAST", "10:50AM"};
@@ -55,7 +59,7 @@ public class FragmentDaySchedule extends Fragment {
         }
 
         LinearLayout root = view.findViewById(R.id.daySchedule);
-        LayoutInflater inflater = getActivity().getLayoutInflater();
+        final LayoutInflater inflater = getActivity().getLayoutInflater();
         if (mPage == 1) {
             View bFast = inflater.inflate(R.layout.inflator_break_schedule, null);
             TextView start = bFast.findViewById(R.id.breakStartTime);
@@ -78,12 +82,27 @@ public class FragmentDaySchedule extends Fragment {
                 TextView paperstart = paper_view.findViewById(R.id.paperName);
                 TextView papervenue = paper_view.findViewById(R.id.paperVenue);
                 TextView paperend = paper_view.findViewById(R.id.paperTimings);
-                Paper paper = PaperCSVParser.papers.get(i);
+                final ImageView paperAdd = paper_view.findViewById(R.id.addPaperIcon);
+                final Paper paper = PaperCSVParser.papers.get(i);
                 if (paper.getTime().getDate().equals("2 Dec 18") && Integer.parseInt(paper.getTime().getStartTime().split(":")[0]) <= 12) {
                     paperstart.setText(paper.getTitle());
                     papervenue.setText(paper.getVenue());
                     paperend.setText(paper.getTime().displayTime());
                     root.addView(paper_view);
+                    paper_view.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(getActivity(), ActivityPaperDetails.class);
+                            intent.putExtra("Paper", paper);
+                            startActivity(intent);
+                        }
+                    });
+                    paperAdd.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            paperAdd.setImageDrawable(getResources().getDrawable(R.drawable.ic_control_point_green_24dp));
+                        }
+                    });
                 }
             }
 
@@ -108,12 +127,28 @@ public class FragmentDaySchedule extends Fragment {
                 TextView paperstart = paper_view.findViewById(R.id.paperName);
                 TextView papervenue = paper_view.findViewById(R.id.paperVenue);
                 TextView paperend = paper_view.findViewById(R.id.paperTimings);
-                Paper paper = PaperCSVParser.papers.get(i);
+                final ImageView paperAdd = paper_view.findViewById(R.id.addPaperIcon);
+                final Paper paper = PaperCSVParser.papers.get(i);
                 if (paper.getTime().getDate().equals("2 Dec 18") && Integer.parseInt(paper.getTime().getStartTime().split(":")[0]) >=1 && Integer.parseInt(paper.getTime().getStartTime().split(":")[0]) <=5 ) {
                     paperstart.setText(paper.getTitle());
                     papervenue.setText(paper.getVenue());
                     paperend.setText(paper.getTime().displayTime());
                     root.addView(paper_view);
+                    paper_view.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(getActivity(), ActivityPaperDetails.class);
+                            intent.putExtra("Paper", paper);
+                            startActivity(intent);
+                        }
+                    });
+
+                    paperAdd.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            paperAdd.setImageDrawable(getResources().getDrawable(R.drawable.ic_control_point_green_24dp));
+                        }
+                    });
                 }
             }
         } else if (mPage == 2) {
@@ -138,12 +173,28 @@ public class FragmentDaySchedule extends Fragment {
                 TextView paperstart = paper_view.findViewById(R.id.paperName);
                 TextView papervenue = paper_view.findViewById(R.id.paperVenue);
                 TextView paperend = paper_view.findViewById(R.id.paperTimings);
-                Paper paper = PaperCSVParser.papers.get(i);
+                final ImageView paperAdd = paper_view.findViewById(R.id.addPaperIcon);
+                final Paper paper = PaperCSVParser.papers.get(i);
                 if (paper.getTime().getDate().equals("3 Dec 18") && Integer.parseInt(paper.getTime().getStartTime().split(":")[0]) <= 12) {
                     paperstart.setText(paper.getTitle());
                     papervenue.setText(paper.getVenue());
                     paperend.setText(paper.getTime().displayTime());
                     root.addView(paper_view);
+                    paper_view.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(getActivity(), ActivityPaperDetails.class);
+                            intent.putExtra("Paper", paper);
+                            startActivity(intent);
+                        }
+                    });
+
+                    paperAdd.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            paperAdd.setImageDrawable(getResources().getDrawable(R.drawable.ic_control_point_green_24dp));
+                        }
+                    });
                 }
             }
 
@@ -168,12 +219,28 @@ public class FragmentDaySchedule extends Fragment {
                 TextView paperstart = paper_view.findViewById(R.id.paperName);
                 TextView papervenue = paper_view.findViewById(R.id.paperVenue);
                 TextView paperend = paper_view.findViewById(R.id.paperTimings);
-                Paper paper = PaperCSVParser.papers.get(i);
+                final ImageView paperAdd = paper_view.findViewById(R.id.addPaperIcon);
+                final Paper paper = PaperCSVParser.papers.get(i);
                 if (paper.getTime().getDate().equals("3 Dec 18") && Integer.parseInt(paper.getTime().getStartTime().split(":")[0]) >=1 && Integer.parseInt(paper.getTime().getStartTime().split(":")[0]) <=5 ) {
                     paperstart.setText(paper.getTitle());
                     papervenue.setText(paper.getVenue());
                     paperend.setText(paper.getTime().displayTime());
                     root.addView(paper_view);
+                    paper_view.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(getActivity(), ActivityPaperDetails.class);
+                            intent.putExtra("Paper", paper);
+                            startActivity(intent);
+                        }
+                    });
+
+                    paperAdd.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            paperAdd.setImageDrawable(getResources().getDrawable(R.drawable.ic_control_point_green_24dp));
+                        }
+                    });
                 }
             }
         }

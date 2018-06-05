@@ -1,10 +1,11 @@
 package com.example.conferenceapp.models;
 
+import java.io.Serializable;
 import java.sql.Time;
 import java.time.DayOfWeek;
 import java.util.Date;
 
-public class CustomTime {
+public class CustomTime implements Serializable{
 
     public String date;
     public String startTime;

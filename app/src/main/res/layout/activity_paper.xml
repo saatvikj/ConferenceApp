@@ -40,6 +40,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="sans-serif-light"
                             android:padding="12dp"
+                            android:id="@+id/paperTitle"
                             android:text="Why Matters Matter"
                             android:textColor="#000000"
                             android:textSize="20sp"
@@ -69,11 +70,13 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:id="@+id/paperTime"
                                 android:text="Time: 10:30 A.M  to 11:30 A.M, September 25" />
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:id="@+id/paperLoc"
                                 android:text="LocationL Bolden One" />
 
                             <TextView
@@ -81,6 +84,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginBottom="24dp"
                                 android:layout_marginTop="16dp"
+                                android:id="@+id/paperAbstract"
                                 android:text="Thinking a chatbot can help your client? Learn how the basics to building your own chatbot that can screen clients or complete documents, all while syncing with your Clio account. Tom Martin, creator of LawDroid corporate filings, shares his expertise in building your own chatbot in his hands-on session."
                                 android:textColor="#000000" />
 
