@@ -64,6 +64,6 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:paddingTop="4dp"
-        android:background="@color/divier"/>
+        android:background="#787878"/>
 
 </LinearLayout>

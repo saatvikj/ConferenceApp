@@ -35,6 +35,7 @@
         <activity android:name=".FoodGuide" />
         <activity android:name=".ActivityFeedPost"></activity>
         <activity android:name=".ActivityCreatePost"></activity>
+        <activity android:name=".ActivityPaperDetails"></activity>
     </application>
 
 </manifest>
