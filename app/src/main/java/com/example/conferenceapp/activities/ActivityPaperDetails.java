@@ -1,12 +1,16 @@
-package com.example.conferenceapp;
+package com.example.conferenceapp.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.example.conferenceapp.R;
 
 public class ActivityPaperDetails extends AppCompatActivity{
 
@@ -23,5 +27,23 @@ public class ActivityPaperDetails extends AppCompatActivity{
             bioTextView.setText("blah blah blah");
             speakerList.addView(inflatedView);
         }
+        getSupportActionBar().setTitle("Why Matters Matter");
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_home_button, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.guide_home) {
+            Intent intent = new Intent(ActivityPaperDetails.this, NavBarActivity.class);
+            startActivity(intent);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

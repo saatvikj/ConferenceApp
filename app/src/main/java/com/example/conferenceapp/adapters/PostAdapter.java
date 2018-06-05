@@ -1,4 +1,4 @@
-package com.example.conferenceapp;
+package com.example.conferenceapp.adapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,9 +10,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.conferenceapp.models.FeedPost;
+import com.example.conferenceapp.R;
+import com.example.conferenceapp.activities.ActivityFeedPost;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.example.conferenceapp;
+package com.example.conferenceapp.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.conferenceapp.adapters.DayPagerAdapter;
+import com.example.conferenceapp.R;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 
 public class FragmentConferenceSchedule extends Fragment {

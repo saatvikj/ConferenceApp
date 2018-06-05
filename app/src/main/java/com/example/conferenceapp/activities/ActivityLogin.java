@@ -1,4 +1,4 @@
-package com.example.conferenceapp;
+package com.example.conferenceapp.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.example.conferenceapp.R;
 
 public class ActivityLogin extends AppCompatActivity {
 

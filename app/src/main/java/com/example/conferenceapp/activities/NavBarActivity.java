@@ -1,4 +1,4 @@
-package com.example.conferenceapp;
+package com.example.conferenceapp.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +13,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+
+import com.example.conferenceapp.fragments.FragmentAbout;
+import com.example.conferenceapp.fragments.FragmentConferenceSchedule;
+import com.example.conferenceapp.fragments.FragmentFeed;
+import com.example.conferenceapp.fragments.FragmentGuide;
+import com.example.conferenceapp.fragments.FragmentLocationDetails;
+import com.example.conferenceapp.fragments.FragmentMessages;
+import com.example.conferenceapp.fragments.FragmentMySchedule;
+import com.example.conferenceapp.fragments.FragmentPartners;
+import com.example.conferenceapp.fragments.FragmentProfile;
+import com.example.conferenceapp.fragments.FragmentSpeakerSchedule;
+import com.example.conferenceapp.R;
 
 public class NavBarActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

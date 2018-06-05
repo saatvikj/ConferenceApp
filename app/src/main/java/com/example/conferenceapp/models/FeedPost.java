@@ -1,4 +1,4 @@
-package com.example.conferenceapp;
+package com.example.conferenceapp.models;
 
 import android.net.Uri;
 

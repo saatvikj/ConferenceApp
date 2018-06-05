@@ -20,7 +20,7 @@
         android:theme="@style/AppTheme">
         <activity
 
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,14 +28,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ActivityLogin" />
+        <activity android:name=".activities.ActivityLogin" />
         <activity
-            android:name=".NavBarActivity"
+            android:name=".activities.NavBarActivity"
             android:theme="@style/AppTheme.Light.NoActionBar" />
-        <activity android:name=".FoodGuide" />
-        <activity android:name=".ActivityFeedPost"></activity>
-        <activity android:name=".ActivityCreatePost"></activity>
-        <activity android:name=".ActivityPaperDetails"></activity>
+        <activity android:name=".activities.ActivityFoodGuide" />
+        <activity android:name=".activities.ActivityFeedPost"></activity>
+        <activity android:name=".activities.ActivityCreatePost"></activity>
+        <activity android:name=".activities.ActivityPaperDetails"></activity>
     </application>
 
 </manifest>

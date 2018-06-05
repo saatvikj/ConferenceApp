@@ -1,4 +1,4 @@
-package com.example.conferenceapp;
+package com.example.conferenceapp.fragments;
 
 import android.content.Intent;
 import android.content.res.Resources;
@@ -10,6 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
+import com.example.conferenceapp.R;
+import com.example.conferenceapp.activities.ActivityFoodGuide;
 
 public class FragmentGuide extends Fragment {
 
@@ -42,7 +45,7 @@ public class FragmentGuide extends Fragment {
         foodGuide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), FoodGuide.class);
+                Intent intent = new Intent(getActivity(), ActivityFoodGuide.class);
                 startActivity(intent);
             }
         });

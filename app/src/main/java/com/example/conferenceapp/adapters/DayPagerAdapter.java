@@ -1,8 +1,10 @@
-package com.example.conferenceapp;
+package com.example.conferenceapp.adapters;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+
+import com.example.conferenceapp.fragments.FragmentDaySchedule;
 
 public class DayPagerAdapter extends FragmentPagerAdapter {
 

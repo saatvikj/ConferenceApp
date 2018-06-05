@@ -1,4 +1,4 @@
-package com.example.conferenceapp;
+package com.example.conferenceapp.fragments;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +10,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.conferenceapp.models.FeedPost;
+import com.example.conferenceapp.adapters.PostAdapter;
+import com.example.conferenceapp.R;
+import com.example.conferenceapp.activities.ActivityCreatePost;
 
 import java.net.URI;
 import java.net.URL;

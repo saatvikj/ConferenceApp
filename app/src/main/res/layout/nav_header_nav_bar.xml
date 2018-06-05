@@ -18,7 +18,7 @@
         android:paddingTop="8dp"
         app:srcCompat="@drawable/femaleuser" />
 
-    <com.example.conferenceapp.MyTextView
+    <TextView
         android:id="@+id/nameHeading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -27,15 +27,17 @@
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textColor="@color/colorPrimary"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:fontFamily="sans-serif-light"/>
 
-    <com.example.conferenceapp.MyTextView
+    <TextView
         android:id="@+id/emailHeading"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="mj@example.com"
         android:textAlignment="center"
-        android:textColor="@color/colorPrimary" />
+        android:textColor="@color/colorPrimary"
+        android:fontFamily="sans-serif-light"/>
 
     <View
         android:layout_width="match_parent"

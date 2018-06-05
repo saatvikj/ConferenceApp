@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <LinearLayout
@@ -15,12 +15,11 @@
             android:id="@+id/paperDescriptionCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
             android:background="@android:color/background_light"
-            android:layout_marginBottom="16dp"
             card_view:cardCornerRadius="4dp"
-            card_view:cardElevation="4dp" >
-            
+            card_view:cardElevation="4dp">
+
             <android.support.design.widget.CoordinatorLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -31,20 +30,20 @@
                     android:orientation="vertical">
 
                     <LinearLayout
+                        android:id="@+id/paperTitleLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/paperTitleLayout"
                         android:orientation="vertical">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:padding="12dp"
                             android:text="Why Matters Matter"
-                            android:fontFamily="sans-serif"
                             android:textColor="#000000"
                             android:textSize="20sp"
-                            android:padding="12dp"
-                            android:textStyle="bold"/>
+                            android:textStyle="bold" />
 
                         <View
                             android:layout_width="match_parent"
@@ -54,13 +53,13 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/paperDescLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/paperDescLayout"
-                        android:paddingTop="8dp"
-                        android:paddingRight="16dp"
+                        android:orientation="vertical"
                         android:paddingLeft="12dp"
-                        android:orientation="vertical">
+                        android:paddingRight="16dp"
+                        android:paddingTop="8dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -70,25 +69,24 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="Time: 10:30 A.M  to 11:30 A.M, September 25"/>
+                                android:text="Time: 10:30 A.M  to 11:30 A.M, September 25" />
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="LocationL Bolden One"/>
+                                android:text="LocationL Bolden One" />
 
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="16dp"
-                                android:textColor="#000000"
                                 android:layout_marginBottom="24dp"
-                                android:text="Thinking a chatbot can help your client? Learn how the basics to building your own chatbot that can screen clients or complete documents, all while syncing with your Clio account. Tom Martin, creator of LawDroid corporate filings, shares his expertise in building your own chatbot in his hands-on session."/>
+                                android:layout_marginTop="16dp"
+                                android:text="Thinking a chatbot can help your client? Learn how the basics to building your own chatbot that can screen clients or complete documents, all while syncing with your Clio account. Tom Martin, creator of LawDroid corporate filings, shares his expertise in building your own chatbot in his hands-on session."
+                                android:textColor="#000000" />
 
                         </LinearLayout>
 
                     </LinearLayout>
-
 
 
                 </LinearLayout>
@@ -98,11 +96,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
-                    android:clickable="true"
                     android:background="@color/colorPrimary"
+                    android:clickable="true"
                     android:src="@drawable/ic_add_24dp"
                     app:layout_anchor="@id/paperTitleLayout"
-                    app:layout_anchorGravity="bottom|right|end"/>
+                    app:layout_anchorGravity="bottom|right|end" />
 
             </android.support.design.widget.CoordinatorLayout>
 
@@ -113,11 +111,11 @@
             android:id="@+id/speakerListCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:background="@android:color/background_light"
             android:layout_marginBottom="16dp"
+            android:layout_marginTop="8dp"
+            android:background="@android:color/background_light"
             card_view:cardCornerRadius="4dp"
-            card_view:cardElevation="4dp" >
+            card_view:cardElevation="4dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -125,33 +123,35 @@
                 android:orientation="vertical">
 
                 <LinearLayout
+                    android:id="@+id/speakerList"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/speakerList"
                     android:orientation="vertical">
 
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-light"
+                        android:padding="12dp"
                         android:text="Speakers"
-                        android:fontFamily="sans-serif"
                         android:textColor="#000000"
                         android:textSize="20sp"
-                        android:padding="12dp"
-                        android:textStyle="bold"/>
+                        android:textStyle="bold" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:background="@color/divier" />
+                        android:background="#bebebe"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp" />
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/speakerListLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:id="@+id/speakerListLayout"
-                    android:layout_marginTop="8dp">
+                    android:layout_marginTop="8dp"
+                    android:orientation="vertical">
 
 
                 </LinearLayout>
