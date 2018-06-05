@@ -6,7 +6,7 @@ public class Paper {
     private String venue;
     private CustomTime time;
     private User authors[];
-    private String abstract;
+    private String paper_abstract;
     private String topics[];
 
     public String getTitle() {
@@ -29,11 +29,20 @@ public class Paper {
         return topics;
     }
 
-    public Paper(String title, String venue, CustomTime time, User[] authors, String[] topics) {
+    public String getPaper_abstract() {
+        return paper_abstract;
+    }
+
+    public void setPaper_abstract(String paper_abstract) {
+        this.paper_abstract = paper_abstract;
+    }
+
+    public Paper(String title, String venue, CustomTime time, User[] authors, String[] topics, String paper_abstract) {
         this.title = title;
         this.venue = venue;
         this.time = time;
         this.authors = authors;
         this.topics = topics;
+        this.paper_abstract = paper_abstract;
     }
 }

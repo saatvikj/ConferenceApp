@@ -13,6 +13,18 @@ public class User {
     private String typeOfUser;
     private Paper myAgenda[];
 
+    public User(String name, String company) {
+        this.name = name;
+        this.company = company;
+    }
+
+    public User(String name, String email, String company, String location) {
+        this.name = name;
+        this.email = email;
+        this.company = company;
+        this.location = location;
+    }
+
     public User(String ID, String name, String email, String company, String location, String bio, String[] interests, Paper[] presentedPapers, String typeOfUser, Paper[] myAgenda) {
         this.ID = ID;
         this.name = name;

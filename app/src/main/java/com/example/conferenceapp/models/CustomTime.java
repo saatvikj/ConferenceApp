@@ -6,31 +6,31 @@ import java.util.Date;
 
 public class CustomTime {
 
-    public Date date;
-    public java.sql.Time startTime;
-    public java.sql.Time endTime;
-    public DayOfWeek day;
+    public String date;
+    public String startTime;
+    public String endTime;
+    public String day;
 
-    public CustomTime(Date date, Time startTime, Time endTime, DayOfWeek day) {
+    public CustomTime(String date, String startTime, String endTime, String day) {
         this.date = date;
         this.startTime = startTime;
         this.endTime = endTime;
         this.day = day;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public Time getStartTime() {
+    public String getStartTime() {
         return startTime;
     }
 
-    public Time getEndTime() {
+    public String getEndTime() {
         return endTime;
     }
 
-    public DayOfWeek getDay() {
+    public String getDay() {
         return day;
     }
 }
