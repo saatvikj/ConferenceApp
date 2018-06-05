@@ -16,12 +16,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        try {
-            PaperCSVParser.parseCSV(getApplicationContext());
-            Toast.makeText(getApplicationContext(),PaperCSVParser.papers.get(0).getTitle(),Toast.LENGTH_LONG).show();
-        } catch (Exception e) {
-            Toast.makeText(getApplicationContext(),"Error",Toast.LENGTH_LONG).show();
-        }
         Button start = findViewById(R.id.startButton);
         start.setOnClickListener(new View.OnClickListener() {
             @Override

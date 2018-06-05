@@ -35,6 +35,6 @@ public class CustomTime {
     }
 
     public String displayTime(){
-        return startTime.concat(" - ").concat(displayTime());
+        return startTime.concat("-").concat(endTime);
     }
 }

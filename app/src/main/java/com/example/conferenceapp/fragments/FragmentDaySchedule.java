@@ -14,12 +14,12 @@ import android.widget.TextView;
 import com.example.conferenceapp.R;
 import com.example.conferenceapp.activities.ActivityFoodGuide;
 import com.example.conferenceapp.activities.ActivityPaperDetails;
+import com.example.conferenceapp.models.Paper;
+import com.example.conferenceapp.utils.PaperCSVParser;
 
 public class FragmentDaySchedule extends Fragment {
 
     public static final String ARG_PAGE = "ARG_PAGE";
-    public String day1[][] = {{"Quality Assurance", "HALL A", "10:50 AM -1:00 PM"}, {"Free Paper 2(PG)", "HALL B", "10:30 AM -11:30 AM"}, {"Free Paper 1(Member)", "HALL B", "11:30 AM -12:30 PM"}};
-    public String day2[][] = {{"Free Paper 2(PG)", "HALL B", "10:30 AM -11:30 AM"}, {"Free Paper 1(Member)", "HALL B", "11:30 AM -12:30 PM"}, {"Quality Assurance", "HALL A", "10:50 AM -1:00 PM"}};
     public String breakfast[] = {"10:30AM", "BREAKFAST", "10:50AM"};
     public String lunch[] = {"1:00PM", "LUNCH", "2:00PM"};
     private int mPage;
@@ -49,6 +49,11 @@ public class FragmentDaySchedule extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        try {
+            PaperCSVParser.parseCSV(view.getContext());
+        } catch (Exception e) {
+        }
+
         LinearLayout root = view.findViewById(R.id.daySchedule);
         LayoutInflater inflater = getActivity().getLayoutInflater();
         if (mPage == 1) {
@@ -68,23 +73,18 @@ public class FragmentDaySchedule extends Fragment {
                     startActivity(intent);
                 }
             });
-            for (int i = 0; i < day1.length; i++) {
-                View paper = inflater.inflate(R.layout.inflator_paper_schedule, null);
-                TextView paperstart = paper.findViewById(R.id.paperName);
-                TextView papervenue = paper.findViewById(R.id.paperVenue);
-                TextView paperend = paper.findViewById(R.id.paperTimings);
-
-                paperstart.setText(day1[i][0]);
-                papervenue.setText(day1[i][1]);
-                paperend.setText(day1[i][2]);
-                paper.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent intent = new Intent(getContext(),ActivityPaperDetails.class);
-                        startActivity(intent);
-                    }
-                });
-                root.addView(paper);
+            for (int i = 0; i < PaperCSVParser.papers.size(); i++) {
+                View paper_view = inflater.inflate(R.layout.inflator_paper_schedule, null);
+                TextView paperstart = paper_view.findViewById(R.id.paperName);
+                TextView papervenue = paper_view.findViewById(R.id.paperVenue);
+                TextView paperend = paper_view.findViewById(R.id.paperTimings);
+                Paper paper = PaperCSVParser.papers.get(i);
+                if (paper.getTime().getDate().equals("2 Dec 18") && Integer.parseInt(paper.getTime().getStartTime().split(":")[0]) <= 12) {
+                    paperstart.setText(paper.getTitle());
+                    papervenue.setText(paper.getVenue());
+                    paperend.setText(paper.getTime().displayTime());
+                    root.addView(paper_view);
+                }
             }
 
             View lunch = inflater.inflate(R.layout.inflator_break_schedule, null);
@@ -103,19 +103,20 @@ public class FragmentDaySchedule extends Fragment {
                     startActivity(intent);
                 }
             });
-            for (int i = 0; i < day2.length; i++) {
-                View paper = inflater.inflate(R.layout.inflator_paper_schedule, null);
-                TextView paperstart = paper.findViewById(R.id.paperName);
-                TextView papervenue = paper.findViewById(R.id.paperVenue);
-                TextView paperend = paper.findViewById(R.id.paperTimings);
-
-                paperstart.setText(day2[i][0]);
-                papervenue.setText(day2[i][1]);
-                paperend.setText(day2[i][2]);
-                root.addView(paper);
+            for (int i = 0; i < PaperCSVParser.papers.size(); i++) {
+                View paper_view = inflater.inflate(R.layout.inflator_paper_schedule, null);
+                TextView paperstart = paper_view.findViewById(R.id.paperName);
+                TextView papervenue = paper_view.findViewById(R.id.paperVenue);
+                TextView paperend = paper_view.findViewById(R.id.paperTimings);
+                Paper paper = PaperCSVParser.papers.get(i);
+                if (paper.getTime().getDate().equals("2 Dec 18") && Integer.parseInt(paper.getTime().getStartTime().split(":")[0]) >=1 && Integer.parseInt(paper.getTime().getStartTime().split(":")[0]) <=5 ) {
+                    paperstart.setText(paper.getTitle());
+                    papervenue.setText(paper.getVenue());
+                    paperend.setText(paper.getTime().displayTime());
+                    root.addView(paper_view);
+                }
             }
         } else if (mPage == 2) {
-
             View bFast = inflater.inflate(R.layout.inflator_break_schedule, null);
             TextView start = bFast.findViewById(R.id.breakStartTime);
             TextView desc = bFast.findViewById(R.id.breakDescTextView);
@@ -132,16 +133,18 @@ public class FragmentDaySchedule extends Fragment {
                     startActivity(intent);
                 }
             });
-            for (int i = 0; i < day2.length; i++) {
-                View paper = inflater.inflate(R.layout.inflator_paper_schedule, null);
-                TextView paperstart = paper.findViewById(R.id.paperName);
-                TextView papervenue = paper.findViewById(R.id.paperVenue);
-                TextView paperend = paper.findViewById(R.id.paperTimings);
-
-                paperstart.setText(day2[i][0]);
-                papervenue.setText(day2[i][1]);
-                paperend.setText(day2[i][2]);
-                root.addView(paper);
+            for (int i = 0; i < PaperCSVParser.papers.size(); i++) {
+                View paper_view = inflater.inflate(R.layout.inflator_paper_schedule, null);
+                TextView paperstart = paper_view.findViewById(R.id.paperName);
+                TextView papervenue = paper_view.findViewById(R.id.paperVenue);
+                TextView paperend = paper_view.findViewById(R.id.paperTimings);
+                Paper paper = PaperCSVParser.papers.get(i);
+                if (paper.getTime().getDate().equals("3 Dec 18") && Integer.parseInt(paper.getTime().getStartTime().split(":")[0]) <= 12) {
+                    paperstart.setText(paper.getTitle());
+                    papervenue.setText(paper.getVenue());
+                    paperend.setText(paper.getTime().displayTime());
+                    root.addView(paper_view);
+                }
             }
 
             View lunch = inflater.inflate(R.layout.inflator_break_schedule, null);
@@ -160,16 +163,18 @@ public class FragmentDaySchedule extends Fragment {
                     startActivity(intent);
                 }
             });
-            for (int i = 0; i < day1.length; i++) {
-                View paper = inflater.inflate(R.layout.inflator_paper_schedule, null);
-                TextView paperstart = paper.findViewById(R.id.paperName);
-                TextView papervenue = paper.findViewById(R.id.paperVenue);
-                TextView paperend = paper.findViewById(R.id.paperTimings);
-
-                paperstart.setText(day1[i][0]);
-                papervenue.setText(day1[i][1]);
-                paperend.setText(day1[i][2]);
-                root.addView(paper);
+            for (int i = 0; i < PaperCSVParser.papers.size(); i++) {
+                View paper_view = inflater.inflate(R.layout.inflator_paper_schedule, null);
+                TextView paperstart = paper_view.findViewById(R.id.paperName);
+                TextView papervenue = paper_view.findViewById(R.id.paperVenue);
+                TextView paperend = paper_view.findViewById(R.id.paperTimings);
+                Paper paper = PaperCSVParser.papers.get(i);
+                if (paper.getTime().getDate().equals("3 Dec 18") && Integer.parseInt(paper.getTime().getStartTime().split(":")[0]) >=1 && Integer.parseInt(paper.getTime().getStartTime().split(":")[0]) <=5 ) {
+                    paperstart.setText(paper.getTitle());
+                    papervenue.setText(paper.getVenue());
+                    paperend.setText(paper.getTime().displayTime());
+                    root.addView(paper_view);
+                }
             }
         }
     }

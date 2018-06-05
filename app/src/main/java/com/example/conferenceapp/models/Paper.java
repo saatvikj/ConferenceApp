@@ -33,10 +33,6 @@ public class Paper {
         return paper_abstract;
     }
 
-    public void setPaper_abstract(String paper_abstract) {
-        this.paper_abstract = paper_abstract;
-    }
-
     public Paper(String title, String venue, CustomTime time, User[] authors, String[] topics, String paper_abstract) {
         this.title = title;
         this.venue = venue;
