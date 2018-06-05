@@ -33,4 +33,8 @@ public class CustomTime {
     public String getDay() {
         return day;
     }
+
+    public String displayTime(){
+        return startTime.concat(" - ").concat(displayTime());
+    }
 }
