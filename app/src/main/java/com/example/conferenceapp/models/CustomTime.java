@@ -3,6 +3,7 @@ package com.example.conferenceapp.models;
 import java.io.Serializable;
 import java.sql.Time;
 import java.time.DayOfWeek;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class CustomTime implements Serializable {
@@ -42,5 +43,13 @@ public class CustomTime implements Serializable {
     @Override
     public String toString() {
         return day.concat(",").concat(date).concat(",").concat(startTime).concat("-").concat(endTime);
+    }
+
+    public ArrayList<Time> getParseTime(String time){
+        String startTime = time.split("-")[0];
+        String endTime = time.split("-")[1];
+        if(startTime.charAt(startTime.length()-2) == 'a'){
+
+        }
     }
 }

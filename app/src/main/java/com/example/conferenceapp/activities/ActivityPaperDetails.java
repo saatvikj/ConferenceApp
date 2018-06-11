@@ -2,7 +2,9 @@ package com.example.conferenceapp.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -24,6 +26,7 @@ public class ActivityPaperDetails extends AppCompatActivity implements Serializa
     TextView time;
     TextView location;
     TextView paper_abstract;
+    FloatingActionButton addToCalendar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,6 +51,23 @@ public class ActivityPaperDetails extends AppCompatActivity implements Serializa
             speakerList.addView(speakers);
         }
         getSupportActionBar().setTitle(paper.getTitle());
+
+        addToCalendar = findViewById(R.id.fab);
+        addToCalendar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
+                intent.setType("vnd.android.cursor.item/event");
+                intent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, );
+                intent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME,endTime);
+                intent.putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, true);
+                intent.putExtra(CalendarContract.Events.TITLE, "Neel Birthday");
+                intent.putExtra(CalendarContract.Events.DESCRIPTION, "This is a sample description");
+                intent.putExtra(CalendarContract.Events.EVENT_LOCATION, "My Guest House");
+                intent.putExtra(CalendarContract.Events.RRULE, "FREQ=YEARLY");
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

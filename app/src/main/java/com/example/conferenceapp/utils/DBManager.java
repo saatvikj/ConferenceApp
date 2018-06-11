@@ -56,6 +56,6 @@ public class DBManager {
 
     public void delete(Paper paper) {
         String title = paper.getTitle();
-        database.delete(DatabaseHelper.TABLE_NAME, "title" + "=" + title, null);
+        database.delete(DatabaseHelper.TABLE_NAME, "title" + "= \'" + title+"\'", null);
     }
 }

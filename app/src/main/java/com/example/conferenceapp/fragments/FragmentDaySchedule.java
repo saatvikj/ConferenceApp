@@ -33,6 +33,7 @@ public class FragmentDaySchedule extends Fragment implements Serializable{
     public String breakfast[] = {"10:30AM", "BREAKFAST", "10:50AM"};
     public String lunch[] = {"1:00PM", "LUNCH", "2:00PM"};
     private int mPage;
+    public boolean exists;
     public DBManager dbManager;
 
     public static FragmentDaySchedule newInstance(int page) {
@@ -100,6 +101,22 @@ public class FragmentDaySchedule extends Fragment implements Serializable{
                     paperstart.setText(paper.getTitle());
                     papervenue.setText(paper.getVenue());
                     paperend.setText(paper.getTime().displayTime());
+                    exists = false;
+                    if(cursor != null){
+                        if(cursor.moveToFirst()){
+                            do{
+                                String title = cursor.getString(cursor.getColumnIndex("title"));
+                                if(title.trim().equalsIgnoreCase(paper.getTitle().trim())){
+                                    exists = true;
+                                }
+                            }while (cursor.moveToNext());
+                        }
+                    }
+                    if(exists == true){
+                        addPaper.setText("Remove");
+                        addPaper.setTextColor(Color.parseColor("#FF0000"));
+                        paperAdd.setImageDrawable(getResources().getDrawable(R.drawable.ic_remove_circle_outline_black_24dp));
+                    }
                     root.addView(paper_view);
                     paper_view.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -112,16 +129,20 @@ public class FragmentDaySchedule extends Fragment implements Serializable{
                     paperAdd.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            dbManager.insert(paper);
-                            paperAdd.setImageDrawable(getResources().getDrawable(R.drawable.ic_control_point_green_24dp));
-                            addPaper.setTextColor(Color.parseColor("#0F9D57"));
-                            User currUser = UserCSVParser.users.get(0);
-                            if (currUser.getMyAgenda() == null) {
-                                ArrayList<Paper> myAgenda = new ArrayList<>();
-                                myAgenda.add(paper);
-                                currUser.setMyAgenda(myAgenda);
-                            } else {
-                                currUser.getMyAgenda().add(paper);
+                            if (exists == false) {
+                                dbManager.insert(paper);
+                                paperAdd.setImageDrawable(getResources().getDrawable(R.drawable.ic_remove_circle_outline_black_24dp));
+                                addPaper.setTextColor(Color.parseColor("#FF0000"));
+                                addPaper.setText("Remove");
+                                exists = true;
+                            }
+                            else{
+                                dbManager.delete(paper);
+                                paperAdd.setImageDrawable(getResources().getDrawable(R.drawable.ic_control_point_green_24dp));
+                                addPaper.setTextColor(Color.parseColor("#00FF00"));
+                                addPaper.setText("Add");
+                                exists=false;
+
                             }
                         }
                     });
@@ -156,6 +177,22 @@ public class FragmentDaySchedule extends Fragment implements Serializable{
                     paperstart.setText(paper.getTitle());
                     papervenue.setText(paper.getVenue());
                     paperend.setText(paper.getTime().displayTime());
+                    exists = false;
+                    if(cursor != null){
+                        if(cursor.moveToFirst()){
+                            do{
+                                String title = cursor.getString(cursor.getColumnIndex("title"));
+                                if(title.trim().equalsIgnoreCase(paper.getTitle().trim())){
+                                    exists = true;
+                                }
+                            }while (cursor.moveToNext());
+                        }
+                    }
+                    if(exists == true){
+                        addPaper.setText("Remove");
+                        addPaper.setTextColor(Color.parseColor("#FF0000"));
+                        paperAdd.setImageDrawable(getResources().getDrawable(R.drawable.ic_remove_circle_outline_black_24dp));
+                    }
                     root.addView(paper_view);
                     paper_view.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -169,9 +206,19 @@ public class FragmentDaySchedule extends Fragment implements Serializable{
                     paperAdd.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            dbManager.insert(paper);
-                            paperAdd.setImageDrawable(getResources().getDrawable(R.drawable.ic_control_point_green_24dp));
-                            addPaper.setTextColor(Color.parseColor("#0F9D57"));
+                            if (exists == false) {
+                                dbManager.insert(paper);
+                                paperAdd.setImageDrawable(getResources().getDrawable(R.drawable.ic_remove_circle_outline_black_24dp));                                addPaper.setTextColor(Color.parseColor("#FF0000"));
+                                addPaper.setText("Remove");
+                                exists = true;
+                            }
+                            else{
+                                dbManager.delete(paper);
+                                paperAdd.setImageDrawable(getResources().getDrawable(R.drawable.ic_control_point_green_24dp));
+                                addPaper.setTextColor(Color.parseColor("#00FF00"));
+                                addPaper.setText("Add");
+                                exists = false;
+                            }
                         }
                     });
                 }
@@ -205,6 +252,22 @@ public class FragmentDaySchedule extends Fragment implements Serializable{
                     paperstart.setText(paper.getTitle());
                     papervenue.setText(paper.getVenue());
                     paperend.setText(paper.getTime().displayTime());
+                    exists = false;
+                    if(cursor != null){
+                        if(cursor.moveToFirst()){
+                            do{
+                                String title = cursor.getString(cursor.getColumnIndex("title"));
+                                if(title.trim().equalsIgnoreCase(paper.getTitle().trim())){
+                                    exists = true;
+                                }
+                            }while (cursor.moveToNext());
+                        }
+                    }
+                    if(exists == true){
+                        addPaper.setText("Remove");
+                        addPaper.setTextColor(Color.parseColor("#FF0000"));
+                        paperAdd.setImageDrawable(getResources().getDrawable(R.drawable.ic_remove_circle_outline_black_24dp));
+                    }
                     root.addView(paper_view);
                     paper_view.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -218,9 +281,20 @@ public class FragmentDaySchedule extends Fragment implements Serializable{
                     paperAdd.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            dbManager.insert(paper);
-                            paperAdd.setImageDrawable(getResources().getDrawable(R.drawable.ic_control_point_green_24dp));
-                            addPaper.setTextColor(Color.parseColor("#0F9D57"));
+                            if (exists == false) {
+                                dbManager.insert(paper);
+                                paperAdd.setImageDrawable(getResources().getDrawable(R.drawable.ic_remove_circle_outline_black_24dp));
+                                addPaper.setTextColor(Color.parseColor("#FF0000"));
+                                addPaper.setText("Remove");
+
+                            }
+                            else{
+                                dbManager.delete(paper);
+                                paperAdd.setImageDrawable(getResources().getDrawable(R.drawable.ic_control_point_green_24dp));
+                                addPaper.setTextColor(Color.parseColor("#00FF00"));
+                                addPaper.setText("Add");
+
+                            }
                         }
                     });
                 }
@@ -254,6 +328,22 @@ public class FragmentDaySchedule extends Fragment implements Serializable{
                     paperstart.setText(paper.getTitle());
                     papervenue.setText(paper.getVenue());
                     paperend.setText(paper.getTime().displayTime());
+                    exists = false;
+                    if(cursor != null){
+                        if(cursor.moveToFirst()){
+                            do{
+                                String title = cursor.getString(cursor.getColumnIndex("title"));
+                                if(title.trim().equalsIgnoreCase(paper.getTitle().trim())){
+                                    exists = true;
+                                }
+                            }while (cursor.moveToNext());
+                        }
+                    }
+                    if(exists == true){
+                        addPaper.setText("Remove");
+                        addPaper.setTextColor(Color.parseColor("#FF0000"));
+                        paperAdd.setImageDrawable(getResources().getDrawable(R.drawable.ic_remove_circle_outline_black_24dp));
+                    }
                     root.addView(paper_view);
                     paper_view.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -267,9 +357,19 @@ public class FragmentDaySchedule extends Fragment implements Serializable{
                     paperAdd.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            dbManager.insert(paper);
-                            paperAdd.setImageDrawable(getResources().getDrawable(R.drawable.ic_control_point_green_24dp));
-                            addPaper.setTextColor(Color.parseColor("#0F9D57"));
+                            if (exists == false) {
+                                dbManager.insert(paper);
+                                paperAdd.setImageDrawable(getResources().getDrawable(R.drawable.ic_remove_circle_outline_black_24dp));                                addPaper.setTextColor(Color.parseColor("#FF0000"));
+                                addPaper.setText("Remove");
+
+                            }
+                            else{
+                                dbManager.delete(paper);
+                                paperAdd.setImageDrawable(getResources().getDrawable(R.drawable.ic_control_point_green_24dp));
+                                addPaper.setTextColor(Color.parseColor("#00FF00"));
+                                addPaper.setText("Add");
+
+                            }
                         }
                     });
                 }
