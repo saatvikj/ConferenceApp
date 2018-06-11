@@ -58,7 +58,7 @@ public class ActivityPaperDetails extends AppCompatActivity implements Serializa
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
                 intent.setType("vnd.android.cursor.item/event");
-                intent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, );
+                intent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, startTime);
                 intent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME,endTime);
                 intent.putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, true);
                 intent.putExtra(CalendarContract.Events.TITLE, "Neel Birthday");
