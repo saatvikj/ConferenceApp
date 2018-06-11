@@ -1,5 +1,7 @@
 package com.example.conferenceapp.models;
 
+import java.util.ArrayList;
+
 public class User {
 
     private String ID;
@@ -11,7 +13,7 @@ public class User {
     private String interests[];
     private Paper presentedPapers[];
     private String typeOfUser;
-    private Paper myAgenda[];
+    private ArrayList<Paper> myAgenda;
 
     public User(String name, String company) {
         this.name = name;
@@ -25,7 +27,7 @@ public class User {
         this.location = location;
     }
 
-    public User(String ID, String name, String email, String company, String location, String bio, String[] interests, Paper[] presentedPapers, String typeOfUser, Paper[] myAgenda) {
+    public User(String ID, String name, String email, String company, String location, String bio, String[] interests, Paper[] presentedPapers, String typeOfUser, ArrayList<Paper> myAgenda) {
         this.ID = ID;
         this.name = name;
         this.email = email;
@@ -114,11 +116,11 @@ public class User {
         this.typeOfUser = typeOfUser;
     }
 
-    public Paper[] getMyAgenda() {
+    public ArrayList<Paper> getMyAgenda() {
         return myAgenda;
     }
 
-    public void setMyAgenda(Paper[] myAgenda) {
+    public void setMyAgenda(ArrayList<Paper> myAgenda) {
         this.myAgenda = myAgenda;
     }
 }

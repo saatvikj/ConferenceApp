@@ -18,9 +18,12 @@ import com.example.conferenceapp.activities.ActivityFoodGuide;
 import com.example.conferenceapp.activities.ActivityPaperDetails;
 import com.example.conferenceapp.activities.NavBarActivity;
 import com.example.conferenceapp.models.Paper;
+import com.example.conferenceapp.models.User;
 import com.example.conferenceapp.utils.PaperCSVParser;
+import com.example.conferenceapp.utils.UserCSVParser;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class FragmentDaySchedule extends Fragment implements Serializable{
 
@@ -56,6 +59,7 @@ public class FragmentDaySchedule extends Fragment implements Serializable{
         super.onViewCreated(view, savedInstanceState);
         try {
             PaperCSVParser.parseCSV(view.getContext());
+            UserCSVParser.parseCSV(view.getContext());
         } catch (Exception e) {
         }
 
@@ -104,6 +108,14 @@ public class FragmentDaySchedule extends Fragment implements Serializable{
                         public void onClick(View view) {
                             paperAdd.setImageDrawable(getResources().getDrawable(R.drawable.ic_control_point_green_24dp));
                             addPaper.setTextColor(Color.parseColor("#0F9D57"));
+                            User currUser = UserCSVParser.users.get(0);
+                            if (currUser.getMyAgenda() == null) {
+                                ArrayList<Paper> myAgenda = new ArrayList<>();
+                                myAgenda.add(paper);
+                                currUser.setMyAgenda(myAgenda);
+                            } else {
+                                currUser.getMyAgenda().add(paper);
+                            }
                         }
                     });
                 }
