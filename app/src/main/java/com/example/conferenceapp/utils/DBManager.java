@@ -39,7 +39,7 @@ public class DBManager {
         contentValue.put("authors", Arrays.toString(paper.getAuthors()));
         contentValue.put("topics", Arrays.toString(paper.getTopics()));
         contentValue.put("venue", paper.getVenue());
-        contentValue.put("schedule", paper.getTime().displayTime());
+        contentValue.put("schedule", paper.getTime().toString());
         contentValue.put("abstract", paper.getPaper_abstract());
         database.insert(DatabaseHelper.TABLE_NAME, null, contentValue);
     }

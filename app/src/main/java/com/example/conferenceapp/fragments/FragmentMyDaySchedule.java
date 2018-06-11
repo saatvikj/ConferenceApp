@@ -1,6 +1,7 @@
 package com.example.conferenceapp.fragments;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -17,7 +18,9 @@ import com.example.conferenceapp.R;
 import com.example.conferenceapp.activities.ActivityFoodGuide;
 import com.example.conferenceapp.activities.ActivityPaperDetails;
 import com.example.conferenceapp.activities.NavBarActivity;
+import com.example.conferenceapp.models.CustomTime;
 import com.example.conferenceapp.models.Paper;
+import com.example.conferenceapp.utils.DBManager;
 import com.example.conferenceapp.utils.PaperCSVParser;
 import com.example.conferenceapp.utils.UserCSVParser;
 
@@ -29,6 +32,7 @@ public class FragmentMyDaySchedule extends Fragment implements Serializable {
     public String breakfast[] = {"10:30AM", "BREAKFAST", "10:50AM"};
     public String lunch[] = {"1:00PM", "LUNCH", "2:00PM"};
     private int mPage;
+    private DBManager dbManager;
 
     public static FragmentMyDaySchedule newInstance(int page) {
         Bundle args = new Bundle();
@@ -54,7 +58,9 @@ public class FragmentMyDaySchedule extends Fragment implements Serializable {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-
+        dbManager = new DBManager(getContext());
+        dbManager.open();
+        Cursor cursor = dbManager.fetch();
         LinearLayout root = view.findViewById(R.id.daySchedule);
         final LayoutInflater inflater = getActivity().getLayoutInflater();
         if (mPage == 1) {
@@ -74,29 +80,49 @@ public class FragmentMyDaySchedule extends Fragment implements Serializable {
                     startActivity(intent);
                 }
             });
+            if (cursor != null) {
+                if (cursor.moveToFirst()) {
+                    do {
+                        final String title = cursor.getString(cursor.getColumnIndex("title"));
+                        final String authors = cursor.getString(cursor.getColumnIndex("authors"));
+                        final String topics = cursor.getString(cursor.getColumnIndex("topics"));
+                        final String venue = cursor.getString(cursor.getColumnIndex("venue"));
+                        final String time = cursor.getString(cursor.getColumnIndex("schedule"));
+                        final String paper_abstract = cursor.getString(cursor.getColumnIndex("abstract"));
 
-            for (int i = 0; i < UserCSVParser.users.get(0).getMyAgenda().size(); i++) {
-                View paper_view = inflater.inflate(R.layout.inflator_paper_schedule, null);
-                TextView paperstart = paper_view.findViewById(R.id.paperName);
-                TextView papervenue = paper_view.findViewById(R.id.paperVenue);
-                TextView paperend = paper_view.findViewById(R.id.paperTimings);
-                final TextView addPaper = paper_view.findViewById(R.id.add);
-                final ImageView paperAdd = paper_view.findViewById(R.id.addPaperIcon);
-                addPaper.setVisibility(View.INVISIBLE);
-                paperAdd.setVisibility(View.VISIBLE);
-                final Paper paper = UserCSVParser.users.get(0).getMyAgenda().get(i);
-                paperstart.setText(paper.getTitle());
-                papervenue.setText(paper.getVenue());
-                paperend.setText(paper.getTime().displayTime());
-                root.addView(paper_view);
-                paper_view.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent intent = new Intent(getActivity(), ActivityPaperDetails.class);
-                        intent.putExtra("Paper", paper);
-                        startActivity(intent);
-                    }
-                });
+                        View paper_view = inflater.inflate(R.layout.inflator_paper_schedule, null);
+                        TextView paper_title = paper_view.findViewById(R.id.paperName);
+                        TextView paper_venue = paper_view.findViewById(R.id.paperVenue);
+                        final TextView paper_time = paper_view.findViewById(R.id.paperTimings);
+                        final TextView addPaper = paper_view.findViewById(R.id.add);
+                        final ImageView paperAdd = paper_view.findViewById(R.id.addPaperIcon);
+                        addPaper.setVisibility(View.INVISIBLE);
+                        paperAdd.setVisibility(View.INVISIBLE);
+                        paper_title.setText(title);
+                        paper_venue.setText(venue);
+                        paper_time.setText(time);
+                        root.addView(paper_view);
+                        paper_view.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                String custom_time[] = time.split(",");
+                                String day = custom_time[0];
+                                String date = custom_time[1];
+                                String confTime[] = custom_time[2].split("-");
+                                String startTime = confTime[0];
+                                String endTime = confTime[1];
+                                CustomTime paper_schedule = new CustomTime(date, startTime, endTime, day);
+                                Paper paper = new Paper(title,venue,paper_schedule,authors.replace("[","").replace("]","").split(","),
+                                        topics.replace("[","").replace("]","").split(","),paper_abstract);
+                                Intent intent = new Intent(getActivity(), ActivityPaperDetails.class);
+                                intent.putExtra("Paper", paper);
+                                startActivity(intent);
+                            }
+                        });
+
+
+                    } while (cursor.moveToNext());
+                }
             }
         }
     }

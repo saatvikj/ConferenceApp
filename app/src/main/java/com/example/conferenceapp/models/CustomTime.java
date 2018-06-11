@@ -38,4 +38,9 @@ public class CustomTime implements Serializable {
     public String displayTime() {
         return startTime.concat("-").concat(endTime);
     }
+
+    @Override
+    public String toString() {
+        return day.concat(",").concat(date).concat(",").concat(startTime).concat("-").concat(endTime);
+    }
 }
