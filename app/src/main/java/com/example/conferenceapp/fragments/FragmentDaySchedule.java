@@ -1,6 +1,7 @@
 package com.example.conferenceapp.fragments;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -19,6 +20,7 @@ import com.example.conferenceapp.activities.ActivityPaperDetails;
 import com.example.conferenceapp.activities.NavBarActivity;
 import com.example.conferenceapp.models.Paper;
 import com.example.conferenceapp.models.User;
+import com.example.conferenceapp.utils.DBManager;
 import com.example.conferenceapp.utils.PaperCSVParser;
 import com.example.conferenceapp.utils.UserCSVParser;
 
@@ -31,6 +33,7 @@ public class FragmentDaySchedule extends Fragment implements Serializable{
     public String breakfast[] = {"10:30AM", "BREAKFAST", "10:50AM"};
     public String lunch[] = {"1:00PM", "LUNCH", "2:00PM"};
     private int mPage;
+    public DBManager dbManager;
 
     public static FragmentDaySchedule newInstance(int page) {
         Bundle args = new Bundle();
@@ -63,6 +66,9 @@ public class FragmentDaySchedule extends Fragment implements Serializable{
         } catch (Exception e) {
         }
 
+        dbManager = new DBManager(getContext());
+        dbManager.open();
+        Cursor cursor = dbManager.fetch();
         LinearLayout root = view.findViewById(R.id.daySchedule);
         final LayoutInflater inflater = getActivity().getLayoutInflater();
         if (mPage == 1) {
@@ -106,6 +112,7 @@ public class FragmentDaySchedule extends Fragment implements Serializable{
                     paperAdd.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+                            dbManager.insert(paper);
                             paperAdd.setImageDrawable(getResources().getDrawable(R.drawable.ic_control_point_green_24dp));
                             addPaper.setTextColor(Color.parseColor("#0F9D57"));
                             User currUser = UserCSVParser.users.get(0);
@@ -162,6 +169,7 @@ public class FragmentDaySchedule extends Fragment implements Serializable{
                     paperAdd.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+                            dbManager.insert(paper);
                             paperAdd.setImageDrawable(getResources().getDrawable(R.drawable.ic_control_point_green_24dp));
                             addPaper.setTextColor(Color.parseColor("#0F9D57"));
                         }
@@ -210,6 +218,7 @@ public class FragmentDaySchedule extends Fragment implements Serializable{
                     paperAdd.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+                            dbManager.insert(paper);
                             paperAdd.setImageDrawable(getResources().getDrawable(R.drawable.ic_control_point_green_24dp));
                             addPaper.setTextColor(Color.parseColor("#0F9D57"));
                         }
@@ -258,6 +267,7 @@ public class FragmentDaySchedule extends Fragment implements Serializable{
                     paperAdd.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+                            dbManager.insert(paper);
                             paperAdd.setImageDrawable(getResources().getDrawable(R.drawable.ic_control_point_green_24dp));
                             addPaper.setTextColor(Color.parseColor("#0F9D57"));
                         }

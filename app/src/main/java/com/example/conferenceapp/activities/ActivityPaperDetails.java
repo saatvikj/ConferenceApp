@@ -60,6 +60,7 @@ public class ActivityPaperDetails extends AppCompatActivity implements Serializa
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.guide_home) {
             Intent intent = new Intent(ActivityPaperDetails.this, NavBarActivity.class);
+            intent.putExtra("Source", "skip");
             startActivity(intent);
             return true;
         }

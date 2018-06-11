@@ -27,6 +27,7 @@ public class ActivityFoodGuide extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.guide_home) {
             Intent intent = new Intent(ActivityFoodGuide.this, NavBarActivity.class);
+            intent.putExtra("Source", "skip");
             startActivity(intent);
             return true;
         }

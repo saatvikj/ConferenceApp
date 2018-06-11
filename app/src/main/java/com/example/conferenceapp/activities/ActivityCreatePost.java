@@ -26,6 +26,7 @@ public class ActivityCreatePost extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.create_cancel) {
             Intent intent = new Intent(ActivityCreatePost.this, NavBarActivity.class);
+            intent.putExtra("Source", "normal");
             startActivity(intent);
             return true;
         }

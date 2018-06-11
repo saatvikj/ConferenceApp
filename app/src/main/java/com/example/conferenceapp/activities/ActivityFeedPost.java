@@ -98,6 +98,7 @@ public class ActivityFeedPost extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.guide_home) {
             Intent intent = new Intent(ActivityFeedPost.this, NavBarActivity.class);
+            intent.putExtra("Source", "normal");
             startActivity(intent);
             return true;
         }

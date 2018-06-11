@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.conferenceapp.fragments.FragmentAbout;
 import com.example.conferenceapp.fragments.FragmentConferenceSchedule;
@@ -29,11 +30,12 @@ import com.example.conferenceapp.R;
 public class NavBarActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-
+    public String src;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nav_bar);
+        src = getIntent().getStringExtra("Source");
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -42,28 +44,39 @@ public class NavBarActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-        navigationView.setItemIconTintList(null);
-        displaySelectedScreen(R.id.nav_feed);
-        ImageView userIcon = navigationView.getHeaderView(0).findViewById(R.id.imageView);
-        userIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        if(src.equals("skip")) {
+            disableOptionsNavigationView(navigationView);
+            TextView name = navigationView.getHeaderView(0).findViewById(R.id.nameHeading);
+            name.setText("Guest");
+            TextView email = navigationView.getHeaderView(0).findViewById(R.id.emailHeading);
+            email.setVisibility(View.GONE);
 
-                android.support.v4.app.Fragment fragment = null;
-                fragment = new FragmentProfile();
-                if (fragment != null) {
-                    FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                    ft.replace(R.id.content_frame, fragment);
-                    ft.commit();
+        }
+        else {
+            navigationView.setNavigationItemSelectedListener(this);
+            navigationView.setItemIconTintList(null);
+            displaySelectedScreen(R.id.nav_feed);
+            ImageView userIcon = navigationView.getHeaderView(0).findViewById(R.id.imageView);
+            userIcon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    android.support.v4.app.Fragment fragment = null;
+                    fragment = new FragmentProfile();
+                    if (fragment != null) {
+                        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                        ft.replace(R.id.content_frame, fragment);
+                        ft.commit();
+                    }
+
+                    setActionBarTitle("My Profile");
+                    DrawerLayout drawer = findViewById(R.id.drawer_layout);
+                    drawer.closeDrawer(GravityCompat.START);
+
                 }
+            });
+        }
 
-                setActionBarTitle("My Profile");
-                DrawerLayout drawer = findViewById(R.id.drawer_layout);
-                drawer.closeDrawer(GravityCompat.START);
-
-            }
-        });
     }
 
     @Override
@@ -76,11 +89,24 @@ public class NavBarActivity extends AppCompatActivity
         }
     }
 
+    public void disableOptionsNavigationView(NavigationView navigationView){
+        navigationView.getMenu().getItem(3).setVisible(false);
+        navigationView.getMenu().getItem(4).setVisible(false);
+        navigationView.getMenu().getItem(9).setTitle("Exit");
+        navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setItemIconTintList(null);
+        displaySelectedScreen(R.id.nav_conference_schedule);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.nav_menu, menu);
-        displaySelectedScreen(R.id.nav_feed);
+        if (src.equals("skip")) {
+            displaySelectedScreen(R.id.nav_conference_schedule);
+        } else {
+            displaySelectedScreen(R.id.nav_feed);
+        }
         return true;
     }
 
