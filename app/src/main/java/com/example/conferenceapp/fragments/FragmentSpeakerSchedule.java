@@ -10,7 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.conferenceapp.R;
+import com.example.conferenceapp.adapters.SpeakerAdapter;
 import com.futuremind.recyclerviewfastscroll.FastScroller;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class FragmentSpeakerSchedule extends Fragment {
 
@@ -31,6 +35,12 @@ public class FragmentSpeakerSchedule extends Fragment {
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerview);
         fastScroller = (FastScroller) view.findViewById(R.id.fastscroll);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        List<String> speakers = new ArrayList<>();
+        for (char ch = 'A'; ch<='Z';ch++) {
+            speakers.add(Character.toString(ch));
+        }
+
+        SpeakerAdapter adapter = new SpeakerAdapter(speakers, getContext());
         recyclerView.setAdapter(adapter);
 
         //has to be called AFTER RecyclerView.setAdapter()
