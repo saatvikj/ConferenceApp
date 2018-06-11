@@ -5,7 +5,7 @@ import java.sql.Time;
 import java.time.DayOfWeek;
 import java.util.Date;
 
-public class CustomTime implements Serializable{
+public class CustomTime implements Serializable {
 
     public String date;
     public String startTime;
@@ -35,7 +35,7 @@ public class CustomTime implements Serializable{
         return day;
     }
 
-    public String displayTime(){
+    public String displayTime() {
         return startTime.concat("-").concat(endTime);
     }
 }

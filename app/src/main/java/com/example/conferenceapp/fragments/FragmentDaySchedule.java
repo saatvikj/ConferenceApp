@@ -1,6 +1,7 @@
 package com.example.conferenceapp.fragments;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -82,6 +83,7 @@ public class FragmentDaySchedule extends Fragment implements Serializable{
                 TextView paperstart = paper_view.findViewById(R.id.paperName);
                 TextView papervenue = paper_view.findViewById(R.id.paperVenue);
                 TextView paperend = paper_view.findViewById(R.id.paperTimings);
+                final TextView addPaper = paper_view.findViewById(R.id.add);
                 final ImageView paperAdd = paper_view.findViewById(R.id.addPaperIcon);
                 final Paper paper = PaperCSVParser.papers.get(i);
                 if (paper.getTime().getDate().equals("2 Dec 18") && Integer.parseInt(paper.getTime().getStartTime().split(":")[0]) <= 12) {
@@ -101,6 +103,7 @@ public class FragmentDaySchedule extends Fragment implements Serializable{
                         @Override
                         public void onClick(View view) {
                             paperAdd.setImageDrawable(getResources().getDrawable(R.drawable.ic_control_point_green_24dp));
+                            addPaper.setTextColor(Color.parseColor("#0F9D57"));
                         }
                     });
                 }
@@ -127,6 +130,7 @@ public class FragmentDaySchedule extends Fragment implements Serializable{
                 TextView paperstart = paper_view.findViewById(R.id.paperName);
                 TextView papervenue = paper_view.findViewById(R.id.paperVenue);
                 TextView paperend = paper_view.findViewById(R.id.paperTimings);
+                final TextView addPaper = paper_view.findViewById(R.id.add);
                 final ImageView paperAdd = paper_view.findViewById(R.id.addPaperIcon);
                 final Paper paper = PaperCSVParser.papers.get(i);
                 if (paper.getTime().getDate().equals("2 Dec 18") && Integer.parseInt(paper.getTime().getStartTime().split(":")[0]) >=1 && Integer.parseInt(paper.getTime().getStartTime().split(":")[0]) <=5 ) {
@@ -147,6 +151,7 @@ public class FragmentDaySchedule extends Fragment implements Serializable{
                         @Override
                         public void onClick(View view) {
                             paperAdd.setImageDrawable(getResources().getDrawable(R.drawable.ic_control_point_green_24dp));
+                            addPaper.setTextColor(Color.parseColor("#0F9D57"));
                         }
                     });
                 }
@@ -173,6 +178,7 @@ public class FragmentDaySchedule extends Fragment implements Serializable{
                 TextView paperstart = paper_view.findViewById(R.id.paperName);
                 TextView papervenue = paper_view.findViewById(R.id.paperVenue);
                 TextView paperend = paper_view.findViewById(R.id.paperTimings);
+                final TextView addPaper = paper_view.findViewById(R.id.add);
                 final ImageView paperAdd = paper_view.findViewById(R.id.addPaperIcon);
                 final Paper paper = PaperCSVParser.papers.get(i);
                 if (paper.getTime().getDate().equals("3 Dec 18") && Integer.parseInt(paper.getTime().getStartTime().split(":")[0]) <= 12) {
@@ -193,6 +199,7 @@ public class FragmentDaySchedule extends Fragment implements Serializable{
                         @Override
                         public void onClick(View view) {
                             paperAdd.setImageDrawable(getResources().getDrawable(R.drawable.ic_control_point_green_24dp));
+                            addPaper.setTextColor(Color.parseColor("#0F9D57"));
                         }
                     });
                 }
@@ -219,6 +226,7 @@ public class FragmentDaySchedule extends Fragment implements Serializable{
                 TextView paperstart = paper_view.findViewById(R.id.paperName);
                 TextView papervenue = paper_view.findViewById(R.id.paperVenue);
                 TextView paperend = paper_view.findViewById(R.id.paperTimings);
+                final TextView addPaper = paper_view.findViewById(R.id.add);
                 final ImageView paperAdd = paper_view.findViewById(R.id.addPaperIcon);
                 final Paper paper = PaperCSVParser.papers.get(i);
                 if (paper.getTime().getDate().equals("3 Dec 18") && Integer.parseInt(paper.getTime().getStartTime().split(":")[0]) >=1 && Integer.parseInt(paper.getTime().getStartTime().split(":")[0]) <=5 ) {
@@ -239,6 +247,7 @@ public class FragmentDaySchedule extends Fragment implements Serializable{
                         @Override
                         public void onClick(View view) {
                             paperAdd.setImageDrawable(getResources().getDrawable(R.drawable.ic_control_point_green_24dp));
+                            addPaper.setTextColor(Color.parseColor("#0F9D57"));
                         }
                     });
                 }

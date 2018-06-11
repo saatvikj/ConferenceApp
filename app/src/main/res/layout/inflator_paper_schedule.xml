@@ -70,10 +70,11 @@
                 android:background="@drawable/ic_control_point_black_24dp"/>
 
             <TextView
+                android:id="@+id/add"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Add"
-                android:textColor="#aaaaaa"/>
+                android:textColor="#aaaaaa" />
 
         </LinearLayout>
 
