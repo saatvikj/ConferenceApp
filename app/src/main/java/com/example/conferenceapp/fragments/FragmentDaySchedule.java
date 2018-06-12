@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.conferenceapp.R;
 import com.example.conferenceapp.activities.ActivityFoodGuide;
@@ -176,14 +177,14 @@ public class FragmentDaySchedule extends Fragment implements Serializable {
             public void onClick(View view) {
                 if (exists == false) {
                     dbManager.insert(copy);
-                    Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
-                    intent.setType("vnd.android.cursor.item/event");
-                    intent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, paper.getTime().getParseStartTime());
-                    intent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, paper.getTime().getParseEndTime());
-                    intent.putExtra(CalendarContract.Events.TITLE, paper.getTitle());
-                    intent.putExtra(CalendarContract.Events.DESCRIPTION, paper.getPaper_abstract());
-                    intent.putExtra(CalendarContract.Events.EVENT_LOCATION, paper.getVenue());
-                    startActivity(intent);
+                    Toast.makeText(getContext(), Long.toString(paper.getTime().getParseStartTime()),Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(Intent.ACTION_INSERT)
+                            .setData(CalendarContract.Events.CONTENT_URI)
+                            .putExtra(CalendarContract.Events.TITLE, paper.getTitle())
+                            .putExtra(CalendarContract.Events.DESCRIPTION,paper.getPaper_abstract())
+                            .putExtra(CalendarContract.Events.EVENT_LOCATION, paper.getVenue())
+                            .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, paper.getTime().getParseStartTime())
+                            .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, paper.getTime().getParseEndTime());
                     paperAdd.setImageDrawable(getResources().getDrawable(R.drawable.ic_remove_circle_outline_black_24dp));
                     addPaper.setTextColor(Color.parseColor("#FF0000"));
                     addPaper.setText("Remove");

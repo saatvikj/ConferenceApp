@@ -34,7 +34,7 @@
             android:theme="@style/AppTheme.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.INSERT_OR_EDIT" />
-                <data android:mimeType="vnd.android.cursor.item/event" />
+                <data android:mimeType="vnd.android.cursor.dir/event" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
