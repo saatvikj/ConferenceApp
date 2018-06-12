@@ -159,7 +159,7 @@ public class FragmentDaySchedule extends Fragment implements Serializable {
         final boolean exists = inMyAgenda(cursor, copy);
         if (exists == true) {
             addPaper.setText("Remove");
-            addPaper.setTextColor(Color.parseColor("#FF0000"));
+            addPaper.setTextColor(Color.parseColor("#C72026"));
             paperAdd.setImageDrawable(getResources().getDrawable(R.drawable.ic_remove_circle_outline_black_24dp));
         }
         root.addView(paper_view);
@@ -181,17 +181,17 @@ public class FragmentDaySchedule extends Fragment implements Serializable {
                     Intent intent = new Intent(Intent.ACTION_INSERT)
                             .setData(CalendarContract.Events.CONTENT_URI)
                             .putExtra(CalendarContract.Events.TITLE, paper.getTitle())
-                            .putExtra(CalendarContract.Events.DESCRIPTION,paper.getPaper_abstract())
                             .putExtra(CalendarContract.Events.EVENT_LOCATION, paper.getVenue())
                             .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, paper.getTime().getParseStartTime())
                             .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, paper.getTime().getParseEndTime());
+                    startActivity(intent);
                     paperAdd.setImageDrawable(getResources().getDrawable(R.drawable.ic_remove_circle_outline_black_24dp));
-                    addPaper.setTextColor(Color.parseColor("#FF0000"));
+                    addPaper.setTextColor(Color.parseColor("#C72026"));
                     addPaper.setText("Remove");
                 } else {
                     dbManager.delete(copy);
                     paperAdd.setImageDrawable(getResources().getDrawable(R.drawable.ic_control_point_green_24dp));
-                    addPaper.setTextColor(Color.parseColor("#00FF00"));
+                    addPaper.setTextColor(Color.parseColor("#0F9D57"));
                     addPaper.setText("Add");
                 }
             }
