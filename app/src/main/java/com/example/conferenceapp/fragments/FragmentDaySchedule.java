@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.provider.CalendarContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -142,7 +143,7 @@ public class FragmentDaySchedule extends Fragment implements Serializable {
         });
     }
 
-    public void addPaperToView(LinearLayout root, LayoutInflater inflater, Paper paper, Cursor cursor) {
+    public void addPaperToView(LinearLayout root, LayoutInflater inflater, final Paper paper, Cursor cursor) {
 
         final Paper copy = paper;
         View paper_view = inflater.inflate(R.layout.inflator_paper_schedule, null);
@@ -175,6 +176,14 @@ public class FragmentDaySchedule extends Fragment implements Serializable {
             public void onClick(View view) {
                 if (exists == false) {
                     dbManager.insert(copy);
+                    Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
+                    intent.setType("vnd.android.cursor.item/event");
+                    intent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, paper.getTime().getParseStartTime());
+                    intent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, paper.getTime().getParseEndTime());
+                    intent.putExtra(CalendarContract.Events.TITLE, paper.getTitle());
+                    intent.putExtra(CalendarContract.Events.DESCRIPTION, paper.getPaper_abstract());
+                    intent.putExtra(CalendarContract.Events.EVENT_LOCATION, paper.getVenue());
+                    startActivity(intent);
                     paperAdd.setImageDrawable(getResources().getDrawable(R.drawable.ic_remove_circle_outline_black_24dp));
                     addPaper.setTextColor(Color.parseColor("#FF0000"));
                     addPaper.setText("Remove");

@@ -31,7 +31,13 @@
         <activity android:name=".activities.ActivityLogin" />
         <activity
             android:name=".activities.NavBarActivity"
-            android:theme="@style/AppTheme.Light.NoActionBar" />
+            android:theme="@style/AppTheme.Light.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.INSERT_OR_EDIT" />
+                <data android:mimeType="vnd.android.cursor.item/event" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
         <activity android:name=".activities.ActivityFoodGuide" />
         <activity android:name=".activities.ActivityFeedPost"></activity>
         <activity android:name=".activities.ActivityCreatePost"></activity>
