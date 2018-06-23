@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.conferenceapp.R;
+import com.example.conferenceapp.models.Conference;
+import com.example.conferenceapp.utils.ConferenceCSVParser;
 
 import mehdi.sakout.aboutpage.AboutPage;
 
@@ -20,14 +22,19 @@ public class FragmentAbout extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Conference conference = null;
+        try {
+            conference = ConferenceCSVParser.parseCSV(getContext());
+        } catch (Exception e) {
 
+        }
         View aboutPage = new AboutPage(getContext()).isRTL(false)
-                .setDescription(getString(R.string.description))
+                .setDescription(conference.getConference_about().getDescription())
                 .setImage(R.drawable.logo)
-                .addWebsite("https://chi2018.acm.org\n")
-                .addEmail("chi@gmail.com")
-                .addFacebook("acmchi")
-                .addTwitter("sig_chi")
+                .addWebsite(conference.getConference_about().getWebsite())
+                .addEmail(conference.getConference_about().getContact())
+                .addFacebook(conference.getConference_about().getFacebook())
+                .addTwitter(conference.getConference_about().getTwitter())
                 .create();
         return aboutPage;
     }

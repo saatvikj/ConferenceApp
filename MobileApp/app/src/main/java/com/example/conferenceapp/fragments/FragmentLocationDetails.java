@@ -11,9 +11,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.conferenceapp.R;
+import com.example.conferenceapp.models.Conference;
+import com.example.conferenceapp.utils.ConferenceCSVParser;
 
 public class FragmentLocationDetails extends Fragment{
 
@@ -30,6 +33,18 @@ public class FragmentLocationDetails extends Fragment{
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
+        TextView name = view.findViewById(R.id.conf_name);
+        TextView location = view.findViewById(R.id.conf_location);
+
+        Conference conference = null;
+        try {
+            conference = ConferenceCSVParser.parseCSV(getContext());
+        } catch (Exception e) {
+
+        }
+
+        name.setText(conference.getConference_name());
+        location.setText(conference.getConference_venue());
 
     }
 }

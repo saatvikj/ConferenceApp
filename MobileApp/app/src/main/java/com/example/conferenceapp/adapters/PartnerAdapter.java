@@ -38,7 +38,6 @@ public class PartnerAdapter extends RecyclerView.Adapter<PartnerAdapter.PartnerV
         Partner partner = mPartnersList.get(position);
         holder.name.setText(partner.getSponsorName());
         holder.type.setText(partner.getSponsorType());
-        holder.photo.setImageDrawable(mCtx.getResources().getDrawable(partner.getImageID()));
     }
 
     @Override

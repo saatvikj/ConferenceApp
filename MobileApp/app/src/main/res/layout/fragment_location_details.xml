@@ -20,6 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="CHI 2018 Montreal, Canada"
+            android:id="@+id/conf_name"
             android:textSize="18sp"
             android:layout_marginTop="32dp"
             android:layout_weight="1"
@@ -32,15 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Palais des congrès de Montréal"
-            android:fontFamily="sans-serif-light"
-            android:textAlignment="center" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="20dp"
-            android:paddingTop="8dp"
-            android:text="Montreal, Canada"
+            android:id="@+id/conf_location"
             android:fontFamily="sans-serif-light"
             android:textAlignment="center" />
 

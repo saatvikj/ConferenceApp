@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.conferenceapp.R;
+import com.example.conferenceapp.models.Conference;
+import com.example.conferenceapp.utils.ConferenceCSVParser;
 
 public class ActivityLogin extends AppCompatActivity {
 
@@ -19,7 +21,13 @@ public class ActivityLogin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        Conference conference = null;
+        try {
+            conference = ConferenceCSVParser.parseCSV(getApplicationContext());
+        } catch (Exception e) {
 
+        }
+        getSupportActionBar().setTitle(conference.getConference_name());
         Button login = findViewById(R.id.loginButton);
         ImageView testImage = findViewById(R.id.testImageView);
         login.setOnClickListener(new View.OnClickListener() {

@@ -9,9 +9,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.conferenceapp.models.Conference;
 import com.example.conferenceapp.models.Partner;
 import com.example.conferenceapp.adapters.PartnerAdapter;
 import com.example.conferenceapp.R;
+import com.example.conferenceapp.utils.ConferenceCSVParser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,25 +31,20 @@ public class FragmentPartners extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
+        Conference conference = null;
+        try {
+            conference = ConferenceCSVParser.parseCSV(getContext());
+        } catch (Exception e) {
+
+        }
+
         RecyclerView recyclerView = view.findViewById(R.id.mPartnersView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         List<Partner> partners = new ArrayList<>();
-
-        partners.add(new Partner(1,"Alibaba Group","Champions","https://www.google.com",R.drawable.alibaba));
-        partners.add(new Partner(2,"Bloomberg","Champions","https://www.google.com",R.drawable.bloomberg));
-        partners.add(new Partner(3,"Facebook","Champions","https://www.google.com",R.drawable.facebook));
-        partners.add(new Partner(4,"Google","Champions","https://www.google.com",R.drawable.google));
-        partners.add(new Partner(5,"IBM Research","Champions","https://www.google.com",R.drawable.ibm));
-        partners.add(new Partner(6,"Microsoft","Champions","https://www.google.com",R.drawable.microsoft));
-        partners.add(new Partner(7,"Oath","Champions","https://www.google.com",R.drawable.oath));
-
-        partners.add(new Partner(8,"Disney Research","Contributors","https://www.google.com",R.drawable.disney));
-        partners.add(new Partner(9,"NSF","Contributors","https://www.google.com",R.drawable.nsf));
-        partners.add(new Partner(10,"Salesforce","Contributors","https://www.google.com",R.drawable.sforce));
-        partners.add(new Partner(11,"SAT","Contributors","https://www.google.com",R.drawable.sat));
-
-        partners.add(new Partner(12,"Adobe Systems","Friends of CHI","https://www.google.com",R.drawable.adobe));
+        for (int i=0; i<conference.getConference_partners().length; i++) {
+            partners.add(conference.getConference_partners()[i]);
+        }
         PartnerAdapter partnerAdapter = new PartnerAdapter(partners,view.getContext());
         recyclerView.setAdapter(partnerAdapter);
 
