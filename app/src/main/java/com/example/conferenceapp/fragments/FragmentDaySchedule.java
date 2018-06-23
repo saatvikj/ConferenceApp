@@ -78,14 +78,14 @@ public class FragmentDaySchedule extends Fragment implements Serializable {
             for (int i = 0; i < PaperCSVParser.papers.size(); i++) {
                 Paper paper = PaperCSVParser.papers.get(i);
                 if (paper.getTime().getStartTimeHour() <= 12 && paper.getTime().getDate().equals("2 Dec 18")) {
-                    addPaperToView(root, inflater, paper, cursor);
+                    addPaperToView(root, inflater, paper);
                 }
             }
             addLunchView(root, inflater);
             for (int i = 0; i < PaperCSVParser.papers.size(); i++) {
                 Paper paper = PaperCSVParser.papers.get(i);
                 if (paper.getTime().getStartTimeHour() >= 14 && paper.getTime().getDate().equals("2 Dec 18")) {
-                    addPaperToView(root, inflater, paper, cursor);
+                    addPaperToView(root, inflater, paper);
                 }
             }
         } else if (mPage == 2) {
@@ -93,14 +93,14 @@ public class FragmentDaySchedule extends Fragment implements Serializable {
             for (int i = 0; i < PaperCSVParser.papers.size(); i++) {
                 Paper paper = PaperCSVParser.papers.get(i);
                 if (paper.getTime().getStartTimeHour() <= 12 && paper.getTime().getDate().equals("3 Dec 18")) {
-                    addPaperToView(root, inflater, paper, cursor);
+                    addPaperToView(root, inflater, paper);
                 }
             }
             addLunchView(root, inflater);
             for (int i = 0; i < PaperCSVParser.papers.size(); i++) {
                 Paper paper = PaperCSVParser.papers.get(i);
                 if (paper.getTime().getStartTimeHour() >= 14 && paper.getTime().getDate().equals("3 Dec 18")) {
-                    addPaperToView(root, inflater, paper, cursor);
+                    addPaperToView(root, inflater, paper);
                 }
             }
         }
@@ -144,7 +144,7 @@ public class FragmentDaySchedule extends Fragment implements Serializable {
         });
     }
 
-    public void addPaperToView(LinearLayout root, LayoutInflater inflater, final Paper paper, Cursor cursor) {
+    public void addPaperToView(LinearLayout root, LayoutInflater inflater, final Paper paper) {
 
         final Paper copy = paper;
         View paper_view = inflater.inflate(R.layout.inflator_paper_schedule, null);
@@ -156,7 +156,7 @@ public class FragmentDaySchedule extends Fragment implements Serializable {
         paperstart.setText(paper.getTitle());
         papervenue.setText(paper.getVenue());
         paperend.setText(paper.getTime().displayTime());
-        final boolean exists = inMyAgenda(cursor, copy);
+        final boolean exists = inMyAgenda(copy);
         if (exists == true) {
             addPaper.setText("Remove");
             addPaper.setTextColor(Color.parseColor("#C72026"));
@@ -175,9 +175,9 @@ public class FragmentDaySchedule extends Fragment implements Serializable {
         paperAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (exists == false) {
+                boolean check_exists = inMyAgenda(paper);
+                if (check_exists == false) {
                     dbManager.insert(copy);
-                    Toast.makeText(getContext(), Long.toString(paper.getTime().getParseStartTime()),Toast.LENGTH_LONG).show();
                     Intent intent = new Intent(Intent.ACTION_INSERT)
                             .setData(CalendarContract.Events.CONTENT_URI)
                             .putExtra(CalendarContract.Events.TITLE, paper.getTitle())
@@ -198,7 +198,8 @@ public class FragmentDaySchedule extends Fragment implements Serializable {
         });
     }
 
-    public boolean inMyAgenda(Cursor cursor, Paper paper) {
+    public boolean inMyAgenda(Paper paper) {
+        Cursor cursor = dbManager.fetch();
         boolean exists = false;
         if (cursor != null) {
             if (cursor.moveToFirst()) {
