@@ -1,0 +1,13 @@
+<!-- Website/templates/index.html -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Conference Form</title>
+    </head>
+    <form method='POST' action='.'> {% csrf_token %}
+    	{{ form.as_p }}
+    	<input type="submit" name="Submit">
+    </form>
+    
+</html>
