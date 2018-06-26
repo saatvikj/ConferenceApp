@@ -28,20 +28,30 @@ public class FragmentAbout extends Fragment {
         } catch (Exception e) {
 
         }
-        View aboutPage = new AboutPage(getContext()).isRTL(false)
+        AboutPage page = new AboutPage(getContext()).isRTL(false)
                 .setDescription(conference.getConference_about().getDescription())
-                .setImage(R.drawable.logo)
-                .addWebsite(conference.getConference_about().getWebsite())
-                .addEmail(conference.getConference_about().getContact())
-                .addFacebook(conference.getConference_about().getFacebook())
-                .addTwitter(conference.getConference_about().getTwitter())
-                .create();
-        return aboutPage;
+                .setImage(R.drawable.logo);
+        if (conference.getConference_about().getTwitter() != null) {
+            page.addTwitter(conference.getConference_about().getTwitter());
+        }
+
+        if (conference.getConference_about().getFacebook() != null) {
+            page.addFacebook(conference.getConference_about().getFacebook());
+        }
+
+        if (conference.getConference_about().getWebsite() != null) {
+            page.addWebsite(conference.getConference_about().getWebsite());
+        }
+
+        if (conference.getConference_about().getContact() != null) {
+            page.addEmail(conference.getConference_about().getContact());
+        }
+
+        return page.create();
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
-
 
 
     }

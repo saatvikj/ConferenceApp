@@ -37,12 +37,11 @@ public class ConferenceCSVParser {
         for (CsvRow row : csv.getRows()) {
             String name = row.getField(0);
             String venue = row.getField(1);
-            String about_conference[] = row.getField(2).split("__");
-            About about = new About(about_conference[0], about_conference[1], about_conference[2], about_conference[3], about_conference[4]);
-            String conference_venue_details[] = row.getField(3).split("__");
-            String start_day = row.getField(4);
-            String end_day = row.getField(5);
-            String partners[] = row.getField(6).split("__");
+            String start_day = row.getField(2);
+            String end_day = row.getField(3);
+            About about = new About(row.getField(4), row.getField(5), row.getField(6),row.getField(7), row.getField(8));
+            String conference_venue_details[] = row.getField(9).split(",");
+            String partners[] = row.getField(10).split("__");
             Partner partners_list[] = new Partner[partners.length];
             for (int i=0; i< partners.length; i++) {
                 String details[] = partners[i].split("\\|\\|");

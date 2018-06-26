@@ -11,9 +11,12 @@ import android.view.ViewGroup;
 
 import com.example.conferenceapp.R;
 import com.example.conferenceapp.adapters.SpeakerAdapter;
+import com.example.conferenceapp.utils.PaperCSVParser;
+import com.example.conferenceapp.utils.UserCSVParser;
 import com.futuremind.recyclerviewfastscroll.FastScroller;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class FragmentSpeakerSchedule extends Fragment {
@@ -36,9 +39,18 @@ public class FragmentSpeakerSchedule extends Fragment {
         fastScroller = (FastScroller) view.findViewById(R.id.fastscroll);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         List<String> speakers = new ArrayList<>();
-        for (char ch = 'A'; ch<='Z';ch++) {
-            speakers.add(Character.toString(ch));
+        try {
+            PaperCSVParser.parseCSV(view.getContext());
+        } catch (Exception e) {
         }
+        for (int j = 0; j < PaperCSVParser.papers.size(); j++) {
+            for (int k = 0; k < PaperCSVParser.papers.get(j).getAuthors().length; k++) {
+                if (!speakers.contains(PaperCSVParser.papers.get(j).getAuthors()[k]))
+                    speakers.add(PaperCSVParser.papers.get(j).getAuthors()[k]);
+            }
+        }
+
+        Collections.sort(speakers);
 
         SpeakerAdapter adapter = new SpeakerAdapter(speakers, getContext());
         recyclerView.setAdapter(adapter);

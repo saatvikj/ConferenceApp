@@ -67,15 +67,26 @@ public class FragmentMyDaySchedule extends Fragment implements Serializable {
         final LayoutInflater inflater = getActivity().getLayoutInflater();
         if (mPage == 1) {
             addBreakfastView(root, inflater);
-            makeTimeView(root, inflater, 0, 12, "2 Dec 18");
+            int pre_lunch_count = makeTimeView(root, inflater, 0, 12, "2 Dec 18");
+            if (pre_lunch_count == 0) {
+                addNotificationForNoPapers(root, inflater);
+            }
             addLunchView(root, inflater);
-            makeTimeView(root, inflater, 13, 24, "2 Dec 18");
-
+            int post_lunch_count = makeTimeView(root, inflater, 13, 24, "2 Dec 18");
+            if (post_lunch_count == 0) {
+                addNotificationForNoPapers(root, inflater);
+            }
         } else if (mPage == 2) {
             addBreakfastView(root, inflater);
-            makeTimeView(root, inflater, 0, 12, "3 Dec 18");
+            int pre_lunch_count = makeTimeView(root, inflater, 0, 12, "2 Dec 18");
+            if (pre_lunch_count == 0) {
+                addNotificationForNoPapers(root, inflater);
+            }
             addLunchView(root, inflater);
-            makeTimeView(root, inflater, 13, 24, "3 Dec 18");
+            int post_lunch_count = makeTimeView(root, inflater, 13, 24, "2 Dec 18");
+            if (post_lunch_count == 0) {
+                addNotificationForNoPapers(root, inflater);
+            }
         }
     }
 
@@ -142,8 +153,9 @@ public class FragmentMyDaySchedule extends Fragment implements Serializable {
         paperAdd.setVisibility(View.GONE);
     }
 
-    public void makeTimeView(LinearLayout root, LayoutInflater inflater, int startTime, int endTime, String current_date) {
+    public int makeTimeView(LinearLayout root, LayoutInflater inflater, int startTime, int endTime, String current_date) {
 
+        int count = 0;
         Cursor cursor = dbManager.fetch();
         if (cursor != null) {
             if (cursor.moveToFirst()) {
@@ -169,10 +181,16 @@ public class FragmentMyDaySchedule extends Fragment implements Serializable {
                             paper.getTime().getStartTimeHour() <= endTime &&
                             date.equals(current_date)) {
                         addPaperToView(root, inflater, paper);
+                        count++;
                     }
                 } while (cursor.moveToNext());
             }
         }
+        return count;
+    }
 
+    public void addNotificationForNoPapers(LinearLayout root, LayoutInflater inflater) {
+        View notification = inflater.inflate(R.layout.inflator_no_paper_notification, null);
+        root.addView(notification);
     }
 }
