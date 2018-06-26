@@ -4,4 +4,6 @@ from Website import views
 
 urlpatterns = [
     url(r'^$', views.HomePageView.as_view()),
+    url(r'^index2/', views.Index2PageView.as_view()),
+    url(r'^index3/', views.Index3PageView.as_view()),
 ]

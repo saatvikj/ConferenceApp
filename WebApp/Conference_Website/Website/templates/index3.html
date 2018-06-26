@@ -40,28 +40,24 @@
     <div class="signup__overlay"></div>
   </div>
   <div class="container__child signup__form">
-    <form action="." method="POST"> {% csrf_token %}
+    <form action="/index3/" method="POST"> {% csrf_token %}
       <div class="form-group">
-        <label for="username">Conference Name</label>
-        <input class="form-control" type="text" name="username" id="username" placeholder="Enter conference name" required />
+        <label for="contact">Contact Email</label>
+        <input class="form-control" type="email" name="contact" id="contact" placeholder="Enter contact email" required />
       </div>
       <div class="form-group">
-        <label for="email">Conference Venue</label>
-        <input class="form-control" type="text" name="email" id="email" placeholder="Enter conference venue" required />
+        <label for="venue-details">In-venue Details</label>
+        <input class="form-control" type="text" name="venue-details" id="venue-details" placeholder="Enter comma seperated details" required />
       </div>
       <div class="form-group">
-        <label for="start-date">Start Date</label>
-        <input class="form-control" type="date" name="start-date" id="start-date" placeholder="Enter start date" required />
+        <label for="partners">Partners</label>
+        <input class="form-control" type="text" name="partners" id="partners" placeholder="Enter partner details" required />
       </div>
-      <div class="form-group">
-        <label for="end-date">End Date</label>
-        <input class="form-control" type="date" name="end-date" id="end-date" placeholder="Enter end date" required />
-      </div>
-
+      
       <div class="m-t-lg">
         <ul class="list-inline">
           <li>
-            <input class="btn btn--form" type="submit" value="Next" />
+            <input class="btn btn--form" type="submit" value="Submit" />
           </li>
         </ul>
       </div>
