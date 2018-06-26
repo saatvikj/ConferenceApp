@@ -2,6 +2,7 @@ package com.example.conferenceapp.utils;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.widget.Toast;
 
 import com.example.conferenceapp.models.About;
 import com.example.conferenceapp.models.Conference;
@@ -14,6 +15,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import de.siegmar.fastcsv.reader.CsvContainer;
 import de.siegmar.fastcsv.reader.CsvReader;
@@ -43,7 +45,7 @@ public class ConferenceCSVParser {
             String partners[] = row.getField(6).split("__");
             Partner partners_list[] = new Partner[partners.length];
             for (int i=0; i< partners.length; i++) {
-                String details[] = partners[i].split("||");
+                String details[] = partners[i].split("\\|\\|");
                 Partner partner = new Partner(i, details[0], details[1], details[2], 0);
                 partners_list[i] = partner;
             }

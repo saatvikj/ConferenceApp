@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
 
         }
-        //getSupportActionBar().setTitle(conference.getConference_name());
+
         Button start = findViewById(R.id.startButton);
         start.setOnClickListener(new View.OnClickListener() {
             @Override
