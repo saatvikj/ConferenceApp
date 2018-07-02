@@ -66,14 +66,14 @@ class Index4PageView(TemplateView):
 			if key != "csrfmiddlewaretoken":
 				global_data.append(value)
 		print(global_data)
-		file_path = os.path.join(settings.FILES_DIR, 'MobileApp/app/src/main/assets/conference_data.csv')
-		with open(file_path, 'w') as f:
+		conference_csv_path = os.path.join(settings.FILES_DIR, 'MobileApp/app/src/main/assets/conference_data.csv')
+		with open(conference_csv_path, 'w') as f:
 			writer = csv.writer(f, delimiter=',')
 			temp = iter(global_data)
 			writer.writerow(temp)
-		data = {}
-		csv_file = request.FILES["csv_file"]
-		response = HttpResponse(csv_file, content_type='text/csv')
-		response['Content-Disposition'] = 'inline; filename='+os.path.basename(settings.MEDIA_ROOT)+'stat-info.csv'
-		return response
-	
+		paper_details_csv_path = os.path.join(settings.FILES_DIR, 'MobileApp/app/src/main/assets/paper_details.csv')
+		with open(paper_details_csv_path, 'wb+') as destination:
+			for chunk in request.FILES["csv_file"].chunks():
+				destination.write(chunk)
+		return render(request, 'index4.html',{})
+
