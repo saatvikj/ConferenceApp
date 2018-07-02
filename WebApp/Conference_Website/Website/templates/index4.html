@@ -26,7 +26,7 @@
       <h1 class="logo__text">Spectre</h1>
     </div>
     <div class="thumbnail__content text-center">
-      <h1 class="heading--primary">Just one step.</h1>
+      <h1 class="heading--primary">Thank you</h1>
     </div>
     <div class="thumbnail__links">
       <ul class="list-inline m-b-0 text-center">
@@ -39,29 +39,20 @@
     <div class="signup__overlay"></div>
   </div>
   <div class="container__child signup__form">
-    <form action="/index3/" method="POST"> {% csrf_token %}
+    <form action="/index4/" method="POST" enctype="multipart/form-data" class="form-horizontal"> {% csrf_token %}
       <div class="form-group">
-        <label for="company">Company name</label>
-        <input class="form-control" type="text" name="company" id="company" placeholder="Enter company name" required />
+        <label for="name" class="col-md-3 col-sm-3 col-xs-12 control-label">File: </label>
+        <div class="col-md-8">
+          <input type="file" name="csv_file" id="csv_file" required="True" class="form-control">
+        </div>                    
       </div>
-      <div class="form-group">
-        <label for="type">Type of sponsor</label>
-        <input class="form-control" type="text" name="type" id="type" placeholder="Enter type" required />
-      </div>
-      <div class="form-group">
-        <label for="website">Website</label>
-        <input class="form-control" type="text" name="website" id="website" placeholder="Enter website" required />
-      </div>
-      <div class="m-t-lg">
-        <ul class="list-inline">
-          <li>
-            <input class="btn btn--form" type="submit" value="Add" />
-          </li>
-        </ul>
+      <div class="form-group">                    
+        <div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-3" style="margin-bottom:10px;">
+          <button class="btn btn-primary"> <span class="glyphicon glyphicon-upload" style="margin-right:5px;"></span>Upload </button>
+        </div> 
       </div>
     </form>
-    <a href="/index4/"><button class="btn btn--form">Next</button></a>
-  </div>  
+  </div>
 </div>
   
   

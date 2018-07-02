@@ -8,5 +8,3 @@ class ConferenceData(forms.Form):
 	start_time = forms.CharField(label='Start Time')
 	end_time = forms.CharField(label='End Time')
 	partners = forms.CharField(label='Partners')
-
-
