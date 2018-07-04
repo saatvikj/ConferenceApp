@@ -20,6 +20,7 @@ import com.example.conferenceapp.utils.ConferenceCSVParser;
 
 public class FragmentLocationDetails extends Fragment{
 
+    Conference conference;
 
     @Nullable
     @Override
@@ -35,8 +36,8 @@ public class FragmentLocationDetails extends Fragment{
 
         TextView name = view.findViewById(R.id.conf_name);
         TextView location = view.findViewById(R.id.conf_location);
-
-        Conference conference = null;
+        ImageView map = view.findViewById(R.id.location_map);
+        conference = null;
         try {
             conference = ConferenceCSVParser.parseCSV(getContext());
         } catch (Exception e) {
@@ -45,6 +46,14 @@ public class FragmentLocationDetails extends Fragment{
 
         name.setText(conference.getConference_name());
         location.setText(conference.getConference_venue());
-
+        map.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri gmmIntentUri = Uri.parse("geo:0,0?q="+conference.getConference_venue());
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+                startActivity(mapIntent);
+            }
+        });
     }
 }
