@@ -1,9 +1,7 @@
 package com.example.conferenceapp.models;
 
 import java.io.Serializable;
-import java.sql.Time;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 
 public class CustomTime implements Serializable {
@@ -13,7 +11,7 @@ public class CustomTime implements Serializable {
     public String endTime;
     public String day;
 
-    public CustomTime(String date, String startTime, String endTime, String day) {
+    public CustomTime(String date, String startTime, String endTime) {
         this.date = date;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -42,7 +40,7 @@ public class CustomTime implements Serializable {
 
     @Override
     public String toString() {
-        return day.concat(",").concat(date).concat(",").concat(startTime).concat("-").concat(endTime);
+        return date.concat(",").concat(startTime).concat("-").concat(endTime);
     }
 
     public int getStartTimeHour() {
@@ -56,21 +54,11 @@ public class CustomTime implements Serializable {
 
     public Long getParseStartTime() {
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyMMddHHmm");
-        String date_components[] = date.split(" ");
-        String year = date_components[2];
-        int index = 0;
-        for (int i = 0; i < months.length; i++) {
-            if (months[i].equalsIgnoreCase(date_components[1])) {
-                index = i + 1;
-            }
-        }
-        String month = index >= 10 ? Integer.toString(index) : "0" + Integer.toString(index);
-        int day = Integer.parseInt(date_components[0]);
-        String date = day >= 10 ? Integer.toString(day) : "0" + Integer.toString(day);
+        SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyyHHmm");
+
         String time = startTime.replace(":", "");
         try {
-            Date dt = sdf.parse(year.concat(month).concat(date).concat(time));
+            Date dt = sdf.parse(date.replace("/","").concat(time));
             Long millis = dt.getTime();
             return millis;
 
@@ -82,21 +70,11 @@ public class CustomTime implements Serializable {
 
     public Long getParseEndTime() {
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyMMddHHmm");
-        String date_components[] = date.split(" ");
-        String year = date_components[2];
-        int index = 0;
-        for (int i = 0; i < months.length; i++) {
-            if (months[i].equalsIgnoreCase(date_components[1])) {
-                index = i + 1;
-            }
-        }
-        String month = index >= 10 ? Integer.toString(index) : "0" + Integer.toString(index);
-        int day = Integer.parseInt(date_components[0]);
-        String date = day >= 10 ? Integer.toString(day) : "0" + Integer.toString(day);
+        SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyyHHmm");
+
         String time = endTime.replace(":", "");
         try {
-            Date dt = sdf.parse(year.concat(month).concat(date).concat(time));
+            Date dt = sdf.parse(date.replace("/","").concat(time));
             Long millis = dt.getTime();
             return millis;
 

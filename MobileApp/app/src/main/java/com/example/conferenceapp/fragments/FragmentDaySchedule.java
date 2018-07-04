@@ -1,5 +1,6 @@
 package com.example.conferenceapp.fragments;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -14,20 +15,18 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.conferenceapp.R;
 import com.example.conferenceapp.activities.ActivityFoodGuide;
 import com.example.conferenceapp.activities.ActivityPaperDetails;
-import com.example.conferenceapp.activities.NavBarActivity;
+import com.example.conferenceapp.models.Conference;
 import com.example.conferenceapp.models.Paper;
-import com.example.conferenceapp.models.User;
+import com.example.conferenceapp.utils.ConferenceCSVParser;
 import com.example.conferenceapp.utils.DBManager;
 import com.example.conferenceapp.utils.PaperCSVParser;
 import com.example.conferenceapp.utils.UserCSVParser;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class FragmentDaySchedule extends Fragment implements Serializable {
 
@@ -70,40 +69,40 @@ public class FragmentDaySchedule extends Fragment implements Serializable {
 
         dbManager = new DBManager(getContext());
         dbManager.open();
-        Cursor cursor = dbManager.fetch();
         LinearLayout root = view.findViewById(R.id.daySchedule);
         final LayoutInflater inflater = getActivity().getLayoutInflater();
-        if (mPage == 1) {
-            addBreakfastView(root, inflater);
-            for (int i = 0; i < PaperCSVParser.papers.size(); i++) {
-                Paper paper = PaperCSVParser.papers.get(i);
-                if (paper.getTime().getStartTimeHour() <= 12 && paper.getTime().getDate().equals("2 Dec 18")) {
-                    addPaperToView(root, inflater, paper);
-                }
-            }
-            addLunchView(root, inflater);
-            for (int i = 0; i < PaperCSVParser.papers.size(); i++) {
-                Paper paper = PaperCSVParser.papers.get(i);
-                if (paper.getTime().getStartTimeHour() >= 14 && paper.getTime().getDate().equals("2 Dec 18")) {
-                    addPaperToView(root, inflater, paper);
-                }
-            }
-        } else if (mPage == 2) {
-            addBreakfastView(root, inflater);
-            for (int i = 0; i < PaperCSVParser.papers.size(); i++) {
-                Paper paper = PaperCSVParser.papers.get(i);
-                if (paper.getTime().getStartTimeHour() <= 12 && paper.getTime().getDate().equals("3 Dec 18")) {
-                    addPaperToView(root, inflater, paper);
-                }
-            }
-            addLunchView(root, inflater);
-            for (int i = 0; i < PaperCSVParser.papers.size(); i++) {
-                Paper paper = PaperCSVParser.papers.get(i);
-                if (paper.getTime().getStartTimeHour() >= 14 && paper.getTime().getDate().equals("3 Dec 18")) {
-                    addPaperToView(root, inflater, paper);
-                }
-            }
-        }
+        addDayView(mPage, root, inflater, view.getContext());
+//        if (mPage == 1) {
+//            addBreakfastView(root, inflater);
+//            for (int i = 0; i < PaperCSVParser.papers.size(); i++) {
+//                Paper paper = PaperCSVParser.papers.get(i);
+//                if (paper.getTime().getStartTimeHour() <= 12 && paper.getTime().getDate().equals("02/12/2018")) {
+//                    addPaperToView(root, inflater, paper);
+//                }
+//            }
+//            addLunchView(root, inflater);
+//            for (int i = 0; i < PaperCSVParser.papers.size(); i++) {
+//                Paper paper = PaperCSVParser.papers.get(i);
+//                if (paper.getTime().getStartTimeHour() >= 14 && paper.getTime().getDate().equals("02/12/2018")) {
+//                    addPaperToView(root, inflater, paper);
+//                }
+//            }
+//        } else if (mPage == 2) {
+//            addBreakfastView(root, inflater);
+//            for (int i = 0; i < PaperCSVParser.papers.size(); i++) {
+//                Paper paper = PaperCSVParser.papers.get(i);
+//                if (paper.getTime().getStartTimeHour() <= 12 && paper.getTime().getDate().equals("03/12/2018")) {
+//                    addPaperToView(root, inflater, paper);
+//                }
+//            }
+//            addLunchView(root, inflater);
+//            for (int i = 0; i < PaperCSVParser.papers.size(); i++) {
+//                Paper paper = PaperCSVParser.papers.get(i);
+//                if (paper.getTime().getStartTimeHour() >= 14 && paper.getTime().getDate().equals("03/12/2018")) {
+//                    addPaperToView(root, inflater, paper);
+//                }
+//            }
+//        }
     }
 
     public void addBreakfastView(LinearLayout root, LayoutInflater inflater) {
@@ -212,5 +211,33 @@ public class FragmentDaySchedule extends Fragment implements Serializable {
             }
         }
         return exists;
+    }
+
+    public void addDayView(int day, LinearLayout root, LayoutInflater inflater, Context context) {
+
+        Conference conference = null;
+        try {
+            conference = ConferenceCSVParser.parseCSV(context);
+        } catch (Exception e) {
+
+        }
+        String date[] = conference.getConference_start_day().split("-");
+        int _date = Integer.parseInt(date[2]) + day;
+        String new_date = _date < 10 ? "0" + Integer.toString(_date) : Integer.toString(_date);
+        String date_for_page = new_date.concat("/").concat(date[1]).concat("/").concat(date[0]);
+        addBreakfastView(root, inflater);
+        for (int i = 0; i < PaperCSVParser.papers.size(); i++) {
+            Paper paper = PaperCSVParser.papers.get(i);
+            if (paper.getTime().getStartTimeHour() <= 12 && paper.getTime().getDate().equals(date_for_page)) {
+                addPaperToView(root, inflater, paper);
+            }
+        }
+        addLunchView(root, inflater);
+        for (int i = 0; i < PaperCSVParser.papers.size(); i++) {
+            Paper paper = PaperCSVParser.papers.get(i);
+            if (paper.getTime().getStartTimeHour() >= 14 && paper.getTime().getDate().equals(date_for_page)) {
+                addPaperToView(root, inflater, paper);
+            }
+        }
     }
 }

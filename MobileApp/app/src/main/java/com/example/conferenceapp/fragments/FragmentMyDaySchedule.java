@@ -1,10 +1,9 @@
 package com.example.conferenceapp.fragments;
 
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.provider.CalendarContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -18,12 +17,11 @@ import android.widget.TextView;
 import com.example.conferenceapp.R;
 import com.example.conferenceapp.activities.ActivityFoodGuide;
 import com.example.conferenceapp.activities.ActivityPaperDetails;
-import com.example.conferenceapp.activities.NavBarActivity;
+import com.example.conferenceapp.models.Conference;
 import com.example.conferenceapp.models.CustomTime;
 import com.example.conferenceapp.models.Paper;
+import com.example.conferenceapp.utils.ConferenceCSVParser;
 import com.example.conferenceapp.utils.DBManager;
-import com.example.conferenceapp.utils.PaperCSVParser;
-import com.example.conferenceapp.utils.UserCSVParser;
 
 import java.io.Serializable;
 
@@ -65,29 +63,7 @@ public class FragmentMyDaySchedule extends Fragment implements Serializable {
         Cursor cursor = dbManager.fetch();
         LinearLayout root = view.findViewById(R.id.daySchedule);
         final LayoutInflater inflater = getActivity().getLayoutInflater();
-        if (mPage == 1) {
-            addBreakfastView(root, inflater);
-            int pre_lunch_count = makeTimeView(root, inflater, 0, 12, "2 Dec 18");
-            if (pre_lunch_count == 0) {
-                addNotificationForNoPapers(root, inflater);
-            }
-            addLunchView(root, inflater);
-            int post_lunch_count = makeTimeView(root, inflater, 13, 24, "2 Dec 18");
-            if (post_lunch_count == 0) {
-                addNotificationForNoPapers(root, inflater);
-            }
-        } else if (mPage == 2) {
-            addBreakfastView(root, inflater);
-            int pre_lunch_count = makeTimeView(root, inflater, 0, 12, "2 Dec 18");
-            if (pre_lunch_count == 0) {
-                addNotificationForNoPapers(root, inflater);
-            }
-            addLunchView(root, inflater);
-            int post_lunch_count = makeTimeView(root, inflater, 13, 24, "2 Dec 18");
-            if (post_lunch_count == 0) {
-                addNotificationForNoPapers(root, inflater);
-            }
-        }
+        addDayView(mPage, root, inflater, view.getContext());
     }
 
     public void addBreakfastView(LinearLayout root, LayoutInflater inflater) {
@@ -170,12 +146,11 @@ public class FragmentMyDaySchedule extends Fragment implements Serializable {
                     String venue = cursor.getString(cursor.getColumnIndex("venue"));
                     String schedule[] = cursor.getString(cursor.getColumnIndex("schedule")).split(",");
                     String paper_abstract = cursor.getString(cursor.getColumnIndex("abstract"));
-                    String day = schedule[0];
-                    String date = schedule[1];
-                    String confTime[] = schedule[2].split("-");
+                    String date = schedule[0];
+                    String confTime[] = schedule[1].split("-");
                     String start_time = confTime[0];
                     String end_time = confTime[1];
-                    CustomTime paper_schedule = new CustomTime(date, start_time, end_time, day);
+                    CustomTime paper_schedule = new CustomTime(date, start_time, end_time);
                     Paper paper = new Paper(title, venue, paper_schedule, authors, topics, paper_abstract);
                     if (paper.getTime().getStartTimeHour() >= startTime &&
                             paper.getTime().getStartTimeHour() <= endTime &&
@@ -193,4 +168,31 @@ public class FragmentMyDaySchedule extends Fragment implements Serializable {
         View notification = inflater.inflate(R.layout.inflator_no_paper_notification, null);
         root.addView(notification);
     }
+
+    public void addDayView(int day, LinearLayout root, LayoutInflater inflater, Context context) {
+
+        Conference conference = null;
+        try {
+            conference = ConferenceCSVParser.parseCSV(context);
+        } catch (Exception e) {
+
+        }
+        String date[] = conference.getConference_start_day().split("-");
+        int _date = Integer.parseInt(date[2]) + day;
+        String new_date = _date < 10 ? "0" + Integer.toString(_date) : Integer.toString(_date);
+        String date_for_page = new_date.concat("/").concat(date[1]).concat("/").concat(date[0]);
+        addBreakfastView(root, inflater);
+        int pre_lunch_count = makeTimeView(root, inflater, 0, 12, date_for_page);
+        if (pre_lunch_count == 0) {
+            addNotificationForNoPapers(root, inflater);
+        }
+        addLunchView(root, inflater);
+        int post_lunch_count = makeTimeView(root, inflater, 13, 24,date_for_page);
+        if (post_lunch_count == 0) {
+            addNotificationForNoPapers(root, inflater);
+        }
+
+
+    }
+
 }

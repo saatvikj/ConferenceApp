@@ -7,19 +7,12 @@ import com.example.conferenceapp.models.CustomTime;
 import com.example.conferenceapp.models.Paper;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.FileSystem;
-import java.nio.file.FileSystems;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 
 import de.siegmar.fastcsv.reader.CsvContainer;
-import de.siegmar.fastcsv.reader.CsvParser;
 import de.siegmar.fastcsv.reader.CsvReader;
 import de.siegmar.fastcsv.reader.CsvRow;
 
@@ -50,13 +43,12 @@ public class PaperCSVParser {
             String topics[] = row.getField("topics").split("\n");
             String venue = row.getField("venue");
             String time[] = row.getField("time").split(",");
-            String day = time[0];
-            String date = time[1];
-            String confTime[] = time[2].split("-");
+            String date = time[0];
+            String confTime[] = time[1].split("-");
             String startTime = confTime[0];
             String endTime = confTime[1];
             String abs = row.getField("abstract");
-            CustomTime paper_schedule = new CustomTime(date, startTime, endTime, day);
+            CustomTime paper_schedule = new CustomTime(date, startTime, endTime);
             Paper paper = new Paper(title, venue, paper_schedule, authors, topics, abs);
             papers.add(paper);
 

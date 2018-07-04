@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.conferenceapp.R;
-import com.example.conferenceapp.adapters.DayPagerAdapter;
 import com.example.conferenceapp.adapters.MyDayPagerAdapter;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 
@@ -26,7 +25,7 @@ public class FragmentMySchedule extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
-        MyDayPagerAdapter adapter = new MyDayPagerAdapter(getChildFragmentManager());
+        MyDayPagerAdapter adapter = new MyDayPagerAdapter(getChildFragmentManager(), view.getContext());
         ViewPager viewPager = view.findViewById(R.id.viewpager);
         viewPager.setAdapter(adapter);
         final SmartTabLayout tabsStrip = (SmartTabLayout) view.findViewById(R.id.viewpagertab);
