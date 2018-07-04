@@ -28,29 +28,31 @@
     <div class="thumbnail__content text-center">
       <h1 class="heading--primary">Thank you</h1>
     </div>
-    <div class="thumbnail__links">
-      <ul class="list-inline m-b-0 text-center">
-        <li><a href="http://alexdevero.com/" target="_blank"><i class="fa fa-globe"></i></a></li>
-        <li><a href="https://www.behance.net/alexdevero" target="_blank"><fa class="fa fa-behance"></fa></a></li>
-        <li><a href="https://github.com/alexdevero" target="_blank"><i class="fa fa-github"></i></a></li>
-        <li><a href="https://twitter.com/alexdevero" target="_blank"><i class="fa fa-twitter"></i></a></li>
-      </ul>
-    </div>
     <div class="signup__overlay"></div>
   </div>
   <div class="container__child signup__form">
     <form action="/index4/" method="POST" enctype="multipart/form-data" class="form-horizontal"> {% csrf_token %}
       <div class="form-group">
-        <label for="name" class="col-md-3 col-sm-3 col-xs-12 control-label">File: </label>
-        <div class="col-md-8">
-          <input type="file" name="csv_file" id="csv_file" required="True" class="form-control">
-        </div>                    
+        <label for="schedule_csv_file">Upload conference schedule as CSV</label>
+        <input type="file" name="schedule_csv_file" id="schedule_csv_file" required="True" class="form-control" style="width:300px">    
       </div>
+      <br>
+      <div class="form-group">
+        <label for="users_csv_file">Upload user details as CSV</label>
+        <input type="file" name="users_csv_file" id="users_csv_file" required="True" class="form-control" style="width:300px">    
+      </div>
+      <br>
+      <div class="form-group">
+        <label for="logo_image_file">Upload conference logo</label>
+        <input type="file" name="logo_image_file" id="logo_image_file" required="True" class="form-control" style="width:300px">    
+      </div>
+      <br>
       <div class="form-group">                    
         <div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-3" style="margin-bottom:10px;">
-          <button class="btn btn-primary"> <span class="glyphicon glyphicon-upload" style="margin-right:5px;"></span>Upload </button>
+          <a href="/thank_you/"><button class="btn btn--form"> <span class="glyphicon glyphicon-upload" style="margin-right:5px;"></span>Upload </button></a>
         </div> 
       </div>
+
     </form>
   </div>
 </div>

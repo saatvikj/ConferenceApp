@@ -6,6 +6,7 @@ import os
 import subprocess
 from django.conf import settings
 from .forms import ConferenceData
+from django.core.files.storage import FileSystemStorage
 
 global_data = []
 
@@ -73,7 +74,38 @@ class Index4PageView(TemplateView):
 			writer.writerow(temp)
 		paper_details_csv_path = os.path.join(settings.FILES_DIR, 'MobileApp/app/src/main/assets/paper_details.csv')
 		with open(paper_details_csv_path, 'wb+') as destination:
-			for chunk in request.FILES["csv_file"].chunks():
+			for chunk in request.FILES["schedule_csv_file"].chunks():
 				destination.write(chunk)
-		return render(request, 'index4.html',{})
+
+		user_details_csv_path = os.path.join(settings.FILES_DIR, 'MobileApp/app/src/main/assets/user_details.csv')
+		with open(user_details_csv_path, 'wb+') as destination:
+			for chunk in request.FILES["users_csv_file"].chunks():
+				destination.write(chunk)
+
+		storage = FileSystemStorage()
+		logo_image_path = os.path.join(settings.FILES_DIR, 'MobileApp/app/src/main/res/drawable-xxxhdpi/logo.png')
+		if os.path.isfile(logo_image_path):
+			os.remove(logo_image_path) 
+		content = request.FILES['logo_image_file']
+		name = storage.save('logo.png', content) 
+                                   
+		url = storage.url(name)  
+		apk_generator_path = os.path.join(settings.FILES_DIR, 'MobileApp/generator.sh')
+		# print(apk_generator_path)
+		subprocess.call([apk_generator_path])
+
+		apk_path = os.path.join(settings.FILES_DIR, 'MobileApp/app/build/outputs/apk/debug/app-debug.apk')
+		with open(apk_path, 'rb') as fh:
+			response = HttpResponse(fh.read(), content_type="application/binary")
+			response['Content-Disposition'] = 'inline; filename=app-debug.apk'
+			return response		
+		return render(request, 'thank_you.html', {})
+
+class ThankYouPageView(TemplateView):
+	def get(self, request, *args, **kwargs):
+		return render(request, 'thank_you.html', {})
+
+	def post(self, request, *args, **kwargs):
+		return render(request, 'thank_you.html', {})
+
 

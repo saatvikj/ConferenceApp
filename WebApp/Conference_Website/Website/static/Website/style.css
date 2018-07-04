@@ -8,6 +8,16 @@ a,
   transition: all .25s ease-in;
 }
 
+input[type="csv_file"] {
+  padding: .5rem 2.5rem;
+  font-size: .95rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #fff;
+  background: #111;
+  border-radius: 2.1875rem;
+}
+
 .signup__container {
   position: absolute;
   top: 50%;
@@ -48,8 +58,7 @@ a,
   padding: 2rem;
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  background: url(http://ultraimg.com/images/spectre-login.jpg);
+  align-items: center;  
   background-repeat: no-repeat;
   background-position: top center;
   background-size: cover;
