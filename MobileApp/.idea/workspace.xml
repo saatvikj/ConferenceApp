@@ -7,16 +7,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f10af195-c831-4b62-a696-ae75ed1f5ce9" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/conferenceapp/models/Food.java" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/conference_data.csv" afterPath="$PROJECT_DIR$/app/src/main/assets/conference_data.csv" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/paper_details.csv" afterPath="$PROJECT_DIR$/app/src/main/assets/paper_details.csv" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/conferenceapp/fragments/FragmentGuide.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/conferenceapp/fragments/FragmentGuide.java" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/conferenceapp/models/Conference.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/conferenceapp/models/Conference.java" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/conferenceapp/models/CustomTime.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/conferenceapp/models/CustomTime.java" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/example/conferenceapp/utils/ConferenceCSVParser.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/example/conferenceapp/utils/ConferenceCSVParser.java" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable-xxxhdpi/logo.png" afterPath="$PROJECT_DIR$/app/src/main/res/drawable-xxxhdpi/logo.png" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_guide.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_guide.xml" />
-      <change beforePath="$PROJECT_DIR$/../WebApp/Conference_Website/Website/views.py" afterPath="$PROJECT_DIR$/../WebApp/Conference_Website/Website/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -39,24 +33,34 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="FragmentDaySchedule.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/conferenceapp/fragments/FragmentDaySchedule.java">
+      <file leaf-file-name="ConferenceCSVParser.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/conferenceapp/utils/ConferenceCSVParser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="68" column="0" lean-forward="false" selection-start-line="64" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
+            <state relative-caret-position="543">
+              <caret line="66" column="44" lean-forward="false" selection-start-line="66" selection-start-column="44" selection-end-line="66" selection-end-column="44" />
+              <folding>
+                <marker date="1530870362082" expanded="true" signature="3007:3099" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Conference.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/conferenceapp/models/Conference.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="24" column="62" lean-forward="false" selection-start-line="24" selection-start-column="62" selection-end-line="24" selection-end-column="62" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ConferenceCSVParser.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/conferenceapp/utils/ConferenceCSVParser.java">
+      <file leaf-file-name="CustomTime.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/conferenceapp/models/CustomTime.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="318">
-              <caret line="59" column="45" lean-forward="false" selection-start-line="59" selection-start-column="45" selection-end-line="59" selection-end-column="45" />
-              <folding>
-                <marker date="1530866125498" expanded="true" signature="2961:3053" ph="{...}" />
-              </folding>
+            <state relative-caret-position="228">
+              <caret line="56" column="0" lean-forward="true" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -84,11 +88,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FragmentGuide.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="FragmentGuide.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/conferenceapp/fragments/FragmentGuide.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-42">
-              <caret line="45" column="8" lean-forward="false" selection-start-line="45" selection-start-column="8" selection-end-line="45" selection-end-column="8" />
+            <state relative-caret-position="855">
+              <caret line="81" column="52" lean-forward="true" selection-start-line="81" selection-start-column="52" selection-end-line="81" selection-end-column="52" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -2186,10 +2190,11 @@
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/menu/activity_nav_bar_drawer.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/conferenceapp/models/Food.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/conferenceapp/models/Conference.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_guide.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/conferenceapp/utils/ConferenceCSVParser.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/conferenceapp/fragments/FragmentGuide.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/conferenceapp/models/CustomTime.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/conferenceapp/models/Conference.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/conferenceapp/utils/ConferenceCSVParser.java" />
       </list>
     </option>
   </component>
@@ -2597,11 +2602,19 @@
       <option name="project" value="LOCAL" />
       <updated>1530861241643</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Food guide woking">
+      <created>1530867388647</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1530867388647</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1301" height="772" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -2619,7 +2632,7 @@
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24940239" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24940239" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24940239" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32970452" sideWeight="0.49721116" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -2642,20 +2655,14 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Django project updated" />
     <MESSAGE value="Food guide updated" />
-    <option name="LAST_COMMIT_MESSAGE" value="Food guide updated" />
+    <MESSAGE value="Food guide woking" />
+    <option name="LAST_COMMIT_MESSAGE" value="Food guide woking" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/conferenceapp/activities/ActivityLogin.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="29" column="8" lean-forward="false" selection-start-line="29" selection-start-column="8" selection-end-line="29" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/assets/conference_data.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -2693,7 +2700,7 @@
         <state relative-caret-position="441">
           <caret line="40" column="47" lean-forward="false" selection-start-line="40" selection-start-column="47" selection-end-line="40" selection-end-column="47" />
           <folding>
-            <marker date="1530866125498" expanded="true" signature="2961:3053" ph="{...}" />
+            <marker date="1530870362082" expanded="true" signature="3007:3099" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -2710,7 +2717,7 @@
         <state relative-caret-position="609">
           <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
           <folding>
-            <marker date="1530866125498" expanded="true" signature="2961:3053" ph="{...}" />
+            <marker date="1530870362082" expanded="true" signature="3007:3099" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -2720,7 +2727,7 @@
         <state relative-caret-position="570">
           <caret line="57" column="0" lean-forward="false" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
           <folding>
-            <marker date="1530866125498" expanded="true" signature="2961:3053" ph="{...}" />
+            <marker date="1530870362082" expanded="true" signature="3007:3099" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -2745,7 +2752,7 @@
         <state relative-caret-position="546">
           <caret line="45" column="13" lean-forward="false" selection-start-line="45" selection-start-column="13" selection-end-line="45" selection-end-column="13" />
           <folding>
-            <marker date="1530866125498" expanded="true" signature="2961:3053" ph="{...}" />
+            <marker date="1530870362082" expanded="true" signature="3007:3099" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -2776,7 +2783,7 @@
         <state relative-caret-position="441">
           <caret line="40" column="47" lean-forward="false" selection-start-line="40" selection-start-column="47" selection-end-line="40" selection-end-column="47" />
           <folding>
-            <marker date="1530866125498" expanded="true" signature="2961:3053" ph="{...}" />
+            <marker date="1530870362082" expanded="true" signature="3007:3099" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -2793,7 +2800,7 @@
         <state relative-caret-position="609">
           <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
           <folding>
-            <marker date="1530866125498" expanded="true" signature="2961:3053" ph="{...}" />
+            <marker date="1530870362082" expanded="true" signature="3007:3099" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -2997,14 +3004,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/conferenceapp/models/Conference.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-44">
-          <caret line="14" column="49" lean-forward="false" selection-start-line="14" selection-start-column="49" selection-end-line="14" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/assets/conference_data.csv">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -3025,16 +3024,6 @@
             <element signature="e#565#566#0" expanded="true" />
             <element signature="e#603#604#0" expanded="true" />
             <element signature="e#637#638#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/conferenceapp/utils/ConferenceCSVParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="59" column="45" lean-forward="false" selection-start-line="59" selection-start-column="45" selection-end-line="59" selection-end-column="45" />
-          <folding>
-            <marker date="1530866125498" expanded="true" signature="2961:3053" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -3060,10 +3049,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/conferenceapp/fragments/FragmentGuide.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-42">
-          <caret line="45" column="8" lean-forward="false" selection-start-line="45" selection-start-column="8" selection-end-line="45" selection-end-column="8" />
+        <state relative-caret-position="855">
+          <caret line="81" column="52" lean-forward="true" selection-start-line="81" selection-start-column="52" selection-end-line="81" selection-end-column="52" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/conferenceapp/models/CustomTime.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="56" column="0" lean-forward="true" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/conferenceapp/models/Conference.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="24" column="62" lean-forward="false" selection-start-line="24" selection-start-column="62" selection-end-line="24" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/conferenceapp/utils/ConferenceCSVParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="543">
+          <caret line="66" column="44" lean-forward="false" selection-start-line="66" selection-start-column="44" selection-end-line="66" selection-end-column="44" />
+          <folding>
+            <marker date="1530870362082" expanded="true" signature="3007:3099" ph="{...}" />
           </folding>
         </state>
       </provider>

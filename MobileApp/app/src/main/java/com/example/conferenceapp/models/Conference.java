@@ -2,6 +2,7 @@ package com.example.conferenceapp.models;
 
 public class Conference {
 
+    private String conference_id;
     private String conference_name;
     private String conference_venue;
     private About conference_about;
@@ -10,7 +11,8 @@ public class Conference {
     private Partner[] conference_partners;
     private Food[] conference_food_guide;
 
-    public Conference(String conference_name, String conference_venue, About conference_about, String conference_start_day, String conference_end_day, Partner[] conference_partners, Food[] food_guide) {
+    public Conference(String conference_id, String conference_name, String conference_venue, About conference_about, String conference_start_day, String conference_end_day, Partner[] conference_partners, Food[] food_guide) {
+        this.conference_id = conference_id;
         this.conference_name = conference_name;
         this.conference_venue = conference_venue;
         this.conference_about = conference_about;
@@ -19,6 +21,8 @@ public class Conference {
         this.conference_partners = conference_partners;
         this.conference_food_guide = food_guide;
     }
+
+    public String getConference_id() { return conference_id; }
 
     public String getConference_name() {
         return conference_name;

@@ -51,6 +51,14 @@ public class CustomTime implements Serializable {
         return Integer.parseInt(this.endTime.split(":")[0]);
     }
 
+    public int getStartTimeMinute() {
+        return Integer.parseInt(this.startTime.split(":")[1]);
+    }
+
+    public int getEndTimeMinute() {
+        return Integer.parseInt(this.endTime.split(":")[1]);
+    }
+
 
     public Long getParseStartTime() {
 

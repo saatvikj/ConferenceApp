@@ -63,7 +63,8 @@ public class ConferenceCSVParser {
                 Food food_object = new Food(food_time, food_loc,food_type, food_desc);
                 food_guide[i] = food_object;
             }
-            conference = new Conference(name, venue, about,start_day, end_day, partners_list, food_guide);
+            String id = row.getField(11);
+            conference = new Conference(id, name, venue, about,start_day, end_day, partners_list, food_guide);
         }
 
         return conference;
