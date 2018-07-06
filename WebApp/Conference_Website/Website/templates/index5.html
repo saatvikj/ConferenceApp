@@ -26,40 +26,35 @@
       <h1 class="logo__text">Spectre</h1>
     </div>
     <div class="thumbnail__content text-center">
-      <h1 class="heading--primary">Just one step.</h1>
+      <h1 class="heading--primary">Thank you</h1>
     </div>
     <div class="signup__overlay"></div>
   </div>
   <div class="container__child signup__form">
-    <form action="/index4/" method="POST"> {% csrf_token %}
+    <form action="/index5/" method="POST" enctype="multipart/form-data" class="form-horizontal"> {% csrf_token %}
       <div class="form-group">
-        <label for="choice">Choice</label><br>
-        <input type="radio" name="choice" value="breakfast"><font class="radio-text"> Breakfast</font><br>
-        <input type="radio" name="choice" value="lunch"><font class="radio-text"> Lunch</font><br>
-        <input type="radio" name="choice" value="snacks"><font class="radio-text"> Snacks</font>
+        <label for="schedule_csv_file">Upload conference schedule as CSV</label>
+        <input type="file" name="schedule_csv_file" id="schedule_csv_file" required="True" class="form-control" style="width:300px">    
       </div>
+      <br>
       <div class="form-group">
-        <label for="location">Location</label>
-        <input class="form-control" type="text" name="location" id="location" placeholder="Enter location" required />
+        <label for="users_csv_file">Upload user details as CSV</label>
+        <input type="file" name="users_csv_file" id="users_csv_file" required="True" class="form-control" style="width:300px">    
       </div>
+      <br>
       <div class="form-group">
-        <label for="details">Details</label>
-        <input class="form-control" type="text" name="details" id="details" placeholder="Enter details" required />
+        <label for="logo_image_file">Upload conference logo</label>
+        <input type="file" name="logo_image_file" id="logo_image_file" required="True" class="form-control" style="width:300px">    
       </div>
-      <div class="form-group">
-        <label for="time">Time</label>
-        <input class="form-control" type="text" name="time" id="time" placeholder="Enter timing" required />
-      </div>      
-      <div class="m-t-lg">
-        <ul class="list-inline">
-          <li>
-            <input class="btn btn--form" type="submit" value="Add" />
-          </li>
-        </ul>
+      <br>
+      <div class="form-group">                    
+        <div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-3" style="margin-bottom:10px;">
+          <a href="/thank_you/"><button class="btn btn--form"> <span class="glyphicon glyphicon-upload" style="margin-right:5px;"></span>Upload </button></a>
+        </div> 
       </div>
+
     </form>
-    <a href="/index5/"><button class="btn btn--form">Next</button></a>
-  </div>  
+  </div>
 </div>
   
   

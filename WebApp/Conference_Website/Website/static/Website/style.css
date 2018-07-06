@@ -133,10 +133,12 @@ label {
   border-top: 0;
   border-right: 0;
   border-left: 0;
+  color: #000000
   border-radius: 0;
 }
 .form-control:focus {
   border-color: #111;
+  color: #000000
 }
 
 [type="text"] {
@@ -168,4 +170,8 @@ label {
 }
 .signup__link:focus, .signup__link:hover {
   color: #787878;
+}
+.radio-text {
+  color: #868686;
+  font: 100% / 1.414 "Open Sans", "Roboto", arial, sans-serif;
 }

@@ -18,7 +18,6 @@ class HomePageView(TemplateView):
 	def post(self, request, *args, **kwargs):
 		global global_data
 		global_data = []
-		print(request.POST)	
 		data = request.POST
 		for key, value in data.items():
 			if key != "csrfmiddlewaretoken":
@@ -30,7 +29,6 @@ class Index2PageView(TemplateView):
 		return render(request, 'index2.html', {})
 
 	def post(self, request, *args, **kwargs):
-		print(request.POST)
 		data = request.POST
 		for key, value in data.items():
 			if key != "csrfmiddlewaretoken":
@@ -42,7 +40,6 @@ class Index3PageView(TemplateView):
 		return render(request, 'index3.html', {})
 
 	def post(self, request, *args, **kwargs):
-		print(request.POST)
 		if len(global_data) == 9:
 			global_data.append([])
 		data = request.POST
@@ -50,9 +47,7 @@ class Index3PageView(TemplateView):
 		for key, value in data.items():
 			if key != "csrfmiddlewaretoken":
 				temp_list.append(value)
-		print(len(global_data))
 		global_data[9].append(temp_list)				
-		print(global_data)
 		
 		return render(request, 'index3.html', {})
 
@@ -61,11 +56,23 @@ class Index4PageView(TemplateView):
 		return render(request, 'index4.html', {})
 
 	def post(self, request, *args, **kwargs):
-		print(request.POST)
+		if len(global_data) == 10:
+			global_data.append([])
 		data = request.POST
+		temp_list = []
 		for key, value in data.items():
 			if key != "csrfmiddlewaretoken":
-				global_data.append(value)
+				temp_list.append(value)
+		global_data[10].append(temp_list)				
+		
+		return render(request, 'index4.html', {})
+
+class Index5PageView(TemplateView):
+	def get(self, request, *args, **kwargs):
+		print(global_data)
+		return render(request, 'index5.html', {})
+
+	def post(self, request, *args, **kwargs):
 		print(global_data)
 		conference_csv_path = os.path.join(settings.FILES_DIR, 'MobileApp/app/src/main/assets/conference_data.csv')
 		with open(conference_csv_path, 'w') as f:
@@ -87,18 +94,9 @@ class Index4PageView(TemplateView):
 		if os.path.isfile(logo_image_path):
 			os.remove(logo_image_path) 
 		content = request.FILES['logo_image_file']
-		name = storage.save('logo.png', content) 
-                                   
+		name = storage.save('logo.png', content)                          
 		url = storage.url(name)  
-		apk_generator_path = os.path.join(settings.FILES_DIR, 'MobileApp/generator.sh')
-		# print(apk_generator_path)
-		subprocess.call([apk_generator_path])
 
-		apk_path = os.path.join(settings.FILES_DIR, 'MobileApp/app/build/outputs/apk/debug/app-debug.apk')
-		with open(apk_path, 'rb') as fh:
-			response = HttpResponse(fh.read(), content_type="application/binary")
-			response['Content-Disposition'] = 'inline; filename=app-debug.apk'
-			return response		
 		return render(request, 'thank_you.html', {})
 
 class ThankYouPageView(TemplateView):
@@ -107,5 +105,3 @@ class ThankYouPageView(TemplateView):
 
 	def post(self, request, *args, **kwargs):
 		return render(request, 'thank_you.html', {})
-
-
