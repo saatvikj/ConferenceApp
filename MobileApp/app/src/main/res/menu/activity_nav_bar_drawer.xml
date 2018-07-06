@@ -43,7 +43,7 @@
             android:id="@+id/nav_food_guide"
             android:background="#78909c"
             android:icon="@drawable/ic_help_outline_black_24dp"
-            android:title="Guide" />
+            android:title="Food Guide" />
         <item
             android:id="@+id/nav_event_partners"
             android:background="#78909c"

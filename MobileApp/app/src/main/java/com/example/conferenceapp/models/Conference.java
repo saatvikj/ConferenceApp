@@ -8,14 +8,16 @@ public class Conference {
     private String conference_start_day;
     private String conference_end_day;
     private Partner[] conference_partners;
+    private String[] conference_food_guide;
 
-    public Conference(String conference_name, String conference_venue, About conference_about, String conference_start_day, String conference_end_day, Partner[] conference_partners) {
+    public Conference(String conference_name, String conference_venue, About conference_about, String conference_start_day, String conference_end_day, Partner[] conference_partners, String[] food_guide) {
         this.conference_name = conference_name;
         this.conference_venue = conference_venue;
         this.conference_about = conference_about;
         this.conference_start_day = conference_start_day;
         this.conference_end_day = conference_end_day;
         this.conference_partners = conference_partners;
+        this.conference_food_guide = food_guide;
     }
 
     public String getConference_name() {
@@ -40,5 +42,9 @@ public class Conference {
 
     public Partner[] getConference_partners() {
         return conference_partners;
+    }
+
+    public String[] getConference_food_guide() {
+        return conference_food_guide;
     }
 }

@@ -48,7 +48,12 @@ public class ConferenceCSVParser {
                 Partner partner = new Partner(i,partner_name,partner_type,partner_website,0);
                 partners_list[i] = partner;
             }
-            conference = new Conference(name, venue, about,start_day, end_day, partners_list);
+            String formatted_food_guide = row.getField(10).replace(" '","'")
+                    .replace(" [","[")
+                    .replace("[","")
+                    .replace("]","");
+            String food_guide[] = formatted_food_guide.substring(1,formatted_food_guide.length()-1).split("','");
+            conference = new Conference(name, venue, about,start_day, end_day, partners_list, food_guide);
         }
 
         return conference;

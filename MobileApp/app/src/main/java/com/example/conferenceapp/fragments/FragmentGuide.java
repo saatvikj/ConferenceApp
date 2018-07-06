@@ -16,9 +16,7 @@ import com.example.conferenceapp.activities.ActivityFoodGuide;
 
 public class FragmentGuide extends Fragment {
 
-    private ImageView iconFood;
-    private ImageView iconInformal;
-    private CardView foodGuide;
+
 
     @Nullable
     @Override
@@ -31,24 +29,30 @@ public class FragmentGuide extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
-        iconFood = view.findViewById(R.id.iconFood);
-        iconFood.getLayoutParams().width = Resources.getSystem().getDisplayMetrics().widthPixels;
-        iconFood.getLayoutParams().height = (int) (Resources.getSystem().getDisplayMetrics().widthPixels*0.8);
-        iconFood.requestLayout();
+    }
+}
 
-        iconInformal = view.findViewById(R.id.iconInformal);
-        iconInformal.getLayoutParams().width = Resources.getSystem().getDisplayMetrics().widthPixels;
-        iconInformal.getLayoutParams().height = (int) (Resources.getSystem().getDisplayMetrics().widthPixels*0.8);
-        iconInformal.requestLayout();
 
-        foodGuide = view.findViewById(R.id.foodCard);
-        foodGuide.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), ActivityFoodGuide.class);
-                startActivity(intent);
-            }
-        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
