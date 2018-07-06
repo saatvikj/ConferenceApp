@@ -5,6 +5,7 @@ import android.content.Context;
 
 import com.example.conferenceapp.models.About;
 import com.example.conferenceapp.models.Conference;
+import com.example.conferenceapp.models.Food;
 import com.example.conferenceapp.models.Partner;
 
 import java.io.BufferedReader;
@@ -42,17 +43,26 @@ public class ConferenceCSVParser {
             String partners[] = formatted_partners.substring(1,formatted_partners.length()-1).split("','");
             Partner partners_list[] = new Partner[partners.length/3];
             for (int i=0; i< partners.length/3; i++) {
-                String partner_name = partners[3*i];
-                String partner_type = partners[3*i+1];
-                String partner_website = partners[3*i+2];
-                Partner partner = new Partner(i,partner_name,partner_type,partner_website,0);
+                String partner_name = partners[3 * i];
+                String partner_type = partners[3 * i + 1];
+                String partner_website = partners[3 * i + 2];
+                Partner partner = new Partner(i, partner_name, partner_type, partner_website, 0);
                 partners_list[i] = partner;
             }
             String formatted_food_guide = row.getField(10).replace(" '","'")
                     .replace(" [","[")
                     .replace("[","")
                     .replace("]","");
-            String food_guide[] = formatted_food_guide.substring(1,formatted_food_guide.length()-1).split("','");
+            String food[] = formatted_food_guide.substring(1,formatted_food_guide.length()-1).split("','");
+            Food[] food_guide = new Food[3];
+            for (int i=0; i<food.length/4; i++) {
+                String food_desc = food[4*i+2];
+                String food_time = food[4*i+3];
+                String food_loc = food[4*i+1];
+                String food_type = food[4*i];
+                Food food_object = new Food(food_time, food_loc,food_type, food_desc);
+                food_guide[i] = food_object;
+            }
             conference = new Conference(name, venue, about,start_day, end_day, partners_list, food_guide);
         }
 

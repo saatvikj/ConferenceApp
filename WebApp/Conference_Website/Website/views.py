@@ -101,7 +101,17 @@ class Index5PageView(TemplateView):
 
 class ThankYouPageView(TemplateView):
 	def get(self, request, *args, **kwargs):
+		apk_path = os.path.join(settings.FILES_DIR, 'MobileApp/app/build/outputs/apk/debug/app-debug.apk')
+		with open(apk_path, 'rb') as fh:
+			response = HttpResponse(fh.read(), content_type="application/binary")
+			response['Content-Disposition'] = 'inline; filename=app-debug.apk'
+			return response
 		return render(request, 'thank_you.html', {})
 
 	def post(self, request, *args, **kwargs):
+		apk_path = os.path.join(settings.FILES_DIR, 'MobileApp/app/build/outputs/apk/debug/app-debug.apk')
+		with open(apk_path, 'rb') as fh:
+			response = HttpResponse(fh.read(), content_type="application/binary")
+			response['Content-Disposition'] = 'inline; filename=app-debug.apk'
+			return response
 		return render(request, 'thank_you.html', {})
