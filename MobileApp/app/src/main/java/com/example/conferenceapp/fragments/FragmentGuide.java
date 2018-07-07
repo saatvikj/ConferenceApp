@@ -1,7 +1,5 @@
 package com.example.conferenceapp.fragments;
 
-import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,17 +7,12 @@ import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.conferenceapp.R;
-import com.example.conferenceapp.activities.ActivityFoodGuide;
 import com.example.conferenceapp.models.Conference;
 import com.example.conferenceapp.models.Food;
 import com.example.conferenceapp.utils.ConferenceCSVParser;
-
-import java.util.Arrays;
 
 public class FragmentGuide extends Fragment {
 

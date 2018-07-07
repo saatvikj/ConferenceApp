@@ -2,6 +2,7 @@ package com.example.conferenceapp.utils;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.widget.Toast;
 
 import com.example.conferenceapp.models.About;
 import com.example.conferenceapp.models.Conference;
@@ -66,7 +67,6 @@ public class ConferenceCSVParser {
             String id = row.getField(11);
             conference = new Conference(id, name, venue, about,start_day, end_day, partners_list, food_guide);
         }
-
         return conference;
     }
 }

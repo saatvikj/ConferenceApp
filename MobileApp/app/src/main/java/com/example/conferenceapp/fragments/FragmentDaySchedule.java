@@ -9,6 +9,8 @@ import android.provider.CalendarContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +19,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.conferenceapp.R;
-import com.example.conferenceapp.activities.ActivityFoodGuide;
 import com.example.conferenceapp.activities.ActivityPaperDetails;
 import com.example.conferenceapp.models.Conference;
 import com.example.conferenceapp.models.Paper;
@@ -72,73 +73,86 @@ public class FragmentDaySchedule extends Fragment implements Serializable {
         LinearLayout root = view.findViewById(R.id.daySchedule);
         final LayoutInflater inflater = getActivity().getLayoutInflater();
         addDayView(mPage, root, inflater, view.getContext());
-//        if (mPage == 1) {
-//            addBreakfastView(root, inflater);
-//            for (int i = 0; i < PaperCSVParser.papers.size(); i++) {
-//                Paper paper = PaperCSVParser.papers.get(i);
-//                if (paper.getTime().getStartTimeHour() <= 12 && paper.getTime().getDate().equals("02/12/2018")) {
-//                    addPaperToView(root, inflater, paper);
-//                }
-//            }
-//            addLunchView(root, inflater);
-//            for (int i = 0; i < PaperCSVParser.papers.size(); i++) {
-//                Paper paper = PaperCSVParser.papers.get(i);
-//                if (paper.getTime().getStartTimeHour() >= 14 && paper.getTime().getDate().equals("02/12/2018")) {
-//                    addPaperToView(root, inflater, paper);
-//                }
-//            }
-//        } else if (mPage == 2) {
-//            addBreakfastView(root, inflater);
-//            for (int i = 0; i < PaperCSVParser.papers.size(); i++) {
-//                Paper paper = PaperCSVParser.papers.get(i);
-//                if (paper.getTime().getStartTimeHour() <= 12 && paper.getTime().getDate().equals("03/12/2018")) {
-//                    addPaperToView(root, inflater, paper);
-//                }
-//            }
-//            addLunchView(root, inflater);
-//            for (int i = 0; i < PaperCSVParser.papers.size(); i++) {
-//                Paper paper = PaperCSVParser.papers.get(i);
-//                if (paper.getTime().getStartTimeHour() >= 14 && paper.getTime().getDate().equals("03/12/2018")) {
-//                    addPaperToView(root, inflater, paper);
-//                }
-//            }
-//        }
+
     }
 
-    public void addBreakfastView(LinearLayout root, LayoutInflater inflater) {
+    public void addBreakfastView(LinearLayout root, LayoutInflater inflater, Context context) {
         View bFast = inflater.inflate(R.layout.inflator_break_schedule, null);
         TextView start = bFast.findViewById(R.id.breakStartTime);
         TextView desc = bFast.findViewById(R.id.breakDescTextView);
         TextView end = bFast.findViewById(R.id.breakEndTime);
+        Conference conference = null;
+        try {
+            conference = ConferenceCSVParser.parseCSV(context);
+        } catch (Exception e) {
 
-        start.setText(breakfast[0]);
-        desc.setText(breakfast[1]);
-        end.setText(breakfast[2]);
+        }
+        start.setText(conference.getConference_food_guide()[0].time.split("-")[0]);
+        desc.setText("BREAKFAST");
+        end.setText(conference.getConference_food_guide()[0].time.split("-")[1]);
         root.addView(bFast);
         bFast.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), ActivityFoodGuide.class);
-                startActivity(intent);
+                Fragment fragment = new FragmentGuide();
+                AppCompatActivity appCompatActivity = (AppCompatActivity) view.getContext();
+                FragmentTransaction ft = appCompatActivity.getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.content_frame, fragment);
+                ft.commit();
             }
         });
     }
 
-    public void addLunchView(LinearLayout root, LayoutInflater inflater) {
+    public void addSnacksView(LinearLayout root, LayoutInflater inflater, Context context) {
+        View snacks = inflater.inflate(R.layout.inflator_break_schedule, null);
+        TextView start = snacks.findViewById(R.id.breakStartTime);
+        TextView desc = snacks.findViewById(R.id.breakDescTextView);
+        TextView end = snacks.findViewById(R.id.breakEndTime);
+        Conference conference = null;
+        try {
+            conference = ConferenceCSVParser.parseCSV(context);
+        } catch (Exception e) {
+
+        }
+        start.setText(conference.getConference_food_guide()[2].time.split("-")[0]);
+        desc.setText("SNACKS");
+        end.setText(conference.getConference_food_guide()[2].time.split("-")[1]);
+        root.addView(snacks);
+        snacks.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Fragment fragment = new FragmentGuide();
+                AppCompatActivity appCompatActivity = (AppCompatActivity) view.getContext();
+                FragmentTransaction ft = appCompatActivity.getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.content_frame, fragment);
+                ft.commit();
+            }
+        });
+    }
+
+    public void addLunchView(LinearLayout root, LayoutInflater inflater, Context context) {
         View lunch = inflater.inflate(R.layout.inflator_break_schedule, null);
         TextView lunchStart = lunch.findViewById(R.id.breakStartTime);
         TextView lunchDesc = lunch.findViewById(R.id.breakDescTextView);
         TextView lunchEnd = lunch.findViewById(R.id.breakEndTime);
+        Conference conference = null;
+        try {
+            conference = ConferenceCSVParser.parseCSV(context);
+        } catch (Exception e) {
 
-        lunchStart.setText(this.lunch[0]);
-        lunchDesc.setText(this.lunch[1]);
-        lunchEnd.setText(this.lunch[2]);
+        }
+        lunchStart.setText(conference.getConference_food_guide()[1].time.split("-")[0]);
+        lunchDesc.setText("LUNCH");
+        lunchEnd.setText(conference.getConference_food_guide()[1].time.split("-")[1]);
         root.addView(lunch);
         lunch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), ActivityFoodGuide.class);
-                startActivity(intent);
+                Fragment fragment = new FragmentGuide();
+                AppCompatActivity appCompatActivity = (AppCompatActivity) view.getContext();
+                FragmentTransaction ft = appCompatActivity.getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.content_frame, fragment);
+                ft.commit();
             }
         });
     }
@@ -225,19 +239,42 @@ public class FragmentDaySchedule extends Fragment implements Serializable {
         int _date = Integer.parseInt(date[2]) + day;
         String new_date = _date < 10 ? "0" + Integer.toString(_date) : Integer.toString(_date);
         String date_for_page = new_date.concat("/").concat(date[1]).concat("/").concat(date[0]);
-        addBreakfastView(root, inflater);
+        String bFastTime = conference.getConference_food_guide()[0].getTime();
+        String bFast_start[] = bFastTime.split("-")[0].split(":");
+        String bFast_end[] = bFastTime.split("-")[1].split(":");
         for (int i = 0; i < PaperCSVParser.papers.size(); i++) {
             Paper paper = PaperCSVParser.papers.get(i);
-            if (paper.getTime().getStartTimeHour() <= 12 && paper.getTime().getDate().equals(date_for_page)) {
+            if (paper.getTime().getStartTimeHour() < Integer.parseInt(bFast_start[0]) && paper.getTime().getDate().equals(date_for_page)) {
+                addPaperToView(root, inflater, paper);
+            } else if (paper.getTime().getStartTimeHour() == Integer.parseInt(bFast_start[0]) && paper.getTime().getDate().equals(date_for_page) && paper.getTime().getStartTimeMinute() <= Integer.parseInt(bFast_start[1]) ) {
                 addPaperToView(root, inflater, paper);
             }
         }
-        addLunchView(root, inflater);
+        addBreakfastView(root, inflater, context);
+        String lunchTime = conference.getConference_food_guide()[1].getTime();
+        String lunch_start[] = lunchTime.split("-")[0].split(":");
+        String lunch_end[] = lunchTime.split("-")[1].split(":");
         for (int i = 0; i < PaperCSVParser.papers.size(); i++) {
             Paper paper = PaperCSVParser.papers.get(i);
-            if (paper.getTime().getStartTimeHour() >= 14 && paper.getTime().getDate().equals(date_for_page)) {
+            if (paper.getTime().getStartTimeHour() < Integer.parseInt(lunch_start[0])
+                    && paper.getTime().getDate().equals(date_for_page)
+                    && paper.getTime().getStartTimeHour() >= Integer.parseInt(bFast_end[0])) {
+                addPaperToView(root, inflater, paper);
+            } else if (paper.getTime().getStartTimeHour() == Integer.parseInt(lunch_start[0])
+                    && paper.getTime().getDate().equals(date_for_page)
+                    && paper.getTime().getStartTimeMinute() <= Integer.parseInt(lunch_start[1])
+                    && paper.getTime().getStartTimeHour() >= Integer.parseInt(bFast_end[0])) {
                 addPaperToView(root, inflater, paper);
             }
         }
+        addLunchView(root, inflater, context);
+        for (int i = 0; i < PaperCSVParser.papers.size(); i++) {
+            Paper paper = PaperCSVParser.papers.get(i);
+            if (paper.getTime().getStartTimeHour() >= Integer.parseInt(lunch_end[0])
+                    && paper.getTime().getDate().equals(date_for_page)) {
+                addPaperToView(root, inflater, paper);
+            }
+        }
+        addSnacksView(root, inflater, context);
     }
 }

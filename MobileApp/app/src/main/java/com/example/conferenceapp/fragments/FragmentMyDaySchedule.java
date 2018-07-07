@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +16,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.conferenceapp.R;
-import com.example.conferenceapp.activities.ActivityFoodGuide;
 import com.example.conferenceapp.activities.ActivityPaperDetails;
 import com.example.conferenceapp.models.Conference;
 import com.example.conferenceapp.models.CustomTime;
@@ -79,8 +79,9 @@ public class FragmentMyDaySchedule extends Fragment implements Serializable {
         bFast.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), ActivityFoodGuide.class);
-                startActivity(intent);
+                Fragment fragment = new FragmentGuide();
+                AppCompatActivity appCompatActivity = (AppCompatActivity) view.getContext();
+                appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fragment);
             }
         });
     }
@@ -98,8 +99,9 @@ public class FragmentMyDaySchedule extends Fragment implements Serializable {
         lunch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(), ActivityFoodGuide.class);
-                startActivity(intent);
+                Fragment fragment = new FragmentGuide();
+                AppCompatActivity appCompatActivity = (AppCompatActivity) view.getContext();
+                appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fragment);
             }
         });
     }
@@ -187,7 +189,7 @@ public class FragmentMyDaySchedule extends Fragment implements Serializable {
             addNotificationForNoPapers(root, inflater);
         }
         addLunchView(root, inflater);
-        int post_lunch_count = makeTimeView(root, inflater, 13, 24,date_for_page);
+        int post_lunch_count = makeTimeView(root, inflater, 13, 24, date_for_page);
         if (post_lunch_count == 0) {
             addNotificationForNoPapers(root, inflater);
         }
