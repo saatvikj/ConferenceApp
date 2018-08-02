@@ -1,0 +1,364 @@
+.topnav {
+    background-color: #318884;
+    overflow: hidden;
+    position: relative;
+    left: 0;
+    right: 0;
+    top: 0;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: #ffffff;
+  text-align: center;
+  padding: 20px 16px;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 400;
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ffffff;
+  text-decoration: none;
+  color: black;
+}
+
+
+/* Right-aligned section inside the top navigation */
+.topnav-right {
+  float: right;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+.full-height {
+  width: 100px;
+  height: 100vh;
+}
+
+.content {
+  width: 100%;
+  display: table;
+  position: relative;
+  background: url('http://www.hutchtech.ca/images/backgrounds/hutch-communications-background4.jpg') no-repeat center center/cover;
+}
+
+.content-main {
+  display: table-cell;
+  position: relative;
+  vertical-align: middle;
+  padding-left: 72px;
+  padding-bottom: 72px;
+  color: white;
+}
+
+.content-main h1 {
+  font-weight: bold;
+  font-size: 56px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.content-main h2 {
+  font-weight: bold;
+  font-size: 28px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.content-main p{
+  padding-bottom: 12px;
+}
+
+.content-main a{
+  text-decoration: none;
+}
+
+.content-overview {
+  width: 100%;
+  display: table;
+  position: relative;
+  background-color: white;
+
+}
+
+.content-overview-main{
+  display: table-cell;
+  position: relative;
+  vertical-align: top;
+  padding-left: 96px;
+  padding-top: 24px;
+  padding-bottom: 108px;
+  padding-right: 320px;
+  color: black;  
+}
+
+.content-overview-main h3 {
+  font-weight: bold;
+  padding-top: 16px;
+  color: black;
+}
+
+.content-overview-main h4 {
+  font-weight: bold;
+  padding-top: 16px;
+  color: #318884;
+}
+
+.content-overview-main p {
+  font-size: 14px;
+  }
+
+.header-btn {
+  background: #fff;
+  border-radius: 0;
+  margin-top: 8px;
+  color: #000000 !important;
+  padding-left: 32px;
+  padding-right: 32px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  font-size: 14px;
+  border: 1px solid transparent;
+  color: #fff;
+}
+
+.header-btn:hover {
+  border: 1px solid #fff;
+  background: transparent;
+  color: #fff !important;
+  text-decoration: none;
+}
+
+.content-contact {
+  width: 100%;
+  display: table;
+  position: relative;
+  padding-left: 100px;
+  padding-right: 100px;
+  top: 40px;
+
+}
+
+.content-contact-left {
+}
+
+.content-contact-right {
+  display:table;
+  width:100%;
+  height: 100%;
+}
+
+.content-contact-left h3{
+  font-family: 'Roboto', sans-serif;
+  font-size: 24px;
+  color: black;
+}
+
+.content-contact-left p{
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  color: #888888;
+}
+
+input[type=text], select, textarea {
+  width: 100%; 
+  padding: 8px;  
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  border-color: #318884;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=submit] {
+  background-color: #318884;
+  color: white;
+  margin-top: 8px;
+  padding-left: 32px;
+  padding-right: 32px;
+  padding-bottom: 8px;
+  padding-top: 8px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #318884;
+}
+
+.content-contact-right-main {
+  height: 100%;
+  padding-bottom: 108px;
+  display:table-cell;
+  vertical-align:middle;
+  text-align:center;
+}
+
+.content-contact-right-main h4{
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  padding-top: 8px;
+  font-weight: bold;
+  color: black;
+}
+
+.content-contact-right-main h5{
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  color: black;
+}
+
+.content-contact-right-main p{
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  color: black;
+}
+
+.hr-custom{
+  padding-left: 8px;
+  padding-right: 8px;
+  left: 32px;
+  padding-top: 8px;
+  background-color: #888888
+  border-width: 1px;
+}
+
+.login {
+  width: 400px;
+  margin:15% auto;
+  padding-right: 20px;
+  font-size: 16px;
+  animation-name: animatetop;
+  animation-duration: 1s;
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.5s;
+  top: 50%
+  left: 50%;
+  color: white;
+}
+
+/* Reset top and bottom margins from certain elements */
+.login-header,
+.login p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* The triangle form is achieved by a CSS hack */
+.login-triangle {
+  width: 0;
+  margin-right: auto;
+  margin-left: auto;
+  border: 12px solid transparent;
+  border-bottom-color: #318884;
+}
+
+.login-header {
+  background: #318884;
+  padding: 20px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.4em;
+  font-weight: normal;
+  text-align: center;
+  text-transform: uppercase;
+  color: white;
+  border-radius: 15px 15px 0px 0px;  
+}
+
+.login-container {
+  background: #ebebeb;
+  padding: 12px;
+  border-radius: 0px 0px 15px 15px;  
+}
+
+/* Every row inside .login-container is defined with p tags */
+.login p {
+  padding: 12px;
+}
+
+.login input {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  border-width: 1px;
+  border-style: solid;
+  padding: 16px;
+  outline: 0;
+  font-family: inherit;
+  font-size: 0.95em;
+}
+
+.login input[type="email"],
+.login input[type="password"] {
+  background: #fff;
+  border-color: #bbb;
+  color: #555;
+}
+
+/* Text fields' focus effect */
+.login input[type="email"]:focus,
+.login input[type="password"]:focus {
+  border-color: #888;
+}
+
+.login input[type="submit"] {
+  background: #318884;
+  border-color: transparent;
+  color: #fff;
+  cursor: pointer;
+}
+
+.login input[type="submit"]:hover {
+  background: #17c;
+}
+
+/* Buttons' focus effect */
+.login input[type="submit"]:focus {
+  border-color: #05a;
+}
+
+.modal {
+  display: none;
+  z-index: 1;
+  left: 0;
+  top: 100px;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  position: relative;
+  margin: 0 auto;
+  background-color: rgba(0,0,0,0.6);
+  color: white;
+}
+
+@keyframes animatetop {
+    from {top: -300px; opacity: 0}
+    to {top: 0; opacity: 1}
+}
+
+@-webkit-keyframes animatetop {
+    from {top: -300px; opacity: 0}
+    to {top: 0; opacity: 1}
+}
+
+.close {
+    float: right;
+    font-size: 32px;
+    padding: 20px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}

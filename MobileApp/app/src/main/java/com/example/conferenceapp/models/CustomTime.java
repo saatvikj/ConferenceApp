@@ -91,4 +91,15 @@ public class CustomTime implements Serializable {
         return (long) 0;
 
     }
+
+    public int getStartTimeInt() {
+        String hour_format = startTime.replace(":","");
+        return Integer.parseInt(hour_format);
+    }
+
+    public int getEndTimeInt() {
+        String hour_format = endTime.replace(":","");
+        return Integer.parseInt(hour_format);
+    }
+
 }

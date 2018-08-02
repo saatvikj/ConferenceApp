@@ -24,14 +24,7 @@ class HomePageView(TemplateView):
 		return render(request, 'index.html', {})
 
 	def post(self, request, *args, **kwargs):
-		global global_data
-		global_data = []
-		data = request.POST
-
-		for key, value in data.items():
-			if key != "csrfmiddlewaretoken":
-				global_data.append(value)
-		return render(request, 'index2.html', {})    	
+		return render(request, 'index.html', {})    	
 
 class Index2PageView(TemplateView):
 	def get(self, request, *args, **kwargs):

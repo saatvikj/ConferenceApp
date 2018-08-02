@@ -55,7 +55,7 @@ public class ConferenceCSVParser {
                     .replace("[","")
                     .replace("]","");
             String food[] = formatted_food_guide.substring(1,formatted_food_guide.length()-1).split("','");
-            Food[] food_guide = new Food[3];
+            Food[] food_guide = new Food[food.length/4];
             for (int i=0; i<food.length/4; i++) {
                 String food_desc = food[4*i+2];
                 String food_time = food[4*i+3];

@@ -21,6 +21,7 @@ import android.widget.TextView;
 import com.example.conferenceapp.R;
 import com.example.conferenceapp.activities.ActivityPaperDetails;
 import com.example.conferenceapp.models.Conference;
+import com.example.conferenceapp.models.Food;
 import com.example.conferenceapp.models.Paper;
 import com.example.conferenceapp.utils.ConferenceCSVParser;
 import com.example.conferenceapp.utils.DBManager;
@@ -28,6 +29,7 @@ import com.example.conferenceapp.utils.PaperCSVParser;
 import com.example.conferenceapp.utils.UserCSVParser;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 public class FragmentDaySchedule extends Fragment implements Serializable {
 
@@ -76,76 +78,16 @@ public class FragmentDaySchedule extends Fragment implements Serializable {
 
     }
 
-    public void addBreakfastView(LinearLayout root, LayoutInflater inflater, Context context) {
-        View bFast = inflater.inflate(R.layout.inflator_break_schedule, null);
-        TextView start = bFast.findViewById(R.id.breakStartTime);
-        TextView desc = bFast.findViewById(R.id.breakDescTextView);
-        TextView end = bFast.findViewById(R.id.breakEndTime);
-        Conference conference = null;
-        try {
-            conference = ConferenceCSVParser.parseCSV(context);
-        } catch (Exception e) {
-
-        }
-        start.setText(conference.getConference_food_guide()[0].time.split("-")[0]);
-        desc.setText("BREAKFAST");
-        end.setText(conference.getConference_food_guide()[0].time.split("-")[1]);
-        root.addView(bFast);
-        bFast.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Fragment fragment = new FragmentGuide();
-                AppCompatActivity appCompatActivity = (AppCompatActivity) view.getContext();
-                FragmentTransaction ft = appCompatActivity.getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.content_frame, fragment);
-                ft.commit();
-            }
-        });
-    }
-
-    public void addSnacksView(LinearLayout root, LayoutInflater inflater, Context context) {
-        View snacks = inflater.inflate(R.layout.inflator_break_schedule, null);
-        TextView start = snacks.findViewById(R.id.breakStartTime);
-        TextView desc = snacks.findViewById(R.id.breakDescTextView);
-        TextView end = snacks.findViewById(R.id.breakEndTime);
-        Conference conference = null;
-        try {
-            conference = ConferenceCSVParser.parseCSV(context);
-        } catch (Exception e) {
-
-        }
-        start.setText(conference.getConference_food_guide()[2].time.split("-")[0]);
-        desc.setText("SNACKS");
-        end.setText(conference.getConference_food_guide()[2].time.split("-")[1]);
-        root.addView(snacks);
-        snacks.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Fragment fragment = new FragmentGuide();
-                AppCompatActivity appCompatActivity = (AppCompatActivity) view.getContext();
-                FragmentTransaction ft = appCompatActivity.getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.content_frame, fragment);
-                ft.commit();
-            }
-        });
-    }
-
-    public void addLunchView(LinearLayout root, LayoutInflater inflater, Context context) {
-        View lunch = inflater.inflate(R.layout.inflator_break_schedule, null);
-        TextView lunchStart = lunch.findViewById(R.id.breakStartTime);
-        TextView lunchDesc = lunch.findViewById(R.id.breakDescTextView);
-        TextView lunchEnd = lunch.findViewById(R.id.breakEndTime);
-        Conference conference = null;
-        try {
-            conference = ConferenceCSVParser.parseCSV(context);
-        } catch (Exception e) {
-
-        }
-        lunchStart.setText(conference.getConference_food_guide()[1].time.split("-")[0]);
-        lunchDesc.setText("LUNCH");
-        lunchEnd.setText(conference.getConference_food_guide()[1].time.split("-")[1]);
-        root.addView(lunch);
-        lunch.setOnClickListener(new View.OnClickListener() {
+    public void addFoodView(LinearLayout root, LayoutInflater inflater, Food food) {
+        View food_view = inflater.inflate(R.layout.inflator_break_schedule, null);
+        TextView start = food_view.findViewById(R.id.breakStartTime);
+        TextView desc = food_view.findViewById(R.id.breakDescTextView);
+        TextView end = food_view.findViewById(R.id.breakEndTime);
+        start.setText(food.time.split("-")[0]);
+        desc.setText(food.type.toUpperCase());
+        end.setText(food.time.split("-")[1]);
+        root.addView(food_view);
+        food_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Fragment fragment = new FragmentGuide();
@@ -239,42 +181,93 @@ public class FragmentDaySchedule extends Fragment implements Serializable {
         int _date = Integer.parseInt(date[2]) + day;
         String new_date = _date < 10 ? "0" + Integer.toString(_date) : Integer.toString(_date);
         String date_for_page = new_date.concat("/").concat(date[1]).concat("/").concat(date[0]);
-        String bFastTime = conference.getConference_food_guide()[0].getTime();
-        String bFast_start[] = bFastTime.split("-")[0].split(":");
-        String bFast_end[] = bFastTime.split("-")[1].split(":");
-        for (int i = 0; i < PaperCSVParser.papers.size(); i++) {
-            Paper paper = PaperCSVParser.papers.get(i);
-            if (paper.getTime().getStartTimeHour() < Integer.parseInt(bFast_start[0]) && paper.getTime().getDate().equals(date_for_page)) {
-                addPaperToView(root, inflater, paper);
-            } else if (paper.getTime().getStartTimeHour() == Integer.parseInt(bFast_start[0]) && paper.getTime().getDate().equals(date_for_page) && paper.getTime().getStartTimeMinute() <= Integer.parseInt(bFast_start[1]) ) {
-                addPaperToView(root, inflater, paper);
-            }
+        int times[] = new int[conference.getConference_food_guide().length];
+        int number_of_breaks = conference.getConference_food_guide().length;
+        int j = 0;
+        int break_end = 0;
+        for (int i = 0; i < conference.getConference_food_guide().length; i++) {
+            times[i] = conference.getConference_food_guide()[i].getStartTime();
         }
-        addBreakfastView(root, inflater, context);
-        String lunchTime = conference.getConference_food_guide()[1].getTime();
-        String lunch_start[] = lunchTime.split("-")[0].split(":");
-        String lunch_end[] = lunchTime.split("-")[1].split(":");
+        Arrays.sort(times);
         for (int i = 0; i < PaperCSVParser.papers.size(); i++) {
             Paper paper = PaperCSVParser.papers.get(i);
-            if (paper.getTime().getStartTimeHour() < Integer.parseInt(lunch_start[0])
-                    && paper.getTime().getDate().equals(date_for_page)
-                    && paper.getTime().getStartTimeHour() >= Integer.parseInt(bFast_end[0])) {
-                addPaperToView(root, inflater, paper);
-            } else if (paper.getTime().getStartTimeHour() == Integer.parseInt(lunch_start[0])
-                    && paper.getTime().getDate().equals(date_for_page)
-                    && paper.getTime().getStartTimeMinute() <= Integer.parseInt(lunch_start[1])
-                    && paper.getTime().getStartTimeHour() >= Integer.parseInt(bFast_end[0])) {
-                addPaperToView(root, inflater, paper);
-            }
-        }
-        addLunchView(root, inflater, context);
-        for (int i = 0; i < PaperCSVParser.papers.size(); i++) {
-            Paper paper = PaperCSVParser.papers.get(i);
-            if (paper.getTime().getStartTimeHour() >= Integer.parseInt(lunch_end[0])
+            if (paper.getTime().getStartTimeInt() <= times[0]
                     && paper.getTime().getDate().equals(date_for_page)) {
                 addPaperToView(root, inflater, paper);
             }
         }
-        addSnacksView(root, inflater, context);
+        for (int i = 0; i < conference.getConference_food_guide().length; i++) {
+            if (conference.getConference_food_guide()[i].getStartTime() == times[0]) {
+                break_end = conference.getConference_food_guide()[i].getEndTime();
+                addFoodView(root, inflater, conference.getConference_food_guide()[i]);
+                j++;
+            }
+        }
+
+        for (int i = 0; i < PaperCSVParser.papers.size(); i++) {
+            Paper paper = PaperCSVParser.papers.get(i);
+
+            if (j >= number_of_breaks) {
+                if (paper.getTime().getDate().equals(date_for_page)
+                        && paper.getTime().getStartTimeInt() >= break_end) {
+                    addPaperToView(root, inflater, paper);
+                }
+            } else if (paper.getTime().getStartTimeInt() <= times[1]
+                    && paper.getTime().getStartTimeInt() >= break_end
+                    && paper.getTime().getDate().equals(date_for_page)) {
+                addPaperToView(root, inflater, paper);
+            }
+
+        }
+        if (j < number_of_breaks) {
+            for (int i = 0; i < conference.getConference_food_guide().length; i++) {
+                if (conference.getConference_food_guide()[i].getStartTime() == times[1]) {
+                    break_end = conference.getConference_food_guide()[i].getEndTime();
+                    addFoodView(root, inflater, conference.getConference_food_guide()[i]);
+                    j++;
+                }
+            }
+        }
+
+
+        for (int i = 0; i < PaperCSVParser.papers.size(); i++) {
+            Paper paper = PaperCSVParser.papers.get(i);
+            if (j >= number_of_breaks) {
+                if (paper.getTime().getDate().equals(date_for_page)
+                        && paper.getTime().getStartTimeInt() >= break_end) {
+                    addPaperToView(root, inflater, paper);
+                }
+            } else if (paper.getTime().getStartTimeInt() <= times[2]
+                    && paper.getTime().getStartTimeInt() >= break_end
+                    && paper.getTime().getDate().equals(date_for_page)) {
+                addPaperToView(root, inflater, paper);
+            }
+
+        }
+        if (j < number_of_breaks) {
+            for (int i = 0; i < conference.getConference_food_guide().length; i++) {
+                if (conference.getConference_food_guide()[i].getStartTime() == times[2]) {
+                    break_end = conference.getConference_food_guide()[i].getEndTime();
+                    addFoodView(root, inflater, conference.getConference_food_guide()[i]);
+                    j++;
+                }
+            }
+        }
+
+
+        for (int i = 0; i < PaperCSVParser.papers.size(); i++) {
+            Paper paper = PaperCSVParser.papers.get(i);
+
+            if (j >= number_of_breaks) {
+                if (paper.getTime().getDate().equals(date_for_page)
+                        && paper.getTime().getStartTimeInt() >= break_end) {
+                    addPaperToView(root, inflater, paper);
+                }
+            } else if (paper.getTime().getStartTimeInt() >= break_end
+                    && paper.getTime().getDate().equals(date_for_page)) {
+                addPaperToView(root, inflater, paper);
+            }
+
+        }
     }
 }
