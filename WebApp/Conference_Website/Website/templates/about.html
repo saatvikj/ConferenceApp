@@ -2,17 +2,17 @@
 <html>
 <head>
 	<title>Conference Portal</title>
-	<link rel="stylesheet" href="../static/Website/css/main.css">
-	<link rel="stylesheet" href="../static/Website/css/bootstrap.css">
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/bootstrap.css">
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
 </head>
 <body>
 	<div class="topnav">
 	  <div class="topnav-right">
-	  	<a class="active" href="index.html">HOME</a>
+	  	<a href="{% url 'overview' %}">HOME</a>
 	    <a href="{% url 'overview' %}">OVERVIEW</a>
 	    <a href="{% url 'guide' %}">GUIDE</a>
-	    <a href="{% url 'about' %}">ABOUT</a>
+	    <a class="active" href="{% url 'about' %}">ABOUT</a>
 	    <a href="{% url 'faq' %}">FAQ</a>
 	    <a href="{% url 'contact' %}">CONTACT</a>
 	    <a href="#" id="my_btn">LOGIN</a>
@@ -21,10 +21,7 @@
 	
 	<div class="content full-height">
 		<div class="content-main">
-			<h1 class="text-uppercase">CONFERENCE PORTAL.</h1>
-			<h2>Your app is just a few clicks away.</h2>
-			<p>Register your conference on the portal, enter basic details and you are good to go!</p>
-			<a href="#" class="primary-btn header-btn text-uppercase">Get started</a>
+			
 		</div>
 		<div class="modal" id="my_modal">
 			<div class="login">
@@ -38,8 +35,7 @@
 				</form>
 			</div>
 		</div>
-		<script type="text/javascript" src="../static/Website/js/login_popup.js"> </script>
-
+		<script type="text/javascript" src="js/login_popup.js"> </script>		
 	</div>
 
 

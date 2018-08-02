@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Conference Portal</title>
+	<link rel="stylesheet" href="css/main.css">
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
+</head>
+<body>
+	<div class="topnav">
+	  <div class="topnav-right">
+	  	<a href="{% url 'index' %}">HOME</a>
+	    <a href="{% url 'overview' %}">OVERVIEW</a>
+	    <a href="{% url 'guide' %}">GUIDE</a>
+	    <a href="{% url 'about' %}">ABOUT</a>
+	    <a href="{% url 'faq' %}">FAQ</a>
+	    <a class="active" href="{% url 'contact' %}">CONTACT</a>
+	    <a href="#" id="my_btn">LOGIN</a>
+	  </div>
+	</div>
+	
+	<div class="content-contact row full-height">
+
+		<div class="content-contact-left col-md-7">
+			<h3>CONTACT US</h3>
+			<p>We're happy to answer any questions you have or provide you with an estimate. Just send us a message in the form below with any questions you may have. Feedbacks are also welcomed.</p>
+			<form action="action_page.php">
+				<label for="name">Name</label>
+				<input type="text" id="name" name="name" placeholder="Your name">
+				<label for="email">Email</label>
+				<input type="text" id="email" name="email" placeholder="Your email">
+			    <label for="message">Message</label>
+			    <textarea id="message" name="message" placeholder="Write something" style="height:200px"></textarea>
+			    <input type="submit" value="Submit">
+			</form>
+		</div>
+		<div class="content-contact-right col-md-5">
+			<div class="content-contact-right-main">
+				<h4>Additional Contact Information</h4>
+				<hr class="hr-custom">
+				<h5>Pushpendra Singh</h5>
+				<p>psingh@iiitd.ac.in</p>
+				<h5>Saatvik Jain</h5>
+				<p>saatvik16261@iiitd.ac.in</p>
+				<h5>Meghna Gupta</h5>
+				<p>meghna16056@iiitd.ac.in</p>
+				<h4>For reporting any bug</h4>
+				<hr class="hr-custom">
+				<h5>Dveloper committee</h5>
+				<p>bug_report@gmail.com</p>
+
+			</div>
+
+			<div class="modal" id="my_modal">
+				<div class="login">
+					<span class="close">&times;</span>
+					<h2 class="login-header">Log in</h2>
+					<form class="login-container">
+						<p><input type="email" placeholder="Email"></p>
+						<p><input type="password" placeholder="Password"></p>
+						<p><input type="submit" value="Log in"></p>
+						<center><a href="signup.html" style="color: #888888; text-align: center">Not registered? Sign up</a></center>
+					</form>
+				</div>
+			</div>
+			<script type="text/javascript" src="js/login_popup.js"> </script>			
+	
+		</div>
+	</div>
+
+
+
+</body>
+</html>
