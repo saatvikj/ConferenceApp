@@ -114,6 +114,8 @@ USE_L10N = True
 
 USE_TZ = True
 
+DATE_INPUT_FORMATS = ['%Y-%m-%d']
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
@@ -124,7 +126,7 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
 
 STATICFILES_DIRS = ( os.path.join(BASE_DIR, "static"), )
 
-MEDIA_ROOT = os.path.join(FILES_DIR, 'MobileApp/app/src/main/res/drawable-xxxhdpi')
+MEDIA_ROOT = os.path.join(FILES_DIR, 'WebApp/Conference_Website/media')
 MEDIA_URL = '/media/'
 if not os.path.exists(MEDIA_ROOT):
     os.mkdir(MEDIA_ROOT)
