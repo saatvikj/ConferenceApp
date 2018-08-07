@@ -9,10 +9,10 @@
 <body>
 	<div class="topnav">
 	  <div class="topnav-right">
-	  	<a href="{% url '' %}">HOME</a>
+	  	<a class="active" href="{% url '' %}">HOME</a>
 	    <a href="{% url 'overview' %}">OVERVIEW</a>
 	    <a href="{% url 'guide' %}">GUIDE</a>
-	    <a class="active" href="{% url 'about' %}">ABOUT</a>
+	    <a href="{% url 'about' %}">ABOUT</a>
 	    <a href="{% url 'faq' %}">FAQ</a>
 	    <a href="{% url 'contact' %}">CONTACT</a>
 	    <a href="#" id="my_btn">LOGIN</a>
@@ -20,7 +20,30 @@
 	</div>
 	
 	<div class="content full-height">
-		<div class="content-main">
+		<div class="content-main-signup row">
+
+			<div class="content-main-signup-left col-md-6 jumbotron">
+				{% block content %}
+				  <form method="POST" action=".">
+				    {% csrf_token %}
+				    {% for field in form %}
+				      <p class="signup-form-field">
+				        {{ field.label_tag }}<br>
+				        {{ field }}
+				        {% for error in field.errors %}
+				          <p style="color: white">{{ error }}</p>
+				        {% endfor %}
+				      </p>
+				    {% endfor %}
+				    <input type="submit" value="Sign Up" class="primary-btn header-btn text-uppercase">
+				  </form>
+				{% endblock %}
+			</div>
+
+			<div class="content-main-signup-right col-md-6">
+
+			</div>
+			
 			
 		</div>
 		<div class="modal" id="my_modal">
@@ -35,7 +58,8 @@
 				</form>
 			</div>
 		</div>
-		<script type="text/javascript" src="../static/Website/js/login_popup.js"> </script>	
+		<script type="text/javascript" src="../static/Website/js/login_popup.js"> </script>
+
 	</div>
 
 

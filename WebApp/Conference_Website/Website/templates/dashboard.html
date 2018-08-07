@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Conference Portal</title>
+	<link rel="stylesheet" href="../static/Website/css/main.css">
+	<link rel="stylesheet" href="../static/Website/css/bootstrap.css">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
+	<link rel='stylesheet prefetch' href='http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css'>
+	<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+	<script type="text/javascript" src="../static/Website/js/index.js"> </script>
+
+</head>
+<body>
+	<div class="topnav">
+	  <div class="topnav-right">
+	  	<a class="active" href="{% url '' %}">HOME</a>
+	  	<a href="{% url 'dashboard' %}">DASHBOARD</a>
+	    <a href="{% url 'overview' %}">OVERVIEW</a>
+	    <a href="{% url 'guide' %}">GUIDE</a>
+	    <a href="{% url 'about' %}">ABOUT</a>
+	    <a href="{% url 'faq' %}">FAQ</a>
+	    <a href="{% url 'contact' %}">CONTACT</a>
+	    <a href="{% url 'logout' %}">LOGOUT</a>
+	  </div>
+	</div>
+	
+	<div class="content-dashboard full-height">
+		<div class="content-dashboard-main">
+
+		<div>
+			<p>Welcome user</p>
+		</div>
+
+			<div class="col-md-4 col-sm-6 col-xs-12">
+				<div class="card">
+				  <img src="https://pbs.twimg.com/profile_images/931602068304945152/9IY7bwVC_400x400.jpg" style="width:100%; height: 300px;">
+				  <h3>ICTD X</h3>
+				  <p class="title"><i class="fa fa-map-marker marker">Ahemdabad, India</i></p>
+				  <div class="footer">
+				    <a href="#"><i class="fa fa-edit"></i></a> 
+				    <a href="#"><i class="fa fa-download"></i></a>  
+				    <a href="#"><i class="fa fa-trash-o"></i></a>  
+				    <a href="#"><i class="fa fa-gear"></i></a> 
+				 </div>
+				</div>
+
+			</div>
+			<div class="col-md-4 col-sm-6 col-xs-12">
+				<div class="card">
+				  <img src="https://pbs.twimg.com/profile_images/931602068304945152/9IY7bwVC_400x400.jpg" style="width:100%; height: 300px;">
+				  <h3>ICTD X</h3>
+				  <p class="title"><i class="fa fa-map-marker marker">Ahemdabad, India</i></p>
+				  <div class="footer">
+				    <a href="#"><i class="fa fa-edit"></i></a> 
+				    <a href="#"><i class="fa fa-download"></i></a>  
+				    <a href="#"><i class="fa fa-trash-o"></i></a>  
+				    <a href="#"><i class="fa fa-gear"></i></a> 
+				 </div>
+				</div>
+				
+			</div>
+
+			<div class="col-md-4 col-sm-6 col-xs-12">
+				<div class="card">
+				  <img src="https://pbs.twimg.com/profile_images/931602068304945152/9IY7bwVC_400x400.jpg" style="width:100%; height: 300px;">
+				  <h3>ICTD X</h3>
+				  <p class="title"><i class="fa fa-map-marker marker">Ahemdabad, India</i></p>
+				  <div class="footer">
+				    <a href="#"><i class="fa fa-edit"></i></a> 
+				    <a href="#"><i class="fa fa-download"></i></a>  
+				    <a href="#"><i class="fa fa-trash-o"></i></a>  
+				    <a href="#"><i class="fa fa-gear"></i></a> 
+				 </div>
+				</div>
+				
+			</div>
+
+			<div class="col-md-4 col-sm-6 col-xs-12">
+				<div class="card">
+				  <img src="https://pbs.twimg.com/profile_images/931602068304945152/9IY7bwVC_400x400.jpg" style="width:100%; height: 300px;">
+				  <h3>ICTD X</h3>
+				  <p class="title"><i class="fa fa-map-marker marker">Ahemdabad, India</i></p>
+				  <div class="footer">
+				    <a href="#"><i class="fa fa-edit"></i></a> 
+				    <a href="#"><i class="fa fa-download"></i></a>  
+				    <a href="#"><i class="fa fa-trash-o"></i></a>  
+				    <a href="#"><i class="fa fa-gear"></i></a> 
+				 </div>
+				</div>
+				
+			</div>
+			
+		</div>
+		<div class="modal" id="my_modal">
+			<div class="login">
+				<span class="close">&times;</span>
+				<h2 class="login-header">Log in</h2>
+				<form class="login-container" action="." method="POST"> {% csrf_token %}
+					<p><input type="text" placeholder="Email" name="username" id="username"></p>
+					<p><input type="password" placeholder="Password" name="password" id="password"></p>
+					<p><input type="submit" value="Log in"></p>
+					<center><a href="/signup" style="color: #888888; text-align: center">Not registered? Sign up</a></center>
+				</form>
+			</div>
+		</div>
+		<script type="text/javascript" src="../static/Website/js/login_popup.js"> </script>
+		
+
+	</div>
+
+
+
+</body>
+</html>

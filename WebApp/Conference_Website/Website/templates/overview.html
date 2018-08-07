@@ -2,14 +2,14 @@
 <html>
 <head>
 	<title>Conference Portal</title>
-	<link rel="stylesheet" href="css/main.css">
-	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="../static/Website/css/main.css">
+	<link rel="stylesheet" href="../static/Website/css/bootstrap.css">
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
 </head>
 <body>
 	<div class="topnav">
 	  <div class="topnav-right">
-	  	<a href="{% url 'index' %}">HOME</a>
+	  	<a href="{% url '' %}">HOME</a>
 	    <a class="active" href="{% url 'overview' %}">OVERVIEW</a>
 	    <a href="{% url 'guide' %}">GUIDE</a>
 	    <a href="{% url 'about' %}">ABOUT</a>
@@ -38,11 +38,11 @@
 					<p><input type="email" placeholder="Email"></p>
 					<p><input type="password" placeholder="Password"></p>
 					<p><input type="submit" value="Log in"></p>
-					<center><a href="signup.html" style="color: #888888; text-align: center">Not registered? Sign up</a></center>
+					<center><a href="/signup" style="color: #888888; text-align: center">Not registered? Sign up</a></center>
 				</form>
 			</div>
 		</div>
-		<script type="text/javascript" src="js/login_popup.js"> </script>		
+		<script type="text/javascript" src="../static/Website/js/login_popup.js"> </script>
 	</div>
 
 

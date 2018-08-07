@@ -2,6 +2,8 @@
     background-color: #318884;
     overflow: hidden;
     position: relative;
+    -webkit-transform: translateZ(0);
+    width: 100%;
     left: 0;
     right: 0;
     top: 0;
@@ -78,6 +80,26 @@
   text-decoration: none;
 }
 
+.content-dashboard {
+  width: 100%;
+  display: table;
+  position: relative;
+  background-color: #ECEFF1;
+
+}
+
+.content-dashboard-main{
+  display: table-cell;
+  position: relative;
+  vertical-align: top;
+  padding-left: 96px;
+  padding-top: 24px;
+  padding-bottom: 108px;
+  padding-right: 320px;
+  color: black;  
+}
+
+
 .content-overview {
   width: 100%;
   display: table;
@@ -153,6 +175,20 @@
   height: 100%;
 }
 
+.content-main-signup-left {
+  width: 100%;
+  display: table;
+  position: relative;
+  padding-left: 100px;
+  padding-right: 120px;
+  top: 40px;
+
+}
+
+.content-main-signup {
+  padding-left: 80px;
+}
+
 .content-contact-left h3{
   font-family: 'Roboto', sans-serif;
   font-size: 24px;
@@ -166,6 +202,30 @@
 }
 
 input[type=text], select, textarea {
+  width: 100%; 
+  padding: 8px;  
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  border-color: #318884;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=email], select, textarea {
+  width: 100%; 
+  padding: 8px;  
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  border-color: #318884;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=password], select, textarea {
   width: 100%; 
   padding: 8px;  
   border: 1px solid #ccc;
@@ -361,4 +421,34 @@ input[type=submit]:hover {
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  border-radius: 8px 8px 8px 8px;
+  background-color: white;
+}
+
+.title {
+  color: #3f51b5;
+  font-size: 18px;
+}
+
+.footer a {
+  margin: 4px 4px 4px 4px;
+  color: black;
+  font-size: 24px;
+}
+
+.footer a:hover {
+  opacity: 0.7;
+}
+
+.footer {
+  margin: 12px 0;
+  padding: 12px;
 }

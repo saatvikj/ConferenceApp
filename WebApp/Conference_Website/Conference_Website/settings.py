@@ -27,7 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+LOGIN_REDIRECT_URL = 'signup'
+SIGNUP_REDIRECT_URL = 'overview'
 # Application definition
 
 INSTALLED_APPS = [
