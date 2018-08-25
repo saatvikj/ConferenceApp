@@ -37,7 +37,8 @@ def signup(request):
 
 @login_required
 def dashboard(request):
-	return render(request, 'dashboard.html', {})
+	all_conferences = Conference.objects.all()
+	return render(request, 'dashboard.html', {'conferences':all_conferences})
 
 def generate_conference_keys():
 	conference_key = ''.join(random.choices(string.ascii_letters + string.digits, k=5))

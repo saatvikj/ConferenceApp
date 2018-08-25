@@ -84,7 +84,7 @@
   width: 100%;
   display: table;
   position: relative;
-  background-color: #ECEFF1;
+  background-color: white;
 
 }
 
@@ -92,10 +92,9 @@
   display: table-cell;
   position: relative;
   vertical-align: top;
-  padding-left: 96px;
+  padding-left: 32px;
   padding-top: 24px;
   padding-bottom: 108px;
-  padding-right: 320px;
   color: black;  
 }
 
@@ -425,8 +424,8 @@ input[type=submit]:hover {
 
 .card {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  max-width: 300px;
-  margin: auto;
+  width: 360px;
+  max-width: 400px;
   text-align: center;
   font-family: 'Roboto', sans-serif;
   border-radius: 8px 8px 8px 8px;
@@ -451,4 +450,94 @@ input[type=submit]:hover {
 .footer {
   margin: 12px 0;
   padding: 12px;
+}
+
+i{
+  margin-right: 8px;
+}
+
+img {
+  object-fit: contain;
+  width: 360px;
+  height: 300px;  
+  padding: 15px;
+}
+
+img:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.card-view {
+  padding-bottom: 32px;
+}
+
+.categories-div{
+  width: 100%;
+  margin-top: 32px;
+  margin-right: 96px;
+  font-size: 32px; 
+}
+
+.categories-div span{
+  font-size: 16px;
+  text-align: center;
+  padding-left: -8px;
+}
+
+.categories-div br{
+  display: block;
+  content: "";
+  margin: 0em;
+}
+
+#categories-wrapper{
+  width: 100%;
+  display: flex;
+}
+
+#basic-info{
+  width: 25%;
+  text-align: center;
+}
+
+#social-info{
+  width: 25%;
+  text-align: center;
+}
+
+#food-info{
+  width: 25%;
+  text-align: center;
+}
+
+#ap-info {
+  width: 25%;
+  text-align: center;
+}
+
+.content-create {
+  width: 100%;
+  display: table;
+  position: relative;
+  background-color: white;
+
+}
+
+.content-create-main{
+  display: table-cell;
+  position: relative;
+  vertical-align: top;
+  padding-bottom: 108px;
+  color: black;  
+}
+
+.section-icon{
+  text-align: center;
+  color: #145AA4;
+}
+
+.content-create-form{
+  margin-left: 64px; 
+  margin-right: 64px;
 }

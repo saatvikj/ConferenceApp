@@ -28,15 +28,25 @@
 	<div class="content-dashboard full-height">
 		<div class="content-dashboard-main">
 
-		<div>
-			<p>Welcome user</p>
+		<div class="col-md-4 col-xs-12 card-view add">
+
+			<a href="#">
+				<div class="card">
+				  <img src="../../../media/add-icon.png" style="margin-top: 18px">
+				  <h3>Register</h3>
+				  <div class="footer">
+				  <p>Click on the icon above to register a conference</p>
+				 </div>
+				</div>
+			</a>
+
 		</div>
-
-			<div class="col-md-4 col-sm-6 col-xs-12">
+		{% for conference in conferences %}
+			<div class="col-md-4 col-xs-12 card-view">
 				<div class="card">
-				  <img src="https://pbs.twimg.com/profile_images/931602068304945152/9IY7bwVC_400x400.jpg" style="width:100%; height: 300px;">
-				  <h3>ICTD X</h3>
-				  <p class="title"><i class="fa fa-map-marker marker">Ahemdabad, India</i></p>
+				  <img src="../../../media/{{ conference.conference_id }}/logo.png">
+				  <h3>{{ conference.conference_name }}</h3>
+				  <p class="title"><i class="fa fa-map-marker marker"></i>{{ conference.conference_venue }}</p>
 				  <div class="footer">
 				    <a href="#"><i class="fa fa-edit"></i></a> 
 				    <a href="#"><i class="fa fa-download"></i></a>  
@@ -46,24 +56,10 @@
 				</div>
 
 			</div>
-			<div class="col-md-4 col-sm-6 col-xs-12">
+		{% endfor %}
+<!-- 			<div class="col-md-4 col-xs-12 card-view">
 				<div class="card">
-				  <img src="https://pbs.twimg.com/profile_images/931602068304945152/9IY7bwVC_400x400.jpg" style="width:100%; height: 300px;">
-				  <h3>ICTD X</h3>
-				  <p class="title"><i class="fa fa-map-marker marker">Ahemdabad, India</i></p>
-				  <div class="footer">
-				    <a href="#"><i class="fa fa-edit"></i></a> 
-				    <a href="#"><i class="fa fa-download"></i></a>  
-				    <a href="#"><i class="fa fa-trash-o"></i></a>  
-				    <a href="#"><i class="fa fa-gear"></i></a> 
-				 </div>
-				</div>
-				
-			</div>
-
-			<div class="col-md-4 col-sm-6 col-xs-12">
-				<div class="card">
-				  <img src="https://pbs.twimg.com/profile_images/931602068304945152/9IY7bwVC_400x400.jpg" style="width:100%; height: 300px;">
+				  <img src="https://pbs.twimg.com/profile_images/931602068304945152/9IY7bwVC_400x400.jpg">
 				  <h3>ICTD X</h3>
 				  <p class="title"><i class="fa fa-map-marker marker">Ahemdabad, India</i></p>
 				  <div class="footer">
@@ -76,9 +72,9 @@
 				
 			</div>
 
-			<div class="col-md-4 col-sm-6 col-xs-12">
+			<div class="col-md-4 col-xs-12 card-view">
 				<div class="card">
-				  <img src="https://pbs.twimg.com/profile_images/931602068304945152/9IY7bwVC_400x400.jpg" style="width:100%; height: 300px;">
+				  <img src="https://pbs.twimg.com/profile_images/931602068304945152/9IY7bwVC_400x400.jpg">
 				  <h3>ICTD X</h3>
 				  <p class="title"><i class="fa fa-map-marker marker">Ahemdabad, India</i></p>
 				  <div class="footer">
@@ -90,6 +86,21 @@
 				</div>
 				
 			</div>
+
+			<div class="col-md-4 col-xs-12 card-view">
+				<div class="card">
+				  <img src="https://pbs.twimg.com/profile_images/931602068304945152/9IY7bwVC_400x400.jpg">
+				  <h3>ICTD X</h3>
+				  <p class="title"><i class="fa fa-map-marker marker">Ahemdabad, India</i></p>
+				  <div class="footer">
+				    <a href="#"><i class="fa fa-edit"></i></a> 
+				    <a href="#"><i class="fa fa-download"></i></a>  
+				    <a href="#"><i class="fa fa-trash-o"></i></a>  
+				    <a href="#"><i class="fa fa-gear"></i></a> 
+				 </div>
+				</div>
+				
+			</div> -->
 			
 		</div>
 		<div class="modal" id="my_modal">
