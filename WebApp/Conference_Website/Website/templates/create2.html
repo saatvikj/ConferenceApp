@@ -48,8 +48,8 @@
 			
 			</div>
 
-			<div class="content-create-form">
-				<form action="/create1/" method="POST"> {% csrf_token %}
+<!-- 			<div class="content-create-form">
+				<form method="POST"> {% csrf_token %}
 				  <div class="form-group">
 				    <label for="username">Conference Name</label>
 				    <input class="form-control" type="text" name="username" id="username" placeholder="Enter conference name" required />
@@ -70,15 +70,15 @@
 				  <div class="m-t-lg">
 				    <ul class="list-inline">
 				      <li>
-				        <input class="btn btn--form" type="submit" value="Next" />
+				        <input class="btn btn--form" type="submit" onclick="nextPrev(1)" value="Next" />
 				      </li>
 				    </ul>
 				  </div>
 				</form>  
 			</div>
-<!-- 
+ -->
 			<div class="content-create-form">
-				<form method="POST"> {% csrf_token %}
+				<form action="/create2/" method="POST"> {% csrf_token %}
 			      <div class="form-group">
 			        <label for="about">About</label>
 			        <input class="form-control" type="text" name="about" id="about" placeholder="Enter description" required />
@@ -103,14 +103,14 @@
 			      <div class="m-t-lg">
 			        <ul class="list-inline">
 			          <li>
-			            <input class="btn btn--form" type="submit" onclick="nextPrev(1)" value="Next" />
+			            <input class="btn btn--form" type="submit" value="Next" />
 			          </li>
 			        </ul>
 			      </div>
 				</form>  
 			</div>
 
-			<div class="content-create-form">
+<!-- 			<div class="content-create-form">
 				<form method="POST"> {% csrf_token %}
 			      <div class="form-group">
 			        <label for="company">Company name</label>
@@ -186,8 +186,8 @@
 				  </div>
 
 				</form>
-			</div>
- -->
+			</div> -->
+
 		</div>
 		<div class="modal" id="my_modal">
 			<div class="login">

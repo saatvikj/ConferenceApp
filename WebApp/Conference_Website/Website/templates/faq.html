@@ -39,9 +39,9 @@
 			<div class="login">
 				<span class="close">&times;</span>
 				<h2 class="login-header">Log in</h2>
-				<form class="login-container">
-					<p><input type="email" placeholder="Email"></p>
-					<p><input type="password" placeholder="Password"></p>
+				<form class="login-container" action="{% url login_user %}" method="POST"> {% csrf_token %}
+					<p><input type="text" placeholder="Email" name="username" id="username"></p>
+					<p><input type="password" placeholder="Password" name="password" id="password"></p>
 					<p><input type="submit" value="Log in"></p>
 					<center><a href="/signup" style="color: #888888; text-align: center">Not registered? Sign up</a></center>
 				</form>

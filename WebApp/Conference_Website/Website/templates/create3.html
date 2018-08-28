@@ -48,8 +48,8 @@
 			
 			</div>
 
-			<div class="content-create-form">
-				<form action="/create1/" method="POST"> {% csrf_token %}
+<!-- 			<div class="content-create-form">
+				<form method="POST"> {% csrf_token %}
 				  <div class="form-group">
 				    <label for="username">Conference Name</label>
 				    <input class="form-control" type="text" name="username" id="username" placeholder="Enter conference name" required />
@@ -70,13 +70,13 @@
 				  <div class="m-t-lg">
 				    <ul class="list-inline">
 				      <li>
-				        <input class="btn btn--form" type="submit" value="Next" />
+				        <input class="btn btn--form" type="submit" onclick="nextPrev(1)" value="Next" />
 				      </li>
 				    </ul>
 				  </div>
 				</form>  
 			</div>
-<!-- 
+
 			<div class="content-create-form">
 				<form method="POST"> {% csrf_token %}
 			      <div class="form-group">
@@ -109,9 +109,9 @@
 			      </div>
 				</form>  
 			</div>
-
+ -->
 			<div class="content-create-form">
-				<form method="POST"> {% csrf_token %}
+				<form action="/create3/" method="POST"> {% csrf_token %}
 			      <div class="form-group">
 			        <label for="company">Company name</label>
 			        <input class="form-control" type="text" name="company" id="company" placeholder="Enter company name" required />
@@ -132,8 +132,10 @@
 			        </ul>
 			      </div>
 			    </form> 
+			    <a href="/create4/"><button class="btn btn--form">Next</button></a>
+			</div>
 
-			    <form method="POST"> {% csrf_token %}
+<!-- 			    <form method="POST"> {% csrf_token %}
 			      <div class="form-group">
 			        <label for="choice">Choice</label><br>
 			        <input type="radio" name="choice" value="breakfast"><font class="radio-text"> Breakfast</font><br>

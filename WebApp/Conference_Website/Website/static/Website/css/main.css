@@ -540,4 +540,9 @@ img:hover {
 .content-create-form{
   margin-left: 64px; 
   margin-right: 64px;
+  display: none;
+}
+
+.add a:hover {
+  text-decoration: none;
 }
