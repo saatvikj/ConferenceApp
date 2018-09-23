@@ -12,3 +12,9 @@ window.onclick = function(event) {
 closeBtn.onclick = function() {
 	modal.style.display = "none";
 }
+
+// var topnav = document.getElementsByClassName('topnav')[0];
+// var topnav_height = topnav.style.height();
+// console.log(topnav_height);
+// var content = document.getElementsByClassName('full-height')[0];
+// content.style.height() = 'calc(100vh-topnav_height)';

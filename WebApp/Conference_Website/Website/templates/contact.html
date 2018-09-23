@@ -6,7 +6,7 @@
 	<link rel="stylesheet" href="../static/Website/css/bootstrap.css">
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
 </head>
-<body>
+<body style="background: white">
 	<div class="topnav">
 	  <div class="topnav-right">
 	  	<a href="{% url '' %}">HOME</a>
@@ -24,7 +24,7 @@
 		<div class="content-contact-left col-md-7">
 			<h3>CONTACT US</h3>
 			<p>We're happy to answer any questions you have or provide you with an estimate. Just send us a message in the form below with any questions you may have. Feedbacks are also welcomed.</p>
-			<form action="action_page.php">
+			<form action="/email/" method="POST"> {% csrf_token %}
 				<label for="name">Name</label>
 				<input type="text" id="name" name="name" placeholder="Your name">
 				<label for="email">Email</label>

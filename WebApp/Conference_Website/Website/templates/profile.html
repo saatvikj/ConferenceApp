@@ -3,41 +3,13 @@
 <head>
 	<title>Conference Portal</title>
 	<link rel="stylesheet" href="../static/Website/css/main.css">
-	<!-- <link rel="stylesheet" href="../static/Website/css/bootstrap.css"> -->
-<!-- 	<link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet"> -->
-<!-- 	<link rel='stylesheet prefetch' href='http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css'> -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
-	<script type="text/javascript" src="../static/Website/js/index.js"> </script> -->
+	<link rel="stylesheet" href="../static/Website/css/bootstrap.css">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
+	<link rel='stylesheet prefetch' href='http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css'>
+	<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+	<script type="text/javascript" src="../static/Website/js/index.js"> </script>
 
-	<style>
-	  body {
-	      position: relative;
-	  }
-	  .affix {
-	      top: 20px;
-	      z-index: 9999 !important;
-	  }
-	  div.col-sm-9 div {
-	      height: 250px;
-	      font-size: 28px;
-	  }
-	  #section1 {color: #fff; background-color: #1E88E5;}
-	  #section2 {color: #fff; background-color: #673ab7;}
-	  #section3 {color: #fff; background-color: #ff9800;}
-	  #section41 {color: #fff; background-color: #00bcd4;}
-	  #section42 {color: #fff; background-color: #009688;}
-	  
-	  @media screen and (max-width: 810px) {
-	    #section1, #section2, #section3, #section41, #section42  {
-	        margin-left: 150px;
-	    }
-	  }
-	  </style>
 </head>
 <body data-spy="scroll" data-target="#myScrollspy" data-offset="15">
 	<div class="topnav">
@@ -52,132 +24,22 @@
 	    <a href="{% url 'logout' %}">LOGOUT</a>
 	  </div>
 	</div>
-	
-<!-- 	<div class="content-dashboard full-height">
-		<div class="container-fluid">
-		   <div class="row">
-		      <div class="col-sm-3 hidden-xs">
-		         
-		         <div data-spy="affix" data-offset-top="0">
-		            <div class="list-group">
-		               <a href="#section-1" class="list-group-item active">Section I</a>
-		               <a href="#section-2" class="list-group-item">Section II</a>
-		               <a href="#section-3" class="list-group-item">Section III</a>
-		               <a href="#section-4" class="list-group-item">Section IV</a>
-		               <a href="#section-5" class="list-group-item">Section V</a>
-		            </div>
-		         </div>
-		      </div>
-		      <div class="col-sm-9">
-		         <div class="wrapper">
-		            <div id="section-1" class="section">
-		               <h3>Section I</h3>
-		               <p>...</p>
-		               <p>...</p>
-		               <p>...</p>
-		               <p>...</p>
-		               <p>...</p>
-		               <p>...</p>
-		               <p>...</p>
-		               <p>...</p>
-		               <p>...</p>
-		               <p>...</p>
-		               <p>...</p>
-		               <p>...</p>               
-		            </div>
-		            <div id="section-2" class="section">
-		               <h3>Section II</h3>
-		               <p>...</p>
-		               <p>...</p>
-		               <p>...</p>
-		               <p>...</p>
-		               <p>...</p>
-		               <p>...</p>
-		               <p>...</p>
-		               <p>...</p>
-		               <p>...</p>
-		               <p>...</p>
-		               <p>...</p>
-		               <p>...</p>
-		               <p>...</p>
-		               <p>...</p>                 
-		            </div>
-		            <div id="section-3" class="section">
-		               <h3>Section III</h3>
-		               <p>...</p>
-		               <p>...</p> 
-		               <p>...</p>
-		               <p>...</p>
-		               <p>...</p>
-		               <p>...</p>
-		               <p>...</p>
-		               <p>...</p>
-		               <p>...</p>
-		               <p>...</p>
-		               <p>...</p>
-		               <p>...</p>
-		               <p>...</p>
-		               <p>...</p>
-		               <p>...</p>
-		               <p>...</p> 
-		            </div>
-		            <div id="section-4" class="section">
-		               <h3>Section IV</h3>
-		               <p>...</p>
-		               <p>...</p> 
 
-		            </div>
-		            <div id="section-5" class="section">
-		               <h3>Section V</h3>
-		               <p>...</p>
-		               <p>...</p> 
-		            </div>
-		         </div>
+	<div class="content-profile full-height">
+		<div class="content-profile-main">
 
-		      </div>
-		   </div>
-		</div> -->
+			<div class="conference-header-card">
+			  <img src="https://app.tnpsuite.com/images/blue-checks-cover.png" alt="Avatar" style="width:100%">
+			  <div class="conference-header-card-container">
+			    <div class="conference-name">
+			    	<p>ICTDX</p>
+			    </div> 
+			  </div>
+			</div>
 
-		<div class="container">
-		  <div class="row">
-		    <nav class="col-sm-3" id="myScrollspy">
-		      <ul class="nav nav-pills nav-stacked" data-spy="affix" data-offset-top="205">
-		        <li><a href="#section1">Section 1</a></li>
-		        <li><a href="#section2">Section 2</a></li>
-		        <li><a href="#section3">Section 3</a></li>
-		        <li class="dropdown">
-		          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Section 4 <span class="caret"></span></a>
-		          <ul class="dropdown-menu">
-		            <li><a href="#section41">Section 4-1</a></li>
-		            <li><a href="#section42">Section 4-2</a></li>
-		          </ul>
-		        </li>
-		      </ul>
-		    </nav>
-		    <div class="col-sm-9">
-		      <div id="section1">    
-		        <h1>Section 1</h1>
-		        <p>Try to scroll this section and look at the navigation list while scrolling!</p>
-		      </div>
-		      <div id="section2"> 
-		        <h1>Section 2</h1>
-		        <p>Try to scroll this section and look at the navigation list while scrolling!</p>
-		      </div>        
-		      <div id="section3">
-		        <h1>Section 3</h1>
-		        <p>Try to scroll this section and look at the navigation list while scrolling!</p>
-		      </div>
-		      <div id="section41">
-		        <h1>Section 4-1</h1>
-		        <p>Try to scroll this section and look at the navigation list while scrolling!</p>
-		      </div>      
-		      <div id="section42">
-		        <h1>Section 4-2</h1>
-		        <p>Try to scroll this section and look at the navigation list while scrolling!</p>
-		      </div>
-		    </div>
-		  </div>
 		</div>
+	</div>
+	
 
 		<div class="modal" id="my_modal">
 			<div class="login">

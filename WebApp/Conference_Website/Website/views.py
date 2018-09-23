@@ -15,6 +15,7 @@ from django.contrib.auth import login, authenticate
 from Website.forms import SignUpForm
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
 
 global_data = []
 conference_keys_list = []
@@ -48,7 +49,19 @@ def login_user(request):
 		print("Bye")
 	return render(request, 'index.html', {})    
 
-
+def contact_email(request):
+	if request.method == 'POST':
+		name = request.POST['name']
+		email = request.POST['email']
+		message = request.POST['message']
+		send_mail(
+		    'Query from: '+ name,
+		    message,
+		    email,
+		    ['saatvik16261@iiitd.ac.in', 'meghna16056@iiitd.ac.in'],
+		    fail_silently=False,
+		)
+		return render(request, 'contact.html', {})
 
 @login_required
 def dashboard(request):
