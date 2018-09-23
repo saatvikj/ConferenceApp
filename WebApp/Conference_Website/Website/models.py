@@ -53,3 +53,7 @@ def update_user_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
     instance.profile.save()
+
+class UserConference(models.Model):
+	user_id = models.TextField(max_length=255)
+	conference_id = models.TextField(max_length=255)

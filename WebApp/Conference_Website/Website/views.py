@@ -6,6 +6,7 @@ import os
 import subprocess
 import random, string
 from Website.models import Conference
+from Website.models import UserConference
 from django.conf import settings
 from .forms import ConferenceData
 from django.core.files.storage import FileSystemStorage
@@ -51,8 +52,12 @@ def login_user(request):
 
 @login_required
 def dashboard(request):
-	all_conferences = Conference.objects.all()
-	return render(request, 'dashboard.html', {'conferences':all_conferences})
+	user_conference_ids = UserConference.objects.filter(user_id=request.user.profile.profile_id)
+	conference_id_list = []
+	for conference in user_conference_ids:
+		conference_id_list.append(conference.conference_id)
+	user_conferences = Conference.objects.filter(conference_id__in=conference_id_list)
+	return render(request, 'dashboard.html', {'conferences':user_conferences})
 
 # Create your views here.
 class HomePageView(TemplateView):
@@ -255,6 +260,8 @@ def create_conference_5(request):
 			conference_logo=request.FILES['logo_image'])
 
 		conference_ob.save()
+		user_conference_ob = UserConference(user_id=request.user.profile.profile_id, conference_id=conference_ob.conference_id)
+		user_conference_ob.save()
 		global_data.append(str(conference_ob.conference_id))	
 		conference_csv_path = os.path.join(settings.FILES_DIR, 'WebApp/Conference_Website/media/' + global_data[11] + '/conference_data.csv')
 		with open(conference_csv_path, 'w') as f:
