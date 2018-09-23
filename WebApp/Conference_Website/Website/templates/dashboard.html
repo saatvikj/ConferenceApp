@@ -50,62 +50,18 @@
 				  <div class="footer">
 				    <a href="#"><i class="fa fa-edit"></i></a> 
 				    <a href="#"><i class="fa fa-download"></i></a>  
-				    <a href="#"><i class="fa fa-trash-o"></i></a>  
+				    <a href="#" id="my_btn"><i class="fa fa-trash-o"></i></a>  
 				    <a href="#"><i class="fa fa-gear"></i></a> 
 				 </div>
 				</div>
 
 			</div>
 		{% endfor %}
-<!-- 			<div class="col-md-4 col-xs-12 card-view">
-				<div class="card">
-				  <img src="https://pbs.twimg.com/profile_images/931602068304945152/9IY7bwVC_400x400.jpg">
-				  <h3>ICTD X</h3>
-				  <p class="title"><i class="fa fa-map-marker marker">Ahemdabad, India</i></p>
-				  <div class="footer">
-				    <a href="#"><i class="fa fa-edit"></i></a> 
-				    <a href="#"><i class="fa fa-download"></i></a>  
-				    <a href="#"><i class="fa fa-trash-o"></i></a>  
-				    <a href="#"><i class="fa fa-gear"></i></a> 
-				 </div>
-				</div>
-				
-			</div>
-
-			<div class="col-md-4 col-xs-12 card-view">
-				<div class="card">
-				  <img src="https://pbs.twimg.com/profile_images/931602068304945152/9IY7bwVC_400x400.jpg">
-				  <h3>ICTD X</h3>
-				  <p class="title"><i class="fa fa-map-marker marker">Ahemdabad, India</i></p>
-				  <div class="footer">
-				    <a href="#"><i class="fa fa-edit"></i></a> 
-				    <a href="#"><i class="fa fa-download"></i></a>  
-				    <a href="#"><i class="fa fa-trash-o"></i></a>  
-				    <a href="#"><i class="fa fa-gear"></i></a> 
-				 </div>
-				</div>
-				
-			</div>
-
-			<div class="col-md-4 col-xs-12 card-view">
-				<div class="card">
-				  <img src="https://pbs.twimg.com/profile_images/931602068304945152/9IY7bwVC_400x400.jpg">
-				  <h3>ICTD X</h3>
-				  <p class="title"><i class="fa fa-map-marker marker">Ahemdabad, India</i></p>
-				  <div class="footer">
-				    <a href="#"><i class="fa fa-edit"></i></a> 
-				    <a href="#"><i class="fa fa-download"></i></a>  
-				    <a href="#"><i class="fa fa-trash-o"></i></a>  
-				    <a href="#"><i class="fa fa-gear"></i></a> 
-				 </div>
-				</div>
-				
-			</div> -->
 			
 		</div>
 		<div class="modal" id="my_modal">
 			<div class="login">
-				<span class="close">&times;</span>
+				<span class="close" style="color: white; opacity: 1; float: right; font-size: 1.5rem; font-weight: 700; line-height: 1; padding: 20px; margin: 0px;">&times;</span>
 				<h2 class="login-header">Log in</h2>
 				<form class="login-container" action="." method="POST"> {% csrf_token %}
 					<p><input type="text" placeholder="Email" name="username" id="username"></p>
