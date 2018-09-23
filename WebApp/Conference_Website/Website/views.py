@@ -34,6 +34,7 @@ def signup(request):
 			return redirect('overview')
 	else:
 		form = SignUpForm()
+	print(form)	
 	return render(request, 'signup.html', {'form': form})
 
 

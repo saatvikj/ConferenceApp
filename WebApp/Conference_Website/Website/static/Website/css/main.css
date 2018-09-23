@@ -1,5 +1,6 @@
 body {
-  background: url('https://lh4.googleusercontent.com/InvRJemAZMhuikD9DJdnltKmMn-0v0KFUjcXTI70UeUq-5TDKYFHIRRiA3xjYXJhiU7rYoCGxJkKs0-7cw6u=w1920-h942-rw') no-repeat center center/cover;
+  background: linear-gradient(rgb(15, 32, 39), rgb(32, 58, 67), rgb(44, 83, 100));
+  overflow-x: hidden;
 }
 
 .topnav {
@@ -190,11 +191,23 @@ body {
 
 }
 
+.content-main-signup-right {
+  width: 100%;
+  display: table;
+  position: relative;
+  padding-left: 100px;
+  padding-right: 120px;
+  top: 40px;
+  padding-bottom: 12px;
+
+}
+
 .content-main-signup {
   padding-left: 80px;
+  padding-right: 80px;
   width: 100vw;
   overflow-x: hidden;
-  overflow-y: hidden;
+  height: 100%;
 }
 
 .content-contact-left h3{
@@ -595,4 +608,25 @@ img:hover {
     align-content: center;
     text-align: center;
     font-size: 20px;
+}
+
+.header-btn-form {
+  background: #fff;
+  border-radius: 0;
+  margin-top: 8px;
+  color: #000000 !important;
+  padding-left: 32px;
+  padding-right: 32px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  font-size: 14px;
+  border: 1px solid transparent;
+  color: #fff;
+}
+
+.header-btn-form:hover {
+  border: 1px solid #fff;
+  background: transparent;
+  color: #fff !important;
+  text-decoration: none;
 }
