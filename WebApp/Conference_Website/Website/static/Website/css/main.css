@@ -52,6 +52,12 @@ body {
   height: calc(100vh - 60px);
 }
 
+.full-height-signup {
+  width: 100px;
+  height: calc(100vh - 100px);
+  overflow-y: hidden;
+}
+
 .content {
   width: 100%;
   display: table;
@@ -182,7 +188,6 @@ body {
 }
 
 .content-main-signup-left {
-  width: 100%;
   display: table;
   position: relative;
   padding-left: 100px;
@@ -192,7 +197,6 @@ body {
 }
 
 .content-main-signup-right {
-  width: 100%;
   display: table;
   position: relative;
   padding-left: 100px;
@@ -203,11 +207,14 @@ body {
 }
 
 .content-main-signup {
+  margin-left: 25%;
+  margin-right: 25%;
+  width: 60%;
+  align-self: center;
   padding-left: 80px;
   padding-right: 80px;
-  width: 100vw;
   overflow-x: hidden;
-  height: 100%;
+  height: 80%;
 }
 
 .content-contact-left h3{
@@ -273,6 +280,84 @@ input[type=submit] {
 
 input[type=submit]:hover {
   background-color: #318884;
+}
+
+
+.content-main-signup input[type=text], select, textarea {
+  width: 84%; 
+  padding: 8px;  
+  box-sizing: border-box;
+  border-radius: 0px;
+  border-color: #E5E5E5;
+  margin-top: 0px;
+  margin-bottom: 24px;
+  font-size: 12px;
+}
+
+.content-main-signup input[type=email], select, textarea {
+  width: 84%; 
+  padding: 8px;  
+  box-sizing: border-box;
+  border-radius: 0px;
+  border-color: #E5E5E5;
+  margin-top: 0px;
+  margin-bottom: 24px;
+  font-size: 12px;
+}
+
+.content-main-signup input[type=password], select, textarea {
+  width: 84%; 
+  padding: 8px;  
+  box-sizing: border-box;
+  border-radius: 0px;
+  border-color: #E5E5E5;
+  margin-top: 0px;
+  margin-bottom: 24px;
+  font-size: 12px;
+}
+
+.content-main-signup select {
+  width: 84%; 
+  padding: 8px;  
+  box-sizing: border-box;
+  border-radius: 0px;
+  background: #ffffff;
+  border-color: #E5E5E5;
+  margin-top: 0px;
+  margin-bottom: 24px;
+  font-size: 12px;
+}
+
+
+.content-main-signup input[type=submit] {
+  background-color: #4c4c4c;
+  border-color: transparent;
+  color: white;
+  border-radius: 0px;
+  margin-top: 8px;
+  padding-left: 32px;
+  padding-right: 32px;
+  padding-bottom: 8px;
+  padding-top: 8px;
+  border: none;
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.content-main-signup input[type=submit]:hover {
+  background-color: #4c4c4c;
+  border-radius: 0px;
+  opacity: 0.8;
+}
+
+.content-main-signup label{
+  color: black;
+  font-weight: bold;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-family: 'Roboto', sans-serif;
 }
 
 .content-contact-right-main {

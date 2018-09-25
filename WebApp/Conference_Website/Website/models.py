@@ -42,8 +42,9 @@ class Conference(models.Model):
 	
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    organization = models.CharField(max_length=256, blank=True)
+    organization = models.CharField(max_length=255, blank=True)
     profile_id = models.UUIDField(primary_key=True, default=uuid.uuid4)
+    location = models.CharField(max_length=255)
 
     def __str__(self):
     	return self.user.first_name

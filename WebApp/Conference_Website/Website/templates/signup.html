@@ -19,9 +19,9 @@
 	  </div>
 	</div>
 	
-	<div class="content full-height">
+	<div class="content full-height-signup">
 		<form method="POST" action="." style="height: 100%">
-		<div class="content-main-signup row">
+		<div class="content-main-signup row jumbotron">
 			<div class="content-main-signup-left col-md-6">
 				    {% csrf_token %}
 				      <div class="signup-form-field">
@@ -29,14 +29,14 @@
 				        {{ form.first_name }}
 				      </div>
 
-				      <div class="signup-form-field">
-				        {{ form.last_name.label_tag }}<br>
-				        {{ form.last_name }}
-				      </div>
-
+				      
 				      <div class="signup-form-field">
 				        {{ form.email.label_tag }}<br>
 				        {{ form.email }}
+				      </div>
+				      <div class="signup-form-field">
+				        {{ form.password1.label_tag }}<br>
+				        {{ form.password1 }}
 				      </div>
 
 				      <div class="signup-form-field">
@@ -47,23 +47,29 @@
 
 			<div class="content-main-signup-right col-md-6">
 				{% csrf_token %}
+					<div class="signup-form-field">
+					  {{ form.last_name.label_tag }}<br>
+					  {{ form.last_name }}
+					</div>
 				  <div class="signup-form-field">
 				    {{ form.username.label_tag }}<br>
 				    {{ form.username }}
 				  </div>
-
-				  <div class="signup-form-field">
-				    {{ form.password1.label_tag }}<br>
-				    {{ form.password1 }}
-				  </div>
-
+				  
 				  <div class="signup-form-field">
 				    {{ form.password2.label_tag }}<br>
 				    {{ form.password2 }}
 				  </div>
 
+				  <div class="signup-form-field">
+				    {{ form.location.label_tag }}<br>
+				    {{ form.location }}
+				  </div>
+
 			</div>
-			<input type="submit" value="Sign Up" class="primary-btn header-btn-form text-uppercase" style="margin-top: 0px">
+			<div align="center" style="display: inline; width: 100%">
+				<input align="center" type="submit" value="REGISTER" class="primary-btn text-uppercase" style="margin-top: 0px; color: white;">
+			</div>
 
 		</div>
 	</form>

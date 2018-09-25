@@ -16,25 +16,34 @@ from Website.forms import SignUpForm
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
+import pycountry
 
 global_data = []
 conference_keys_list = []
 
 def signup(request):
+	print("Method request: " + str(request.method))
 	if request.method == 'POST':
+		print("Method is post")
 		form = SignUpForm(request.POST)
 		if form.is_valid():
+			print("Valid form")
 			user = form.save()
 			user.refresh_from_db()  # load the profile instance created by the signal
 			user.profile.organization = form.cleaned_data.get('organization')
+			country_name = form.cleaned_data.get('location').capitalize()
+			user.profile.location = pycountry.countries.get(name=country_name).alpha_2
 			user.save()
 			raw_password = form.cleaned_data.get('password1')
 			user = authenticate(username=user.username, password=raw_password)
 			login(request, user)
 			return redirect('overview')
+		else:
+			print("invalid form")
+			print(form.errors)
 	else:
+		print("Hello")
 		form = SignUpForm()
-	print(form)	
 	return render(request, 'signup.html', {'form': form})
 
 
