@@ -267,7 +267,12 @@ th {
 label {
   display: inline-block;
   margin-bottom: .5rem;
-  color: white;
+  color: black;
+  font-weight: bold;
+  font-size: 13px;
+  text-transform: uppercase;
+  font-family: 'Roboto', sans-serif;
+
 }
 
 button {
@@ -331,6 +336,14 @@ input[type="month"] {
 textarea {
   overflow: auto;
   resize: vertical;
+  width: 100%; 
+  padding: 8px;  
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  border-color: #318884;
+  margin-top: 6px;
+  margin-bottom: 16px;
 }
 
 fieldset {
