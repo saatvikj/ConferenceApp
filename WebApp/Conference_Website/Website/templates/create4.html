@@ -11,7 +11,7 @@
 	<script type="text/javascript" src="../static/Website/js/index.js"> </script>
 
 </head>
-<body>
+<body style="background: white">
 	<div class="topnav">
 	  <div class="topnav-right">
 	  	<a class="active" href="{% url '' %}">HOME</a>
@@ -25,172 +25,44 @@
 	  </div>
 	</div>
 	
-	<div class="content-create full-height">
-		<div class="content-create-main">
-			
-			<div id="categories-wrapper" class="categories-div">
-				<div id="basic-info">
-					<i class="fa fa-info-circle section-icon"></i><br>
-					<span>Basic</span>
-				</div>
-				<div id="social-info">
-					<i class="fa fa-facebook section-icon"></i><br>
-					<span>Social</span>
-				</div>
-				<div id="food-info">
-					<i class="fa fa-beer section-icon"></i><br>
-					<span>Informal Details</span>
-				</div>
-				<div id="ap-info">
-					<i class="fa fa-paperclip section-icon"></i><br>
-					<span>Attendees and Papers</span>
-				</div>	
-			
+	<div class="content full-height-signup" style="padding-left: 25%">
+		<form method="POST" action="/create1/" style="height: 100%;">
+		<div class="content-main-signup row jumbotron" style="width: 75%">
+			<div class="content-main-signup-left col-md-6">
 			</div>
 
-<!-- 			<div class="content-create-form">
-				<form method="POST"> {% csrf_token %}
-				  <div class="form-group">
-				    <label for="username">Conference Name</label>
-				    <input class="form-control" type="text" name="username" id="username" placeholder="Enter conference name" required />
-				  </div>
-				  <div class="form-group">
-				    <label for="email">Conference Venue</label>
-				    <input class="form-control" type="text" name="email" id="email" placeholder="Enter conference venue" required />
-				  </div>
-				  <div class="form-group">
-				    <label for="start-date">Start Date</label>
-				    <input class="form-control" type="date" name="start-date" id="start-date" placeholder="Enter start date" required />
-				  </div>
-				  <div class="form-group">
-				    <label for="end-date">End Date</label>
-				    <input class="form-control" type="date" name="end-date" id="end-date" placeholder="Enter end date" required />
-				  </div>
+			<div class="content-main-signup-right col-md-6">
+				<div class="form-group">
+				        <label for="choice">Choice</label><br>
+				        <input type="radio" name="choice" value="breakfast"><font class="radio-text"> Breakfast</font><br>
+				        <input type="radio" name="choice" value="lunch"><font class="radio-text"> Lunch</font><br>
+				        <input type="radio" name="choice" value="snacks"><font class="radio-text"> Snacks</font>
+				      </div>
+				      <div class="form-group">
+				        <label for="location">Location</label>
+				        <input class="form-control" type="text" name="location" id="location" placeholder="Enter location" required />
+				      </div>
+				      <div class="form-group">
+				        <label for="details">Details</label>
+				        <input class="form-control" type="text" name="details" id="details" placeholder="Enter details" required />
+				      </div>
+				      <div class="form-group">
+				        <label for="time">Time</label>
+				        <input class="form-control" type="text" name="time" id="time" placeholder="Enter timing" required />
+				      </div>      
+				      <div class="m-t-lg">
+				        <ul class="list-inline">
+				          <li>
+				            <input class="btn btn--form" type="submit" value="Add" />
+				          </li>
+				        </ul>
+				      </div>
 
-				  <div class="m-t-lg">
-				    <ul class="list-inline">
-				      <li>
-				        <input class="btn btn--form" type="submit" onclick="nextPrev(1)" value="Next" />
-				      </li>
-				    </ul>
-				  </div>
-				</form>  
 			</div>
 
-			<div class="content-create-form">
-				<form method="POST"> {% csrf_token %}
-			      <div class="form-group">
-			        <label for="about">About</label>
-			        <input class="form-control" type="text" name="about" id="about" placeholder="Enter description" required />
-			      </div>
-			      <div class="form-group">
-			        <label for="website">Website</label>
-			        <input class="form-control" type="url" name="website" id="website" placeholder="Enter website URL" required />
-			      </div>
-			      <div class="form-group">
-			        <label for="facebook">Facebook</label>
-			        <input class="form-control" type="text" name="facebook" id="facebook" placeholder="https://www.facebook.com/" required />
-			      </div>
-			      <div class="form-group">
-			        <label for="twitter">Twitter</label>
-			        <input class="form-control" type="text" name="twitter" id="twitter" placeholder="https://www.twitter.com/" required />
-			      </div>
-			      <div class="form-group">
-			        <label for="contact">Contact Email</label>
-			        <input class="form-control" type="email" name="contact" id="contact" placeholder="Enter contact email" required />
-			      </div>
 
-			      <div class="m-t-lg">
-			        <ul class="list-inline">
-			          <li>
-			            <input class="btn btn--form" type="submit" onclick="nextPrev(1)" value="Next" />
-			          </li>
-			        </ul>
-			      </div>
-				</form>  
-			</div>
- -->
-<!-- 			<div class="content-create-form">
-				<form method="POST"> {% csrf_token %}
-			      <div class="form-group">
-			        <label for="company">Company name</label>
-			        <input class="form-control" type="text" name="company" id="company" placeholder="Enter company name" required />
-			      </div>
-			      <div class="form-group">
-			        <label for="type">Type of sponsor</label>
-			        <input class="form-control" type="text" name="type" id="type" placeholder="Enter type" required />
-			      </div>
-			      <div class="form-group">
-			        <label for="website">Website</label>
-			        <input class="form-control" type="text" name="website" id="website" placeholder="Enter website" required />
-			      </div>
-			      <div class="m-t-lg">
-			        <ul class="list-inline">
-			          <li>
-			            <input class="btn btn--form" type="submit" value="Add" />
-			          </li>
-			        </ul>
-			      </div>
-			    </form> 
- -->
- 			<div class="content-create-form">
-			    <form action="/create4/" method="POST"> {% csrf_token %}
-			      <div class="form-group">
-			        <label for="choice">Choice</label><br>
-			        <input type="radio" name="choice" value="breakfast"><font class="radio-text"> Breakfast</font><br>
-			        <input type="radio" name="choice" value="lunch"><font class="radio-text"> Lunch</font><br>
-			        <input type="radio" name="choice" value="snacks"><font class="radio-text"> Snacks</font>
-			      </div>
-			      <div class="form-group">
-			        <label for="location">Location</label>
-			        <input class="form-control" type="text" name="location" id="location" placeholder="Enter location" required />
-			      </div>
-			      <div class="form-group">
-			        <label for="details">Details</label>
-			        <input class="form-control" type="text" name="details" id="details" placeholder="Enter details" required />
-			      </div>
-			      <div class="form-group">
-			        <label for="time">Time</label>
-			        <input class="form-control" type="text" name="time" id="time" placeholder="Enter timing" required />
-			      </div>      
-			      <div class="m-t-lg">
-			        <ul class="list-inline">
-			          <li>
-			            <input class="btn btn--form" type="submit" value="Add" />
-			          </li>
-			        </ul>
-			      </div>
-			    </form>
-			    <a href="/create5/"><button class="btn btn--form">Next</button></a>
-			</div>
-
-<!-- 			<div class="content-create-form">
-				<form method="POST" enctype="multipart/form-data" class="form-horizontal"> {% csrf_token %}
-				  <div class="form-group">
-				    <label for="schedule_csv_file">Upload conference schedule as CSV</label>
-				    <input type="file" name="schedule_csv_file" id="schedule_csv_file" required="True" class="form-control" style="width:300px">    
-				  </div>
-				  <br>
-				  <div class="form-group">
-				    <label for="users_csv_file">Upload user details as CSV</label>
-				    <input type="file" name="users_csv_file" id="users_csv_file" required="True" class="form-control" style="width:300px">    
-				  </div>
-				  <br>
-				  <div class="form-group">
-				    <label for="logo_image_file">Upload conference logo</label>
-				    <input type="file" name="logo_image_file" id="logo_image_file" required="True" class="form-control" style="width:300px">    
-				  </div>
-				  <br>
-				  <div class="form-group">                    
-				    <div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-3" style="margin-bottom:10px;">
-				      <a href="/thank_you/"><button class="btn btn--form"> <span class="glyphicon glyphicon-upload" style="margin-right:5px;"></span>Upload </button></a>
-				    </div> 
-				  </div>
-
-				</form>
-			</div>
- -->
 		</div>
+	</form>
 		<div class="modal" id="my_modal">
 			<div class="login">
 				<span class="close">&times;</span>
@@ -203,9 +75,7 @@
 				</form>
 			</div>
 		</div>
-		<script type="text/javascript" src="../static/Website/js/login_popup.js"></script>
-		<script type="text/javascript" src="../static/Website/js/form_create.js"></script>
-		
+		<script type="text/javascript" src="../static/Website/js/login_popup.js"> </script>
 
 	</div>
 
