@@ -22,12 +22,9 @@ global_data = []
 conference_keys_list = []
 
 def signup(request):
-	print("Method request: " + str(request.method))
 	if request.method == 'POST':
-		print("Method is post")
 		form = SignUpForm(request.POST)
 		if form.is_valid():
-			print("Valid form")
 			user = form.save()
 			user.refresh_from_db()  # load the profile instance created by the signal
 			user.profile.organization = form.cleaned_data.get('organization')
@@ -38,11 +35,7 @@ def signup(request):
 			user = authenticate(username=user.username, password=raw_password)
 			login(request, user)
 			return redirect('overview')
-		else:
-			print("invalid form")
-			print(form.errors)
 	else:
-		print("Hello")
 		form = SignUpForm()
 	return render(request, 'signup.html', {'form': form})
 
@@ -52,11 +45,8 @@ def login_user(request):
 	password = request.POST['password']
 	user = authenticate(request, username=username, password=password)
 	if user is not None:
-		print("Hello")
 		login(request, user)
 		return redirect('dashboard')
-	else:
-		print("Bye")
 	return render(request, 'index.html', {})    
 
 def contact_email(request):
@@ -95,11 +85,8 @@ class HomePageView(TemplateView):
 		password = request.POST['password']
 		user = authenticate(request, username=username, password=password)
 		if user is not None:
-			print("Hello")
 			login(request, user)
 			return redirect('dashboard')
-		else:
-			print("Bye")
 		return render(request, 'index.html', {})    	
 
 

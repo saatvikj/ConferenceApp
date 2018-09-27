@@ -372,6 +372,17 @@ input[type=submit]:hover {
   font-family: 'Roboto', sans-serif;
 }
 
+.content-main-signup input[type=date], select, textarea {
+  width: 84%; 
+  padding: 8px;  
+  box-sizing: border-box;
+  border-radius: 0px;
+  border-color: #E5E5E5;
+  margin-top: 0px;
+  margin-bottom: 24px;
+  font-size: 12px;
+}
+
 .content-contact-right-main {
   height: 100%;
   padding-bottom: 108px;
