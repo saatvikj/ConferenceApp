@@ -48,33 +48,41 @@
 			
 			</div>
 
-			<div class="content-create-form">
-				<form action="/create1/" method="POST"> {% csrf_token %}
-				  <div class="form-group">
-				    <label for="username">Conference Name</label>
-				    <input class="form-control" type="text" name="username" id="username" placeholder="Enter conference name" required />
-				  </div>
-				  <div class="form-group">
-				    <label for="email">Conference Venue</label>
-				    <input class="form-control" type="text" name="email" id="email" placeholder="Enter conference venue" required />
-				  </div>
-				  <div class="form-group">
-				    <label for="start-date">Start Date</label>
-				    <input class="form-control" type="date" name="start-date" id="start-date" placeholder="Enter start date" required />
-				  </div>
-				  <div class="form-group">
-				    <label for="end-date">End Date</label>
-				    <input class="form-control" type="date" name="end-date" id="end-date" placeholder="Enter end date" required />
-				  </div>
+			<div class="content-create-form row jumbotron">
 
-				  <div class="m-t-lg">
-				    <ul class="list-inline">
-				      <li>
-				        <input class="btn btn--form" type="submit" value="Next" />
-				      </li>
-				    </ul>
-				  </div>
-				</form>  
+				<div class="content-create-form-left col-md-6">
+					
+				</div>
+
+				<div class="content-create-form-right col-md-6">
+					<form action="/create1/" method="POST"> {% csrf_token %}
+					  <div class="form-group">
+					    <label for="username">Conference Name</label>
+					    <input class="form-control" type="text" name="username" id="username" placeholder="Enter conference name" required />
+					  </div>
+					  <div class="form-group">
+					    <label for="email">Conference Venue</label>
+					    <input class="form-control" type="text" name="email" id="email" placeholder="Enter conference venue" required />
+					  </div>
+					  <div class="form-group">
+					    <label for="start-date">Start Date</label>
+					    <input class="form-control" type="date" name="start-date" id="start-date" placeholder="Enter start date" required />
+					  </div>
+					  <div class="form-group">
+					    <label for="end-date">End Date</label>
+					    <input class="form-control" type="date" name="end-date" id="end-date" placeholder="Enter end date" required />
+					  </div>
+
+					  <div class="m-t-lg">
+					    <ul class="list-inline">
+					      <li>
+					        <input class="btn btn--form" type="submit" value="Next" />
+					      </li>
+					    </ul>
+					  </div>
+					</form>  
+				</div>
+
 			</div>
 <!-- 
 			<div class="content-create-form">

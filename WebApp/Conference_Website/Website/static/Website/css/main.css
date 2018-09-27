@@ -657,9 +657,33 @@ img:hover {
 }
 
 .content-create-form{
-  margin-left: 64px; 
-  margin-right: 64px;
-  display: none;
+  margin-left: 25%;
+  margin-right: 25%;
+  width: 60%;
+  align-self: center;
+  padding-left: 80px;
+  padding-right: 80px;
+  overflow-x: hidden;
+  height: 80%;
+}
+
+.content-create-form-left {
+  display: table;
+  position: relative;
+  padding-left: 100px;
+  padding-right: 120px;
+  top: 40px;
+
+}
+
+.content-create-form-right {
+  display: table;
+  position: relative;
+  padding-left: 100px;
+  padding-right: 120px;
+  top: 40px;
+  padding-bottom: 12px;
+
 }
 
 .add a:hover {
@@ -726,4 +750,81 @@ img:hover {
   background: transparent;
   color: #fff !important;
   text-decoration: none;
+}
+
+.content-create-form input[type=text], select, textarea {
+  width: 84%; 
+  padding: 8px;  
+  box-sizing: border-box;
+  border-radius: 0px;
+  border-color: #E5E5E5;
+  margin-top: 0px;
+  margin-bottom: 24px;
+  font-size: 12px;
+}
+
+.content-create-form input[type=email], select, textarea {
+  width: 84%; 
+  padding: 8px;  
+  box-sizing: border-box;
+  border-radius: 0px;
+  border-color: #E5E5E5;
+  margin-top: 0px;
+  margin-bottom: 24px;
+  font-size: 12px;
+}
+
+.content-create-form input[type=password], select, textarea {
+  width: 84%; 
+  padding: 8px;  
+  box-sizing: border-box;
+  border-radius: 0px;
+  border-color: #E5E5E5;
+  margin-top: 0px;
+  margin-bottom: 24px;
+  font-size: 12px;
+}
+
+.content-create-form select {
+  width: 84%; 
+  padding: 8px;  
+  box-sizing: border-box;
+  border-radius: 0px;
+  background: #ffffff;
+  border-color: #E5E5E5;
+  margin-top: 0px;
+  margin-bottom: 24px;
+  font-size: 12px;
+}
+
+
+.content-create-form input[type=submit] {
+  background-color: #4c4c4c;
+  border-color: transparent;
+  color: white;
+  border-radius: 0px;
+  margin-top: 8px;
+  padding-left: 32px;
+  padding-right: 32px;
+  padding-bottom: 8px;
+  padding-top: 8px;
+  border: none;
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.content-create-form input[type=submit]:hover {
+  background-color: #4c4c4c;
+  border-radius: 0px;
+  opacity: 0.8;
+}
+
+.content-create-form label{
+  color: black;
+  font-weight: bold;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-family: 'Roboto', sans-serif;
 }
