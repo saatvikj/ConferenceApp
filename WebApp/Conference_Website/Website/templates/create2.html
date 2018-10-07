@@ -26,12 +26,12 @@
 	</div>
 	
 	<div class="content full-height-signup" style="padding-left: 25%">
-		<form method="POST" action="/create2/" style="height: 100%;">
-		<div class="content-main-signup row jumbotron" style="width: 75%">
+		<div class="content-main-signup row jumbotron" style="width: 75%; padding-top: 0px;">
 			<div class="content-main-signup-left col-md-6">
 			</div>
 
 			<div class="content-main-signup-right col-md-6">
+				<form method="POST" action="/create2/" style="height: 100%;"> {% csrf_token %}
 				<div class="form-group">
 				    <label for="about">About</label>
 				    <input class="form-control" type="text" name="about" id="about" placeholder="Enter description" required />
@@ -56,12 +56,9 @@
 				<div align="center" style="display: inline; width: 100%; align-items: center;">
 					<input align="center" type="submit" value="NEXT" class="primary-btn text-uppercase" style="margin-top: 0px; color: white;">
 				</div>
-
+				</form>
 			</div>
-
-
 		</div>
-	</form>
 		<div class="modal" id="my_modal">
 			<div class="login">
 				<span class="close">&times;</span>

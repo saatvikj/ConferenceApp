@@ -87,7 +87,22 @@ class HomePageView(TemplateView):
 		if user is not None:
 			login(request, user)
 			return redirect('dashboard')
-		return render(request, 'index.html', {})    	
+		return render(request, 'index.html', {})
+
+
+class ProfileView(TemplateView):
+	def get(self, request, *args, **kwargs):
+		conference = Conference.objects.get(conference_id="2f36fa46ec6c4f0baf751e6f258b21a5")
+		return render(request, 'profile.html', {'conference': conference})
+
+	def post(self, request, *args, **kwargs):
+		username = request.POST['username']
+		password = request.POST['password']
+		user = authenticate(request, username=username, password=password)
+		if user is not None:
+			login(request, user)
+			return redirect('dashboard')
+		return render(request, 'index.html', {})		    	
 
 
 class ThankYouPageView(TemplateView):

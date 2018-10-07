@@ -28,14 +28,40 @@
 	<div class="content-profile full-height">
 		<div class="content-profile-main">
 
-			<div class="conference-header-card">
-			  <img src="https://app.tnpsuite.com/images/blue-checks-cover.png" alt="Avatar" style="width:100%">
-			  <div class="conference-header-card-container">
-			    <div class="conference-name">
-			    	<p>ICTDX</p>
-			    </div> 
-			  </div>
-			</div>
+			<form enctype="multipart/form-data" action="" method="post" id="conference_form" novalidate> {% csrf_token %}
+
+				<fieldset class="module aligned">
+					<div class="form-row">
+						<div>
+						    <label class="required" for="conference_id">Conference Name:</label>
+						    <input type="text" name="conference_id" value="{{ conference.conference_name }}" />
+						</div>
+					</div>
+
+					<div class="form-row">
+						<div>
+						    <label class="required" for="conference_venue">Conference Venue:</label>
+						    <input type="text" name="conference_venue" value="{{ conference.conference_venue }}" />
+						</div>
+					</div>
+
+					<div class="form-row">
+						<div>
+						    <label class="required" for="conference_start_date">Conference Start Date:</label>
+						    <input type="date" name="conference_start_date" value="{{ conference.conference_start_date|date:"Y-m-d" }}" />
+						</div>
+					</div>
+
+					<div class="form-row">
+						<div>
+						    <label class="required" for="conference_end_date">Conference End Date:</label>
+						    <input type="date" name="conference_end_date" value="{{ conference.conference_end_date|date:"Y-m-d" }}" />
+						</div>
+					</div>
+
+				</fieldset>
+
+			</form>	
 
 		</div>
 	</div>

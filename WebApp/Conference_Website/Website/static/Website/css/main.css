@@ -364,6 +364,30 @@ input[type=submit]:hover {
   opacity: 0.8;
 }
 
+.content-main-signup button {
+  background-color: #4c4c4c;
+  border-color: transparent;
+  color: white;
+  border-radius: 0px;
+  margin-top: 8px;
+  padding-left: 32px;
+  padding-right: 32px;
+  padding-bottom: 8px;
+  padding-top: 8px;
+  border: none;
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.content-main-signup button:hover {
+  background-color: #4c4c4c;
+  border-radius: 0px;
+  opacity: 0.8;
+}
+
+
 .content-main-signup label{
   color: black;
   font-weight: bold;
@@ -373,6 +397,17 @@ input[type=submit]:hover {
 }
 
 .content-main-signup input[type=date], select, textarea {
+  width: 84%; 
+  padding: 8px;  
+  box-sizing: border-box;
+  border-radius: 0px;
+  border-color: #E5E5E5;
+  margin-top: 0px;
+  margin-bottom: 24px;
+  font-size: 12px;
+}
+
+.content-main-signup input[type=url], select, textarea {
   width: 84%; 
   padding: 8px;  
   box-sizing: border-box;
@@ -838,4 +873,75 @@ img:hover {
   font-size: 12px;
   text-transform: uppercase;
   font-family: 'Roboto', sans-serif;
+}
+
+.module {
+    border: none;
+    margin-bottom: 30px;
+    background: #fff;
+}
+
+.module p, .module ul, .module h3, .module h4, .module dl, .module pre {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.module blockquote {
+    margin-left: 12px;
+}
+
+.module ul, .module ol {
+    margin-left: 1.5em;
+}
+
+.module h3 {
+    margin-top: .6em;
+}
+
+.module h2, .module caption, .inline-group h2 {
+    margin: 0;
+    padding: 8px;
+    font-weight: 400;
+    font-size: 13px;
+    text-align: left;
+    background: #79aec8;
+    color: #fff;
+}
+
+.module caption,
+.inline-group h2 {
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.module table {
+    border-collapse: collapse;
+}
+
+fieldset {
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-top: 1px solid #eee;
+}
+
+.form-row {
+    overflow: hidden;
+    padding: 10px;
+    font-size: 13px;
+    border-bottom: 1px solid #eee;
+}
+
+.form-row img, .form-row input {
+    vertical-align: middle;
+}
+
+.form-row label input[type="checkbox"] {
+    margin-top: 0;
+    vertical-align: 0;
+}
+
+form .form-row p {
+    padding-left: 0;
 }

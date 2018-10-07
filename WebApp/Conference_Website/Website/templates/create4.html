@@ -26,12 +26,12 @@
 	</div>
 	
 	<div class="content full-height-signup" style="padding-left: 25%">
-		<form method="POST" action="/create1/" style="height: 100%;">
 		<div class="content-main-signup row jumbotron" style="width: 75%">
 			<div class="content-main-signup-left col-md-6">
 			</div>
 
 			<div class="content-main-signup-right col-md-6">
+				<form method="POST" action="/create4/" style="height: 100%;"> {% csrf_token %}
 				<div class="form-group">
 				        <label for="choice">Choice</label><br>
 				        <input type="radio" name="choice" value="breakfast"><font class="radio-text"> Breakfast</font><br>
@@ -57,12 +57,10 @@
 				          </li>
 				        </ul>
 				      </div>
-
+			</form>
+			<a href="/create5/"><button class="btn btn--form">Next</button></a>  
 			</div>
-
-
 		</div>
-	</form>
 		<div class="modal" id="my_modal">
 			<div class="login">
 				<span class="close">&times;</span>

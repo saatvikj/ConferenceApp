@@ -1,0 +1,425 @@
+
+<!DOCTYPE html>
+
+<html lang="en-us" >
+<head>
+<title>Change conference | Django site admin</title>
+    <link rel="stylesheet" href="../static/Website/css/base.css">
+    <link rel="stylesheet" href="../static/Website/css/forms.css">
+
+
+<script type="text/javascript" src="/admin/jsi18n/"></script>
+<script type="text/javascript" src="/static/admin/js/vendor/jquery/jquery.js"></script>
+<script type="text/javascript" src="/static/admin/js/jquery.init.js"></script>
+<script type="text/javascript" src="/static/admin/js/core.js"></script>
+<script type="text/javascript" src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
+<script type="text/javascript" src="/static/admin/js/actions.js"></script>
+<script type="text/javascript" src="/static/admin/js/urlify.js"></script>
+<script type="text/javascript" src="/static/admin/js/prepopulate.js"></script>
+<script type="text/javascript" src="/static/admin/js/vendor/xregexp/xregexp.js"></script>
+<script type="text/javascript" src="/static/admin/js/calendar.js"></script>
+<script type="text/javascript" src="/static/admin/js/admin/DateTimeShortcuts.js"></script>
+
+
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/responsive.css" />
+    
+
+<meta name="robots" content="NONE,NOARCHIVE" />
+</head>
+
+
+<body class=" app-Website model-conference change-form"
+  data-admin-utc-offset="0">
+
+<!-- Container -->
+<div id="container">
+
+    
+    <!-- Header -->
+    <div id="header">
+        <div id="branding">
+        
+<h1 id="site-name"><a href="/admin/">Django administration</a></h1>
+
+        </div>
+        
+        
+        <div id="user-tools">
+            
+                Welcome,
+                <strong>jains</strong>.
+            
+            
+                
+                    <a href="/">View site</a> /
+                
+                
+                    
+                    
+                
+                
+                <a href="/admin/password_change/">Change password</a> /
+                
+                <a href="/admin/logout/">Log out</a>
+            
+        </div>
+        
+        
+        
+    </div>
+    <!-- END Header -->
+    
+<div class="breadcrumbs">
+<a href="/admin/">Home</a>
+&rsaquo; <a href="/admin/Website/">Website</a>
+&rsaquo; <a href="/admin/Website/conference/">Conferences</a>
+&rsaquo; Conference object (2f36fa46-ec6c-4f0b-af75-1e6f258b21a5)
+</div>
+
+    
+
+    
+        
+    
+
+    <!-- Content -->
+    <div id="content" class="colM">
+        
+        <h1>Change conference</h1>
+        <div id="content-main">
+
+
+  <ul class="object-tools">
+    
+    <li>
+        
+        <a href="/admin/Website/conference/2f36fa46-ec6c-4f0b-af75-1e6f258b21a5/history/" class="historylink">History</a>
+    </li>
+    
+    
+  </ul>
+
+
+<form enctype="multipart/form-data" action="" method="post" id="conference_form" novalidate>
+    <input type='hidden' name='csrfmiddlewaretoken' value='Uegdfqotd1QPvWVS7mjxvmw0Tmum3uzuLnjDB5dOYPms3tFz3YkoBzAgsm3FpjZi' />
+<div>
+
+
+
+
+
+
+
+  <fieldset class="module aligned ">
+    
+    
+    
+        <div class="form-row field-conference_id">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_conference_id">Conference id:</label>
+                        
+                            <input type="text" name="conference_id" value="2f36fa46ec6c4f0baf751e6f258b21a5" required id="id_conference_id" /><input type="hidden" name="initial-conference_id" value="2f36fa46ec6c4f0baf751e6f258b21a5" id="initial-id_conference_id" />
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-conference_name">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_conference_name">Conference name:</label>
+                        
+                            <input type="text" name="conference_name" value="ASONAM" class="vTextField" maxlength="255" required id="id_conference_name" />
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-conference_venue">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_conference_venue">Conference venue:</label>
+                        
+                            <textarea name="conference_venue" cols="40" rows="10" class="vLargeTextField" required id="id_conference_venue">
+Barcelona, Spain</textarea>
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-conference_start_date">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_conference_start_date">Conference start date:</label>
+                        
+                            <input type="text" name="conference_start_date" value="2018-12-02" class="vDateField" size="10" required id="id_conference_start_date" />
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-conference_end_date">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_conference_end_date">Conference end date:</label>
+                        
+                            <input type="text" name="conference_end_date" value="2018-12-04" class="vDateField" size="10" required id="id_conference_end_date" />
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-conference_description">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_conference_description">Conference description:</label>
+                        
+                            <textarea name="conference_description" cols="40" rows="10" class="vLargeTextField" required id="id_conference_description">
+For more than a century, social networks have been studied in a variety of disciplines including sociology, anthropology, psychology, and economics. The Internet, the social Web, and other large-scale, socio-technological infrastructures have triggered a growing interest and significant methodological advancements in social network analysis and mining. Method development in graph theory, statistics, data mining and machine learning, and statistical mechanics is inspired by new research problems and, in turn, opens up further possibilities for application. These spiraling trends have led to a rising prominence of social network analysis and mining methods and tools in academia, politics, security, and business.</textarea>
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-conference_website">
+            
+            
+                <div>
+                    
+                    
+                        <label for="id_conference_website">Conference website:</label>
+                        
+                            <p class="url">Currently: <a href="http://asonam.cpsc.ucalgary.ca/2018/">http://asonam.cpsc.ucalgary.ca/2018/</a><br />Change: <input type="url" name="conference_website" value="http://asonam.cpsc.ucalgary.ca/2018/" class="vURLField" maxlength="1023" id="id_conference_website" />
+</p>
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-conference_facebook">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_conference_facebook">Conference facebook:</label>
+                        
+                            <input type="text" name="conference_facebook" value="9gag" class="vTextField" maxlength="255" required id="id_conference_facebook" />
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-conference_twitter">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_conference_twitter">Conference twitter:</label>
+                        
+                            <input type="text" name="conference_twitter" value="isaatvikj" class="vTextField" maxlength="255" required id="id_conference_twitter" />
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-conference_email">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_conference_email">Conference email:</label>
+                        
+                            <input type="email" name="conference_email" value="jain.saatvik3@gmail.com" class="vTextField" maxlength="255" required id="id_conference_email" />
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-conference_sponsors">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_conference_sponsors">Conference sponsors:</label>
+                        
+                            <textarea name="conference_sponsors" cols="40" rows="10" class="vLargeTextField" required id="id_conference_sponsors">
+[[&#39;Intel&#39;, &#39;Platinum Sponsor&#39;, &#39;https://www.intel.in/content/www/in/en/homepage.html&#39;]]</textarea>
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-conference_food_guide">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_conference_food_guide">Conference food guide:</label>
+                        
+                            <textarea name="conference_food_guide" cols="40" rows="10" class="vLargeTextField" required id="id_conference_food_guide">
+[[], [&#39;lunch&#39;, &#39;Mess&#39;, &#39;Yum&#39;, &#39;13:30-14:30&#39;]]</textarea>
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-conference_schedule_csv">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_conference_schedule_csv">Conference schedule csv:</label>
+                        
+                            <p class="file-upload">Currently: <a href="/media/2f36fa46-ec6c-4f0b-af75-1e6f258b21a5/conference_schedule.csv">2f36fa46-ec6c-4f0b-af75-1e6f258b21a5/conference_schedule.csv</a><br />
+Change:
+<input type="file" name="conference_schedule_csv" id="id_conference_schedule_csv" /></p>
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-conference_user_csv">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_conference_user_csv">Conference user csv:</label>
+                        
+                            <p class="file-upload">Currently: <a href="/media/2f36fa46-ec6c-4f0b-af75-1e6f258b21a5/conference_user.csv">2f36fa46-ec6c-4f0b-af75-1e6f258b21a5/conference_user.csv</a><br />
+Change:
+<input type="file" name="conference_user_csv" id="id_conference_user_csv" /></p>
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+        <div class="form-row field-conference_logo">
+            
+            
+                <div>
+                    
+                    
+                        <label class="required" for="id_conference_logo">Conference logo:</label>
+                        
+                            <p class="file-upload">Currently: <a href="/media/2f36fa46-ec6c-4f0b-af75-1e6f258b21a5/logo.png">2f36fa46-ec6c-4f0b-af75-1e6f258b21a5/logo.png</a><br />
+Change:
+<input type="file" name="conference_logo" id="id_conference_logo" /></p>
+                        
+                    
+                    
+                </div>
+            
+        </div>
+    
+</fieldset>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="submit-row">
+<input type="submit" value="Save" class="default" name="_save" />
+
+    
+    <p class="deletelink-box"><a href="/admin/Website/conference/2f36fa46-ec6c-4f0b-af75-1e6f258b21a5/delete/" class="deletelink">Delete</a></p>
+
+
+<input type="submit" value="Save and add another" name="_addanother" />
+<input type="submit" value="Save and continue editing" name="_continue" />
+</div>
+
+
+
+    <script type="text/javascript"
+            id="django-admin-form-add-constants"
+            src="/static/admin/js/change_form.js"
+            >
+    </script>
+
+
+
+
+<script type="text/javascript"
+        id="django-admin-prepopulated-fields-constants"
+        src="/static/admin/js/prepopulate_init.js"
+        data-prepopulated-fields="[]">
+</script>
+
+
+</div>
+</form></div>
+
+        
+        <br class="clear" />
+    </div>
+    <!-- END Content -->
+
+    <div id="footer"></div>
+</div>
+<!-- END Container -->
+
+</body>
+</html>
