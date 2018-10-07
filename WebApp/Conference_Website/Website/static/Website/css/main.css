@@ -253,6 +253,35 @@ input[type=email], select, textarea {
   resize: vertical;
 }
 
+input[type=date], select, textarea {
+  width: 100%; 
+  padding: 8px;  
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  border-color: #318884;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=url], select, textarea {
+  width: 100%; 
+  padding: 8px;  
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  border-color: #318884;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=file], select, textarea {
+  padding-left: 8px;
+  font-size: 10px;
+}
+
 textarea {
   width: 100%; 
   padding: 8px;  
@@ -752,7 +781,7 @@ img:hover {
   display: table-cell;
   position: relative;
   vertical-align: top;
-  padding-left: 32px;
+  padding-left: 64px;
   padding-top: 24px;
   padding-bottom: 108px;
   color: black;  
