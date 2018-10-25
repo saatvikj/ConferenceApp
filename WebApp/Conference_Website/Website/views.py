@@ -92,7 +92,8 @@ class HomePageView(TemplateView):
 
 class ProfileView(TemplateView):
 	def get(self, request, *args, **kwargs):
-		conference = Conference.objects.get(conference_id="2f36fa46ec6c4f0baf751e6f258b21a5")
+		path = request.get_full_path().split("/")[2]
+		conference = Conference.objects.get(conference_name=path)
 		return render(request, 'profile.html', {'conference': conference})
 
 	def post(self, request, *args, **kwargs):
