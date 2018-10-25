@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "399019027906",
+    "firebase_url": "https://conference-portal-deb1c.firebaseio.com",
+    "project_id": "conference-portal-deb1c",
+    "storage_bucket": "conference-portal-deb1c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:399019027906:android:9912f41244ad143a",
+        "android_client_info": {
+          "package_name": "com.example.conferenceapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "399019027906-vs73fj8lj9gkgk1l2qlg74gbdafelcc0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAF9oAclinDT9F0uQJfrlM-GFjurxnsvKs"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
