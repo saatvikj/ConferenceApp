@@ -17,9 +17,33 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 import pycountry
+import Website.firebase_wrapper as fw
+import pyrebase
 
 global_data = []
 conference_keys_list = []
+
+config = {
+  "apiKey": "AIzaSyCNpkzcclTXDCBdNlApdFOa7i7i1c2UPgM",
+  "authDomain": "conference-portal-deb1c.firebaseapp.com",
+  "databaseURL": "https://conference-portal-deb1c.firebaseio.com/",
+  "storageBucket": "gs://conference-portal-deb1c.appspot.com"
+}
+
+def populate_db_with_users(csv_name,conference_id):
+	firebase = pyrebase.initialize_app(config)
+	db = firebase.database()
+	with open(csv_name,'r') as f:
+		reader = csv.reader(f)
+		next(f, None)
+
+		for row in reader:
+			user_dictionary = {}
+			user_dictionary["Name"] = row[0]
+			user_dictionary["Email"] = row[1]
+			user_dictionary["Company"] = row[2]
+			user_dictionary["Location"] = row[3]
+			db.child(conference_id).child("Users").push(user_dictionary)
 
 def signup(request):
 	if request.method == 'POST':
@@ -193,6 +217,8 @@ def create_conference_5(request):
 			conference_logo=request.FILES['logo_image'])
 
 		conference_ob.save()
+		user_csv_path = "./../media/"+str(conference_ob.conference_id)+"/conference_user.csv"
+		populate_db_with_users(user_csv_path, conference_ob.conference_id)
 		user_conference_ob = UserConference(user_id=request.user.profile.profile_id, conference_id=conference_ob.conference_id)
 		user_conference_ob.save()
 		global_data.append(str(conference_ob.conference_id))	
