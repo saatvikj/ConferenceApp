@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_paid);
         Conference conference = null;
         try {
             conference = ConferenceCSVParser.parseCSV(getApplicationContext());
@@ -23,11 +23,20 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-        Button start = findViewById(R.id.startButton);
-        start.setOnClickListener(new View.OnClickListener() {
+        Button login = findViewById(R.id.loginButton);
+        login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, ActivityLogin.class);
+                startActivity(intent);
+            }
+        });
+
+        Button first_time = findViewById(R.id.firstTimeButton);
+        first_time.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ActivityFirstTime.class);
                 startActivity(intent);
             }
         });

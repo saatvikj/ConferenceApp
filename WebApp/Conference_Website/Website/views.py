@@ -21,7 +21,7 @@ import Website.firebase_wrapper as fw
 import pyrebase
 
 global_data = []
-conference_keys_list = []
+joining_code_list = []
 
 config = {
   "apiKey": "AIzaSyCNpkzcclTXDCBdNlApdFOa7i7i1c2UPgM",
@@ -29,6 +29,15 @@ config = {
   "databaseURL": "https://conference-portal-deb1c.firebaseio.com/",
   "storageBucket": "gs://conference-portal-deb1c.appspot.com"
 }
+
+def joining_code_generator():
+ x = ''.join(random.choices(string.ascii_letters + string.digits, k=4))
+ while x in joining_code_list:
+  x = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(4))
+
+ joining_code_list.append(x)
+ return x
+
 
 def populate_db_with_users(csv_name,conference_id):
 	firebase = pyrebase.initialize_app(config)
@@ -43,6 +52,7 @@ def populate_db_with_users(csv_name,conference_id):
 			user_dictionary["Email"] = row[1]
 			user_dictionary["Company"] = row[2]
 			user_dictionary["Location"] = row[3]
+			user_dictionary["joining_code"] = joining_code_generator()
 			db.child(conference_id).child("Users").push(user_dictionary)
 
 def signup(request):
@@ -117,7 +127,7 @@ class HomePageView(TemplateView):
 class ProfileView(TemplateView):
 	def get(self, request, *args, **kwargs):
 		path = request.get_full_path().split("/")[2]
-		conference = Conference.objects.get(conference_name=path)
+		conference = Conference.objects.get(conference_id=path)
 		return render(request, 'profile.html', {'conference': conference})
 
 	def post(self, request, *args, **kwargs):
@@ -217,7 +227,7 @@ def create_conference_5(request):
 			conference_logo=request.FILES['logo_image'])
 
 		conference_ob.save()
-		user_csv_path = "./../media/"+str(conference_ob.conference_id)+"/conference_user.csv"
+		user_csv_path = settings.MEDIA_ROOT+"/"+str(conference_ob.conference_id)+"/conference_user.csv"
 		populate_db_with_users(user_csv_path, conference_ob.conference_id)
 		user_conference_ob = UserConference(user_id=request.user.profile.profile_id, conference_id=conference_ob.conference_id)
 		user_conference_ob.save()
