@@ -52,6 +52,7 @@ def populate_db_with_users(csv_name,conference_id):
 			user_dictionary["Email"] = row[1]
 			user_dictionary["Company"] = row[2]
 			user_dictionary["Location"] = row[3]
+			user_dictionary["Type"] = row[7]
 			user_dictionary["joining_code"] = joining_code_generator()
 			db.child(conference_id).child("Users").push(user_dictionary)
 

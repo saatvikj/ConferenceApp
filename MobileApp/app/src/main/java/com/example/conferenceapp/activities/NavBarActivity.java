@@ -24,7 +24,7 @@ import com.example.conferenceapp.fragments.FragmentMessages;
 import com.example.conferenceapp.fragments.FragmentMySchedule;
 import com.example.conferenceapp.fragments.FragmentPartners;
 import com.example.conferenceapp.fragments.FragmentProfile;
-import com.example.conferenceapp.fragments.FragmentSpeakerSchedule;
+import com.example.conferenceapp.fragments.FragmentAttendeeSchedule;
 import com.example.conferenceapp.R;
 
 public class NavBarActivity extends AppCompatActivity
@@ -126,7 +126,7 @@ public class NavBarActivity extends AppCompatActivity
                 setActionBarTitle("My Agenda");
                 break;
             case R.id.nav_speaker_wise_schedule:
-                fragment = new FragmentSpeakerSchedule();
+                fragment = new FragmentAttendeeSchedule();
                 setActionBarTitle("Speakers");
                 break;
             case R.id.nav_feed:

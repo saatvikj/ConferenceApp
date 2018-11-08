@@ -6,7 +6,6 @@ import android.provider.CalendarContract;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,8 +14,6 @@ import android.widget.TextView;
 
 import com.example.conferenceapp.R;
 import com.example.conferenceapp.models.Paper;
-
-import org.w3c.dom.Text;
 
 import java.io.Serializable;
 
@@ -45,7 +42,7 @@ public class ActivityPaperDetails extends AppCompatActivity implements Serializa
         paper_abstract.setText(paper.getPaper_abstract());
         String[] authorsList = paper.getAuthors();
         for(int i = 0; i < authorsList.length; i++){
-            View speakers = getLayoutInflater().inflate(R.layout.inflator_speaker_list, null);
+            View speakers = getLayoutInflater().inflate(R.layout.inflator_attendee_list, null);
             TextView nameTextView = speakers.findViewById(R.id.name);
             nameTextView.setText(authorsList[i]);
             speakerList.addView(speakers);
