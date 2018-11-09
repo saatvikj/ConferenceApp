@@ -42,9 +42,10 @@ public class UserCSVParser {
             String company = row.getField("Company");
             String location = row.getField("Location");
             String bio = row.getField("Bio");
-            String[] interest = row.getField("Interests").split(",");
+//            String[] interest = row.getField("Interests").split(",");
+            String interest = row.getField("Interests");
             String typeOfUser = row.getField("Type of User");
-            User user = new User(null, name, email, company, location, bio, interest, null, typeOfUser, null);
+            User user = new User(null, name, email, company, location, bio, interest, null, typeOfUser, null, null);
             users.add(user);
 
         }

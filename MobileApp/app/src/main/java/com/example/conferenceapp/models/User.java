@@ -10,10 +10,15 @@ public class User {
     private String company;
     private String location;
     private String bio;
-    private String interests[];
-    private Paper presentedPapers[];
+    private String interests;
+    private String presentedPapers;
     private String typeOfUser;
+    private String joining_code;
     private ArrayList<Paper> myAgenda;
+
+    public User() {
+
+    }
 
     public User(String name, String company) {
         this.name = name;
@@ -27,7 +32,15 @@ public class User {
         this.location = location;
     }
 
-    public User(String ID, String name, String email, String company, String location, String bio, String[] interests, Paper[] presentedPapers, String typeOfUser, ArrayList<Paper> myAgenda) {
+    public String getJoining_code() {
+        return joining_code;
+    }
+
+    public void setJoining_code(String joining_code) {
+        this.joining_code = joining_code;
+    }
+
+    public User(String ID, String name, String email, String company, String location, String bio, String interests, String presentedPapers, String typeOfUser, ArrayList<Paper> myAgenda, String joining_code) {
         this.ID = ID;
         this.name = name;
         this.email = email;
@@ -36,8 +49,10 @@ public class User {
         this.bio = bio;
         this.interests = interests;
         this.presentedPapers = presentedPapers;
+        this.joining_code = joining_code;
         this.typeOfUser = typeOfUser;
         this.myAgenda = myAgenda;
+
     }
 
     public User(String ID) {
@@ -92,19 +107,19 @@ public class User {
         this.bio = bio;
     }
 
-    public String[] getInterests() {
+    public String getInterests() {
         return interests;
     }
 
-    public void setInterests(String[] interests) {
+    public void setInterests(String interests) {
         this.interests = interests;
     }
 
-    public Paper[] getPresentedPapers() {
+    public String getPresentedPapers() {
         return presentedPapers;
     }
 
-    public void setPresentedPapers(Paper[] presentedPapers) {
+    public void setPresentedPapers(String presentedPapers) {
         this.presentedPapers = presentedPapers;
     }
 

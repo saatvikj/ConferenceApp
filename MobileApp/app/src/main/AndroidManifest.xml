@@ -19,7 +19,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-
             android:name=".activities.MainActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
@@ -34,13 +33,19 @@
             android:theme="@style/AppTheme.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.INSERT_OR_EDIT" />
+
                 <data android:mimeType="vnd.android.cursor.dir/event" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.ActivityFeedPost"></activity>
-        <activity android:name=".activities.ActivityCreatePost"></activity>
-        <activity android:name=".activities.ActivityPaperDetails"></activity>
+        <activity android:name=".activities.ActivityFeedPost" />
+        <activity android:name=".activities.ActivityCreatePost" />
+        <activity android:name=".activities.ActivityPaperDetails" />
+        <activity
+            android:name=".activities.ActivityFirstTime"
+            android:label="@string/title_activity_first_time"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

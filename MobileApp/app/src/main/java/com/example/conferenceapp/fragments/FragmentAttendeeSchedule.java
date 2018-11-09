@@ -1,6 +1,7 @@
 package com.example.conferenceapp.fragments;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.conferenceapp.R;
 import com.example.conferenceapp.adapters.AttendeeAdapter;
@@ -28,7 +30,7 @@ public class FragmentAttendeeSchedule extends Fragment {
     FastScroller fastScroller;
     Conference conference;
     private DatabaseReference mDatabase;
-
+    private List<User> users;
 
     @Nullable
     @Override
@@ -44,7 +46,7 @@ public class FragmentAttendeeSchedule extends Fragment {
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerview);
         fastScroller = (FastScroller) view.findViewById(R.id.fastscroll);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        List<User> users = new ArrayList<User>();
+        users = new ArrayList<User>();
 
         try {
             conference = ConferenceCSVParser.parseCSV(getContext());
@@ -56,12 +58,17 @@ public class FragmentAttendeeSchedule extends Fragment {
         mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot d: dataSnapshot.child(conference_id).getChildren()) {
-                    User c = d.getValue(User.class);
-                    users.add(c);
+                for (DataSnapshot d: dataSnapshot.child("d52d1b95-ad2d-46de-8145-1844b15792d5").child("Users").getChildren()) {
+                    User u = d.getValue(User.class);
+                    users.add(u);
                 }
+            }
 
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
+            }
+        });
 
         for (int i= 0; i<users.size(); i++) {
             User i_user = users.get(i);
