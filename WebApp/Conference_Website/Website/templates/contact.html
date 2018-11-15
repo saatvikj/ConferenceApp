@@ -1,26 +1,28 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>Conference Portal</title>
 	<link rel="stylesheet" href="../static/Website/css/main.css">
 	<link rel="stylesheet" href="../static/Website/css/bootstrap.css">
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
 </head>
+
 <body style="background: #efefef">
+	
 	<div class="topnav">
-	  <div class="topnav-right">
-	  	<a href="{% url '' %}">HOME</a>
-	    <a href="{% url 'overview' %}">OVERVIEW</a>
-	    <a href="{% url 'guide' %}">GUIDE</a>
-	    <a href="{% url 'about' %}">ABOUT</a>
-	    <a href="{% url 'faq' %}">FAQ</a>
-	    <a class="active" href="{% url 'contact' %}">CONTACT</a>
-	    <a href="#" id="my_btn">LOGIN</a>
-	  </div>
+		<div class="topnav-right">
+			<a href="{% url '' %}">HOME</a>
+			<a href="{% url 'overview' %}">OVERVIEW</a>
+			<a href="{% url 'guide' %}">GUIDE</a>
+			<a href="{% url 'about' %}">ABOUT</a>
+			<a href="{% url 'faq' %}">FAQ</a>
+			<a class="active" href="{% url 'contact' %}">CONTACT</a>
+			<a href="#" id="my_btn">LOGIN</a>
+		</div>
 	</div>
 	
 	<div class="content-contact row full-height">
-
 		<div class="content-contact-left col-md-7">
 			<h3>CONTACT US</h3>
 			<p>We're happy to answer any questions you have or provide you with an estimate. Just send us a message in the form below with any questions you may have. Feedbacks are also welcomed.</p>
@@ -29,11 +31,12 @@
 				<input type="text" id="name" name="name" placeholder="Your name">
 				<label for="email">Email</label>
 				<input type="text" id="email" name="email" placeholder="Your email">
-			    <label for="message">Message</label>
-			    <textarea id="message" name="message" placeholder="Write something" style="height:200px"></textarea>
-			    <input type="submit" value="Submit">
+				<label for="message">Message</label>
+				<textarea id="message" name="message" placeholder="Write something" style="" le="height:200px"></textarea>
+				<input type="submit" value="Submit">
 			</form>
 		</div>
+
 		<div class="content-contact-right col-md-5">
 			<div class="content-contact-right-main">
 				<h4>Additional Contact Information</h4>
@@ -48,27 +51,24 @@
 				<hr class="hr-custom">
 				<h5>Dveloper committee</h5>
 				<p>bug_report@gmail.com</p>
-
 			</div>
-
-			<div class="modal" id="my_modal">
-				<div class="login">
-					<span class="close">&times;</span>
-					<h2 class="login-header">Log in</h2>
-					<form class="login-container" action="{% url login_user %}" method="POST"> {% csrf_token %}
-						<p><input type="text" placeholder="Email" name="username" id="username"></p>
-						<p><input type="password" placeholder="Password" name="password" id="password"></p>
-						<p><input type="submit" value="Log in"></p>
-						<center><a href="/signup" style="color: #888888; text-align: center">Not registered? Sign up</a></center>
-					</form>
-				</div>
-			</div>
-			<script type="text/javascript" src="../static/Website/js/login_popup.js"> </script>		
-	
 		</div>
+	
+		<div class="modal" id="my_modal">
+			<div class="login">
+				<span class="close">&times;</span>
+				<h2 class="login-header">Log in</h2>
+				<form class="login-container" action="{% url login_user %}" method="POST"> {% csrf_token %}
+					<p><input type="text" placeholder="Email" name="username" id="username"></p>
+					<p><input type="password" placeholder="Password" name="password" id="password"></p>
+					<p><input type="submit" value="Log in"></p>
+					<center><a href="/signup" style="color: #888888; text-align: center">Not registered? Sign up</a></center>
+				</form>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="../static/Website/js/login_popup.js"> </script>
+
 	</div>
-
-
-
 </body>
 </html>

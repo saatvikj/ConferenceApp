@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>Conference Portal</title>
 	<link rel="stylesheet" href="../static/Website/css/main.css">
 	<link rel="stylesheet" href="../static/Website/css/bootstrap.css">
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
 </head>
+
 <body>
 	<div class="topnav" style="background-color: transparent;">
-	  <div class="topnav-right">
-	  	<a href="{% url '' %}">HOME</a>
-	    <a href="{% url 'overview' %}">OVERVIEW</a>
-	    <a class="active" href="{% url 'guide' %}">GUIDE</a>
-	    <a href="{% url 'about' %}">ABOUT</a>
-	    <a href="{% url 'faq' %}">FAQ</a>
-	    <a href="{% url 'contact' %}">CONTACT</a>
-	    <a href="#" id="my_btn">LOGIN</a>
-	  </div>
+		<div class="topnav-right">
+			<a href="{% url '' %}">HOME</a>
+			<a href="{% url 'overview' %}">OVERVIEW</a>
+			<a class="active" href="{% url 'guide' %}">GUIDE</a>
+			<a href="{% url 'about' %}">ABOUT</a>
+			<a href="{% url 'faq' %}">FAQ</a>
+			<a href="{% url 'contact' %}">CONTACT</a>
+			<a href="#" id="my_btn">LOGIN</a>
+		</div>
 	</div>
 	
 	<div class="content full-height">
@@ -38,8 +40,5 @@
 		</div>
 		<script type="text/javascript" src="../static/Website/js/login_popup.js"> </script>	
 	</div>
-
-
-
 </body>
 </html>

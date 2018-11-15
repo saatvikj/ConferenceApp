@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>Conference Portal</title>
 	<link rel="stylesheet" href="../static/Website/css/main.css">
@@ -9,56 +10,64 @@
 	<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
 	<script type="text/javascript" src="../static/Website/js/index.js"> </script>
-
 </head>
+
 <body style="background: white">
 	<div class="topnav">
-	  <div class="topnav-right">
-	  	<a class="active" href="{% url '' %}">HOME</a>
-	  	<a href="{% url 'dashboard' %}">DASHBOARD</a>
-	    <a href="{% url 'overview' %}">OVERVIEW</a>
-	    <a href="{% url 'guide' %}">GUIDE</a>
-	    <a href="{% url 'about' %}">ABOUT</a>
-	    <a href="{% url 'faq' %}">FAQ</a>
-	    <a href="{% url 'contact' %}">CONTACT</a>
-	    <a href="{% url 'logout' %}">LOGOUT</a>
-	  </div>
+		<div class="topnav-right">
+			<a class="active" href="{% url '' %}">HOME</a>
+			<a href="{% url 'dashboard' %}">DASHBOARD</a>
+			<a href="{% url 'overview' %}">OVERVIEW</a>
+			<a href="{% url 'guide' %}">GUIDE</a>
+			<a href="{% url 'about' %}">ABOUT</a>
+			<a href="{% url 'faq' %}">FAQ</a>
+			<a href="{% url 'contact' %}">CONTACT</a>
+			<a href="{% url 'logout' %}">LOGOUT</a>
+		</div>
 	</div>
 	
 	<div class="content full-height-signup" style="padding-left: 25%">
 		<div class="content-main-signup row jumbotron" style="width: 75%; padding-top: 0px;">
+		
 			<div class="content-main-signup-left col-md-6">
 			</div>
 
 			<div class="content-main-signup-right col-md-6">
+				
 				<form method="POST" action="/create2/" style="height: 100%;"> {% csrf_token %}
 				<div class="form-group">
-				    <label for="about">About</label>
-				    <input class="form-control" type="text" name="about" id="about" placeholder="Enter description" required />
-				  </div>
-				  <div class="form-group">
-				    <label for="website">Website</label>
-				    <input class="form-control" type="url" name="website" id="website" placeholder="Enter website URL" required />
-				  </div>
-				  <div class="form-group">
-				    <label for="facebook">Facebook</label>
-				    <input class="form-control" type="text" name="facebook" id="facebook" placeholder="https://www.facebook.com/" required />
-				  </div>
-				  <div class="form-group">
-				    <label for="twitter">Twitter</label>
-				    <input class="form-control" type="text" name="twitter" id="twitter" placeholder="https://www.twitter.com/" required />
-				  </div>
-				  <div class="form-group">
-				    <label for="contact">Contact Email</label>
-				    <input class="form-control" type="email" name="contact" id="contact" placeholder="Enter contact email" required />
-				  </div>
+					<label for="about">About</label>
+					<input class="form-control" type="text" name="about" id="about" placeholder="Enter description" required />
+				</div>
+				
+				<div class="form-group">
+					<label for="website">Website</label>
+					<input class="form-control" type="url" name="website" id="website" placeholder="Enter website URL" required />
+				</div>
+				
+				<div class="form-group">
+					<label for="facebook">Facebook</label>
+					<input class="form-control" type="text" name="facebook" id="facebook" placeholder="https://www.facebook.com/" required />
+				</div>
+				
+				<div class="form-group">
+					<label for="twitter">Twitter</label>
+					<input class="form-control" type="text" name="twitter" id="twitter" placeholder="https://www.twitter.com/" required />
+				</div>
+				
+				<div class="form-group">
+					<label for="contact">Contact Email</label>
+					<input class="form-control" type="email" name="contact" id="contact" placeholder="Enter contact email" required />
+				</div>
 
 				<div align="center" style="display: inline; width: 100%; align-items: center;">
 					<input align="center" type="submit" value="NEXT" class="primary-btn text-uppercase" style="margin-top: 0px; color: white;">
 				</div>
+
 				</form>
 			</div>
 		</div>
+		
 		<div class="modal" id="my_modal">
 			<div class="login">
 				<span class="close">&times;</span>

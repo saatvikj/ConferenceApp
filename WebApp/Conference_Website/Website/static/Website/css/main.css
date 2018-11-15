@@ -974,3 +974,40 @@ fieldset {
 form .form-row p {
     padding-left: 0;
 }
+
+.content-thank-you {
+  width: 100%;
+  display: table;
+  position: relative;
+  background-color: white;
+
+}
+
+.content-thank-you-main{
+  display: table-cell;
+  position: relative;
+  vertical-align: top;
+  padding-left: 32px;
+  padding-top: 24px;
+  padding-bottom: 108px;
+  color: black;  
+}
+
+.content-thank-you-main h1 {
+  margin-top: 96px;
+  text-align: center;
+  color: black;
+  font-weight: bold;
+  font-size: 100px;
+  text-transform: uppercase;
+  font-family: 'Raleway', sans-serif;
+}
+
+.content-thank-you-main p {
+  margin-top: 24px;
+  text-align: center;
+  color: black;
+  font-weight: bold;
+  font-size: 24px;
+  font-family: 'Roboto', sans-serif;
+}

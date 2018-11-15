@@ -1,14 +1,8 @@
-var modal = document.getElementById('confirmDelete');
-var btn = document.getElementById("my_btn");
-var closeBtn = document.getElementsByClassName("close")[0];
+var btn = document.getElementById("delete-conference-btn");
+
 btn.onclick = function() {
-    modal.style.display = "block";
-}
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
-closeBtn.onclick = function() {
-	modal.style.display = "none";
+	
+	if (confirm("Are you sure you want to delete? The action is irreversible.")) {
+		document.getElementById("delete-conference").submit();		
+	}
 }

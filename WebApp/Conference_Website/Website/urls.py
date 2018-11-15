@@ -16,7 +16,6 @@ urlpatterns = [
     url(r'^signup/$', views.signup, name='signup'),
     url(r'^$/login/$', views.login_user, name='login_user'),
     url(r'^dashboard/$', views.dashboard, name='dashboard'),
-    url(r'^dashboard/$', views.delete_conference, name='delete'),
     url(r'^$', auth_views.logout, {'template_name': 'index.html'}, name='logout'),
     url(r'^create/$', views.create_conference),    
     url(r'^create1/$', views.create_conference_1),
@@ -24,6 +23,7 @@ urlpatterns = [
     url(r'^create3/$', views.create_conference_3),
     url(r'^create4/$', views.create_conference_4),
     url(r'^create5/$', views.create_conference_5),
+    url(r'^thank_you/$',views.thank_you, name='thank_you'),
     url(r'^email/$', views.contact_email, name='email'),
 
 ]

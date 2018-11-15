@@ -83,11 +83,10 @@ public class ActivityFirstTime extends AppCompatActivity {
 
                     }
                 });
-
-                new EmailClient().execute(final_email_id, final_joining_code);
+                String[] details = {final_email_id, final_joining_code};
+                new EmailClient().execute(details);
 
             }
         });
     }
 }
-

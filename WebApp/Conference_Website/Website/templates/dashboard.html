@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>Conference Portal</title>
 	<link rel="stylesheet" href="../static/Website/css/main.css">
@@ -9,58 +10,60 @@
 	<link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css'>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
 	<script type="text/javascript" src="../static/Website/js/index.js"> </script>
-
 </head>
+
 <body style="background: white">
+
 	<div class="topnav">
-	  <div class="topnav-right">
-	  	<a class="active" href="{% url '' %}">HOME</a>
-	  	<a href="{% url 'dashboard' %}">DASHBOARD</a>
-	    <a href="{% url 'overview' %}">OVERVIEW</a>
-	    <a href="{% url 'guide' %}">GUIDE</a>
-	    <a href="{% url 'about' %}">ABOUT</a>
-	    <a href="{% url 'faq' %}">FAQ</a>
-	    <a href="{% url 'contact' %}">CONTACT</a>
-	    <a href="{% url 'logout' %}">LOGOUT</a>
-	  </div>
-	</div>
-	
-	<div class="content-dashboard full-height">
-		<div class="content-dashboard-main">
-
-		<div class="col-md-4 col-xs-12 card-view add">
-
-			<a href="/create/">
-				<div class="card">
-				  <img src="../../../media/add-icon.png" style="margin-top: 18px">
-				  <h3>Register</h3>
-				  <div class="footer">
-				  <p>Click on the icon above to register a conference</p>
-				 </div>
-				</div>
-			</a>
-
+		<div class="topnav-right">
+			<a class="active" href="{% url '' %}">HOME</a>
+			<a href="{% url 'dashboard' %}">DASHBOARD</a>
+			<a href="{% url 'overview' %}">OVERVIEW</a>
+			<a href="{% url 'guide' %}">GUIDE</a>
+			<a href="{% url 'about' %}">ABOUT</a>
+			<a href="{% url 'faq' %}">FAQ</a>
+			<a href="{% url 'contact' %}">CONTACT</a>
+			<a href="{% url 'logout' %}">LOGOUT</a>
 		</div>
+	</div>
+
+	<div class="content-dashboard full-height">	
+		<div class="content-dashboard-main">
+			<div class="col-md-4 col-xs-12 card-view add">
+				<a href="/create/">
+					<div class="card">
+						<img src="../../../media/add-icon.png" style="margin-top: 18px">
+						<h3>Register</h3>
+						<div class="footer">
+							<p>Click on the icon above to register a conference</p>
+						</div>
+					</div>
+				</a>
+			</div>
+
 		{% for conference in conferences %}
 			<a href="/profile/{{ conference.conference_id }}">
-			<div class="col-md-4 col-xs-12 card-view">
-				<div class="card">
-				  <img src="../../../media/{{ conference.conference_id }}/logo.png">
-				  <h3>{{ conference.conference_name }}</h3>
-				  <p class="title"><i class="fa fa-map-marker marker"></i>{{ conference.conference_venue }}</p>
-				  <div class="footer">
-				    <a href="#"><i class="fa fa-edit"></i></a> 
-				    <a href="#"><i class="fa fa-download"></i></a>  
-				    <a href="#" id="my_btn"><i class="fa fa-trash-o"></i></a>  
-				    <a href="#"><i class="fa fa-gear"></i></a> 
-				 </div>
+				<div class="col-md-4 col-xs-12 card-view">
+					<div class="card">
+						<img src="../../../media/{{ conference.conference_id }}/logo.png">
+						<h3>{{ conference.conference_name }}</h3>
+						<p class="title"><i class="fa fa-map-marker marker"></i>{{ conference.conference_venue }}</p>
+						<div class="footer">
+							<form action="." method="POST" hidden id="delete-conference"> {% csrf_token %}
+								<input type="text" name="id" id="id" value="{{ conference.conference_id }}" hidden>
+								<input type="submit" hidden>
+							</form>
+					    	<a href="/profile/{{ conference.conference_id }}"><i class="fa fa-edit"></i></a>
+					    	<a href="#"><i class="fa fa-download"></i></a>  
+					    	<a href="#" id="delete-conference-btn"><i class="fa fa-trash-o"></i></a>  
+					    	<a href="#"><i class="fa fa-gear"></i></a> 
+					 	</div>
+					</div>
 				</div>
-
-			</div>
-		</a>
+			</a>
 		{% endfor %}
-			
 		</div>
+
 		<div class="modal" id="my_modal">
 			<div class="login">
 				<span class="close" style="color: white; opacity: 1; float: right; font-size: 1.5rem; font-weight: 700; line-height: 1; padding: 20px; margin: 0px;">&times;</span>
@@ -74,11 +77,7 @@
 			</div>
 		</div>
 		<script type="text/javascript" src="../static/Website/js/login_popup.js"> </script>
-		
-
+		<script type="text/javascript" src="../static/Website/js/delete_conference.js"> </script>
 	</div>
-
-
-
 </body>
 </html>

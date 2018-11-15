@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>Conference Portal</title>
 	<link rel="stylesheet" href="../static/Website/css/main.css">
 	<link rel="stylesheet" href="../static/Website/css/bootstrap.css">
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
 </head>
+
 <body style="background: white">
 	<div class="topnav">
-	  <div class="topnav-right">
-	  	<a href="{% url '' %}">HOME</a>
-	    <a href="{% url 'overview' %}">OVERVIEW</a>
-	    <a href="{% url 'guide' %}">GUIDE</a>
-	    <a href="{% url 'about' %}">ABOUT</a>
-	    <a class="active" href="{% url 'faq' %}">FAQ</a>
-	    <a href="{% url 'contact' %}">CONTACT</a>
-	    <a href="#" id="my_btn">LOGIN</a>
-	  </div>
+		<div class="topnav-right">
+			<a href="{% url '' %}">HOME</a>
+			<a href="{% url 'overview' %}">OVERVIEW</a>
+			<a href="{% url 'guide' %}">GUIDE</a>
+			<a href="{% url 'about' %}">ABOUT</a>
+			<a class="active" href="{% url 'faq' %}">FAQ</a>
+			<a href="{% url 'contact' %}">CONTACT</a>
+			<a href="#" id="my_btn">LOGIN</a>
+		</div>
 	</div>
 	
 	<div class="content-overview full-height">
@@ -31,8 +33,6 @@
 			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
 			<h4>Lorem Ipsum is simply dummy text?</h4>
 			<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
-
-
 		</div>
 
 		<div class="modal" id="my_modal">
@@ -48,10 +48,6 @@
 			</div>
 		</div>
 		<script type="text/javascript" src="../static/Website/js/login_popup.js"> </script>
-
 	</div>
-
-
-
 </body>
 </html>

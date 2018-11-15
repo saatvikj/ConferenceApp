@@ -16,55 +16,19 @@ from Website.forms import SignUpForm
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
+import Website.utilities as utils
 import pycountry
-import Website.firebase_wrapper as fw
 import pyrebase
 
 global_data = []
-joining_code_list = []
-
-config = {
-  "apiKey": "AIzaSyCNpkzcclTXDCBdNlApdFOa7i7i1c2UPgM",
-  "authDomain": "conference-portal-deb1c.firebaseapp.com",
-  "databaseURL": "https://conference-portal-deb1c.firebaseio.com/",
-  "storageBucket": "gs://conference-portal-deb1c.appspot.com"
-}
-
-def joining_code_generator():
- x = ''.join(random.choices(string.ascii_letters + string.digits, k=4))
- while x in joining_code_list:
-  x = ''.join(random.choice(string.ascii_uppercase + string.ascii_lowercase + string.digits) for _ in range(4))
-
- joining_code_list.append(x)
- return x
-
-
-def populate_db_with_users(csv_name,conference_id):
-	firebase = pyrebase.initialize_app(config)
-	db = firebase.database()
-	with open(csv_name,'r') as f:
-		reader = csv.reader(f)
-		next(f, None)
-
-		for row in reader:
-			user_dictionary = {}
-			user_dictionary["name"] = row[0]
-			user_dictionary["email"] = row[1]
-			user_dictionary["company"] = row[2]
-			user_dictionary["location"] = row[3]
-			user_dictionary["bio"] = row[4]
-			user_dictionary["interests"] = row[5]
-			user_dictionary["presentedPapers"] = row[6]
-			user_dictionary["typeOfUser"] = row[7]
-			user_dictionary["joining_code"] = joining_code_generator()
-			db.child(conference_id).child("Users").push(user_dictionary)
+generated_conference_id = str()
 
 def signup(request):
 	if request.method == 'POST':
 		form = SignUpForm(request.POST)
 		if form.is_valid():
 			user = form.save()
-			user.refresh_from_db()  # load the profile instance created by the signal
+			user.refresh_from_db()
 			user.profile.organization = form.cleaned_data.get('organization')
 			country_name = form.cleaned_data.get('location').capitalize()
 			user.profile.location = pycountry.countries.get(name=country_name).alpha_2
@@ -76,7 +40,6 @@ def signup(request):
 	else:
 		form = SignUpForm()
 	return render(request, 'signup.html', {'form': form})
-
 
 def login_user(request):
 	username = request.POST['username']
@@ -103,64 +66,41 @@ def contact_email(request):
 
 @login_required
 def dashboard(request):
-	user_conference_ids = UserConference.objects.filter(user_id=request.user.profile.profile_id)
-	conference_id_list = []
-	for conference in user_conference_ids:
-		conference_id_list.append(conference.conference_id)
-	user_conferences = Conference.objects.filter(conference_id__in=conference_id_list)
-	return render(request, 'dashboard.html', {'conferences':user_conferences})
+	if request.method == 'GET':
+		user_conference_ids = UserConference.objects.filter(user_id=request.user.profile.profile_id)
+		conference_id_list = []
+		for conference in user_conference_ids:
+			conference_id_list.append(conference.conference_id)
+		user_conferences = Conference.objects.filter(conference_id__in=conference_id_list)
+		return render(request, 'dashboard.html', {'conferences':user_conferences})
+	else:
+		conference_id_to_delete = request.POST['id']
+		Conference.objects.get(conference_id=conference_id_to_delete).delete()
+		UserConference.objects.get(conference_id=conference_id_to_delete).delete()
+		user_conference_ids = UserConference.objects.filter(user_id=request.user.profile.profile_id)
+		conference_id_list = []
+		for conference in user_conference_ids:
+			conference_id_list.append(conference.conference_id)
+		user_conferences = Conference.objects.filter(conference_id__in=conference_id_list)
+		return render(request, 'dashboard.html', {'conferences':user_conferences})		
 
 @login_required
 def delete_conference(request):
 	return 
 
-class HomePageView(TemplateView):
-	def get(self, request, *args, **kwargs):
-		return render(request, 'index.html', {})
-
-	def post(self, request, *args, **kwargs):
-		username = request.POST['username']
-		password = request.POST['password']
-		user = authenticate(request, username=username, password=password)
-		if user is not None:
-			login(request, user)
-			return redirect('dashboard')
-		return render(request, 'index.html', {})
-
-
-class ProfileView(TemplateView):
-	def get(self, request, *args, **kwargs):
-		path = request.get_full_path().split("/")[2]
-		conference = Conference.objects.get(conference_id=path)
-		return render(request, 'profile.html', {'conference': conference})
-
-	def post(self, request, *args, **kwargs):
-		username = request.POST['username']
-		password = request.POST['password']
-		user = authenticate(request, username=username, password=password)
-		if user is not None:
-			login(request, user)
-			return redirect('dashboard')
-		return render(request, 'index.html', {})		    	
-
-
-class ThankYouPageView(TemplateView):
-	def get(self, request, *args, **kwargs):
+@login_required
+def thank_you(request):
+	if request.method == 'POST':
+		subprocess.call([os.path.joing(settings.FILES_DIR, 'MobileApp/appnamechange.sh'),global_data[11]])
+		subprocess.call(os.path.joing(settings.FILES_DIR, 'MobileApp/generator.sh'))
 		apk_path = os.path.join(settings.FILES_DIR, 'MobileApp/app/build/outputs/apk/debug/app-debug.apk')
 		with open(apk_path, 'rb') as fh:
 			response = HttpResponse(fh.read(), content_type="application/binary")
 			response['Content-Disposition'] = 'inline; filename=app-debug.apk'
 			return response
+		return render(request, 'dashboard.html', {})
+	else:
 		return render(request, 'thank_you.html', {})
-
-	def post(self, request, *args, **kwargs):
-		apk_path = os.path.join(settings.FILES_DIR, 'MobileApp/app/build/outputs/apk/debug/app-debug.apk')
-		with open(apk_path, 'rb') as fh:
-			response = HttpResponse(fh.read(), content_type="application/binary")
-			response['Content-Disposition'] = 'inline; filename=app-debug.apk'
-			return response
-		return render(request, 'thank_you.html', {})
-
 
 @login_required
 def create_conference(request):
@@ -232,7 +172,7 @@ def create_conference_5(request):
 
 		conference_ob.save()
 		user_csv_path = settings.MEDIA_ROOT+"/"+str(conference_ob.conference_id)+"/conference_user.csv"
-		populate_db_with_users(user_csv_path, conference_ob.conference_id)
+		utils.populate_db_with_users(user_csv_path, conference_ob.conference_id)
 		user_conference_ob = UserConference(user_id=request.user.profile.profile_id, conference_id=conference_ob.conference_id)
 		user_conference_ob.save()
 		global_data.append(str(conference_ob.conference_id))	
@@ -242,7 +182,35 @@ def create_conference_5(request):
 			temp = iter(global_data)
 			writer.writerow(temp)
 
-		return render(request, 'thank_you.html', {})
-
+		return redirect('thank_you')
 	else:
 		return render(request, 'create5.html', {})
+
+class HomePageView(TemplateView):
+	def get(self, request, *args, **kwargs):
+		return render(request, 'index.html', {})
+
+	def post(self, request, *args, **kwargs):
+		username = request.POST['username']
+		password = request.POST['password']
+		user = authenticate(request, username=username, password=password)
+		if user is not None:
+			login(request, user)
+			return redirect('dashboard')
+		return render(request, 'index.html', {})
+
+
+class ProfileView(TemplateView):
+	def get(self, request, *args, **kwargs):
+		path = request.get_full_path().split("/")[2]
+		conference = Conference.objects.get(conference_id=path)
+		return render(request, 'profile.html', {'conference': conference})
+
+	def post(self, request, *args, **kwargs):
+		username = request.POST['username']
+		password = request.POST['password']
+		user = authenticate(request, username=username, password=password)
+		if user is not None:
+			login(request, user)
+			return redirect('dashboard')
+		return render(request, 'index.html', {})

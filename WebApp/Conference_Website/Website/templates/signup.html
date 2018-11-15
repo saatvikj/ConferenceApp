@@ -1,78 +1,81 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>Conference Portal</title>
 	<link rel="stylesheet" href="../static/Website/css/main.css">
 	<link rel="stylesheet" href="../static/Website/css/bootstrap.css">
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
 </head>
+
 <body style="background: white">
 	<div class="topnav">
-	  <div class="topnav-right">
-	  	<a class="active" href="{% url '' %}">HOME</a>
-	    <a href="{% url 'overview' %}">OVERVIEW</a>
-	    <a href="{% url 'guide' %}">GUIDE</a>
-	    <a href="{% url 'about' %}">ABOUT</a>
-	    <a href="{% url 'faq' %}">FAQ</a>
-	    <a href="{% url 'contact' %}">CONTACT</a>
-	    <a href="#" id="my_btn">LOGIN</a>
-	  </div>
+		<div class="topnav-right">
+			<a class="active" href="{% url '' %}">HOME</a>
+			<a href="{% url 'overview' %}">OVERVIEW</a>
+			<a href="{% url 'guide' %}">GUIDE</a>
+			<a href="{% url 'about' %}">ABOUT</a>
+			<a href="{% url 'faq' %}">FAQ</a>
+			<a href="{% url 'contact' %}">CONTACT</a>
+			<a href="#" id="my_btn">LOGIN</a>
+		</div>
 	</div>
 	
 	<div class="content full-height-signup">
 		<form method="POST" action="." style="height: 100%">
 		<div class="content-main-signup row jumbotron">
 			<div class="content-main-signup-left col-md-6">
-				    {% csrf_token %}
-				      <div class="signup-form-field">
-				        {{ form.first_name.label_tag }}<br>
-				        {{ form.first_name }}
-				      </div>
+				{% csrf_token %}
+				<div class="signup-form-field">
+					{{ form.first_name.label_tag }}<br>
+					{{ form.first_name }}
+				</div>
+  
+				<div class="signup-form-field">
+					{{ form.email.label_tag }}<br>
+					{{ form.email }}
+				</div>
+				
+				<div class="signup-form-field">
+					{{ form.password1.label_tag }}<br>
+					{{ form.password1 }}
+				</div>
 
-				      
-				      <div class="signup-form-field">
-				        {{ form.email.label_tag }}<br>
-				        {{ form.email }}
-				      </div>
-				      <div class="signup-form-field">
-				        {{ form.password1.label_tag }}<br>
-				        {{ form.password1 }}
-				      </div>
-
-				      <div class="signup-form-field">
-				        {{ form.organization.label_tag }}<br>
-				        {{ form.organization }}
-				      </div>
+				<div class="signup-form-field">
+					{{ form.organization.label_tag }}<br>
+					{{ form.organization }}
+				</div>
 			</div>
 
 			<div class="content-main-signup-right col-md-6">
 				{% csrf_token %}
-					<div class="signup-form-field">
-					  {{ form.last_name.label_tag }}<br>
-					  {{ form.last_name }}
-					</div>
-				  <div class="signup-form-field">
-				    {{ form.username.label_tag }}<br>
-				    {{ form.username }}
-				  </div>
+				<div class="signup-form-field">
+					{{ form.last_name.label_tag }}<br>
+					{{ form.last_name }}
+				</div>
+				
+				<div class="signup-form-field">
+					{{ form.username.label_tag }}<br>
+					{{ form.username }}
+				</div>
 				  
-				  <div class="signup-form-field">
-				    {{ form.password2.label_tag }}<br>
-				    {{ form.password2 }}
-				  </div>
+				<div class="signup-form-field">
+					{{ form.password2.label_tag }}<br>
+					{{ form.password2 }}
+				</div>
 
-				  <div class="signup-form-field">
-				    {{ form.location.label_tag }}<br>
-				    {{ form.location }}
-				  </div>
-
+				<div class="signup-form-field">
+					{{ form.location.label_tag }}<br>
+					{{ form.location }}
+				</div>
 			</div>
+
 			<div align="center" style="display: inline; width: 100%">
 				<input align="center" type="submit" value="REGISTER" class="primary-btn text-uppercase" style="margin-top: 0px; color: white;">
 			</div>
-
 		</div>
-	</form>
+		</form>
+		
 		<div class="modal" id="my_modal">
 			<div class="login">
 				<span class="close">&times;</span>
@@ -86,10 +89,6 @@
 			</div>
 		</div>
 		<script type="text/javascript" src="../static/Website/js/login_popup.js"> </script>
-
 	</div>
-
-
-
 </body>
 </html>

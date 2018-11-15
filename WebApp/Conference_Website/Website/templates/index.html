@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title>Conference Portal</title>
 	<link rel="stylesheet" href="../static/Website/css/main.css">
 	<link rel="stylesheet" href="../static/Website/css/bootstrap.css">
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
 </head>
+
 <body>
 	<div class="topnav" style="background-color: transparent;">
-	  <div class="topnav-right">
-	  	<a class="active" href="{% url '' %}">HOME</a>
-	    <a href="{% url 'overview' %}">OVERVIEW</a>
-	    <a href="{% url 'guide' %}">GUIDE</a>
-	    <a href="{% url 'about' %}">ABOUT</a>
-	    <a href="{% url 'faq' %}">FAQ</a>
-	    <a href="{% url 'contact' %}">CONTACT</a>
-	    <a href="#" id="my_btn">LOGIN</a>
-	  </div>
+		<div class="topnav-right">
+			<a class="active" href="{% url '' %}">HOME</a>
+			<a href="{% url 'overview' %}">OVERVIEW</a>
+			<a href="{% url 'guide' %}">GUIDE</a>
+			<a href="{% url 'about' %}">ABOUT</a>
+			<a href="{% url 'faq' %}">FAQ</a>
+			<a href="{% url 'contact' %}">CONTACT</a>
+			<a href="#" id="my_btn">LOGIN</a>
+		</div>
 	</div>
 	
 	<div class="content full-height">
@@ -26,6 +28,7 @@
 			<p>Register your conference on the portal, enter basic details and you are good to go!</p>
 			<a href="{% url 'guide' %}" class="primary-btn header-btn text-uppercase">Get started</a>
 		</div>
+		
 		<div class="modal" id="my_modal">
 			<div class="login">
 				<span class="close">&times;</span>
@@ -40,10 +43,6 @@
 		</div>
 		<script type="text/javascript" src="../static/Website/js/login_popup.js"> </script>
 		<script type="text/javascript" src="../static/Website/js/index.js"> </script>
-
 	</div>
-
-
-
 </body>
 </html>
