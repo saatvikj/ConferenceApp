@@ -1,4 +1,6 @@
 #!/bin/bash
-cd ../../MobileApp
-/home/meghna/ConferenceApp/MobileApp/gradlew assembleDebug
+pwd
+cd ../../MobileApp/
+pwd
+./gradlew assembleDebug
 cd ../WebApp/Conference_Website/

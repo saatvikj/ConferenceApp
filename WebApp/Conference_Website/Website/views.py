@@ -85,14 +85,10 @@ def dashboard(request):
 		return render(request, 'dashboard.html', {'conferences':user_conferences})		
 
 @login_required
-def delete_conference(request):
-	return 
-
-@login_required
 def thank_you(request):
 	if request.method == 'POST':
-		subprocess.call([os.path.joing(settings.FILES_DIR, 'MobileApp/appnamechange.sh'),global_data[11]])
-		subprocess.call(os.path.joing(settings.FILES_DIR, 'MobileApp/generator.sh'))
+		subprocess.call([os.path.join(settings.FILES_DIR, 'MobileApp/appnamechange.sh'),global_data[0]])
+		subprocess.call(os.path.join(settings.FILES_DIR, 'MobileApp/generator.sh'))
 		apk_path = os.path.join(settings.FILES_DIR, 'MobileApp/app/build/outputs/apk/debug/app-debug.apk')
 		with open(apk_path, 'rb') as fh:
 			response = HttpResponse(fh.read(), content_type="application/binary")
