@@ -1,27 +1,27 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
 from django.http import HttpResponse
+from django.conf import settings
+from django.core.files.storage import FileSystemStorage
+from django.contrib.auth import login, authenticate
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
+from .forms import ConferenceData
+from Website.models import Conference
+from Website.models import UserConference
+from Website.forms import SignUpForm
+import Website.utilities as utils
+import pycountry
+import pyrebase
 import csv
 import os
 import subprocess
 import random, string
-from Website.models import Conference
-from Website.models import UserConference
-from django.conf import settings
-from .forms import ConferenceData
-from django.core.files.storage import FileSystemStorage
 from datetime import datetime
-from django.contrib.auth import login, authenticate
-from Website.forms import SignUpForm
-from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
-from django.core.mail import send_mail
-import Website.utilities as utils
-import pycountry
-import pyrebase
+import shutil
 
 global_data = []
-generated_conference_id = str()
 
 def signup(request):
 	if request.method == 'POST':
@@ -37,6 +37,8 @@ def signup(request):
 			user = authenticate(username=user.username, password=raw_password)
 			login(request, user)
 			return redirect('overview')
+		else:
+			return render(request, 'signup.html', {'form': form})
 	else:
 		form = SignUpForm()
 	return render(request, 'signup.html', {'form': form})
@@ -74,9 +76,28 @@ def dashboard(request):
 		user_conferences = Conference.objects.filter(conference_id__in=conference_id_list)
 		return render(request, 'dashboard.html', {'conferences':user_conferences})
 	else:
-		conference_id_to_delete = request.POST['id']
-		Conference.objects.get(conference_id=conference_id_to_delete).delete()
-		UserConference.objects.get(conference_id=conference_id_to_delete).delete()
+		conference_id_to_modify = request.POST['id']
+		
+		if request.POST['function'] == 'delete':
+			Conference.objects.get(conference_id=conference_id_to_delete).delete()
+			UserConference.objects.get(conference_id=conference_id_to_delete).delete()
+			shutil.rmtree(os.path.join(settings.MEDIA_ROOT,conference_id_to_delete+'/'))
+			utils.delete_conference_from_db(conference_id_to_delete)
+
+		else:
+			shutil.copyfile(os.path.join(settings.MEDIA_ROOT,global_data[11]+'/logo.png'), os.path.join(settings.FILES_DIR,'MobileApp/app/src/main/res/drawable-xxxhdpi/logo.png'))
+			shutil.copyfile(os.path.join(settings.MEDIA_ROOT,global_data[11]+'/conference_data.csv'), os.path.join(settings.FILES_DIR,'MobileApp/app/src/main/assests/conference_data.csv'))
+			shutil.copyfile(os.path.join(settings.MEDIA_ROOT,global_data[11]+'/conference_schedule.csv'), os.path.join(settings.FILES_DIR,'MobileApp/app/src/main/assests/paper_details.csv'))
+			shutil.copyfile(os.path.join(settings.MEDIA_ROOT,global_data[11]+'/conference_user.csv'), os.path.join(settings.FILES_DIR,'MobileApp/app/src/main/assests/user_details.csv'))
+
+			subprocess.call([os.path.join(settings.FILES_DIR, 'MobileApp/appnamechange.sh'),global_data[0]])
+			subprocess.call(os.path.join(settings.FILES_DIR, 'MobileApp/generator.sh'))
+			apk_path = os.path.join(settings.FILES_DIR, 'MobileApp/app/build/outputs/apk/debug/app-debug.apk')
+			with open(apk_path, 'rb') as fh:
+				response = HttpResponse(fh.read(), content_type="application/binary")
+				response['Content-Disposition'] = 'inline; filename=app-debug.apk'
+				return response
+
 		user_conference_ids = UserConference.objects.filter(user_id=request.user.profile.profile_id)
 		conference_id_list = []
 		for conference in user_conference_ids:
@@ -87,6 +108,12 @@ def dashboard(request):
 @login_required
 def thank_you(request):
 	if request.method == 'POST':
+
+		shutil.copyfile(os.path.join(settings.MEDIA_ROOT,global_data[11]+'/logo.png'), os.path.join(settings.FILES_DIR,'MobileApp/app/src/main/res/drawable-xxxhdpi/logo.png'))
+		shutil.copyfile(os.path.join(settings.MEDIA_ROOT,global_data[11]+'/conference_data.csv'), os.path.join(settings.FILES_DIR,'MobileApp/app/src/main/assests/conference_data.csv'))
+		shutil.copyfile(os.path.join(settings.MEDIA_ROOT,global_data[11]+'/conference_schedule.csv'), os.path.join(settings.FILES_DIR,'MobileApp/app/src/main/assests/paper_details.csv'))
+		shutil.copyfile(os.path.join(settings.MEDIA_ROOT,global_data[11]+'/conference_user.csv'), os.path.join(settings.FILES_DIR,'MobileApp/app/src/main/assests/user_details.csv'))
+
 		subprocess.call([os.path.join(settings.FILES_DIR, 'MobileApp/appnamechange.sh'),global_data[0]])
 		subprocess.call(os.path.join(settings.FILES_DIR, 'MobileApp/generator.sh'))
 		apk_path = os.path.join(settings.FILES_DIR, 'MobileApp/app/build/outputs/apk/debug/app-debug.apk')

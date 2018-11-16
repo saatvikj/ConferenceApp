@@ -40,3 +40,8 @@ def populate_db_with_users(csv_name,conference_id):
 			user_dictionary["typeOfUser"] = row[7]
 			user_dictionary["joining_code"] = joining_code_generator()
 			db.child(conference_id).child("Users").push(user_dictionary)
+
+def delete_conference_from_db(conference_id):
+	firebase = pyrebase.initialize_app(config)
+	db = firebase.database()
+	db.child(conference_id).remove()

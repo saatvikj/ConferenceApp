@@ -49,12 +49,13 @@
 						<h3>{{ conference.conference_name }}</h3>
 						<p class="title"><i class="fa fa-map-marker marker"></i>{{ conference.conference_venue }}</p>
 						<div class="footer">
-							<form action="." method="POST" hidden id="delete-conference"> {% csrf_token %}
+							<form action="." method="POST" hidden id="modify-conference"> {% csrf_token %}
 								<input type="text" name="id" id="id" value="{{ conference.conference_id }}" hidden>
+								<input type="text" name="function" id="function" hidden>
 								<input type="submit" hidden>
 							</form>
 					    	<a href="/profile/{{ conference.conference_id }}"><i class="fa fa-edit"></i></a>
-					    	<a href="#"><i class="fa fa-download"></i></a>  
+					    	<a href="#" id="download-apk-btn"><i class="fa fa-download"></i></a>  
 					    	<a href="#" id="delete-conference-btn"><i class="fa fa-trash-o"></i></a>  
 					    	<a href="#"><i class="fa fa-gear"></i></a> 
 					 	</div>
@@ -77,7 +78,7 @@
 			</div>
 		</div>
 		<script type="text/javascript" src="../static/Website/js/login_popup.js"> </script>
-		<script type="text/javascript" src="../static/Website/js/delete_conference.js"> </script>
+		<script type="text/javascript" src="../static/Website/js/quick-access.js"> </script>
 	</div>
 </body>
 </html>
