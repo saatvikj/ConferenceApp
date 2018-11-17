@@ -61,19 +61,8 @@ public class NavBarActivity extends AppCompatActivity
             userIcon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
-                    android.support.v4.app.Fragment fragment = null;
-                    fragment = new FragmentProfile();
-                    if (fragment != null) {
-                        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                        ft.replace(R.id.content_frame, fragment);
-                        ft.commit();
-                    }
-
-                    setActionBarTitle("My Profile");
-                    DrawerLayout drawer = findViewById(R.id.drawer_layout);
-                    drawer.closeDrawer(GravityCompat.START);
-
+                    Intent intent = new Intent(NavBarActivity.this, ActivityMyProfile.class);
+                    startActivity(intent);
                 }
             });
         }
@@ -128,7 +117,7 @@ public class NavBarActivity extends AppCompatActivity
                 break;
             case R.id.nav_speaker_wise_schedule:
                 fragment = new FragmentAttendeeSchedule();
-                setActionBarTitle("Attendees");
+                setActionBarTitle("Attendee");
                 break;
             case R.id.nav_feed:
                 fragment = new FragmentFeed();

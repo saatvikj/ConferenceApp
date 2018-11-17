@@ -192,12 +192,14 @@ body {
   position: relative;
   padding-left: 100px;
   padding-right: 120px;
+  vertical-align: middle;
   top: 40px;
 
 }
 
 .content-main-form-left {
   display: table;
+  vertical-align: middle;
   position: relative;
   padding-left: 100px;
   padding-right: 120px;
