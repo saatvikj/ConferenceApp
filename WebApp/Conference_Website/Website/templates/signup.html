@@ -28,26 +28,26 @@
 				{% csrf_token %}
 				<div class="signup-form-field">
 					{{ form.first_name.label_tag }}<br>
-					{{ form.first_name }}
-					{{ form.first_name.errors }}
+					{{ form.first_name }}<br>
+					{{ form.first_name.errors.0 }}
 				</div>
   
 				<div class="signup-form-field">
 					{{ form.email.label_tag }}<br>
-					{{ form.email }}
-					{{ form.email.errors }}
+					{{ form.email }}<br>
+					{{ form.email.errors.0 }}
 				</div>
 				
 				<div class="signup-form-field">
 					{{ form.password1.label_tag }}<br>
-					{{ form.password1 }}
-					{{ form.password1.errors }}
+					{{ form.password1 }}<br>
+					{{ form.password1.errors.0 }}
 				</div>
 
 				<div class="signup-form-field">
 					{{ form.organization.label_tag }}<br>
-					{{ form.organization }}
-					{{ form.organization.errors }}
+					{{ form.organization }}<br>
+					{{ form.organization.errors.0 }}
 				</div>
 			</div>
 
@@ -55,26 +55,26 @@
 				{% csrf_token %}
 				<div class="signup-form-field">
 					{{ form.last_name.label_tag }}<br>
-					{{ form.last_name }}
-					{{ form.last_name.errors }}
+					{{ form.last_name }}<br>
+					{{ form.last_name.errors.0 }}
 				</div>
 				
 				<div class="signup-form-field">
 					{{ form.username.label_tag }}<br>
-					{{ form.username }}
-					{{ form.username.errors }}
+					{{ form.username }}<br>
+					{{ form.username.errors.0 }}
 				</div>
 				  
 				<div class="signup-form-field">
 					{{ form.password2.label_tag }}<br>
-					{{ form.password2 }}
-					{{ form.password2.errors }}
+					{{ form.password2 }}<br>
+					{{ form.password2.errors.0 }}
 				</div>
 
 				<div class="signup-form-field">
 					{{ form.location.label_tag }}<br>
-					{{ form.location }}
-					{{ form.location.errors }}
+					{{ form.location }}<br>
+					{{ form.location.errors.0 }}
 				</div>
 			</div>
 
