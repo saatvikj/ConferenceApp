@@ -12,11 +12,11 @@ class ConferenceData(forms.Form):
 	partners = forms.CharField(label='Partners')
 
 class SignUpForm(UserCreationForm):
-	first_name = forms.CharField(max_length=30, required=True)
-	last_name = forms.CharField(max_length=30, required=True)
-	email = forms.EmailField(max_length=254, required=True)
-	organization = forms.CharField(max_length=1023, required=True)
-	location = forms.CharField(max_length=255, required=True)
+	first_name = forms.CharField(max_length=30, required=True, help_text="First name")
+	last_name = forms.CharField(max_length=30, required=True, help_text="Last Name")
+	email = forms.EmailField(max_length=254, required=True, help_text="Email ID")
+	organization = forms.CharField(max_length=1023, required=True, help_text="Organization")
+	location = forms.CharField(max_length=255, required=True, label="Country")
 	class Meta:
 		model = User
 		fields = ( 'first_name', 'last_name', 'username', 'email', 'password1', 'password2', 'organization', 'location')

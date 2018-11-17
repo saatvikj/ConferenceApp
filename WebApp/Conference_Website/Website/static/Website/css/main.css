@@ -196,6 +196,16 @@ body {
 
 }
 
+.content-main-form-left {
+  display: table;
+  position: relative;
+  padding-left: 100px;
+  padding-right: 120px;
+  background-color: blue;
+  top: 40px;
+
+}
+
 .content-main-signup-right {
   display: table;
   position: relative;
