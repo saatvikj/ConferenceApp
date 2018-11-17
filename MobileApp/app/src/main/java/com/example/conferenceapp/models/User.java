@@ -14,6 +14,7 @@ public class User {
     private String presentedPapers;
     private String typeOfUser;
     private String joining_code;
+    private String password;
     private ArrayList<Paper> myAgenda;
 
     public User() {
@@ -137,5 +138,13 @@ public class User {
 
     public void setMyAgenda(ArrayList<Paper> myAgenda) {
         this.myAgenda = myAgenda;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

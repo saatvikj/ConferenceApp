@@ -26,7 +26,7 @@ public class UserCSVParser {
 
         //Path file = FileSystems.getDefault().getPath(".", "paper_details.csv");
         InputStreamReader is = new InputStreamReader(context.getAssets()
-                .open("user_details.csv"));
+                .open("conference_user.csv"));
 
         users = new ArrayList<User>();
 

@@ -3,6 +3,7 @@ package com.example.conferenceapp.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -55,7 +56,7 @@ public class NavBarActivity extends AppCompatActivity
         else {
             navigationView.setNavigationItemSelectedListener(this);
             navigationView.setItemIconTintList(null);
-            displaySelectedScreen(R.id.nav_feed);
+            displaySelectedScreen(0);
             ImageView userIcon = navigationView.getHeaderView(0).findViewById(R.id.imageView);
             userIcon.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -127,7 +128,7 @@ public class NavBarActivity extends AppCompatActivity
                 break;
             case R.id.nav_speaker_wise_schedule:
                 fragment = new FragmentAttendeeSchedule();
-                setActionBarTitle("Speakers");
+                setActionBarTitle("Attendees");
                 break;
             case R.id.nav_feed:
                 fragment = new FragmentFeed();
@@ -152,6 +153,10 @@ public class NavBarActivity extends AppCompatActivity
             case R.id.nav_about:
                 fragment = new FragmentAbout();
                 setActionBarTitle("About");
+                break;
+            case 0:
+                fragment = new FragmentProfile();
+                setActionBarTitle("Profile");
                 break;
             case R.id.nav_logout:
                 Intent intent = new Intent(NavBarActivity.this, ActivityLogin.class);

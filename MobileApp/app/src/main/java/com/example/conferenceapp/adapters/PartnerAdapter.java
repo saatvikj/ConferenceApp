@@ -1,6 +1,8 @@
 package com.example.conferenceapp.adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -38,6 +40,16 @@ public class PartnerAdapter extends RecyclerView.Adapter<PartnerAdapter.PartnerV
         Partner partner = mPartnersList.get(position);
         holder.name.setText(partner.getSponsorName());
         holder.type.setText(partner.getSponsorType());
+        final String partnerEmail = partner.getSponsorWebsite();
+        holder.name.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(partnerEmail));
+                mCtx.startActivity(intent);
+            }
+        });
+
     }
 
     @Override
@@ -51,12 +63,14 @@ public class PartnerAdapter extends RecyclerView.Adapter<PartnerAdapter.PartnerV
         TextView type;
         ImageView photo;
 
+
         public PartnerViewHolder(View itemView) {
             super(itemView);
 
             name = itemView.findViewById(R.id.partnerName);
             type = itemView.findViewById(R.id.partnerType);
             photo = itemView.findViewById(R.id.partnerImage);
+
 
         }
     }

@@ -1,13 +1,10 @@
 package com.example.conferenceapp.activities;
 
 import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.os.Message;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,19 +16,6 @@ import com.google.firebase.database.*;
 import com.example.conferenceapp.R;
 import com.example.conferenceapp.models.Conference;
 import com.example.conferenceapp.utils.ConferenceCSVParser;
-
-import java.net.PasswordAuthentication;
-import java.util.Properties;
-
-import javax.activation.DataHandler;
-import javax.activation.FileDataSource;
-import javax.mail.Multipart;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
-import javax.mail.internet.MimeMultipart;
-import javax.sql.DataSource;
 
 public class ActivityFirstTime extends AppCompatActivity {
 
@@ -86,6 +70,24 @@ public class ActivityFirstTime extends AppCompatActivity {
                 String[] details = {final_email_id, final_joining_code};
                 new EmailClient().execute(details);
 
+            }
+        });
+
+        button.setText(R.string.joining_code_verify);
+        emailField.setHint(R.string.joining_code);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String user_input = emailField.getText().toString();
+                if(user_input.equals(final_joining_code)){
+                    Intent intent = new Intent(ActivityFirstTime.this, ActivitySetPassword.class);
+                    intent.putExtra("email", final_email_id);
+                    startActivity(intent);
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "Joining code incorrect!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

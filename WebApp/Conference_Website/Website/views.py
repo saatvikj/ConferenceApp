@@ -79,18 +79,20 @@ def dashboard(request):
 		conference_id_to_modify = request.POST['id']
 		
 		if request.POST['function'] == 'delete':
-			Conference.objects.get(conference_id=conference_id_to_delete).delete()
-			UserConference.objects.get(conference_id=conference_id_to_delete).delete()
-			shutil.rmtree(os.path.join(settings.MEDIA_ROOT,conference_id_to_delete+'/'))
-			utils.delete_conference_from_db(conference_id_to_delete)
+			Conference.objects.get(conference_id=conference_id_to_modify).delete()
+			UserConference.objects.get(conference_id=conference_id_to_modify).delete()
+			shutil.rmtree(os.path.join(settings.MEDIA_ROOT,conference_id_to_modify+'/'))
+			utils.delete_conference_from_db(conference_id_to_modify)
 
 		else:
-			shutil.copyfile(os.path.join(settings.MEDIA_ROOT,global_data[11]+'/logo.png'), os.path.join(settings.FILES_DIR,'MobileApp/app/src/main/res/drawable-xxxhdpi/logo.png'))
-			shutil.copyfile(os.path.join(settings.MEDIA_ROOT,global_data[11]+'/conference_data.csv'), os.path.join(settings.FILES_DIR,'MobileApp/app/src/main/assests/conference_data.csv'))
-			shutil.copyfile(os.path.join(settings.MEDIA_ROOT,global_data[11]+'/conference_schedule.csv'), os.path.join(settings.FILES_DIR,'MobileApp/app/src/main/assests/paper_details.csv'))
-			shutil.copyfile(os.path.join(settings.MEDIA_ROOT,global_data[11]+'/conference_user.csv'), os.path.join(settings.FILES_DIR,'MobileApp/app/src/main/assests/user_details.csv'))
+			conference = Conference.objects.get(conference_id=conference_id_to_modify)
+			name = conference.conference_name
+			shutil.copy(os.path.join(settings.MEDIA_ROOT,conference_id_to_modify+'/logo.png'), os.path.join(settings.FILES_DIR,'MobileApp/app/src/main/res/drawable-xxxhdpi/'))
+			shutil.copy(os.path.join(settings.MEDIA_ROOT,conference_id_to_modify+'/conference_data.csv'), os.path.join(settings.FILES_DIR,'MobileApp/app/src/main/assets/'))
+			shutil.copy(os.path.join(settings.MEDIA_ROOT,conference_id_to_modify+'/conference_schedule.csv'), os.path.join(settings.FILES_DIR,'MobileApp/app/src/main/assets/'))
+			shutil.copy(os.path.join(settings.MEDIA_ROOT,conference_id_to_modify+'/conference_user.csv'), os.path.join(settings.FILES_DIR,'MobileApp/app/src/main/assets/'))
 
-			subprocess.call([os.path.join(settings.FILES_DIR, 'MobileApp/appnamechange.sh'),global_data[0]])
+			subprocess.call([os.path.join(settings.FILES_DIR, 'MobileApp/appnamechange.sh'),name])
 			subprocess.call(os.path.join(settings.FILES_DIR, 'MobileApp/generator.sh'))
 			apk_path = os.path.join(settings.FILES_DIR, 'MobileApp/app/build/outputs/apk/debug/app-debug.apk')
 			with open(apk_path, 'rb') as fh:
@@ -109,10 +111,10 @@ def dashboard(request):
 def thank_you(request):
 	if request.method == 'POST':
 
-		shutil.copyfile(os.path.join(settings.MEDIA_ROOT,global_data[11]+'/logo.png'), os.path.join(settings.FILES_DIR,'MobileApp/app/src/main/res/drawable-xxxhdpi/logo.png'))
-		shutil.copyfile(os.path.join(settings.MEDIA_ROOT,global_data[11]+'/conference_data.csv'), os.path.join(settings.FILES_DIR,'MobileApp/app/src/main/assests/conference_data.csv'))
-		shutil.copyfile(os.path.join(settings.MEDIA_ROOT,global_data[11]+'/conference_schedule.csv'), os.path.join(settings.FILES_DIR,'MobileApp/app/src/main/assests/paper_details.csv'))
-		shutil.copyfile(os.path.join(settings.MEDIA_ROOT,global_data[11]+'/conference_user.csv'), os.path.join(settings.FILES_DIR,'MobileApp/app/src/main/assests/user_details.csv'))
+		shutil.copy(os.path.join(settings.MEDIA_ROOT,global_data[11]+'/logo.png'), os.path.join(settings.FILES_DIR,'MobileApp/app/src/main/res/drawable-xxxhdpi/'))
+		shutil.copy(os.path.join(settings.MEDIA_ROOT,global_data[11]+'/conference_data.csv'), os.path.join(settings.FILES_DIR,'MobileApp/app/src/main/assets/'))
+		shutil.copy(os.path.join(settings.MEDIA_ROOT,global_data[11]+'/conference_schedule.csv'), os.path.join(settings.FILES_DIR,'MobileApp/app/src/main/assets/'))
+		shutil.copy(os.path.join(settings.MEDIA_ROOT,global_data[11]+'/conference_user.csv'), os.path.join(settings.FILES_DIR,'MobileApp/app/src/main/assets/'))
 
 		subprocess.call([os.path.join(settings.FILES_DIR, 'MobileApp/appnamechange.sh'),global_data[0]])
 		subprocess.call(os.path.join(settings.FILES_DIR, 'MobileApp/generator.sh'))

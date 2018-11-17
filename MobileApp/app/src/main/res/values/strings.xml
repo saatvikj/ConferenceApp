@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">7e301b1b-141e-4a0b-8523-d42d749e30de</string>
+    <string name="app_name">AAAI-141e-4a0b-8523-d42d749e30de</string>
     <string name="title_activity_nav_bar">Conference</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -17,4 +17,6 @@
 At this year’s CHI – pronounced ‘kai’ – the theme will be engage. Our focus will be to engage with people, to engage with technology, to engage with newcomers, to engage with world-class research, to engage with your community of designers, researchers, and practitioners… to engage with CHI!
 </string>
     <string name="title_activity_first_time">ActivityFirstTime</string>
+    <string name="joining_code_verify">VERIFY</string>
+    <string name="joining_code">Joining Code</string>
 </resources>

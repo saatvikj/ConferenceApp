@@ -45,7 +45,8 @@
         <activity
             android:name=".activities.ActivityFirstTime"
             android:label="@string/title_activity_first_time"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activities.ActivitySetPassword"></activity>
     </application>
 
 </manifest>
