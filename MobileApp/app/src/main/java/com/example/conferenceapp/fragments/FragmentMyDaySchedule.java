@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,17 +20,17 @@ import com.example.conferenceapp.R;
 import com.example.conferenceapp.activities.ActivityPaperDetails;
 import com.example.conferenceapp.models.Conference;
 import com.example.conferenceapp.models.CustomTime;
+import com.example.conferenceapp.models.Food;
 import com.example.conferenceapp.models.Paper;
 import com.example.conferenceapp.utils.ConferenceCSVParser;
 import com.example.conferenceapp.utils.DBManager;
 
 import java.io.Serializable;
+import java.util.Arrays;
 
 public class FragmentMyDaySchedule extends Fragment implements Serializable {
 
     public static final String ARG_PAGE = "ARG_PAGE";
-    public String breakfast[] = {"10:30AM", "BREAKFAST", "10:50AM"};
-    public String lunch[] = {"1:00PM", "LUNCH", "2:00PM"};
     private int mPage;
     private DBManager dbManager;
 
@@ -66,42 +67,23 @@ public class FragmentMyDaySchedule extends Fragment implements Serializable {
         addDayView(mPage, root, inflater, view.getContext());
     }
 
-    public void addBreakfastView(LinearLayout root, LayoutInflater inflater) {
-        View bFast = inflater.inflate(R.layout.inflator_break_schedule, null);
-        TextView start = bFast.findViewById(R.id.breakStartTime);
-        TextView desc = bFast.findViewById(R.id.breakDescTextView);
-        TextView end = bFast.findViewById(R.id.breakEndTime);
-
-        start.setText(breakfast[0]);
-        desc.setText(breakfast[1]);
-        end.setText(breakfast[2]);
-        root.addView(bFast);
-        bFast.setOnClickListener(new View.OnClickListener() {
+    public void addFoodView(LinearLayout root, LayoutInflater inflater, Food food) {
+        View food_view = inflater.inflate(R.layout.inflator_break_schedule, null);
+        TextView start = food_view.findViewById(R.id.breakStartTime);
+        TextView desc = food_view.findViewById(R.id.breakDescTextView);
+        TextView end = food_view.findViewById(R.id.breakEndTime);
+        start.setText(food.time.split("-")[0]);
+        desc.setText(food.type.toUpperCase());
+        end.setText(food.time.split("-")[1]);
+        root.addView(food_view);
+        food_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Fragment fragment = new FragmentGuide();
                 AppCompatActivity appCompatActivity = (AppCompatActivity) view.getContext();
-                appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fragment);
-            }
-        });
-    }
-
-    public void addLunchView(LinearLayout root, LayoutInflater inflater) {
-        View lunch = inflater.inflate(R.layout.inflator_break_schedule, null);
-        TextView lunchStart = lunch.findViewById(R.id.breakStartTime);
-        TextView lunchDesc = lunch.findViewById(R.id.breakDescTextView);
-        TextView lunchEnd = lunch.findViewById(R.id.breakEndTime);
-
-        lunchStart.setText(this.lunch[0]);
-        lunchDesc.setText(this.lunch[1]);
-        lunchEnd.setText(this.lunch[2]);
-        root.addView(lunch);
-        lunch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Fragment fragment = new FragmentGuide();
-                AppCompatActivity appCompatActivity = (AppCompatActivity) view.getContext();
-                appCompatActivity.getSupportFragmentManager().beginTransaction().replace(R.id.content_frame, fragment);
+                FragmentTransaction ft = appCompatActivity.getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.content_frame, fragment);
+                ft.commit();
             }
         });
     }
@@ -154,8 +136,8 @@ public class FragmentMyDaySchedule extends Fragment implements Serializable {
                     String end_time = confTime[1];
                     CustomTime paper_schedule = new CustomTime(date, start_time, end_time);
                     Paper paper = new Paper(title, venue, paper_schedule, authors, topics, paper_abstract);
-                    if (paper.getTime().getStartTimeHour() >= startTime &&
-                            paper.getTime().getStartTimeHour() <= endTime &&
+                    if (paper.getTime().getStartTimeInt() >= startTime &&
+                            paper.getTime().getStartTimeInt() <= endTime &&
                             date.equals(current_date)) {
                         addPaperToView(root, inflater, paper);
                         count++;
@@ -183,18 +165,70 @@ public class FragmentMyDaySchedule extends Fragment implements Serializable {
         int _date = Integer.parseInt(date[2]) + day;
         String new_date = _date < 10 ? "0" + Integer.toString(_date) : Integer.toString(_date);
         String date_for_page = new_date.concat("/").concat(date[1]).concat("/").concat(date[0]);
-        addBreakfastView(root, inflater);
-        int pre_lunch_count = makeTimeView(root, inflater, 0, 12, date_for_page);
-        if (pre_lunch_count == 0) {
-            addNotificationForNoPapers(root, inflater);
+        int times[] = new int[conference.getConference_food_guide().length];
+        int number_of_breaks = conference.getConference_food_guide().length;
+        int j = 0;
+        int break_end = 0;
+        for (int i = 0; i < conference.getConference_food_guide().length; i++) {
+            times[i] = conference.getConference_food_guide()[i].getStartTime();
         }
-        addLunchView(root, inflater);
-        int post_lunch_count = makeTimeView(root, inflater, 13, 24, date_for_page);
-        if (post_lunch_count == 0) {
+        Arrays.sort(times);
+
+        int papers_before_first_break = makeTimeView(root, inflater, 0000, times[0], date_for_page);
+        if (papers_before_first_break == 0) {
             addNotificationForNoPapers(root, inflater);
         }
 
+        for (int i = 0; i < conference.getConference_food_guide().length; i++) {
+            if (conference.getConference_food_guide()[i].getStartTime() == times[j]) {
+                break_end = conference.getConference_food_guide()[i].getEndTime();
+                addFoodView(root, inflater, conference.getConference_food_guide()[i]);
+                j++;
+            }
+        }
 
+        if (j>= number_of_breaks) {
+            int papers = makeTimeView(root, inflater, break_end, 2359, date_for_page);
+            if (papers == 0) {
+                addNotificationForNoPapers(root, inflater);
+            }
+        } else {
+            int papers = makeTimeView(root, inflater, break_end, times[j], date_for_page);
+            if (papers == 0) {
+                addNotificationForNoPapers(root, inflater);
+            }
+        }
+
+        if (j<number_of_breaks) {
+            for (int i = 0; i < conference.getConference_food_guide().length; i++) {
+                if (conference.getConference_food_guide()[i].getStartTime() == times[j]) {
+                    break_end = conference.getConference_food_guide()[i].getEndTime();
+                    addFoodView(root, inflater, conference.getConference_food_guide()[i]);
+                    j++;
+                }
+            }
+        }
+
+        if (j>= number_of_breaks) {
+            int papers = makeTimeView(root, inflater, break_end, 2359, date_for_page);
+            if (papers == 0) {
+                addNotificationForNoPapers(root, inflater);
+            }
+        } else {
+            int papers = makeTimeView(root, inflater, break_end, times[j], date_for_page);
+            if (papers == 0) {
+                addNotificationForNoPapers(root, inflater);
+            }
+        }
+
+        if (j<number_of_breaks) {
+            for (int i = 0; i < conference.getConference_food_guide().length; i++) {
+                if (conference.getConference_food_guide()[i].getStartTime() == times[j]) {
+                    break_end = conference.getConference_food_guide()[i].getEndTime();
+                    addFoodView(root, inflater, conference.getConference_food_guide()[i]);
+                    j++;
+                }
+            }
+        }
     }
-
 }

@@ -92,25 +92,5 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="1"
-        android:orientation="vertical">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-light"
-            android:text="Skip and continue offline"
-            android:id="@+id/skip"
-            android:textAlignment="center"
-            android:textColor="#A0A3A7"
-            android:textSize="16sp" />
-
-
-    </LinearLayout>
-
 
 </LinearLayout>

@@ -1,6 +1,7 @@
 package com.example.conferenceapp.activities;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.CalendarContract;
 import android.support.annotation.Nullable;
@@ -14,8 +15,12 @@ import android.widget.TextView;
 
 import com.example.conferenceapp.R;
 import com.example.conferenceapp.models.Paper;
+import com.example.conferenceapp.models.User;
+import com.example.conferenceapp.utils.UserCSVParser;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ActivityPaperDetails extends AppCompatActivity implements Serializable{
 
@@ -23,12 +28,18 @@ public class ActivityPaperDetails extends AppCompatActivity implements Serializa
     TextView time;
     TextView location;
     TextView paper_abstract;
-    FloatingActionButton addToCalendar;
-
+    ArrayList<User> users;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_paper);
+
+        try {
+            users = UserCSVParser.parseCSV(getApplicationContext());
+        } catch (Exception e) {
+
+        }
+
         LinearLayout speakerList = (LinearLayout) findViewById(R.id.speakerListLayout);
         Intent intent = getIntent();
         Paper paper = (Paper) intent.getSerializableExtra("Paper");
@@ -41,30 +52,41 @@ public class ActivityPaperDetails extends AppCompatActivity implements Serializa
         location.setText(paper.getVenue());
         paper_abstract.setText(paper.getPaper_abstract());
         String[] authorsList = paper.getAuthors();
-        for(int i = 0; i < authorsList.length; i++){
+        final User[] authors = new User[authorsList.length];
+        int j=0;
+        for (int i=0; i<users.size(); i++) {
+            if (Arrays.asList(authorsList).contains(users.get(i).getName())) {
+                authors[j] = users.get(i);
+                j++;
+            }
+        }
+
+        for(int i = 0; i < authors.length; i++){
+            final User user = authors[i];
             View speakers = getLayoutInflater().inflate(R.layout.inflator_attendee_list, null);
             TextView nameTextView = speakers.findViewById(R.id.name);
-            nameTextView.setText(authorsList[i]);
+            TextView emailTextView = speakers.findViewById(R.id.bio);
+            nameTextView.setText(authors[i].getName());
+            emailTextView.setText(authors[i].getCompany());
             speakerList.addView(speakers);
+            speakers.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (getIntent().getStringExtra("Source").equals("skip")) {
+                        Intent intent = new Intent(Intent.ACTION_SENDTO);
+                        String mailto = "mailto:".concat(user.getEmail());
+                        intent.setData(Uri.parse(mailto));
+                        startActivity(intent);
+                    } else {
+                        Intent intent = new Intent(ActivityPaperDetails.this, ActivityUserProfile.class);
+                        intent.putExtra("email",user.getEmail());
+                        startActivity(intent);
+                    }
+                }
+            });
         }
         getSupportActionBar().setTitle(paper.getTitle());
 
-        addToCalendar = findViewById(R.id.fab);
-        addToCalendar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
-                intent.setType("vnd.android.cursor.item/event");
-//                intent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, startTime);
-//                intent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME,endTime);
-                intent.putExtra(CalendarContract.EXTRA_EVENT_ALL_DAY, true);
-                intent.putExtra(CalendarContract.Events.TITLE, "Neel Birthday");
-                intent.putExtra(CalendarContract.Events.DESCRIPTION, "This is a sample description");
-                intent.putExtra(CalendarContract.Events.EVENT_LOCATION, "My Guest House");
-                intent.putExtra(CalendarContract.Events.RRULE, "FREQ=YEARLY");
-                startActivity(intent);
-            }
-        });
     }
 
     @Override
@@ -77,7 +99,7 @@ public class ActivityPaperDetails extends AppCompatActivity implements Serializa
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.guide_home) {
             Intent intent = new Intent(ActivityPaperDetails.this, NavBarActivity.class);
-            intent.putExtra("Source", "skip");
+            intent.putExtra("Source", getIntent().getStringExtra("Source"));
             startActivity(intent);
             return true;
         }

@@ -2,6 +2,7 @@ package com.example.conferenceapp.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -27,16 +28,29 @@ import com.example.conferenceapp.fragments.FragmentPartners;
 import com.example.conferenceapp.fragments.FragmentProfile;
 import com.example.conferenceapp.fragments.FragmentAttendeeSchedule;
 import com.example.conferenceapp.R;
+import com.example.conferenceapp.models.Conference;
+import com.example.conferenceapp.models.User;
+import com.example.conferenceapp.utils.ConferenceCSVParser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class NavBarActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     public String src;
+    Conference conference;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nav_bar);
         src = getIntent().getStringExtra("Source");
+        try {
+            conference = ConferenceCSVParser.parseCSV(getApplicationContext());
+        } catch (Exception e) {
+
+        }
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -44,7 +58,7 @@ public class NavBarActivity extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        final NavigationView navigationView = findViewById(R.id.nav_view);
         if(src.equals("skip")) {
             disableOptionsNavigationView(navigationView);
             TextView name = navigationView.getHeaderView(0).findViewById(R.id.nameHeading);
@@ -58,10 +72,32 @@ public class NavBarActivity extends AppCompatActivity
             navigationView.setItemIconTintList(null);
             displaySelectedScreen(0);
             ImageView userIcon = navigationView.getHeaderView(0).findViewById(R.id.imageView);
+            FirebaseDatabase.getInstance().getReference().addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    for (DataSnapshot d: dataSnapshot.child(conference.getConference_id()).child("Users").getChildren()) {
+                        User u = d.getValue(User.class);
+                        if (u.getEmail().equals(getIntent().getStringExtra("email"))) {
+                            TextView name = navigationView.getHeaderView(0).findViewById(R.id.nameHeading);
+                            TextView email = navigationView.getHeaderView(0).findViewById(R.id.emailHeading);
+
+                            name.setText(u.getName());
+                            email.setText(u.getEmail());
+                        }
+                    }
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
             userIcon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(NavBarActivity.this, ActivityMyProfile.class);
+                    intent.putExtra("email",getIntent().getStringExtra("email"));
+                    intent.putExtra("Source", "paid");
                     startActivity(intent);
                 }
             });
@@ -143,13 +179,11 @@ public class NavBarActivity extends AppCompatActivity
                 fragment = new FragmentAbout();
                 setActionBarTitle("About");
                 break;
-            case 0:
-                fragment = new FragmentProfile();
-                setActionBarTitle("Profile");
-                break;
             case R.id.nav_logout:
                 Intent intent = new Intent(NavBarActivity.this, ActivityLogin.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
+                finish();
         }
 
         //replacing the fragment

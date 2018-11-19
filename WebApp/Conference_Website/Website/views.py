@@ -232,10 +232,17 @@ class ProfileView(TemplateView):
 		return render(request, 'profile.html', {'conference': conference})
 
 	def post(self, request, *args, **kwargs):
-		username = request.POST['username']
-		password = request.POST['password']
-		user = authenticate(request, username=username, password=password)
-		if user is not None:
-			login(request, user)
-			return redirect('dashboard')
-		return render(request, 'index.html', {})
+		data = request.POST
+		conference_id = data['conference_id']
+		conference_ob = Conference.objects(conference_id=conference_id)
+		conference_ob.conference_venue = data['conference_venue']
+		conference_ob.conference_start_date = data['conference_start_date']
+		conference_ob.conference_end_date = data['conference_end_date']
+		conference_ob.conference_description = data['conference_description']
+		conference_ob.conference_website = data['conference_website']
+		conference_ob.conference_facebook = data['conference_facebook']
+		conference_ob.conference_twitter = data['conference_twitter']
+		conference_ob.conference_email = data['conference_email']
+		conference_ob.save()
+
+		return redirect('dashboard')

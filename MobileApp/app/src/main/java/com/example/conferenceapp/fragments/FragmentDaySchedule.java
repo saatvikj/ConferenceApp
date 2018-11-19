@@ -34,8 +34,6 @@ import java.util.Arrays;
 public class FragmentDaySchedule extends Fragment implements Serializable {
 
     public static final String ARG_PAGE = "ARG_PAGE";
-    public String breakfast[] = {"10:30AM", "BREAKFAST", "10:50AM"};
-    public String lunch[] = {"1:00PM", "LUNCH", "2:00PM"};
     private int mPage;
     public DBManager dbManager;
 
@@ -123,6 +121,7 @@ public class FragmentDaySchedule extends Fragment implements Serializable {
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), ActivityPaperDetails.class);
                 intent.putExtra("Paper", copy);
+                intent.putExtra("Source", getActivity().getIntent().getStringExtra("Source"));
                 startActivity(intent);
             }
         });
@@ -191,7 +190,7 @@ public class FragmentDaySchedule extends Fragment implements Serializable {
         Arrays.sort(times);
         for (int i = 0; i < PaperCSVParser.papers.size(); i++) {
             Paper paper = PaperCSVParser.papers.get(i);
-            if (paper.getTime().getStartTimeInt() <= times[0]
+            if (paper.getTime().getStartTimeInt() <= times[j]
                     && paper.getTime().getDate().equals(date_for_page)) {
                 addPaperToView(root, inflater, paper);
             }
@@ -212,7 +211,7 @@ public class FragmentDaySchedule extends Fragment implements Serializable {
                         && paper.getTime().getStartTimeInt() >= break_end) {
                     addPaperToView(root, inflater, paper);
                 }
-            } else if (paper.getTime().getStartTimeInt() <= times[1]
+            } else if (paper.getTime().getStartTimeInt() <= times[j]
                     && paper.getTime().getStartTimeInt() >= break_end
                     && paper.getTime().getDate().equals(date_for_page)) {
                 addPaperToView(root, inflater, paper);
@@ -221,7 +220,7 @@ public class FragmentDaySchedule extends Fragment implements Serializable {
         }
         if (j < number_of_breaks) {
             for (int i = 0; i < conference.getConference_food_guide().length; i++) {
-                if (conference.getConference_food_guide()[i].getStartTime() == times[1]) {
+                if (conference.getConference_food_guide()[i].getStartTime() == times[j]) {
                     break_end = conference.getConference_food_guide()[i].getEndTime();
                     addFoodView(root, inflater, conference.getConference_food_guide()[i]);
                     j++;
@@ -237,7 +236,7 @@ public class FragmentDaySchedule extends Fragment implements Serializable {
                         && paper.getTime().getStartTimeInt() >= break_end) {
                     addPaperToView(root, inflater, paper);
                 }
-            } else if (paper.getTime().getStartTimeInt() <= times[2]
+            } else if (paper.getTime().getStartTimeInt() <= times[j]
                     && paper.getTime().getStartTimeInt() >= break_end
                     && paper.getTime().getDate().equals(date_for_page)) {
                 addPaperToView(root, inflater, paper);
@@ -246,7 +245,7 @@ public class FragmentDaySchedule extends Fragment implements Serializable {
         }
         if (j < number_of_breaks) {
             for (int i = 0; i < conference.getConference_food_guide().length; i++) {
-                if (conference.getConference_food_guide()[i].getStartTime() == times[2]) {
+                if (conference.getConference_food_guide()[i].getStartTime() == times[j]) {
                     break_end = conference.getConference_food_guide()[i].getEndTime();
                     addFoodView(root, inflater, conference.getConference_food_guide()[i]);
                     j++;

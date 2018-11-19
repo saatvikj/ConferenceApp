@@ -22,7 +22,7 @@ public class UserCSVParser {
     public static ArrayList<User> users;
 
     @TargetApi(19)
-    public static void parseCSV(Context context) throws IOException {
+    public static ArrayList<User> parseCSV(Context context) throws IOException {
 
         //Path file = FileSystems.getDefault().getPath(".", "paper_details.csv");
         InputStreamReader is = new InputStreamReader(context.getAssets()
@@ -36,13 +36,11 @@ public class UserCSVParser {
 
         CsvContainer csv = csvReader.read(reader);
         for (CsvRow row : csv.getRows()) {
-            //System.out.println("First column of line: " + row.getField("name"));
             String name = row.getField("Name");
             String email = row.getField("Email");
             String company = row.getField("Company");
             String location = row.getField("Location");
             String bio = row.getField("Bio");
-//            String[] interest = row.getField("Interests").split(",");
             String interest = row.getField("Interests");
             String typeOfUser = row.getField("Type of User");
             User user = new User(null, name, email, company, location, bio, interest, null, typeOfUser, null, null);
@@ -50,7 +48,7 @@ public class UserCSVParser {
 
         }
 
-
+        return users;
 
     }
 

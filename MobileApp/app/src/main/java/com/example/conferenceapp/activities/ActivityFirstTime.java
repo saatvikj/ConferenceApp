@@ -22,7 +22,7 @@ public class ActivityFirstTime extends AppCompatActivity {
     Context context;
     EditText emailField;
     Button button;
-    Conference conference = null;
+    Conference conference;
     private DatabaseReference mDatabase;
     private String final_email_id;
     private String final_joining_code;
@@ -32,20 +32,22 @@ public class ActivityFirstTime extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first_time);
 
+        context = getApplicationContext();
         emailField = findViewById(R.id.editTextUsername);
         button = findViewById(R.id.joiningCodeButton);
 
         try {
             conference = ConferenceCSVParser.parseCSV(context);
+
         } catch (Exception e) {
 
         }
-
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final String emailId = emailField.getText().toString();
-                final String conference_id = "d52d1b95-ad2d-46de-8145-1844b15792d5";
+                final String conference_id = conference.getConference_id();
+                emailField.setText("");
                 mDatabase = FirebaseDatabase.getInstance().getReference();
                 mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -56,7 +58,6 @@ public class ActivityFirstTime extends AppCompatActivity {
                             if(email.equals(emailId)){
                                 final_joining_code = c.getJoining_code();
                                 final_email_id = email;
-                                Toast.makeText(getApplicationContext(),final_joining_code,Toast.LENGTH_LONG).show();
                                 break;
                             }
                         }
@@ -70,25 +71,28 @@ public class ActivityFirstTime extends AppCompatActivity {
                 String[] details = {final_email_id, final_joining_code};
                 new EmailClient().execute(details);
 
+                button.setText(R.string.joining_code_verify);
+                emailField.setHint(R.string.joining_code);
+
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String user_input = emailField.getText().toString();
+                        if(user_input.equals(final_joining_code)){
+                            Intent intent = new Intent(ActivityFirstTime.this, ActivitySetPassword.class);
+                            intent.putExtra("email", final_email_id);
+                            intent.putExtra("Source","paid");
+                            startActivity(intent);
+                        }
+                        else{
+                            Toast.makeText(getApplicationContext(), "Joining code incorrect!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
             }
         });
 
-        button.setText(R.string.joining_code_verify);
-        emailField.setHint(R.string.joining_code);
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String user_input = emailField.getText().toString();
-                if(user_input.equals(final_joining_code)){
-                    Intent intent = new Intent(ActivityFirstTime.this, ActivitySetPassword.class);
-                    intent.putExtra("email", final_email_id);
-                    startActivity(intent);
-                }
-                else{
-                    Toast.makeText(getApplicationContext(), "Joining code incorrect!", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
     }
 }

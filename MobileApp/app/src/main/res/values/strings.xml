@@ -19,4 +19,5 @@ At this year’s CHI – pronounced ‘kai’ – the theme will be engage. Our 
     <string name="title_activity_first_time">ActivityFirstTime</string>
     <string name="joining_code_verify">VERIFY</string>
     <string name="joining_code">Joining Code</string>
+    <string name="title_activity_user_profile">ActivityUserProfile</string>
 </resources>

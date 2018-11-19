@@ -48,6 +48,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activities.ActivitySetPassword" />
         <activity android:name=".activities.ActivityMyProfile"></activity>
+        <activity android:name=".activities.ActivityUserProfile"></activity>
     </application>
 
 </manifest>

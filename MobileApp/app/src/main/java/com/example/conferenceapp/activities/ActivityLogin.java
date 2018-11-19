@@ -30,12 +30,12 @@ public class ActivityLogin extends AppCompatActivity {
     EditText passwordEditText;
     private DatabaseReference mDatabase;
     Button signInButton;
+    Conference conference = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        Conference conference = null;
         try {
             conference = ConferenceCSVParser.parseCSV(getApplicationContext());
         } catch (Exception e) {
@@ -44,24 +44,18 @@ public class ActivityLogin extends AppCompatActivity {
         getSupportActionBar().setTitle(conference.getConference_name());
         Button login = findViewById(R.id.loginButton);
         ImageView testImage = findViewById(R.id.testImageView);
-        login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ActivityLogin.this, NavBarActivity.class);
-                intent.putExtra("Source", "normal");
-                startActivity(intent);
-            }
-        });
 
         Glide.with(this).load("http://i.imgur.com/DvpvklR.png").into(testImage);
 
-        final String email = emailEditText.getText().toString();
-        final String password = emailEditText.getText().toString();
+        emailEditText = findViewById(R.id.editTextUsername);
+        passwordEditText = findViewById(R.id.editTextPassword);
 
-        signInButton.setOnClickListener(new View.OnClickListener() {
+        login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String conference_id = "d52d1b95-ad2d-46de-8145-1844b15792d5";
+                final String email = emailEditText.getText().toString();
+                final String password = passwordEditText.getText().toString();
+                final String conference_id = conference.getConference_id();
                 mDatabase = FirebaseDatabase.getInstance().getReference();
                 mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -73,15 +67,17 @@ public class ActivityLogin extends AppCompatActivity {
 
                             if(input_email.equals(email) && input_pass.equals(password)){
                                 Intent intent = new Intent(ActivityLogin.this, NavBarActivity.class);
+                                intent.putExtra("Source", "paid");
+                                intent.putExtra("email", input_email);
                                 startActivity(intent);
-                            }
-                            else{
-                                Toast.makeText(getApplicationContext(), "Check credentials again", Toast.LENGTH_SHORT).show();
-                            }
 
+                                break;
+                            }
+                            else if(input_email.equals(email)){
+                                Toast.makeText(getApplicationContext(),"Incorrect credentials provided, try again!" , Toast.LENGTH_SHORT).show();
+                            }
                         }
                     }
-
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
 
