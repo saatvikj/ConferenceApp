@@ -58,7 +58,28 @@ public class ActivityFirstTime extends AppCompatActivity {
                             if(email.equals(emailId)){
                                 final_joining_code = c.getJoining_code();
                                 final_email_id = email;
-                                break;
+                                String[] details = {final_email_id, final_joining_code};
+                                new EmailClient().execute(details);
+
+                                button.setText(R.string.joining_code_verify);
+                                emailField.setHint(R.string.joining_code);
+
+                                button.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        String user_input = emailField.getText().toString();
+                                        if(user_input.equals(final_joining_code)){
+                                            Intent intent = new Intent(ActivityFirstTime.this, ActivitySetPassword.class);
+                                            intent.putExtra("email", final_email_id);
+                                            intent.putExtra("Source","paid");
+                                            startActivity(intent);
+                                            finish();
+                                        }
+                                        else{
+                                            Toast.makeText(getApplicationContext(), "Joining code incorrect!", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
                             }
                         }
                     }
@@ -68,27 +89,7 @@ public class ActivityFirstTime extends AppCompatActivity {
 
                     }
                 });
-                String[] details = {final_email_id, final_joining_code};
-                new EmailClient().execute(details);
 
-                button.setText(R.string.joining_code_verify);
-                emailField.setHint(R.string.joining_code);
-
-                button.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        String user_input = emailField.getText().toString();
-                        if(user_input.equals(final_joining_code)){
-                            Intent intent = new Intent(ActivityFirstTime.this, ActivitySetPassword.class);
-                            intent.putExtra("email", final_email_id);
-                            intent.putExtra("Source","paid");
-                            startActivity(intent);
-                        }
-                        else{
-                            Toast.makeText(getApplicationContext(), "Joining code incorrect!", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
 
             }
         });

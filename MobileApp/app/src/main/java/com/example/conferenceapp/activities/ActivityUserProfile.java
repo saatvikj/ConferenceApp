@@ -55,7 +55,8 @@ public class ActivityUserProfile extends AppCompatActivity {
                     final Profile p = d.getValue(Profile.class);
                     if (p.getEmailID().equals(email_of_user)) {
                         AboutPage aboutPage = new AboutPage(getApplicationContext())
-                                .isRTL(false);
+                                .isRTL(false).setImage(R.drawable.femaleuser);
+
 
                         Element email = new Element();
                         email.setTitle("Contact me on mail");
@@ -69,11 +70,13 @@ public class ActivityUserProfile extends AppCompatActivity {
                             }
                         });
 
+                        aboutPage.addItem(email);
+
                         if (p.getResearchInterests().length() != 0) {
                             String description = p.getBio();
-                            description.concat("/n");
-                            description.concat("Research Interests and fields for collaboration: ");
-                            description.concat(p.getResearchInterests());
+                            description = description.concat("\n");
+                            description = description.concat("Research Interests and fields for collaboration: ");
+                            description = description.concat(p.getResearchInterests());
 
                             aboutPage.setDescription(description);
                         }

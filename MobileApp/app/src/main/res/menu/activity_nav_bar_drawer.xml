@@ -33,6 +33,7 @@
             android:id="@+id/nav_messages"
             android:background="#78909c"
             android:icon="@drawable/ic_message_black_24dp"
+            android:visible="false"
             android:title="Messages" />
         <item
             android:id="@+id/nav_location"
