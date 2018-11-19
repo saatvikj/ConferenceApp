@@ -198,14 +198,14 @@ body {
 }
 
 .content-main-form-left {
-  display: table;
+  display: table-cell;
   vertical-align: middle;
   position: relative;
   padding-left: 100px;
   padding-right: 120px;
-  background-color: blue;
-  top: 40px;
-
+  height: 100%;
+  text-align: center;
+  top: 130px;
 }
 
 .content-main-signup-right {
