@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -42,28 +43,38 @@ public class ActivityCreatePost extends AppCompatActivity {
         contentEditText = findViewById(R.id.postContentEditText);
         createButton = findViewById(R.id.createPostButton);
         final String email = getIntent().getStringExtra("email");
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+        createButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot d: dataSnapshot.child(conference_id).child("Users").getChildren()){
-                    User c = d.getValue(User.class);
-                    String input_email = c.getEmail();
+            public void onClick(View view) {
+                mDatabase = FirebaseDatabase.getInstance().getReference();
+                mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for(DataSnapshot d: dataSnapshot.child(conference_id).child("Users").getChildren()){
+                            User c = d.getValue(User.class);
+                            String input_email = c.getEmail();
 
-                    if(email.equals(input_email)){
-                        String name = c.getName();
-                        String content = contentEditText.getText().toString();
-                        String time = "0 h";
-                        Integer likes = 0;
-                        FeedPost post = new FeedPost(name, time, content, null, likes, null);
-                        mDatabase = FirebaseDatabase.getInstance().getReference();
-                        mDatabase.child(conference_id).child("Posts").push().setValue(post);
-                        break;
+                            if(email.equals(input_email)){
+                                String name = c.getName();
+                                String content = contentEditText.getText().toString();
+                                String time = "0 h";
+                                Integer likes = 0;
+                                Toast.makeText(getApplicationContext(),content,Toast.LENGTH_SHORT).show();
+                                FeedPost post = new FeedPost(name, time, content, null, likes, null);
+                                mDatabase = FirebaseDatabase.getInstance().getReference();
+                                mDatabase.child(conference_id).child("Posts").push().setValue(post);
+                                Intent intent = new Intent(ActivityCreatePost.this, NavBarActivity.class);
+                                intent.putExtra("Source","paid");
+                                intent.putExtra("email",email);
+                                break;
+                            }
+                        }
                     }
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
 
             }
         });
@@ -85,6 +96,7 @@ public class ActivityCreatePost extends AppCompatActivity {
         if (item.getItemId() == R.id.create_cancel) {
             Intent intent = new Intent(ActivityCreatePost.this, NavBarActivity.class);
             intent.putExtra("Source", "paid");
+            intent.putExtra("email",getIntent().getStringExtra("email"));
             startActivity(intent);
             return true;
         }

@@ -50,9 +50,11 @@ public class EmailClient extends AsyncTask<String, Integer, Void> {
 
             Message message = new MimeMessage(session);
             message.setFrom (new InternetAddress (username));
-            message.setRecipients (Message.RecipientType.TO, InternetAddress.parse("jain.saatvik3@gmail.com"));
-            message.setSubject ("Your mail from Mailjet");
-            message.setText (Arrays.toString(strings));
+            message.setRecipients (Message.RecipientType.TO, InternetAddress.parse(email));
+            message.setSubject ("Your joining code is here!");
+            message.setText (("Greetings from the team at Conference portal!").concat("\n").concat("Here is your joining code for the appplication: ")
+            .concat(joining_code).concat("\n").concat("We hope you have a good experience!").concat("\n").concat("Thanks and regards").concat("\n")
+            .concat("The Conference Portal Team"));
 
             Transport.send (message);
 

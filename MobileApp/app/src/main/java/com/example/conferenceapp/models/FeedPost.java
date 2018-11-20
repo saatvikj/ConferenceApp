@@ -11,6 +11,10 @@ public class FeedPost {
     public Integer likes;
     public String[] comments;
 
+    public FeedPost() {
+
+    }
+
     public FeedPost(String name, String time, String content, Uri media, Integer likes, String[] comments) {
         this.name = name;
         this.time = time;

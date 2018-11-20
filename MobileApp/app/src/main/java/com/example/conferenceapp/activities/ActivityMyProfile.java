@@ -106,6 +106,7 @@ public class ActivityMyProfile extends AppCompatActivity {
         if (item.getItemId() == R.id.guide_home) {
             Intent intent = new Intent(ActivityMyProfile.this, NavBarActivity.class);
             intent.putExtra("Source", getIntent().getStringExtra("Source"));
+            intent.putExtra("email",getIntent().getStringExtra("email"));
             startActivity(intent);
             return true;
         }

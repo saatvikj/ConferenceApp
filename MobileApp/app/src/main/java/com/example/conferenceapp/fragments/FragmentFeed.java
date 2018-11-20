@@ -1,7 +1,9 @@
 package com.example.conferenceapp.fragments;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -16,6 +18,12 @@ import com.example.conferenceapp.models.FeedPost;
 import com.example.conferenceapp.adapters.PostAdapter;
 import com.example.conferenceapp.R;
 import com.example.conferenceapp.activities.ActivityCreatePost;
+import com.example.conferenceapp.utils.ConferenceCSVParser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.net.URI;
 import java.net.URL;
@@ -29,6 +37,9 @@ public class FragmentFeed extends Fragment {
     RecyclerView recyclerView;
     FloatingActionButton fab;
     Conference conference = null;
+    DatabaseReference mDatabase;
+    List<FeedPost> posts;
+    Context ctx;
 
     @Nullable
     @Override
@@ -41,24 +52,16 @@ public class FragmentFeed extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
-        RecyclerView recyclerView = view.findViewById(R.id.mFeedView);
+        try {
+            conference = ConferenceCSVParser.parseCSV(getContext());
+        } catch (Exception e) {
+
+        }
+        recyclerView = view.findViewById(R.id.mFeedView);
         fab = view.findViewById(R.id.fab);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        List<FeedPost> posts = new ArrayList<>();
-
-        posts.add(new FeedPost("Letha Lyvers", "14h ago", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.", null, 10, null));
-        posts.add(new FeedPost("Gayla Sprague", "4h ago", "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.", null, 20, null));
-        posts.add(new FeedPost("Letha Lyvers", "14h ago", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.", null, 10, null));
-        posts.add(new FeedPost("Gayla Sprague", "14h ago", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.", null, 10, null));
-        posts.add(new FeedPost("Letha Lyvers", "4h ago", "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.", null, 20, null));
-        posts.add(new FeedPost("Gayla Sprague", "4h ago", "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.", null, 20, null));
-        posts.add(new FeedPost("Letha Lyvers", "14h ago", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.", null, 10, null));
-        posts.add(new FeedPost("Gayla Sprague", "14h ago", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.", null, 10, null));
-        posts.add(new FeedPost("Letha Lyvers", "4h ago", "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.", null, 20, null));
-        posts.add(new FeedPost("Gayla Sprague", "4h ago", "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.", null, 20, null));
-        PostAdapter postAdapter = new PostAdapter(posts,view.getContext());
-        recyclerView.setAdapter(postAdapter);
-
+        posts = new ArrayList<>();
+        ctx = view.getContext();
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener(){
             @Override
             public void onScrolled(RecyclerView recyclerView, int dx, int dy){
@@ -86,5 +89,23 @@ public class FragmentFeed extends Fragment {
             }
         });
 
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot d: dataSnapshot.child(conference.getConference_id()).child("Posts").getChildren()) {
+                    FeedPost fp = d.getValue(FeedPost.class);
+                    posts.add(fp);
+                }
+
+                PostAdapter postAdapter = new PostAdapter(posts,ctx);
+                recyclerView.setAdapter(postAdapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 }

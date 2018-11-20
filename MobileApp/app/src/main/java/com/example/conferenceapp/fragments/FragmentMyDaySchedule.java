@@ -106,6 +106,10 @@ public class FragmentMyDaySchedule extends Fragment implements Serializable {
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), ActivityPaperDetails.class);
                 intent.putExtra("Paper", copy);
+                intent.putExtra("Source",getActivity().getIntent().getStringExtra("Source"));
+                if (!(getActivity().getIntent().getStringExtra("Source")).equals("skip")) {
+                    intent.putExtra("email", getActivity().getIntent().getStringExtra("email"));
+                }
                 startActivity(intent);
             }
         });
@@ -173,7 +177,7 @@ public class FragmentMyDaySchedule extends Fragment implements Serializable {
             times[i] = conference.getConference_food_guide()[i].getStartTime();
         }
         Arrays.sort(times);
-
+        boolean all_added = false;
         int papers_before_first_break = makeTimeView(root, inflater, 0000, times[0], date_for_page);
         if (papers_before_first_break == 0) {
             addNotificationForNoPapers(root, inflater);
@@ -192,6 +196,8 @@ public class FragmentMyDaySchedule extends Fragment implements Serializable {
             if (papers == 0) {
                 addNotificationForNoPapers(root, inflater);
             }
+
+            all_added = true;
         } else {
             int papers = makeTimeView(root, inflater, break_end, times[j], date_for_page);
             if (papers == 0) {
@@ -209,7 +215,7 @@ public class FragmentMyDaySchedule extends Fragment implements Serializable {
             }
         }
 
-        if (j>= number_of_breaks) {
+        if (j>= number_of_breaks && !all_added) {
             int papers = makeTimeView(root, inflater, break_end, 2359, date_for_page);
             if (papers == 0) {
                 addNotificationForNoPapers(root, inflater);

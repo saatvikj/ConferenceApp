@@ -100,6 +100,9 @@ public class ActivityPaperDetails extends AppCompatActivity implements Serializa
         if (item.getItemId() == R.id.guide_home) {
             Intent intent = new Intent(ActivityPaperDetails.this, NavBarActivity.class);
             intent.putExtra("Source", getIntent().getStringExtra("Source"));
+            if (!(getIntent().getStringExtra("Source")).equals("skip")) {
+                intent.putExtra("email", getIntent().getStringExtra("email"));
+            }
             startActivity(intent);
             return true;
         }

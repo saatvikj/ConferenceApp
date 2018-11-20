@@ -180,6 +180,7 @@ public class ActivityUserProfile extends AppCompatActivity {
         if (item.getItemId() == R.id.guide_home) {
             Intent intent = new Intent(ActivityUserProfile.this, NavBarActivity.class);
             intent.putExtra("Source", getIntent().getStringExtra("Source"));
+            intent.putExtra("email", getIntent().getStringExtra("email"));
             startActivity(intent);
             return true;
         }
