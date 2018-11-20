@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.conferenceapp.models.Conference;
 import com.example.conferenceapp.models.FeedPost;
 import com.example.conferenceapp.adapters.PostAdapter;
 import com.example.conferenceapp.R;
@@ -27,6 +28,7 @@ public class FragmentFeed extends Fragment {
     URL url = null;
     RecyclerView recyclerView;
     FloatingActionButton fab;
+    Conference conference = null;
 
     @Nullable
     @Override
@@ -38,10 +40,12 @@ public class FragmentFeed extends Fragment {
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
+
         RecyclerView recyclerView = view.findViewById(R.id.mFeedView);
         fab = view.findViewById(R.id.fab);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
         List<FeedPost> posts = new ArrayList<>();
+
         posts.add(new FeedPost("Letha Lyvers", "14h ago", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.", null, 10, null));
         posts.add(new FeedPost("Gayla Sprague", "4h ago", "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.", null, 20, null));
         posts.add(new FeedPost("Letha Lyvers", "14h ago", "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.", null, 10, null));
@@ -76,6 +80,8 @@ public class FragmentFeed extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(getActivity(), ActivityCreatePost.class);
+                i.putExtra("email",getActivity().getIntent().getStringExtra("email"));
+                i.putExtra("Source", "paid");
                 startActivity(i);
             }
         });

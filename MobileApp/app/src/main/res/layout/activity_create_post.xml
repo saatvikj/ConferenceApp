@@ -17,6 +17,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:id="@+id/postContentEditText"
             android:padding="8dp"
             android:backgroundTint="@color/greyBackground"
             android:gravity="top|left"
@@ -70,6 +71,7 @@
 
             <Button
                 android:layout_width="match_parent"
+                android:id="@+id/createPostButton"
                 android:layout_height="wrap_content"
                 android:background="@drawable/ghostbutton"
                 android:includeFontPadding="false"
