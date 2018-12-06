@@ -1,6 +1,7 @@
 package com.example.conferenceapp.activities;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -17,6 +18,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.amulyakhare.textdrawable.TextDrawable;
 import com.example.conferenceapp.fragments.FragmentAbout;
 import com.example.conferenceapp.fragments.FragmentConferenceSchedule;
 import com.example.conferenceapp.fragments.FragmentFeed;
@@ -41,6 +43,7 @@ public class NavBarActivity extends AppCompatActivity
 
     public String src;
     Conference conference;
+    ImageView userIcon;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +63,7 @@ public class NavBarActivity extends AppCompatActivity
         toggle.syncState();
         final NavigationView navigationView = findViewById(R.id.nav_view);
         if(src.equals("skip")) {
+            userIcon = navigationView.getHeaderView(0).findViewById(R.id.imageView);
             disableOptionsNavigationView(navigationView);
             TextView name = navigationView.getHeaderView(0).findViewById(R.id.nameHeading);
             name.setText("Guest");
@@ -71,7 +75,7 @@ public class NavBarActivity extends AppCompatActivity
             navigationView.setNavigationItemSelectedListener(this);
             navigationView.setItemIconTintList(null);
             displaySelectedScreen(0);
-            ImageView userIcon = navigationView.getHeaderView(0).findViewById(R.id.imageView);
+
             FirebaseDatabase.getInstance().getReference().addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -80,7 +84,9 @@ public class NavBarActivity extends AppCompatActivity
                         if (u.getEmail().equals(getIntent().getStringExtra("email"))) {
                             TextView name = navigationView.getHeaderView(0).findViewById(R.id.nameHeading);
                             TextView email = navigationView.getHeaderView(0).findViewById(R.id.emailHeading);
-
+                            String initial = u.getName().substring(0, 0);
+                            TextDrawable drawable1 = TextDrawable.builder().buildRound(initial, Color.CYAN);
+                            userIcon.setImageDrawable(drawable1);
                             name.setText(u.getName());
                             email.setText(u.getEmail());
                         }
