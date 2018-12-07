@@ -1,6 +1,7 @@
 package com.example.conferenceapp.activities;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +31,7 @@ public class ActivityLogin extends AppCompatActivity {
     EditText emailEditText;
     EditText passwordEditText;
     private DatabaseReference mDatabase;
+    ProgressDialog progressDialog;
     Button signInButton;
     Conference conference = null;
 
@@ -49,10 +52,14 @@ public class ActivityLogin extends AppCompatActivity {
 
         emailEditText = findViewById(R.id.editTextUsername);
         passwordEditText = findViewById(R.id.editTextPassword);
-
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.setMessage("Logging In");
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressDialog.show();
                 final String email = emailEditText.getText().toString();
                 final String password = passwordEditText.getText().toString();
                 final String conference_id = conference.getConference_id();
@@ -66,6 +73,7 @@ public class ActivityLogin extends AppCompatActivity {
                             String input_pass = c.getPassword();
 
                             if(input_email.equals(email) && input_pass.equals(password)){
+                                progressDialog.hide();
                                 Intent intent = new Intent(ActivityLogin.this, NavBarActivity.class);
                                 intent.putExtra("Source", "paid");
                                 intent.putExtra("email", input_email);
@@ -74,6 +82,7 @@ public class ActivityLogin extends AppCompatActivity {
                                 break;
                             }
                             else if(input_email.equals(email)){
+                                progressDialog.hide();
                                 Toast.makeText(getApplicationContext(),"Incorrect credentials provided, try again!" , Toast.LENGTH_SHORT).show();
                             }
                         }

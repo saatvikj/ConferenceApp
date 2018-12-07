@@ -1,5 +1,6 @@
 package com.example.conferenceapp.activities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -28,6 +29,7 @@ public class ActivitySetPassword extends AppCompatActivity {
     String confirmedPassword;
     private DatabaseReference mDatabase;
     Conference conference = null;
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,13 +45,17 @@ public class ActivitySetPassword extends AppCompatActivity {
 
         newPasswordField = findViewById(R.id.editTextNewPassword);
         confirmPasswordField = findViewById(R.id.editTextConfirmPassword);
-
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        progressDialog.setMessage("Resetting Password");
 
         verifyButton = (Button) findViewById(R.id.verifyButton);
 
         verifyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressDialog.show();
                 enteredPassword = newPasswordField.getText().toString();
                 confirmedPassword = confirmPasswordField.getText().toString();
                 if(enteredPassword.equals(confirmedPassword)){
@@ -61,6 +67,7 @@ public class ActivitySetPassword extends AppCompatActivity {
                             for(DataSnapshot d: dataSnapshot.child(conference_id).child("Users").getChildren()){
                                 User c = d.getValue(User.class);
                                 if (email.equals(c.getEmail())) {
+                                    progressDialog.hide();
                                     c.setPassword(enteredPassword);
                                     Toast.makeText(getApplicationContext(), c.getPassword(), Toast.LENGTH_LONG).show();
                                     mDatabase.child(conference_id).child("Users").child(d.getKey()).setValue(c);
@@ -78,6 +85,7 @@ public class ActivitySetPassword extends AppCompatActivity {
                         }
                     });
                 } else {
+                    progressDialog.hide();
                     Toast.makeText(getApplicationContext(),"Passwords don't match!",Toast.LENGTH_SHORT).show();
                 }
             }

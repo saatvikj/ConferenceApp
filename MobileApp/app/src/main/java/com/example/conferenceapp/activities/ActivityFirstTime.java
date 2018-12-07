@@ -84,6 +84,7 @@ public class ActivityFirstTime extends AppCompatActivity {
                                             finish();
                                         }
                                         else{
+                                            progressBar.hide();
                                             Toast.makeText(getApplicationContext(), "Joining code incorrect!", Toast.LENGTH_SHORT).show();
                                         }
                                     }
