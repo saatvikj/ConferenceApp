@@ -108,64 +108,64 @@
             android:layout_marginRight="14dp"
             android:background="@color/greyBackground" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="@dimen/feed_item_padding_top_bottom"
-            android:paddingTop="@dimen/feed_item_padding_top_bottom"
-            android:weightSum="1">
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="horizontal"-->
+            <!--android:paddingBottom="@dimen/feed_item_padding_top_bottom"-->
+            <!--android:paddingTop="@dimen/feed_item_padding_top_bottom"-->
+            <!--android:weightSum="1">-->
 
 
-            <LinearLayout
-                android:id="@+id/like"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:gravity="center"
-                android:orientation="horizontal">
+            <!--<LinearLayout-->
+                <!--android:id="@+id/like"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="0.5"-->
+                <!--android:gravity="center"-->
+                <!--android:orientation="horizontal">-->
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/ic_favorite_border_black_24dp"
-                    android:padding="4dp" />
+                <!--<ImageView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:background="@drawable/ic_favorite_border_black_24dp"-->
+                    <!--android:padding="4dp" />-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:fontFamily="sans-serif"
-                    android:id="@+id/nLikes"
-                    android:paddingLeft="8dp"
-                    android:text="Like"
-                    android:textSize="16sp" />
-            </LinearLayout>
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:fontFamily="sans-serif"-->
+                    <!--android:id="@+id/nLikes"-->
+                    <!--android:paddingLeft="8dp"-->
+                    <!--android:text="Like"-->
+                    <!--android:textSize="16sp" />-->
+            <!--</LinearLayout>-->
 
-            <LinearLayout
-                android:id="@+id/comment"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:gravity="center"
-                android:orientation="horizontal">
+            <!--<LinearLayout-->
+                <!--android:id="@+id/comment"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="0.5"-->
+                <!--android:gravity="center"-->
+                <!--android:orientation="horizontal">-->
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/ic_message_grey_24dp"
-                    android:padding="4dp" />
+                <!--<ImageView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:background="@drawable/ic_message_grey_24dp"-->
+                    <!--android:padding="4dp" />-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:fontFamily="sans-serif"
-                    android:paddingLeft="8dp"
-                    android:text="Comment"
-                    android:textSize="16sp" />
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:fontFamily="sans-serif"-->
+                    <!--android:paddingLeft="8dp"-->
+                    <!--android:text="Comment"-->
+                    <!--android:textSize="16sp" />-->
 
-            </LinearLayout>
+            <!--</LinearLayout>-->
 
-        </LinearLayout>
+        <!--</LinearLayout>-->
     </LinearLayout>
 
 
