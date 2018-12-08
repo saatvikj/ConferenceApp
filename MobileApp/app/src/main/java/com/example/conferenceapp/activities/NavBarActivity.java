@@ -75,7 +75,7 @@ public class NavBarActivity extends AppCompatActivity
             navigationView.setNavigationItemSelectedListener(this);
             navigationView.setItemIconTintList(null);
             displaySelectedScreen(0);
-
+            userIcon = navigationView.getHeaderView(0).findViewById(R.id.imageView);
             FirebaseDatabase.getInstance().getReference().addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -84,8 +84,8 @@ public class NavBarActivity extends AppCompatActivity
                         if (u.getEmail().equals(getIntent().getStringExtra("email"))) {
                             TextView name = navigationView.getHeaderView(0).findViewById(R.id.nameHeading);
                             TextView email = navigationView.getHeaderView(0).findViewById(R.id.emailHeading);
-                            String initial = u.getName().substring(0, 0);
-                            TextDrawable drawable1 = TextDrawable.builder().buildRound(initial, Color.CYAN);
+                            String initial = u.getName().substring(0, 1);
+                            TextDrawable drawable1 = TextDrawable.builder().buildRound(initial, Color.DKGRAY);
                             userIcon.setImageDrawable(drawable1);
                             name.setText(u.getName());
                             email.setText(u.getEmail());

@@ -3,6 +3,7 @@ package com.example.conferenceapp.activities;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -59,39 +60,7 @@ public class ActivityLogin extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressDialog.show();
-                final String email = emailEditText.getText().toString();
-                final String password = passwordEditText.getText().toString();
-                final String conference_id = conference.getConference_id();
-                mDatabase = FirebaseDatabase.getInstance().getReference();
-                mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        for(DataSnapshot d: dataSnapshot.child(conference_id).child("Users").getChildren()){
-                            User c = d.getValue(User.class);
-                            String input_email = c.getEmail();
-                            String input_pass = c.getPassword();
-
-                            if(input_email.equals(email) && input_pass.equals(password)){
-                                progressDialog.hide();
-                                Intent intent = new Intent(ActivityLogin.this, NavBarActivity.class);
-                                intent.putExtra("Source", "paid");
-                                intent.putExtra("email", input_email);
-                                startActivity(intent);
-
-                                break;
-                            }
-                            else if(input_email.equals(email)){
-                                progressDialog.hide();
-                                Toast.makeText(getApplicationContext(),"Incorrect credentials provided, try again!" , Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    }
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
+                new FirebaseAsyncTask().execute();
             }
         });
 
@@ -104,5 +73,60 @@ public class ActivityLogin extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+
+    class FirebaseAsyncTask extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected void onPreExecute() {
+            progressDialog.show();
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            final String email = emailEditText.getText().toString();
+            final String password = passwordEditText.getText().toString();
+            final String conference_id = conference.getConference_id();
+            mDatabase = FirebaseDatabase.getInstance().getReference();
+            mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+
+                    for(DataSnapshot d: dataSnapshot.child(conference_id).child("Users").getChildren()){
+                        User c = d.getValue(User.class);
+                        String input_email = c.getEmail();
+                        String input_pass = c.getPassword();
+
+                        if(input_email.equals(email) && input_pass.equals(password)){
+                            progressDialog.hide();
+                            Intent intent = new Intent(ActivityLogin.this, NavBarActivity.class);
+                            intent.putExtra("Source", "paid");
+                            intent.putExtra("email", input_email);
+                            startActivity(intent);
+                            finish();
+                            return;
+                        }
+                        else if(input_email.equals(email)){
+                            progressDialog.hide();
+                            Toast.makeText(getApplicationContext(),"Incorrect credentials provided, try again!" , Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+        }
     }
 }
