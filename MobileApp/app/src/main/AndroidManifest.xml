@@ -39,7 +39,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.ActivityFeedPost" />
         <activity android:name=".activities.ActivityCreatePost" />
         <activity android:name=".activities.ActivityPaperDetails" />
         <activity

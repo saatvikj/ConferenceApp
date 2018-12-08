@@ -61,7 +61,6 @@ public class PartnerAdapter extends RecyclerView.Adapter<PartnerAdapter.PartnerV
 
         TextView name;
         TextView type;
-        ImageView photo;
 
 
         public PartnerViewHolder(View itemView) {
@@ -69,7 +68,6 @@ public class PartnerAdapter extends RecyclerView.Adapter<PartnerAdapter.PartnerV
 
             name = itemView.findViewById(R.id.partnerName);
             type = itemView.findViewById(R.id.partnerType);
-            photo = itemView.findViewById(R.id.partnerImage);
 
 
         }
