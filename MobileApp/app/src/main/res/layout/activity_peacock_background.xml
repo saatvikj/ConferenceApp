@@ -25,7 +25,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
-                android:text="Tenth International Conference on Information and Communication Technologies and Development"
+                android:text="The Tenth International Conference on Information and Communication Technologies and Development"
                 android:layout_weight="10"
                 android:gravity="bottom"
                 android:layout_marginBottom="52dp"

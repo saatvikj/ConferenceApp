@@ -1,6 +1,7 @@
 package com.example.conferenceapp.activities;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -13,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.amulyakhare.textdrawable.TextDrawable;
 import com.example.conferenceapp.R;
 import com.example.conferenceapp.models.Conference;
 import com.example.conferenceapp.models.Profile;
@@ -54,6 +56,9 @@ public class ActivityUserProfile extends AppCompatActivity {
                 for (DataSnapshot d: dataSnapshot.child(conference.getConference_id()).child("Profiles").getChildren()) {
                     final Profile p = d.getValue(Profile.class);
                     if (p.getEmailID().equals(email_of_user)) {
+
+                        String user_name = "DH";
+                        TextDrawable drawable1 = TextDrawable.builder().buildRound(user_name, Color.DKGRAY);
                         AboutPage aboutPage = new AboutPage(getApplicationContext())
                                 .isRTL(false).setImage(R.drawable.femaleuser);
 
@@ -70,7 +75,7 @@ public class ActivityUserProfile extends AppCompatActivity {
                             }
                         });
 
-                        aboutPage.addItem(email);
+
 
                         if (p.getResearchInterests().length() != 0) {
                             String description = p.getBio();
