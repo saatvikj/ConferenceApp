@@ -65,6 +65,7 @@ public class ActivityUserProfile extends AppCompatActivity {
 
                         Element email = new Element();
                         email.setTitle("Contact me on mail");
+                        email.setIconDrawable(R.drawable.about_icon_email);
                         email.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
@@ -88,6 +89,7 @@ public class ActivityUserProfile extends AppCompatActivity {
 
                         if (p.getTwitter().length() != 0) {
                             Element twitter = new Element();
+                            twitter.setIconDrawable(R.drawable.about_icon_twitter);
                             twitter.setTitle("Find me on Twitter");
                             twitter.setOnClickListener(new View.OnClickListener() {
                                 @Override
@@ -102,6 +104,7 @@ public class ActivityUserProfile extends AppCompatActivity {
 
                         if (p.getWebsite().length() != 0) {
                             Element website = new Element();
+                            website.setIconDrawable(R.drawable.about_icon_link);
                             website.setTitle("On the web");
                             website.setOnClickListener(new View.OnClickListener() {
                                 @Override
@@ -116,6 +119,7 @@ public class ActivityUserProfile extends AppCompatActivity {
 
                         if (p.getLinkedin().length() != 0) {
                             Element linkedin = new Element();
+                            linkedin.setIconDrawable(R.drawable.about_icon_link);
                             linkedin.setTitle("My LinkdIn");
                             linkedin.setOnClickListener(new View.OnClickListener() {
                                 @Override
@@ -141,6 +145,7 @@ public class ActivityUserProfile extends AppCompatActivity {
                             AboutPage about = new AboutPage(getApplicationContext()).isRTL(false);
                             Element email = new Element();
                             email.setTitle("Contact me on mail");
+                            email.setIconDrawable(R.drawable.about_icon_email);
                             email.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
@@ -150,10 +155,10 @@ public class ActivityUserProfile extends AppCompatActivity {
                                     startActivity(intent);
                                 }
                             });
-
+                            about.addItem(email);
                             if (u.getInterests().length() != 0) {
                                 String description = u.getBio();
-                                description.concat("/n");
+                                description.concat("\n");
                                 description.concat("Research Interests and fields for collaboration: ");
                                 description.concat(u.getInterests());
 
