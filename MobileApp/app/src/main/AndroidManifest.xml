@@ -46,8 +46,9 @@
             android:label="@string/title_activity_first_time"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activities.ActivitySetPassword" />
-        <activity android:name=".activities.ActivityMyProfile"></activity>
-        <activity android:name=".activities.ActivityUserProfile"></activity>
+        <activity android:name=".activities.ActivityMyProfile" />
+        <activity android:name=".activities.ActivityUserProfile" />
+        <activity android:name=".activities.ActivityKeynote"></activity>
     </application>
 
 </manifest>
