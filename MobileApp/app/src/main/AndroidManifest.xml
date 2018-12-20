@@ -48,7 +48,8 @@
         <activity android:name=".activities.ActivitySetPassword" />
         <activity android:name=".activities.ActivityMyProfile" />
         <activity android:name=".activities.ActivityUserProfile" />
-        <activity android:name=".activities.ActivityKeynote"></activity>
+        <activity android:name=".activities.ActivityKeynote" />
+        <activity android:name=".activities.ActivitySessionDetails"></activity>
     </application>
 
 </manifest>

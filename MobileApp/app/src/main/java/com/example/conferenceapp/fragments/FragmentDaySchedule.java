@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.example.conferenceapp.R;
 import com.example.conferenceapp.activities.ActivityKeynote;
 import com.example.conferenceapp.activities.ActivityPaperDetails;
+import com.example.conferenceapp.activities.ActivitySessionDetails;
 import com.example.conferenceapp.models.Conference;
 import com.example.conferenceapp.models.Food;
 import com.example.conferenceapp.models.Paper;
@@ -115,7 +116,7 @@ public class FragmentDaySchedule extends Fragment implements Serializable {
                     if (session.getType().equals("Keynote")) {
                         intent = new Intent(getActivity(), ActivityKeynote.class);
                     } else {
-                        intent = new Intent(getActivity(), ActivityPaperDetails.class);
+                        intent = new Intent(getActivity(), ActivitySessionDetails.class);
                     }
                     intent.putExtra("id", Integer.toString(session.getID()));
                     intent.putExtra("Source", getActivity().getIntent().getStringExtra("Source"));

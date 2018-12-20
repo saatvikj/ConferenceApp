@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.ramotion.foldingcell.FoldingCell
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/folding_cell"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:id="@+id/cell_content_view">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Online Sexual Harassment over Anonymous Social Media in Bangladesh"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:paddingBottom="4dp"
+                android:id="@+id/session_content_title"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="This paper presents the findings on the use of Anonymous Social Media (ASM) in Bangladesh based on an anonymous online survey of 291 participants and semi-structured interviews with 27 participants. Our study shows a wide prevalence of sexual harassment on anonymous social networks in Bangladesh, the relationship between a closely-knitted communal culture and anonymous harassment, and the lack of infrastructural support for the victims. These findings advocate for a safe and supportive online environment for its users, especially for women who are the primary victims of profanity or defamation in Bangladesh."
+                android:textSize="12sp"
+                android:paddingBottom="4dp"
+                android:id="@+id/session_content_abstract"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="* Fayika Farhat Nova (Marquette University)
+* Md. Rashidujjaman Rifat (University of Toronto)
+* Pratyasha Saha (Dhaka University)
+* Syed Ishtiaque Ahmed (University of Toronto)
+* Shion Guha (Marquette University)"
+                android:textSize="12sp"
+                android:paddingBottom="8dp"
+                android:id="@+id/session_content_authors"/>
+
+            <view
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/greyBackground" />
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:id="@+id/cell_title_view">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Online Sexual Harassment over Anonymous Social Media in Bangladesh"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:paddingBottom="4dp"
+                android:id="@+id/session_title"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Fayika Farhat Nova, Md. Rashidujjaman Rifat, Pratyasha Saha, Syed Ishtiaque Ahmed, Shion Guha"
+                android:textSize="12sp"
+                android:paddingBottom="8dp"
+                android:id="@+id/session_authors"/>
+
+            <view
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/greyBackground" />
+
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+</com.ramotion.foldingcell.FoldingCell>
