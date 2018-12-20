@@ -2,8 +2,11 @@ package com.example.conferenceapp.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 
 import com.example.conferenceapp.R;
@@ -22,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
 
         }
+
 
         Button login = findViewById(R.id.loginButton);
         login.setOnClickListener(new View.OnClickListener() {

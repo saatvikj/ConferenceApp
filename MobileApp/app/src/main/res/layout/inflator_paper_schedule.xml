@@ -39,8 +39,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/paperVenue"
                 android:textSize="18sp"
-                android:text="HALL A"
-                android:textStyle="bold"
+                android:text="Hall A"
                 android:fontFamily="sans-serif-light"
                 android:textColor="@color/tabtextcolor" />
 

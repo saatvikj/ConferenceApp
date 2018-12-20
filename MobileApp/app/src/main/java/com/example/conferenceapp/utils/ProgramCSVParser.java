@@ -28,6 +28,7 @@ public class ProgramCSVParser {
         CsvReader csvReader = new CsvReader();
         Conference conference = null;
         CsvContainer csv = csvReader.read(reader);
+        sessions = new ArrayList<Session>();
 
         for (CsvRow row : csv.getRows()) {
             int id = Integer.parseInt(row.getField(0));

@@ -13,15 +13,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     static final String DB_NAME = "USER_AGENDA.DB";
 
     // database version
-    static final int DB_VERSION = 1;
+    static final int DB_VERSION = 2;
 
     private static final String CREATE_TABLE = "CREATE TABLE `PAPERS` (\n" +
             "\t`title`\tTEXT,\n" +
-            "\t`authors`\tTEXT,\n" +
-            "\t`topics`\tTEXT,\n" +
-            "\t`venue`\tTEXT,\n" +
             "\t`schedule`\tTEXT,\n" +
-            "\t`abstract`\tTEXT\n" +
+            "\t`id`\tTEXT,\n" +
+            "\t`clickable`\tTEXT,\n" +
+            "\t`type`\tTEXT\n" +
             ")";
 
     public DatabaseHelper(Context context){

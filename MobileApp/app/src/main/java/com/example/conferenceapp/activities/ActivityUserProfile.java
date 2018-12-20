@@ -60,7 +60,7 @@ public class ActivityUserProfile extends AppCompatActivity {
                         String user_name = "DH";
                         TextDrawable drawable1 = TextDrawable.builder().buildRound(user_name, Color.DKGRAY);
                         AboutPage aboutPage = new AboutPage(getApplicationContext())
-                                .isRTL(false).setImage(R.drawable.femaleuser);
+                                .isRTL(false).setImage(R.drawable.usericon);
 
 
                         Element email = new Element();
@@ -80,7 +80,6 @@ public class ActivityUserProfile extends AppCompatActivity {
 
                         if (p.getResearchInterests().length() != 0) {
                             String description = p.getBio();
-                            description = description.concat("\n");
                             description = description.concat("Research Interests and fields for collaboration: ");
                             description = description.concat(p.getResearchInterests());
 
@@ -120,7 +119,7 @@ public class ActivityUserProfile extends AppCompatActivity {
                         if (p.getLinkedin().length() != 0) {
                             Element linkedin = new Element();
                             linkedin.setIconDrawable(R.drawable.about_icon_link);
-                            linkedin.setTitle("My LinkdIn");
+                            linkedin.setTitle("My LinkedIn");
                             linkedin.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
@@ -128,6 +127,7 @@ public class ActivityUserProfile extends AppCompatActivity {
                                     intent.setData(Uri.parse(p.getLinkedin()));
                                 }
                             });
+                            aboutPage.addItem(linkedin);
                         }
 
 
@@ -158,7 +158,6 @@ public class ActivityUserProfile extends AppCompatActivity {
                             about.addItem(email);
                             if (u.getInterests().length() != 0) {
                                 String description = u.getBio();
-                                description.concat("\n");
                                 description.concat("Research Interests and fields for collaboration: ");
                                 description.concat(u.getInterests());
 

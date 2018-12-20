@@ -2,8 +2,12 @@ package com.example.conferenceapp.activities;
 
 import com.example.conferenceapp.models.Event;
 import com.example.conferenceapp.utils.*;
+
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.example.conferenceapp.R;
 
@@ -63,9 +67,26 @@ public class ActivityKeynote extends AppCompatActivity {
                     .setImage(R.drawable.michael);
             setContentView(page.create());
         }
+    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_home_button, menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.guide_home) {
+            Intent intent = new Intent(ActivityKeynote.this, NavBarActivity.class);
+            intent.putExtra("Source", getIntent().getStringExtra("Source"));
+            if (!(getIntent().getStringExtra("Source")).equals("skip")) {
+                intent.putExtra("email", getIntent().getStringExtra("email"));
+            }
+            startActivity(intent);
+            return true;
+        }
 
-
+        return super.onOptionsItemSelected(item);
     }
 }
