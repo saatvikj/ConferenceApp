@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.conferenceapp.R;
 import com.example.conferenceapp.models.Event;
@@ -26,6 +28,8 @@ public class ActivitySessionDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_session_details);
 
+        Toast.makeText(getApplicationContext(), "Click on title to view any additional details if available.", Toast.LENGTH_LONG).show();
+
         events = new ArrayList<Event>();
 
         String id = getIntent().getStringExtra("id");
@@ -38,31 +42,69 @@ public class ActivitySessionDetails extends AppCompatActivity {
         LinearLayout session_layout = findViewById(R.id.sessionLayout);
         for(int i = 0; i < events.size(); i++){
             Event event = events.get(i);
-            final FoldingCell fc = (FoldingCell) getLayoutInflater().inflate(R.layout.inflator_session, null);
-            TextView session_folded_title = findViewById(R.id.session_title);
-            TextView session_folded_authors = findViewById(R.id.session_authors);
-            TextView session_unfolded_title = findViewById(R.id.session_content_title);
-            TextView session_unfolded_abstract = findViewById(R.id.session_content_abstract);
-            TextView session_unfolded_authors = findViewById(R.id.session_content_authors);
+            View session = getLayoutInflater().inflate(R.layout.inflator_session,null);
+            final FoldingCell fc = (FoldingCell) session.findViewById(R.id.folding_cell);
+            TextView session_folded_title = session.findViewById(R.id.session_title);
+            TextView session_folded_authors = session.findViewById(R.id.session_authors);
+            TextView session_unfolded_title = session.findViewById(R.id.session_content_title);
+            TextView session_unfolded_abstract = session.findViewById(R.id.session_content_abstract);
+            TextView session_unfolded_authors = session.findViewById(R.id.session_content_authors);
             String title = event.getTitle();
             String _abstract = event.get_abstract();
             String[] authors = event.getAuthors();
-            String unfolded_authors = String.join("\n", authors);
-            String folded_authors;
+            String unfolded_authors = "* ";
+            String folded_authors = "";
+
             for(int j = 0; j < authors.length; j++){
                 int index = authors[j].indexOf("(");
-                String name = authors[j].substring(0, index);
-                ma
+                String name = "";
+                if (index != -1) {
+                    name = authors[j].substring(0, index);
+                } else {
+                    name = authors[j];
+                }
+
+                if (j != authors.length-1) {
+                    folded_authors = folded_authors.concat(name).concat(", ");
+                    unfolded_authors = unfolded_authors.concat(authors[j]).concat(")\n* ");
+                } else {
+                    folded_authors = folded_authors.concat(name);
+                    unfolded_authors = unfolded_authors.concat(authors[j]).concat("\n");
+                }
             }
+            session_folded_title.setText(title);
+            session_folded_authors.setText(folded_authors);
+
+            session_unfolded_title.setText(title);
+            if (_abstract.equals("") || _abstract.length() == 0) {
+                session_unfolded_abstract.setVisibility(View.GONE);
+            } else {
+                session_unfolded_abstract.setText(_abstract);
+            }
+            session_unfolded_authors.setText(unfolded_authors);
+            final FrameLayout title_view = (FrameLayout) session.findViewById(R.id.cell_title_view);
+            FrameLayout content_view = (FrameLayout) session.findViewById(R.id.cell_content_view);
+
+            int title_height = title_view.getLayoutParams().height;
+            int content_height = content_view.getLayoutParams().height;
+
+            if (content_height < 2*title_height) {
+                content_view.getLayoutParams().height = 2*title_height + 1;
+            }
+
 
             fc.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    fc.toggle(false);
+                    try {
+                        fc.toggle(false);
+                    } catch (Exception e) {
+                        title_view.setVisibility(View.VISIBLE);
+                    }
                 }
             });
 
-            session_layout.addView(fc);
+            session_layout.addView(session);
 
         }
 

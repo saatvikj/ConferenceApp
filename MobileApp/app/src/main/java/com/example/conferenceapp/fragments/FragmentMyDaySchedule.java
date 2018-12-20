@@ -17,7 +17,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.conferenceapp.R;
+import com.example.conferenceapp.activities.ActivityKeynote;
 import com.example.conferenceapp.activities.ActivityPaperDetails;
+import com.example.conferenceapp.activities.ActivitySessionDetails;
 import com.example.conferenceapp.models.Conference;
 import com.example.conferenceapp.models.CustomTime;
 import com.example.conferenceapp.models.Food;
@@ -98,11 +100,16 @@ public class FragmentMyDaySchedule extends Fragment implements Serializable {
             paper_view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Intent intent = new Intent(getActivity(), ActivityPaperDetails.class);
-//                    intent.putExtra("Paper", copy);
-                    intent.putExtra("Source",getActivity().getIntent().getStringExtra("Source"));
-                    if (!(getActivity().getIntent().getStringExtra("Source")).equals("skip")) {
-                        intent.putExtra("email", getActivity().getIntent().getStringExtra("email"));
+                    Intent intent = null;
+                    if (session.getType().equals("Keynote")) {
+                        intent = new Intent(getActivity(), ActivityKeynote.class);
+                    } else {
+                        intent = new Intent(getActivity(), ActivitySessionDetails.class);
+                    }
+                    intent.putExtra("id", Integer.toString(session.getID()));
+                    intent.putExtra("Source", getActivity().getIntent().getStringExtra("Source"));
+                    if (!(getActivity().getIntent().getStringExtra("Source").equals("skip"))) {
+                        intent.putExtra("email",getActivity().getIntent().getStringExtra("email"));
                     }
                     startActivity(intent);
                 }
