@@ -39,8 +39,7 @@ public class EventCSVParser {
         for (CsvRow row : csv.getRows()) {
             String title = row.getField("Title");
             String _abstract = row.getField("Abstract");
-            String authors[] = row.getField("Authors").split(",");
-
+            String authors[] = row.getField("Authors").split("\\),");
             Event event = new Event(title, _abstract, authors);
             events.add(event);
         }
