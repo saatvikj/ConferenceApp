@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="#ffffff" >
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
@@ -14,6 +14,7 @@
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:textSize="18sp"
+            android:textStyle="bold"
             android:textColor="@color/colorPrimary"
             android:paddingTop="8dp"
             android:text="SPONSORS"/>
@@ -29,36 +30,49 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:scaleX="1.5"
+                android:scaleY="1.5"
+                android:layout_margin="8dp"
                 android:background="@drawable/googl"/>
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_margin="16dp"
+                android:scaleX="1.5"
+                android:scaleY="1.5"
                 android:background="@drawable/msr"/>
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_margin="16dp"
+                android:scaleX="1.5"
+                android:scaleY="1.5"
                 android:background="@drawable/fb"/>
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_margin="16dp"
+                android:scaleX="1.5"
+                android:scaleY="1.5"
                 android:background="@drawable/wadhwani"/>
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_margin="24dp"
+                android:scaleX="1.5"
+                android:scaleY="1.5"
                 android:background="@drawable/umsi"/>
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_margin="16dp"
+                android:scaleX="1.5"
+                android:scaleY="1.5"
                 android:background="@drawable/ipid"/>
 
 
@@ -68,6 +82,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
+            android:textStyle="bold"
             android:textSize="18sp"
             android:textColor="@color/colorPrimary"
             android:paddingTop="24dp"
@@ -84,6 +99,9 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:scaleX="1.5"
+                android:scaleY="1.5"
+                android:layout_margin="16dp"
                 android:background="@drawable/acm"/>
 
         </LinearLayout>

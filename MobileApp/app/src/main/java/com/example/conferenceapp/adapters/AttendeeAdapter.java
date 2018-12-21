@@ -50,10 +50,7 @@ public class AttendeeAdapter extends RecyclerView.Adapter<AttendeeAdapter.Speake
             public void onClick(View view) {
                 String src = fa.getIntent().getStringExtra("Source");
                 if (src.equals("skip")) {
-                    Intent intent = new Intent(Intent.ACTION_SENDTO);
-                    String mailto = "mailto:".concat(user.getEmail());
-                    intent.setData(Uri.parse(mailto));
-                    mCtx.startActivity(intent);
+
                 } else {
                     Intent intent = new Intent(fa, ActivityUserProfile.class);
                     intent.putExtra("email", user.getEmail());

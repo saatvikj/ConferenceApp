@@ -62,6 +62,7 @@ public class NavBarActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         final NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.getMenu().getItem(6).setVisible(false);
         if(src.equals("skip")) {
             userIcon = navigationView.getHeaderView(0).findViewById(R.id.imageView);
             disableOptionsNavigationView(navigationView);
@@ -186,7 +187,7 @@ public class NavBarActivity extends AppCompatActivity
                 setActionBarTitle("About");
                 break;
             case R.id.nav_logout:
-                Intent intent = new Intent(NavBarActivity.this, ActivityLogin.class);
+                Intent intent = new Intent(NavBarActivity.this, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 finish();

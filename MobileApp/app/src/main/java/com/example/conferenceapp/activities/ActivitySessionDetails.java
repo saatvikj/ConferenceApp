@@ -28,7 +28,7 @@ public class ActivitySessionDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_session_details);
 
-        Toast.makeText(getApplicationContext(), "Click on title to view any additional details if available.", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), "Click on title to view any additional details if available.", Toast.LENGTH_SHORT).show();
 
         events = new ArrayList<Event>();
 
@@ -49,7 +49,7 @@ public class ActivitySessionDetails extends AppCompatActivity {
             TextView session_unfolded_title = session.findViewById(R.id.session_content_title);
             TextView session_unfolded_abstract = session.findViewById(R.id.session_content_abstract);
             TextView session_unfolded_authors = session.findViewById(R.id.session_content_authors);
-            String title = event.getTitle();
+            final String title = event.getTitle();
             String _abstract = event.get_abstract();
             String[] authors = event.getAuthors();
             String unfolded_authors = "* ";
@@ -83,14 +83,7 @@ public class ActivitySessionDetails extends AppCompatActivity {
             }
             session_unfolded_authors.setText(unfolded_authors);
             final FrameLayout title_view = (FrameLayout) session.findViewById(R.id.cell_title_view);
-            FrameLayout content_view = (FrameLayout) session.findViewById(R.id.cell_content_view);
-
-            int title_height = title_view.getLayoutParams().height;
-            int content_height = content_view.getLayoutParams().height;
-
-            if (content_height < 2*title_height) {
-                content_view.getLayoutParams().height = 2*title_height + 1;
-            }
+            final FrameLayout content_view = (FrameLayout) session.findViewById(R.id.cell_content_view);
 
 
             fc.setOnClickListener(new View.OnClickListener() {
@@ -99,7 +92,7 @@ public class ActivitySessionDetails extends AppCompatActivity {
                     try {
                         fc.toggle(false);
                     } catch (Exception e) {
-                        title_view.setVisibility(View.VISIBLE);
+                        content_view.setVisibility(View.VISIBLE);
                     }
                 }
             });

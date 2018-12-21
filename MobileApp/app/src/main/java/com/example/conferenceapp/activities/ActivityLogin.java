@@ -64,12 +64,11 @@ public class ActivityLogin extends AppCompatActivity {
             }
         });
 
-        skip = findViewById(R.id.skip);
+        skip = findViewById(R.id.sign_up);
         skip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ActivityLogin.this, NavBarActivity.class);
-                intent.putExtra("Source", "skip");
+                Intent intent = new Intent(ActivityLogin.this, ActivityFirstTime.class);
                 startActivity(intent);
             }
         });

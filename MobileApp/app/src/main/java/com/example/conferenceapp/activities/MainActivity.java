@@ -36,11 +36,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button first_time = findViewById(R.id.firstTimeButton);
+        Button first_time = findViewById(R.id.guestButton);
         first_time.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, ActivityFirstTime.class);
+                Intent intent = new Intent(MainActivity.this, NavBarActivity.class);
+                intent.putExtra("Source", "skip");
                 startActivity(intent);
             }
         });
