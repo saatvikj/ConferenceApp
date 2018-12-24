@@ -32,7 +32,7 @@ public class ActivityKeynote extends AppCompatActivity {
         }
 
         Event e = events.get(0);
-
+        setTitle(e.getTitle());
         if(e.getAuthors()[0].equals("Aruna Roy")){
             AboutPage page = new AboutPage(getApplicationContext()).isRTL(false)
                     .setDescription(e.get_abstract())

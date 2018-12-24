@@ -13,7 +13,9 @@ import android.widget.Toast;
 
 import com.example.conferenceapp.R;
 import com.example.conferenceapp.models.Event;
+import com.example.conferenceapp.models.Session;
 import com.example.conferenceapp.utils.EventCSVParser;
+import com.example.conferenceapp.utils.ProgramCSVParser;
 import com.ramotion.foldingcell.FoldingCell;
 
 import java.io.IOException;
@@ -22,7 +24,7 @@ import java.util.ArrayList;
 public class ActivitySessionDetails extends AppCompatActivity {
 
     ArrayList<Event> events;
-
+    ArrayList<Session> sessions;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,14 +33,20 @@ public class ActivitySessionDetails extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), "Click on title to view any additional details if available.", Toast.LENGTH_SHORT).show();
 
         events = new ArrayList<Event>();
-
+        sessions = new ArrayList<>();
         String id = getIntent().getStringExtra("id");
         try {
             events = EventCSVParser.parseCSV(getApplicationContext(), Integer.parseInt(id));
+            sessions = ProgramCSVParser.parseCSV(getApplicationContext());
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+        for (int i=0; i< sessions.size(); i++) {
+            if (sessions.get(i).getID() == Integer.parseInt(id)) {
+                setTitle(sessions.get(i).getTitle());
+            }
+        }
         LinearLayout session_layout = findViewById(R.id.sessionLayout);
         for(int i = 0; i < events.size(); i++){
             Event event = events.get(i);
