@@ -89,11 +89,19 @@ public class FragmentMyDaySchedule extends Fragment implements Serializable {
         TextView paperstart = paper_view.findViewById(R.id.paperName);
         TextView papervenue = paper_view.findViewById(R.id.paperVenue);
         TextView paperend = paper_view.findViewById(R.id.paperTimings);
+        ImageView imagevenue = paper_view.findViewById(R.id.sessionImageView);
+        ImageView imagebullet = paper_view.findViewById(R.id.bulletImageView);
         final TextView addPaper = paper_view.findViewById(R.id.add);
         final ImageView paperAdd = paper_view.findViewById(R.id.addPaperIcon);
         paperstart.setText(session.getTitle());
-
         paperend.setText(session.getDateTime().displayTime());
+        papervenue.setText(session.getVenue());
+
+        int bullet_id = getContext().getResources().getIdentifier(session.getBulletDrawable(),"drawable",getContext().getPackageName());
+        imagebullet.setImageResource(bullet_id);
+
+        int icon_id = getContext().getResources().getIdentifier(session.getIconDrawable(),"drawable",getContext().getPackageName());
+        imagevenue.setImageResource(icon_id);
         root.addView(paper_view);
 
         if (clickable == true) {
@@ -134,11 +142,14 @@ public class FragmentMyDaySchedule extends Fragment implements Serializable {
                     String start_time = confTime[0];
                     String end_time = confTime[1];
                     String type = cursor.getString(cursor.getColumnIndex("type"));
+                    String icon = cursor.getString(cursor.getColumnIndex("icon"));
+                    String bullet = cursor.getString(cursor.getColumnIndex("bullet"));
+                    String venue = cursor.getString(cursor.getColumnIndex("venue"));
                     int id = Integer.parseInt(cursor.getString(cursor.getColumnIndex("id")));
                     boolean clickable = Boolean.parseBoolean(cursor.getString(cursor.getColumnIndex("clickable")));
                     CustomTime paper_schedule = new CustomTime(date, start_time, end_time);
 
-                    Session session = new Session(id,title,paper_schedule,type,clickable);
+                    Session session = new Session(id,title,paper_schedule,type,clickable,icon,bullet,venue);
 
                     if (session.getDateTime().getStartTimeInt() >= startTime &&
                             session.getDateTime().getStartTimeInt() <= endTime &&

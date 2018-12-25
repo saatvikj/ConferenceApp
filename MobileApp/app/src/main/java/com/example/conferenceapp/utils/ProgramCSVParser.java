@@ -26,8 +26,10 @@ public class ProgramCSVParser {
 
         Reader reader = new BufferedReader(is);
         CsvReader csvReader = new CsvReader();
+        csvReader.setContainsHeader(true);
         Conference conference = null;
         CsvContainer csv = csvReader.read(reader);
+
         sessions = new ArrayList<Session>();
 
         for (CsvRow row : csv.getRows()) {

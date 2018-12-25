@@ -1,39 +1,43 @@
-1,Open Sessions A,"04/01/2019,10:00-13:00",List,TRUE
-2,Doctoral Consortium,"04/01/2019,10:00-13:00",List,TRUE
-3,Lunch,"04/01/2019,13:00-14:00",Food,FALSE
-4,Registration,"04/01/2019,14:00-17:00",Individual,FALSE
-5,Open Sessions B,"04/01/2019,14:00-16:30",List,TRUE
-6,Doctoral Consortium,"04/01/2019,14:00-16:30",List,TRUE
-7,Keynote: Aruna Roy,"04/01/2019,16:30-18:00",Keynote,TRUE
-8,Young Researchers Reception,"04/01/2019,18:30-20:30",Keynote,TRUE
-9,Registration,"05/01/2019,08:00-09:30",Individual,FALSE
-10,Keynote: Rahul Alex Panicker,"05/01/2019,09:00-10:00",Keynote,TRUE
-11,Chai/Coffee,"05/01/2019,10:00-10:30",Food,FALSE
-12,Papers A: Negotiating Intersections,"05/01/2019,10:30-12:00",List,TRUE
-13,Open Sessions C,"05/01/2019,12:00-13:30",List,TRUE
-14,Lunch,"05/01/2019,13:30-14:30",Food,FALSE
-15,Papers B: Engaging Mobilities,"05/01/2019,14:30-16:00",List,TRUE
-16,Chai/Coffee,"05/01/2019,16:00-16:30",Food,FALSE
-17,Open Sessions D,"05/01/2019,16:30-18:00",List,TRUE
-18,Research & Practice Session,"05/01/2019,18:00-19:30",Individual,FALSE
-19,Registration,"06/01/2019,08:00-09:30",Individual,FALSE
-20,Keynote: Smitha Radhakrishnan,"06/01/2019,09:00-10:00",Keynote,TRUE
-21,Chai/Coffee,"06/01/2019,10:00-10:30",Food,FALSE
-22,Papers C: Financing Matters,"06/01/2019,10:30-12:00",List,TRUE
-23,Open Sessions E,"06/01/2019,12:00-13:30",List,TRUE
-24,Lunch,"06/01/2019,13:30-14:30",Food,FALSE
-25,Papers D: Supporting Infrastructures,"06/01/2019,14:30-16:00",List,TRUE
-26,Chai/Coffee,"06/01/2019,16:00-16:30",Food,FALSE
-27,Poster Session,"06/01/2019,16:30-18:00",List,TRUE
-28,Demos,"06/01/2019,16:30-18:00",List,TRUE
-29,Banquet & Performance: Padma Shri Prahalad Singh Tipaniya & Troupe,"06/01/2019,19:00-22:00",Individual,FALSE
-30,Keynote: Murali Sanmugavelan,"07/01/2019,08:30-09:30",Keynote,TRUE
-31,Chai/Coffee,"07/01/2019,09:30-10:00",Food,FALSE
-32,Papers E: Deploying Design,"07/01/2019,10:00-11:30",List,TRUE
-33,Open Sessions F,"07/01/2019,11:30-13:00",List,TRUE
-34,Lunch,"07/01/2019,13:00-14:00",Food,FALSE
-35,Papers F: Fostering Community,"07/01/2019,14:00-15:30",List,TRUE
-36,Chai/Coffee,"07/01/2019,15:30-16:00",Food,FALSE
-37,Keynote: Michael Mazgaonkar,"07/01/2019,16:00-17:00",Keynote,TRUE
-38,Ethics Panel: Dorothea Kleine & Andy Dearden,"07/01/2019,17:00-17:30",Individual,FALSE
-39,Townhall & Goodbye,"07/01/2019,17:30-18:30",Individual,FALSE
+ID,Title,DateTime,Type,Clickable,IconDrawable,BulletDrawable,Venue
+0,Registration,"04/01/2019,08:30-18:00",Individual,FALSE,registration,circle,RJM
+1,Open Sessions,"04/01/2019,10:00-15:00",List,TRUE,opensession,square,New Campus
+2,Doctoral Consortium,"04/01/2019,10:00-15:00",List,TRUE,opensession,square,New Campus
+0,Chai/Coffee,"04/01/2019,11:15-11:45",Food,FALSE,,,New Campus
+0,Lunch,"04/01/2019,13:00-14:00",Food,FALSE,,,Tower Lawns
+5,Open Sessions,"04/01/2019,15:00-16:30",List,TRUE,opensession,square,New Campus
+2,Doctoral Consortium,"04/01/2019,15:00-16:30",List,TRUE,opensession,square,New Campus
+0,Chai/Coffee,"04/01/2019,16:00-16:30",Food,FALSE,,,Tower Lawns
+0,Opening Remarks,"04/01/2019,16:30-16:45",Individual,FALSE,opening,circle,RJM
+7,Keynote: Aruna Roy,"04/01/2019,16:45-18:00",Keynote,TRUE,keynote,circle,RJM
+0,Evening Snacks,"04/01/2019,18:00-18:30",Food,FALSE,,,Tower Lawns
+8,Young Researchers Night,"04/01/2019,18:30-20:30",Keynote,TRUE,young,square,SR7
+0,Registration,"05/01/2019,08:30-09:30",Individual,FALSE,registration,circle,RJM
+10,Keynote: Rahul Alex Panicker,"05/01/2019,09:00-10:00",Keynote,TRUE,keynote,circle,RJM
+0,Chai/Coffee,"05/01/2019,10:00-10:25",Food,FALSE,,,Tower Lawns
+12,Papers: Negotiating Intersections,"05/01/2019,10:25-11:55",List,TRUE,papers,circle,RJM
+13,Open Sessions,"05/01/2019,12:00-13:30",List,TRUE,opensession,square,New Campus
+0,Lunch,"05/01/2019,13:30-14:30",Food,FALSE,,,Tower Lawns
+15,Papers: Engaging Mobilities,"05/01/2019,14:30-16:00",List,TRUE,papers,circle,RJM
+0,Chai/Coffee,"05/01/2019,16:00-16:30",Food,FALSE,,,Tower Lawns
+17,Open Sessions,"05/01/2019,16:30-18:00",List,TRUE,opensession,square,New Campus
+0,Research & Practice Night,"05/01/2019,18:00-19:30",Individual,FALSE,research,square,SR7
+0,Registration,"06/01/2019,08:00-09:30",Individual,FALSE,registration,circle,RJM
+20,Keynote: Smitha Radhakrishnan,"06/01/2019,09:00-10:00",Keynote,TRUE,keynote,circle,RJM
+0,Chai/Coffee,"06/01/2019,10:00-10:30",Food,FALSE,,,Tower Lawns
+22,Papers: Financing Matters,"06/01/2019,10:25-11:55",List,TRUE,papers,circle,RJM
+23,Open Sessions,"06/01/2019,12:00-13:30",List,TRUE,opensession,square,New Campus
+0,Lunch,"06/01/2019,13:30-14:30",Food,FALSE,,,Tower Lawns
+25,Papers: Supporting Infrastructures,"06/01/2019,14:30-16:00",List,TRUE,papers,circle,RJM
+0,Chai/Coffee,"06/01/2019,16:00-16:30",Food,FALSE,,,Tower Lawns
+27,Poster Session,"06/01/2019,16:30-18:00",List,TRUE,poster,circle,RJM
+28,Demos,"06/01/2019,16:30-18:00",List,TRUE,poster,circle,RJM
+0,Culture Night: Padma Shri Prahalad Singh Tipaniya & Troupe,"06/01/2019,19:00-22:00",Individual,FALSE,culture,triangle,LKP + Tower Lawns
+30,Keynote: Murali Sanmugavelan,"07/01/2019,08:30-09:30",Keynote,TRUE,keynote,circle,RJM
+0,Chai/Coffee,"07/01/2019,09:30-10:00",Food,FALSE,,,Tower Lawns
+32,Papers: Deploying Design,"07/01/2019,10:00-11:30",List,TRUE,papers,circle,RJM
+0,Townhall,"07/01/2019,11:30-13:00",Individual,FALSE,opensession,circle,RJM
+0,Lunch,"07/01/2019,13:00-14:00",Food,FALSE,,,Tower Lawns
+35,Papers: Fostering Community,"07/01/2019,14:00-15:30",List,TRUE,papers,circle,RJM
+0,Chai/Coffee,"07/01/2019,15:30-16:00",Food,FALSE,,,Tower Lawns
+37,Keynote: Michael Mazgaonkar,"07/01/2019,16:00-17:00",Keynote,TRUE,keynote,circle,RJM
+0,Closing Remarks,"07/01/2019,17:00-17:10",Individual,FALSE,closing,circle,RJM

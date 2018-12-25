@@ -41,11 +41,14 @@ public class DBManager {
         contentValue.put("id", Integer.toString(session.getID()));
         contentValue.put("clickable", Boolean.toString(session.isClickable()));
         contentValue.put("type", session.getType());
+        contentValue.put("icon", session.getIconDrawable());
+        contentValue.put("bullet", session.getBulletDrawable());
+        contentValue.put("venue", session.getVenue());
         database.insert(DatabaseHelper.TABLE_NAME, null, contentValue);
     }
 
     public Cursor fetch() {
-        String[] columns = new String[] { "title", "schedule", "id", "clickable","type"};
+        String[] columns = new String[] { "title", "schedule", "id", "clickable","type","icon","bullet","venue"};
         Cursor cursor = database.query(DatabaseHelper.TABLE_NAME, columns, null, null, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();

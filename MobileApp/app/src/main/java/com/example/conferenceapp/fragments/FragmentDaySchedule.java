@@ -11,6 +11,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -97,10 +98,20 @@ public class FragmentDaySchedule extends Fragment implements Serializable {
         TextView paperstart = paper_view.findViewById(R.id.paperName);
         TextView papervenue = paper_view.findViewById(R.id.paperVenue);
         TextView paperend = paper_view.findViewById(R.id.paperTimings);
+        ImageView imagevenue = paper_view.findViewById(R.id.sessionImageView);
+        ImageView imagebullet = paper_view.findViewById(R.id.bulletImageView);
         final TextView addPaper = paper_view.findViewById(R.id.add);
         final ImageView paperAdd = paper_view.findViewById(R.id.addPaperIcon);
         paperstart.setText(session.getTitle());
         paperend.setText(session.getDateTime().displayTime());
+        papervenue.setText(session.getVenue());
+
+        int bullet_id = getContext().getResources().getIdentifier(session.getBulletDrawable(),"drawable",getContext().getPackageName());
+        imagebullet.setImageResource(bullet_id);
+
+        int icon_id = getContext().getResources().getIdentifier(session.getIconDrawable(),"drawable",getContext().getPackageName());
+        imagevenue.setImageResource(icon_id);
+
         final boolean exists = inMyAgenda(session);
         if (exists == true) {
             addPaper.setText("Remove");
@@ -137,6 +148,7 @@ public class FragmentDaySchedule extends Fragment implements Serializable {
                     Intent intent = new Intent(Intent.ACTION_INSERT)
                             .setData(CalendarContract.Events.CONTENT_URI)
                             .putExtra(CalendarContract.Events.TITLE, session.getTitle())
+                            .putExtra(CalendarContract.Events.EVENT_LOCATION, session.getVenue())
                             .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, session.getDateTime().getParseStartTime())
                             .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, session.getDateTime().getParseEndTime());
                     startActivity(intent);
@@ -160,7 +172,8 @@ public class FragmentDaySchedule extends Fragment implements Serializable {
             if (cursor.moveToFirst()) {
                 do {
                     String title = cursor.getString(cursor.getColumnIndex("title"));
-                    if (title.trim().equalsIgnoreCase(session.getTitle().trim())) {
+                    String time = cursor.getString(cursor.getColumnIndex("schedule"));
+                    if (title.trim().equalsIgnoreCase(session.getTitle().trim()) && time.trim().equalsIgnoreCase(session.getDateTime().toString().trim())) {
                         exists = true;
                     }
                 } while (cursor.moveToNext());

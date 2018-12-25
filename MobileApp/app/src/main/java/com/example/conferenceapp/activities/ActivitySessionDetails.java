@@ -1,6 +1,7 @@
 package com.example.conferenceapp.activities;
 
 import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -81,7 +82,14 @@ public class ActivitySessionDetails extends AppCompatActivity {
                 }
             }
             session_folded_title.setText(title);
-            session_folded_authors.setText(folded_authors);
+            String modified_folded_authors = "";
+            if (event.getRoom().length() != 0 || !event.getRoom().equals("")) {
+                modified_folded_authors = modified_folded_authors.concat("Venue: ").concat(event.getRoom()).concat("\n");
+                modified_folded_authors = modified_folded_authors.concat(folded_authors);
+                session_folded_authors.setText(modified_folded_authors);
+            } else {
+                session_folded_authors.setText(folded_authors);
+            }
 
             session_unfolded_title.setText(title);
             if (_abstract.equals("") || _abstract.length() == 0) {

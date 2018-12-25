@@ -32,7 +32,6 @@
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:background="@drawable/opensession"
                     android:id="@+id/sessionImageView"
                     android:layout_marginTop="4dp"
                     android:layout_marginRight="8dp"/>
@@ -61,8 +60,7 @@
                     android:layout_marginLeft="28dp"
                     android:layout_marginRight="8dp"
                     android:layout_gravity="center"
-                    android:id="@+id/bulletImageView"
-                    android:background="@drawable/square"/>
+                    android:id="@+id/bulletImageView"/>
 
                 <TextView
                     android:layout_width="match_parent"
