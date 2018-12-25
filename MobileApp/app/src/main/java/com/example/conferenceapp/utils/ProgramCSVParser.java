@@ -42,12 +42,15 @@ public class ProgramCSVParser {
             String type = row.getField(3);
             String click = row.getField(4);
             Boolean clickable = false;
+            String icon_drawable = row.getField(5);
+            String bullet_drawable = row.getField(6);
+            String venue = row.getField(7);
 
             if(click.equals("TRUE")){
                 clickable = true;
             }
 
-            Session session = new Session(id, title, time, type, clickable);
+            Session session = new Session(id, title, time, type, clickable, icon_drawable, bullet_drawable, venue);
             sessions.add(session);
 
         }

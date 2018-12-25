@@ -40,7 +40,8 @@ public class EventCSVParser {
             String title = row.getField("Title");
             String _abstract = row.getField("Abstract");
             String authors[] = row.getField("Authors").split("\\),");
-            Event event = new Event(title, _abstract, authors);
+            String room = row.getField("Room");
+            Event event = new Event(title, _abstract, authors, room);
             events.add(event);
         }
         return events;

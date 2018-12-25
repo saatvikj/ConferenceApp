@@ -7,13 +7,19 @@ public class Session {
     private CustomTime dateTime;
     private String type;
     private boolean clickable;
+    private String iconDrawable;
+    private String bulletDrawable;
+    private String venue;
 
-    public Session(int ID, String title, CustomTime dateTime, String type, boolean clickable) {
+    public Session(int ID, String title, CustomTime dateTime, String type, boolean clickable, String iconDrawable, String bulletDrawable, String venue) {
         this.ID = ID;
         this.title = title;
         this.dateTime = dateTime;
         this.type = type;
         this.clickable = clickable;
+        this.iconDrawable = iconDrawable;
+        this.bulletDrawable = bulletDrawable;
+        this.venue = venue;
     }
 
     public int getID() {
@@ -54,5 +60,29 @@ public class Session {
 
     public void setClickable(boolean clickable) {
         this.clickable = clickable;
+    }
+
+    public String getIconDrawable() {
+        return iconDrawable;
+    }
+
+    public void setIconDrawable(String iconDrawable) {
+        this.iconDrawable = iconDrawable;
+    }
+
+    public String getBulletDrawable() {
+        return bulletDrawable;
+    }
+
+    public void setBulletDrawable(String bulletDrawable) {
+        this.bulletDrawable = bulletDrawable;
+    }
+
+    public String getVenue() {
+        return venue;
+    }
+
+    public void setVenue(String venue) {
+        this.venue = venue;
     }
 }

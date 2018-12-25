@@ -5,15 +5,17 @@ public class Event {
     private String title;
     private String _abstract;
     private String[] authors;
+    private String room;
 
     public Event(){
 
     }
 
-    public Event(String title, String _abstract, String[] authors) {
+    public Event(String title, String _abstract, String[] authors, String room) {
         this.title = title;
         this._abstract = _abstract;
         this.authors = authors;
+        this.room = room;
     }
 
     public String getTitle() {
@@ -38,5 +40,13 @@ public class Event {
 
     public void setAuthors(String[] authors) {
         this.authors = authors;
+    }
+
+    public String getRoom() {
+        return room;
+    }
+
+    public void setRoom(String room) {
+        this.room = room;
     }
 }

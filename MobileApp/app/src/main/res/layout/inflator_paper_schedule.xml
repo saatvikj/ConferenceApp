@@ -24,29 +24,63 @@
             android:padding="16dp"
             android:orientation="vertical">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/paperName"
-                android:textColor="@color/divier"
-                android:text="Quality Assurance"
-                android:textStyle="bold"
-                android:fontFamily="sans-serif"
-                android:textSize="20sp" />
+                android:orientation="horizontal">
 
-            <TextView
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/opensession"
+                    android:id="@+id/sessionImageView"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginRight="8dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/paperName"
+                    android:textColor="@color/divier"
+                    android:text="Quality Assurance"
+                    android:textStyle="bold"
+                    android:fontFamily="sans-serif"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/paperVenue"
-                android:textSize="18sp"
-                android:text="Hall A"
-                android:fontFamily="sans-serif-light"
-                android:textColor="@color/tabtextcolor" />
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginLeft="28dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_gravity="center"
+                    android:id="@+id/bulletImageView"
+                    android:background="@drawable/square"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/paperVenue"
+                    android:textSize="18sp"
+                    android:text="New Campus"
+                    android:fontFamily="sans-serif-light"
+                    android:textColor="@color/tabtextcolor" />
+
+            </LinearLayout>
+
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/paperTimings"
+                android:layout_marginLeft="28dp"
                 android:fontFamily="sans-serif-light"
                 android:text="10:30am - 11:30am"
                 android:textSize="16sp"
