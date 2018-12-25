@@ -116,7 +116,7 @@ public class FragmentDaySchedule extends Fragment implements Serializable {
         if (exists == true) {
             addPaper.setText("Remove");
             addPaper.setTextColor(Color.parseColor("#C72026"));
-            paperAdd.setImageDrawable(getResources().getDrawable(R.drawable.ic_remove_circle_outline_black_24dp));
+            paperAdd.setImageDrawable(getResources().getDrawable(R.drawable.remcalen));
         }
         root.addView(paper_view);
         if (clickable == true) {
@@ -152,12 +152,12 @@ public class FragmentDaySchedule extends Fragment implements Serializable {
                             .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, session.getDateTime().getParseStartTime())
                             .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, session.getDateTime().getParseEndTime());
                     startActivity(intent);
-                    paperAdd.setImageDrawable(getResources().getDrawable(R.drawable.ic_remove_circle_outline_black_24dp));
+                    paperAdd.setImageDrawable(getResources().getDrawable(R.drawable.remcalen));
                     addPaper.setTextColor(Color.parseColor("#C72026"));
                     addPaper.setText("Remove");
                 } else {
                     dbManager.delete(session);
-                    paperAdd.setImageDrawable(getResources().getDrawable(R.drawable.ic_control_point_green_24dp));
+                    paperAdd.setImageDrawable(getResources().getDrawable(R.drawable.addcal));
                     addPaper.setTextColor(Color.parseColor("#0F9D57"));
                     addPaper.setText("Add");
                 }

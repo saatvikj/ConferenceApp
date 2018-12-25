@@ -95,10 +95,10 @@
             android:layout_gravity="right|center_vertical">
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
                 android:id="@+id/addPaperIcon"
-                android:src="@drawable/ic_control_point_green_24dp"/>
+                android:src="@drawable/addcal"/>
 
             <TextView
                 android:id="@+id/add"
