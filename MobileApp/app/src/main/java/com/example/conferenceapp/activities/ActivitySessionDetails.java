@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +27,7 @@ public class ActivitySessionDetails extends AppCompatActivity {
 
     ArrayList<Event> events;
     ArrayList<Session> sessions;
+    Session main_session;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,8 +48,12 @@ public class ActivitySessionDetails extends AppCompatActivity {
         for (int i=0; i< sessions.size(); i++) {
             if (sessions.get(i).getID() == Integer.parseInt(id)) {
                 setTitle(sessions.get(i).getTitle());
+                main_session = sessions.get(i);
             }
         }
+
+
+
         LinearLayout session_layout = findViewById(R.id.sessionLayout);
         for(int i = 0; i < events.size(); i++){
             Event event = events.get(i);
@@ -55,7 +61,20 @@ public class ActivitySessionDetails extends AppCompatActivity {
             final FoldingCell fc = (FoldingCell) session.findViewById(R.id.folding_cell);
             TextView session_folded_title = session.findViewById(R.id.session_title);
             TextView session_folded_authors = session.findViewById(R.id.session_authors);
+            TextView session_folded_venue = session.findViewById(R.id.sessionVenue);
+            ImageView session_folded_icon = session.findViewById(R.id.foldedIcon);
+            ImageView session_folded_bullet = session.findViewById(R.id.bulletImageView);
             TextView session_unfolded_title = session.findViewById(R.id.session_content_title);
+            TextView session_unfolded_venue = session.findViewById(R.id.sessionUnfoldedVenue);
+            ImageView session_unfolded_bullet = session.findViewById(R.id.bulletUnfoldedImageView);
+            ImageView session_unfolded_icon = session.findViewById(R.id.sessionIcon);
+
+            int bullet_id = getApplicationContext().getResources().getIdentifier(main_session.getBulletDrawable(),"drawable",getApplicationContext().getPackageName());
+            session_folded_bullet.setImageResource(bullet_id);
+
+            int icon_id = getApplicationContext().getResources().getIdentifier(main_session.getIconDrawable(),"drawable",getApplicationContext().getPackageName());
+            session_folded_icon.setImageResource(icon_id);
+
             TextView session_unfolded_abstract = session.findViewById(R.id.session_content_abstract);
             TextView session_unfolded_authors = session.findViewById(R.id.session_content_authors);
             final String title = event.getTitle();
@@ -82,14 +101,16 @@ public class ActivitySessionDetails extends AppCompatActivity {
                 }
             }
             session_folded_title.setText(title);
-            String modified_folded_authors = "";
-            if (event.getRoom().length() != 0 || !event.getRoom().equals("")) {
-                modified_folded_authors = modified_folded_authors.concat("Venue: ").concat(event.getRoom()).concat("\n");
-                modified_folded_authors = modified_folded_authors.concat(folded_authors);
-                session_folded_authors.setText(modified_folded_authors);
-            } else {
-                session_folded_authors.setText(folded_authors);
-            }
+            session_folded_venue.setText(event.getRoom());
+
+
+
+
+
+
+
+            session_folded_authors.setText(folded_authors);
+
 
             session_unfolded_title.setText(title);
             if (_abstract.equals("") || _abstract.length() == 0) {
@@ -97,7 +118,10 @@ public class ActivitySessionDetails extends AppCompatActivity {
             } else {
                 session_unfolded_abstract.setText(_abstract);
             }
+            session_unfolded_venue.setText(event.getRoom());
             session_unfolded_authors.setText(unfolded_authors);
+            session_unfolded_bullet.setImageResource(bullet_id);
+            session_unfolded_icon.setImageResource(icon_id);
             final FrameLayout title_view = (FrameLayout) session.findViewById(R.id.cell_title_view);
             final FrameLayout content_view = (FrameLayout) session.findViewById(R.id.cell_content_view);
 
