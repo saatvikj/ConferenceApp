@@ -126,7 +126,7 @@
                         android:layout_width="24dp"
                         android:layout_height="24dp"
                         android:id="@+id/foldedIcon"
-                        android:background="@drawable/opensession"
+                        android:src="@drawable/opensession"
                         android:layout_marginRight="8dp"/>
 
                     <TextView
