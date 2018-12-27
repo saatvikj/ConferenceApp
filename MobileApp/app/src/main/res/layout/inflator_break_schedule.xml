@@ -27,7 +27,7 @@
                 android:layout_weight="1.5"
                 android:layout_marginLeft="4dp"
                 android:id="@+id/breakStartTime"
-                android:textColor="#A75357"
+                android:textColor="@color/tabtextcolor"
                 android:textSize="20sp"
                 android:fontFamily="sans-serif"
                 android:text="10:30 AM"/>
@@ -45,7 +45,7 @@
                 android:textSize="20sp"
                 android:textAlignment="center"
                 android:id="@+id/breakEndTime"
-                android:textColor="#A75357"
+                android:textColor="@color/tabtextcolor"
                 android:fontFamily="sans-serif"
                 android:text="10:50 AM"/>
 

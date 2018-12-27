@@ -15,6 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -65,9 +66,12 @@ public class NavBarActivity extends AppCompatActivity
         navigationView.getMenu().getItem(6).setVisible(false);
         if(src.equals("skip")) {
             userIcon = navigationView.getHeaderView(0).findViewById(R.id.imageView);
+            userIcon.setImageResource(R.drawable.logo);
+            userIcon.getLayoutParams().height= ViewGroup.LayoutParams.MATCH_PARENT;
+            userIcon.getLayoutParams().width= ViewGroup.LayoutParams.MATCH_PARENT;
             disableOptionsNavigationView(navigationView);
             TextView name = navigationView.getHeaderView(0).findViewById(R.id.nameHeading);
-            name.setText("Guest");
+            name.setText("");
             TextView email = navigationView.getHeaderView(0).findViewById(R.id.emailHeading);
             email.setVisibility(View.GONE);
 
