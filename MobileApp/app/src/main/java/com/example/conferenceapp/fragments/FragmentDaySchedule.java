@@ -83,12 +83,17 @@ public class FragmentDaySchedule extends Fragment implements Serializable {
 
     public void addFoodView(LinearLayout root, LayoutInflater inflater, Session session) {
         View food_view = inflater.inflate(R.layout.inflator_break_schedule, null);
+        ImageView image = food_view.findViewById(R.id.breakImage);
         TextView start = food_view.findViewById(R.id.breakStartTime);
-        TextView desc = food_view.findViewById(R.id.breakDescTextView);
         TextView end = food_view.findViewById(R.id.breakEndTime);
         start.setText(session.getDateTime().getStartTime());
-        desc.setText(session.getTitle());
         end.setText(session.getDateTime().getEndTime());
+
+        if (session.getTitle().equalsIgnoreCase("Chai/Coffee")) {
+            image.setImageResource(R.drawable.coffee);
+        } else if (session.getTitle().equalsIgnoreCase("Lunch")) {
+            image.setImageResource(R.drawable.lunch);
+        }
         root.addView(food_view);
     }
 
@@ -111,12 +116,12 @@ public class FragmentDaySchedule extends Fragment implements Serializable {
 
         int icon_id = getContext().getResources().getIdentifier(session.getIconDrawable(),"drawable",getContext().getPackageName());
         imagevenue.setImageResource(icon_id);
-
+        addPaper.setText("");
         final boolean exists = inMyAgenda(session);
         if (exists == true) {
-            addPaper.setText("Remove");
-            addPaper.setTextColor(Color.parseColor("#C72026"));
-            paperAdd.setImageDrawable(getResources().getDrawable(R.drawable.remcalen));
+
+//            addPaper.setTextColor(Color.parseColor("#C72026"));
+            paperAdd.setImageDrawable(getResources().getDrawable(R.drawable.minus_colored));
         }
         root.addView(paper_view);
         if (clickable == true) {
@@ -152,14 +157,14 @@ public class FragmentDaySchedule extends Fragment implements Serializable {
                             .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, session.getDateTime().getParseStartTime())
                             .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, session.getDateTime().getParseEndTime());
                     startActivity(intent);
-                    paperAdd.setImageDrawable(getResources().getDrawable(R.drawable.remcalen));
-                    addPaper.setTextColor(Color.parseColor("#C72026"));
-                    addPaper.setText("Remove");
+                    paperAdd.setImageDrawable(getResources().getDrawable(R.drawable.minus_colored));
+//                    addPaper.setTextColor(Color.parseColor("#C72026"));
+//                    addPaper.setText("Remove");
                 } else {
                     dbManager.delete(session);
-                    paperAdd.setImageDrawable(getResources().getDrawable(R.drawable.addcal));
-                    addPaper.setTextColor(Color.parseColor("#0F9D57"));
-                    addPaper.setText("Add");
+                    paperAdd.setImageDrawable(getResources().getDrawable(R.drawable.plus_plain));
+//                    addPaper.setTextColor(Color.parseColor("#0F9D57"));
+//                    addPaper.setText("Add");
                 }
             }
         });

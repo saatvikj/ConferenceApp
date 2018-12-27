@@ -15,7 +15,7 @@
             android:layout_width="2dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="16dp"
-            android:background="#bebebe" />
+            android:background="@color/colorPrimary" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -30,8 +30,8 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:id="@+id/sessionImageView"
                     android:layout_marginTop="4dp"
                     android:layout_marginRight="8dp"/>
@@ -55,8 +55,8 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
                     android:layout_marginLeft="28dp"
                     android:layout_marginRight="8dp"
                     android:layout_gravity="center"
@@ -69,7 +69,7 @@
                     android:textSize="18sp"
                     android:text="New Campus"
                     android:fontFamily="sans-serif-light"
-                    android:textColor="@color/tabtextcolor" />
+                    android:textColor="@color/grey_color" />
 
             </LinearLayout>
 
@@ -82,7 +82,7 @@
                 android:fontFamily="sans-serif-light"
                 android:text="10:30am - 11:30am"
                 android:textSize="16sp"
-                android:textColor="@color/tabtextcolor" />
+                android:textColor="@color/grey_color" />
 
 
         </LinearLayout>
@@ -95,10 +95,10 @@
             android:layout_gravity="right|center_vertical">
 
             <ImageView
-                android:layout_width="24dp"
-                android:layout_height="24dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:id="@+id/addPaperIcon"
-                android:src="@drawable/addcal"/>
+                android:src="@drawable/plus_plain"/>
 
             <TextView
                 android:id="@+id/add"
@@ -106,7 +106,7 @@
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:text="Add"
-                android:textColor="@color/tabtextcolor" />
+                android:textColor="@color/grey_color" />
 
         </LinearLayout>
 
@@ -114,6 +114,6 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/greyBackground" />
+        android:background="@color/tabtextcolor" />
 
 </LinearLayout>

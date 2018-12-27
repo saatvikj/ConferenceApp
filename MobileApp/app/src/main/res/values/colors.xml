@@ -8,7 +8,8 @@
     <color name="break_background">#7d333333</color>
     <color name="white">#ffffffff</color>
     <color name="transparent">#00000000</color>
-    <color name="tabtextcolor">#868686</color>
-    <color name="tabindicatorcolor">#868686</color>
-    <color name="selectedtabcolor">#525252</color>
+    <color name="tabtextcolor">#A75357</color>
+    <color name="grey_color">#868686</color>
+    <color name="tabindicatorcolor">#A75357</color>
+    <color name="selectedtabcolor">#A75357</color>
 </resources>

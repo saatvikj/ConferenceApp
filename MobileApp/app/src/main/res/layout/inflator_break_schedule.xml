@@ -1,39 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:background="#ffffff"
-    android:weightSum="3"
-    android:padding="8dp">
+<LinearLayout android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1.5"
-        android:layout_marginLeft="4dp"
-        android:id="@+id/breakStartTime"
-        android:textColor="#A75357"
-        android:textSize="20sp"
-        android:fontFamily="sans-serif"
-        android:text="10:30 AM"/>
+        android:layout_height="wrap_content">
 
-    <ImageView
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:id="@+id/breakImage"
-        android:src="@drawable/coffee"/>
+        <View
+            android:layout_width="18dp"
+            android:layout_height="match_parent"
+            android:background="@color/tabtextcolor" />
 
-    <TextView
+
+        <LinearLayout
+            xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="3"
+            android:padding="8dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:layout_marginLeft="4dp"
+                android:id="@+id/breakStartTime"
+                android:textColor="#A75357"
+                android:textSize="20sp"
+                android:fontFamily="sans-serif"
+                android:text="10:30 AM"/>
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:id="@+id/breakImage"
+                android:src="@drawable/coffee"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="20sp"
+                android:textAlignment="center"
+                android:id="@+id/breakEndTime"
+                android:textColor="#A75357"
+                android:fontFamily="sans-serif"
+                android:text="10:50 AM"/>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <View
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:textSize="20sp"
-        android:textAlignment="center"
-        android:id="@+id/breakEndTime"
-        android:textColor="#A75357"
-        android:fontFamily="sans-serif"
-        android:text="10:50 AM"/>
-
+        android:layout_height="1dp"
+        android:background="@color/tabtextcolor" />
 
 </LinearLayout>

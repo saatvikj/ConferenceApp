@@ -74,12 +74,17 @@ public class FragmentMyDaySchedule extends Fragment implements Serializable {
 
     public void addFoodView(LinearLayout root, LayoutInflater inflater, Session session) {
         View food_view = inflater.inflate(R.layout.inflator_break_schedule, null);
+        ImageView image = food_view.findViewById(R.id.breakImage);
         TextView start = food_view.findViewById(R.id.breakStartTime);
-        TextView desc = food_view.findViewById(R.id.breakDescTextView);
         TextView end = food_view.findViewById(R.id.breakEndTime);
         start.setText(session.getDateTime().getStartTime());
-        desc.setText(session.getTitle());
         end.setText(session.getDateTime().getEndTime());
+
+        if (session.getTitle().equalsIgnoreCase("Chai/Coffee")) {
+            image.setImageResource(R.drawable.coffee);
+        } else if (session.getTitle().equalsIgnoreCase("Lunch")) {
+            image.setImageResource(R.drawable.lunch);
+        }
         root.addView(food_view);
     }
 
@@ -128,7 +133,7 @@ public class FragmentMyDaySchedule extends Fragment implements Serializable {
         paperAdd.setVisibility(View.GONE);
     }
 
-    public int makeTimeView(LinearLayout root, LayoutInflater inflater, int startTime, int endTime, String current_date) {
+    public int makeTimeView(LinearLayout root, LayoutInflater inflater, int startTime, int endTime, String current_date, Boolean add) {
 
         int count = 0;
         Cursor cursor = dbManager.fetch();
@@ -154,7 +159,9 @@ public class FragmentMyDaySchedule extends Fragment implements Serializable {
                     if (session.getDateTime().getStartTimeInt() >= startTime &&
                             session.getDateTime().getStartTimeInt() <= endTime &&
                             date.equals(current_date)) {
-                        addSessionToView(root, inflater, session, clickable);
+                        if (add) {
+                            addSessionToView(root, inflater, session, clickable);
+                        }
                         count++;
                     }
                 } while (cursor.moveToNext());
@@ -184,12 +191,14 @@ public class FragmentMyDaySchedule extends Fragment implements Serializable {
         String date_for_page = new_date.concat("/").concat(date[1]).concat("/").concat(date[0]);
         int last_time = 0000;
         boolean new_addition = true;
+
+        int daySessions = makeTimeView(root, inflater, 0000, 2359, date_for_page, false);
+        if (daySessions == 0) {
+            addNotificationForNoPapers(root, inflater);
+        }
         for (int i = 0; i < sessions.size(); i++) {
             if (sessions.get(i).getType().equals("Food") && sessions.get(i).getDateTime().getDate().equals(date_for_page)) {
-                int papers_added = makeTimeView(root, inflater, last_time, sessions.get(i).getDateTime().getEndTimeInt(), date_for_page);
-                if (papers_added == 0) {
-                    addNotificationForNoPapers(root, inflater);
-                }
+                makeTimeView(root, inflater, last_time, sessions.get(i).getDateTime().getEndTimeInt(), date_for_page, true);
                 addFoodView(root, inflater, sessions.get(i));
                 last_time = sessions.get(i).getDateTime().getEndTimeInt();
             }
