@@ -77,6 +77,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingBottom="4dp"
+                    android:layout_marginLeft = "32dp"
                     android:text="This paper presents the findings on the use of Anonymous Social Media (ASM) in Bangladesh based on an anonymous online survey of 291 participants and semi-structured interviews with 27 participants. Our study shows a wide prevalence of sexual harassment on anonymous social networks in Bangladesh, the relationship between a closely-knitted communal culture and anonymous harassment, and the lack of infrastructural support for the victims. These findings advocate for a safe and supportive online environment for its users, especially for women who are the primary victims of profanity or defamation in Bangladesh."
                     android:textSize="12sp" />
 
@@ -86,6 +87,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingBottom="8dp"
+                    android:layout_marginLeft = "32dp"
                     android:text="* Fayika Farhat Nova (Marquette University)
 * Md. Rashidujjaman Rifat (University of Toronto)
 * Pratyasha Saha (Dhaka University)
@@ -96,7 +98,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:background="@color/greyBackground" />
+                    android:background="#A73537" />
 
             </LinearLayout>
 
