@@ -12,6 +12,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -45,6 +46,9 @@ public class NavBarActivity extends AppCompatActivity
     public String src;
     Conference conference;
     ImageView userIcon;
+    int current_screen_id;
+    NavigationView mNavigationView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +67,8 @@ public class NavBarActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         final NavigationView navigationView = findViewById(R.id.nav_view);
+        mNavigationView = findViewById(R.id.nav_view);
+        mNavigationView.getMenu().getItem(0).setChecked(true);
         navigationView.getMenu().getItem(6).setVisible(false);
         if(src.equals("skip")) {
             userIcon = navigationView.getHeaderView(0).findViewById(R.id.imageView);
@@ -164,7 +170,7 @@ public class NavBarActivity extends AppCompatActivity
                 break;
             case R.id.nav_speaker_wise_schedule:
                 fragment = new FragmentAttendeeSchedule();
-                setActionBarTitle("Attendee");
+                setActionBarTitle("Attendees");
                 break;
             case R.id.nav_feed:
                 fragment = new FragmentFeed();
@@ -214,9 +220,27 @@ public class NavBarActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
 
         //calling the method displayselectedscreen and passing the id of selected menu
+        current_screen_id = item.getItemId();
         displaySelectedScreen(item.getItemId());
         //make this method blank
         return true;
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
+            if (current_screen_id != R.id.nav_conference_schedule) {
+                mNavigationView.getMenu().getItem(0).setChecked(true);
+                displaySelectedScreen(R.id.nav_conference_schedule);
+            } else {
+                Intent intent = new Intent(NavBarActivity.this, MainActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     public void setActionBarTitle(String input){

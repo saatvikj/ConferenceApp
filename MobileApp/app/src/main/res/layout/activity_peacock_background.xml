@@ -52,6 +52,7 @@
                 android:paddingTop="4dp"
                 android:text="Login/Signup"
                 android:textAllCaps="false"
+                android:visibility="gone"
                 android:textColor="#ffffff" />
 
             <Button
@@ -65,7 +66,7 @@
                 android:paddingLeft="32dp"
                 android:paddingRight="32dp"
                 android:paddingTop="4dp"
-                android:text="Continue As Guest"
+                android:text="Continue"
                 android:textAllCaps="false"
                 android:textColor="#ffffff" />
 

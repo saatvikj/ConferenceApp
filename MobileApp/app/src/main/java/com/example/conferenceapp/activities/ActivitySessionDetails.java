@@ -27,12 +27,15 @@ public class ActivitySessionDetails extends AppCompatActivity {
 
     ArrayList<Event> events;
     ArrayList<Session> sessions;
+    FoldingCell cells[];
+    FrameLayout content_views[];
+    FrameLayout title_views[];
+
     Session main_session;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_session_details);
-
         Toast.makeText(getApplicationContext(), "Click on title to view any additional details if available.", Toast.LENGTH_SHORT).show();
 
         events = new ArrayList<Event>();
@@ -44,7 +47,9 @@ public class ActivitySessionDetails extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        cells = new FoldingCell[events.size()];
+        content_views = new FrameLayout[events.size()];
+        title_views = new FrameLayout[events.size()];
         for (int i=0; i< sessions.size(); i++) {
             if (sessions.get(i).getID() == Integer.parseInt(id)) {
                 setTitle(sessions.get(i).getTitle());
@@ -59,6 +64,7 @@ public class ActivitySessionDetails extends AppCompatActivity {
             Event event = events.get(i);
             View session = getLayoutInflater().inflate(R.layout.inflator_session,null);
             final FoldingCell fc = (FoldingCell) session.findViewById(R.id.folding_cell);
+            cells[i] = fc;
             TextView session_folded_title = session.findViewById(R.id.session_title);
             TextView session_folded_authors = session.findViewById(R.id.session_authors);
             TextView session_folded_venue = session.findViewById(R.id.sessionVenue);
@@ -102,16 +108,7 @@ public class ActivitySessionDetails extends AppCompatActivity {
             }
             session_folded_title.setText(title);
             session_folded_venue.setText(event.getRoom());
-
-
-
-
-
-
-
             session_folded_authors.setText(folded_authors);
-
-
             session_unfolded_title.setText(title);
             if (_abstract.equals("") || _abstract.length() == 0) {
                 session_unfolded_abstract.setVisibility(View.GONE);
@@ -124,14 +121,17 @@ public class ActivitySessionDetails extends AppCompatActivity {
             session_unfolded_icon.setImageResource(icon_id);
             final FrameLayout title_view = (FrameLayout) session.findViewById(R.id.cell_title_view);
             final FrameLayout content_view = (FrameLayout) session.findViewById(R.id.cell_content_view);
-
+            content_views[i] = content_view;
+            title_views[i] = title_view;
 
             fc.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     try {
+                        fold_others(fc);
                         fc.toggle(false);
                     } catch (Exception e) {
+                        title_others(content_view, title_view);
                         content_view.setVisibility(View.VISIBLE);
                     }
                 }
@@ -154,6 +154,7 @@ public class ActivitySessionDetails extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.guide_home) {
             Intent intent = new Intent(ActivitySessionDetails.this, NavBarActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.putExtra("Source", getIntent().getStringExtra("Source"));
             if (!(getIntent().getStringExtra("Source")).equals("skip")) {
                 intent.putExtra("email", getIntent().getStringExtra("email"));
@@ -163,6 +164,39 @@ public class ActivitySessionDetails extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+
+    public void fold_others(FoldingCell fc) {
+
+        for (int i=0; i< cells.length; i++) {
+            if (cells[i] != fc) {
+                if (cells[i].isUnfolded()) {
+                    cells[i].fold(false);
+                }
+            }
+        }
+
+    }
+
+    public void title_others(FrameLayout content, FrameLayout title) {
+        for (int i=0; i< content_views.length; i++) {
+            if (content_views[i] != content) {
+                content_views[i].setVisibility(View.GONE);
+                title_views[i].setVisibility(View.VISIBLE);
+            }
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(ActivitySessionDetails.this, NavBarActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("Source", getIntent().getStringExtra("Source"));
+        if (!(getIntent().getStringExtra("Source")).equals("skip")) {
+            intent.putExtra("email", getIntent().getStringExtra("email"));
+        }
+        startActivity(intent);
     }
 
 }

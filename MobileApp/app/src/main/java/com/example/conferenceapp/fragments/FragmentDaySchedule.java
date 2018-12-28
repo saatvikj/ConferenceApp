@@ -90,9 +90,11 @@ public class FragmentDaySchedule extends Fragment implements Serializable {
         end.setText(session.getDateTime().getEndTime());
 
         if (session.getTitle().equalsIgnoreCase("Chai/Coffee")) {
-            image.setImageResource(R.drawable.coffee);
+            image.setImageResource(R.drawable.chai);
         } else if (session.getTitle().equalsIgnoreCase("Lunch")) {
             image.setImageResource(R.drawable.lunch);
+        } else if (session.getTitle().equalsIgnoreCase("Evening Snacks")) {
+            image.setImageResource(R.drawable.snacks);
         }
         root.addView(food_view);
     }

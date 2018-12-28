@@ -21,7 +21,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Organizers"
+                android:text="Hosts"
                 android:layout_marginLeft="12dp"
                 android:textSize="18sp"
                 android:textStyle="bold"
@@ -39,8 +39,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.5"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"
                 android:layout_marginTop="12dp"
                 android:orientation="horizontal"
                 android:weightSum="1">
@@ -49,14 +47,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:layout_weight="0.5"
-                    android:gravity="center"
+                    android:layout_weight="0.7"
+                    android:gravity="right"
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="90dp"
-                        android:scaleType="fitXY"
+                        android:layout_width="64dp"
+                        android:layout_height="80dp"
                         android:background="@drawable/iim" />
 
                 </LinearLayout>
@@ -66,16 +63,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:layout_weight="0.5"
-                    android:layout_marginLeft="8dp"
+                    android:layout_weight="0.3"
                     android:gravity="center"
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="180dp"
-                        android:layout_height="40dp"
+                        android:layout_width="240dp"
+                        android:layout_height="48dp"
                         android:background="@drawable/iiitd"
-                        android:scaleType="fitXY"
                         android:gravity="center" />
 
                 </LinearLayout>
@@ -102,7 +97,7 @@
 
                     <ImageView
                         android:layout_width="100dp"
-                        android:layout_height="50dp"
+                        android:layout_height="43dp"
                         android:scaleType="fitXY"
                         android:background="@drawable/georgia"
                         android:gravity="center" />
@@ -121,7 +116,7 @@
 
                     <ImageView
                         android:layout_width="100dp"
-                        android:layout_height="50dp"
+                        android:layout_height="70dp"
                         android:scaleType="fitXY"
                         android:background="@drawable/georgetown"
                         android:gravity="center" />
@@ -171,8 +166,8 @@
                     android:orientation="vertical" >
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="90dp"
+                        android:layout_height="35dp"
                         android:src="@drawable/googl" />
 
                 </LinearLayout>
@@ -185,8 +180,8 @@
                     android:orientation="vertical" >
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="90dp"
+                        android:layout_height="25dp"
                         android:src="@drawable/msr" />
 
                 </LinearLayout>
@@ -199,8 +194,8 @@
                     android:orientation="vertical" >
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="50dp"
+                        android:layout_width="100dp"
+                        android:layout_height="29dp"
                         android:scaleType="centerCrop"
                         android:src="@drawable/fb" />
                 </LinearLayout>
@@ -224,7 +219,7 @@
 
                     <ImageView
                         android:layout_width="60dp"
-                        android:layout_height="60dp"
+                        android:layout_height="52dp"
                         android:scaleType="centerCrop"
                         android:background="@drawable/umsi" />
 
@@ -254,7 +249,7 @@
 
                     <ImageView
                         android:layout_width="100dp"
-                        android:layout_height="60dp"
+                        android:layout_height="72dp"
                         android:scaleType="centerCrop"
                         android:background="@drawable/wadhwani" />
                 </LinearLayout>
@@ -278,7 +273,7 @@
 
                     <ImageView
                         android:layout_width="90dp"
-                        android:layout_height="50dp"
+                        android:layout_height="41dp"
                         android:scaleType="fitXY"
                         android:background="@drawable/cdnm" />
 
@@ -293,7 +288,7 @@
 
                     <ImageView
                         android:layout_width="100dp"
-                        android:layout_height="50dp"
+                        android:layout_height="33dp"
                         android:scaleType="fitXY"
                         android:background="@drawable/acm" />
 
@@ -308,7 +303,7 @@
 
                     <ImageView
                         android:layout_width="90dp"
-                        android:layout_height="50dp"
+                        android:layout_height="38dp"
                         android:scaleType="fitXY"
                         android:background="@drawable/ipid" />
                 </LinearLayout>
