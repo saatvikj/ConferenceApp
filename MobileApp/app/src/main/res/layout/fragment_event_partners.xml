@@ -38,93 +38,65 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.5"
-                android:layout_marginTop="12dp"
-                android:orientation="horizontal"
-                android:weightSum="1">
+                android:orientation="horizontal">
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_weight="0.7"
-                    android:gravity="right"
-                    android:orientation="horizontal">
+                    android:layout_marginTop="12dp"
+                    android:orientation="vertical"
+                    android:layout_weight="0.3">
 
                     <ImageView
-                        android:layout_width="64dp"
-                        android:layout_height="80dp"
-                        android:background="@drawable/iim" />
+                        android:layout_width="72dp"
+                        android:layout_gravity="center"
+                        android:layout_height="72dp"
+                        android:scaleType="fitStart"
+                        android:src="@drawable/iim"/>
 
                 </LinearLayout>
 
-
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_weight="0.3"
-                    android:gravity="center"
-                    android:orientation="horizontal">
+                    android:layout_marginTop="12dp"
+                    android:orientation="vertical"
+                    android:layout_weight="0.43">
 
                     <ImageView
-                        android:layout_width="240dp"
-                        android:layout_height="48dp"
-                        android:background="@drawable/iiitd"
-                        android:gravity="center" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_weight="0.5"
-                android:layout_marginLeft="12dp"
-                android:layout_marginRight="12dp"
-                android:orientation="horizontal"
-                android:weightSum="1">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_weight="0.5"
-                    android:gravity="center"
-                    android:orientation="horizontal">
+                        android:layout_width="160dp"
+                        android:layout_height="32dp"
+                        android:scaleType="fitStart"
+                        android:layout_gravity="center"
+                        android:src="@drawable/iiitd"/>
 
                     <ImageView
                         android:layout_width="100dp"
                         android:layout_height="43dp"
-                        android:scaleType="fitXY"
-                        android:background="@drawable/georgia"
-                        android:gravity="center" />
+                        android:layout_gravity="center"
+                        android:scaleType="fitStart"
+                        android:src="@drawable/georgia"/>
 
                 </LinearLayout>
-
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    android:layout_weight="0.5"
-                    android:gravity="center"
-                    android:layout_marginLeft="8dp"
-                    android:orientation="horizontal">
+                    android:orientation="vertical"
+                    android:layout_marginTop="12dp"
+                    android:padding="8dp"
+                    android:layout_weight="0.27">
 
                     <ImageView
-                        android:layout_width="100dp"
-                        android:layout_height="70dp"
-                        android:scaleType="fitXY"
-                        android:background="@drawable/georgetown"
-                        android:gravity="center" />
+                        android:layout_width="80dp"
+                        android:layout_height="56dp"
+                        android:scaleType="fitStart"
+                        android:src="@drawable/georgetown"/>
 
                 </LinearLayout>
 
-            </LinearLayout>
 
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -182,6 +154,7 @@
                     <ImageView
                         android:layout_width="90dp"
                         android:layout_height="25dp"
+                        android:scaleType="fitStart"
                         android:src="@drawable/msr" />
 
                 </LinearLayout>
@@ -196,7 +169,7 @@
                     <ImageView
                         android:layout_width="100dp"
                         android:layout_height="29dp"
-                        android:scaleType="centerCrop"
+                        android:scaleType="fitStart"
                         android:src="@drawable/fb" />
                 </LinearLayout>
 
@@ -220,7 +193,7 @@
                     <ImageView
                         android:layout_width="60dp"
                         android:layout_height="52dp"
-                        android:scaleType="centerCrop"
+                        android:scaleType="fitStart"
                         android:background="@drawable/umsi" />
 
                 </LinearLayout>
@@ -235,7 +208,7 @@
                     <ImageView
                         android:layout_width="60dp"
                         android:layout_height="60dp"
-                        android:scaleType="centerCrop"
+                        android:scaleType="fitStart"
                         android:background="@drawable/nsf" />
 
                 </LinearLayout>
@@ -250,7 +223,7 @@
                     <ImageView
                         android:layout_width="100dp"
                         android:layout_height="72dp"
-                        android:scaleType="centerCrop"
+                        android:scaleType="fitStart"
                         android:background="@drawable/wadhwani" />
                 </LinearLayout>
 
@@ -274,7 +247,7 @@
                     <ImageView
                         android:layout_width="90dp"
                         android:layout_height="41dp"
-                        android:scaleType="fitXY"
+                        android:scaleType="fitStart"
                         android:background="@drawable/cdnm" />
 
                 </LinearLayout>
@@ -289,7 +262,7 @@
                     <ImageView
                         android:layout_width="100dp"
                         android:layout_height="33dp"
-                        android:scaleType="fitXY"
+                        android:scaleType="fitStart"
                         android:background="@drawable/acm" />
 
                 </LinearLayout>
@@ -304,7 +277,7 @@
                     <ImageView
                         android:layout_width="90dp"
                         android:layout_height="38dp"
-                        android:scaleType="fitXY"
+                        android:scaleType="fitStart"
                         android:background="@drawable/ipid" />
                 </LinearLayout>
 

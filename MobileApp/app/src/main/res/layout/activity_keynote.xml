@@ -7,10 +7,17 @@
     android:background="#FFFFFF"
     tools:context=".activities.ActivityKeynote">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/keynote_content"
+            android:layout_marginTop="200dp"
+            />
 
         <ImageView
             android:layout_width="360dp"
@@ -22,16 +29,9 @@
             android:layout_marginLeft="40dp"
             />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/keynote_content"
-            android:layout_marginTop="-32dp"
-            android:paddingTop="-32dp"
-            />
 
 
-    </LinearLayout>
+    </FrameLayout>
 
 
 </ScrollView>

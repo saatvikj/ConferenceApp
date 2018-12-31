@@ -1,6 +1,6 @@
 ID,Title,DateTime,Type,Clickable,IconDrawable,BulletDrawable,Venue
 0,Registration,"04/01/2019,08:30-18:00",Individual,FALSE,registration,circle,RJM
-1,Open Sessions,"04/01/2019,10:00-15:00",List,TRUE,opensession,square,New Campus
+1,Open Sessions,"04/01/2019,10:00-13:00",List,TRUE,opensession,square,New Campus
 2,Doctoral Consortium,"04/01/2019,10:00-15:00",List,TRUE,opensession,square,New Campus
 0,Chai/Coffee,"04/01/2019,11:15-11:45",Food,FALSE,,,New Campus
 0,Lunch,"04/01/2019,13:00-14:00",Food,FALSE,,,Tower Lawns
@@ -23,7 +23,7 @@ ID,Title,DateTime,Type,Clickable,IconDrawable,BulletDrawable,Venue
 0,Research & Practice Night,"05/01/2019,18:00-19:30",Individual,FALSE,research,square,SR7
 0,Registration,"06/01/2019,08:00-09:30",Individual,FALSE,registration,circle,RJM
 20,Keynote: Smitha Radhakrishnan,"06/01/2019,09:00-10:00",Keynote,TRUE,keynote,circle,RJM
-0,Chai/Coffee,"06/01/2019,10:00-10:30",Food,FALSE,,,Tower Lawns
+0,Chai/Coffee,"06/01/2019,10:00-10:25",Food,FALSE,,,Tower Lawns
 22,Papers: Financing Matters,"06/01/2019,10:25-11:55",List,TRUE,papers,circle,RJM
 23,Open Sessions,"06/01/2019,12:00-13:30",List,TRUE,opensession,square,New Campus
 0,Lunch,"06/01/2019,13:30-14:30",Food,FALSE,,,Tower Lawns
@@ -40,4 +40,4 @@ ID,Title,DateTime,Type,Clickable,IconDrawable,BulletDrawable,Venue
 35,Papers: Fostering Community,"07/01/2019,14:00-15:30",List,TRUE,papers,circle,RJM
 0,Chai/Coffee,"07/01/2019,15:30-16:00",Food,FALSE,,,Tower Lawns
 37,Keynote: Michael Mazgaonkar,"07/01/2019,16:00-17:00",Keynote,TRUE,keynote,circle,RJM
-0,Closing Remarks,"07/01/2019,17:00-17:10",Individual,FALSE,closing,circle,RJM
+0,Closing Remarks,"07/01/2019,17:00-17:15",Individual,FALSE,closing,circle,RJM

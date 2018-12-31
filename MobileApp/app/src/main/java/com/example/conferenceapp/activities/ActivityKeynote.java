@@ -75,10 +75,10 @@ public class ActivityKeynote extends AppCompatActivity {
         } else if (e.getAuthors()[0].equals("") || e.getAuthors()[0].length() == 0) {
             setTitle(e.getTitle());
             AboutPage page = new AboutPage(getApplicationContext()).isRTL(false)
-                    .setImage(R.drawable.logo)
                     .setDescription(e.get_abstract());
 
             content.addView(page.create());
+            imageView.setImageResource(R.drawable.young_icon);
         }
 
         else {

@@ -53,6 +53,7 @@ public class NavBarActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nav_bar);
+        current_screen_id = R.id.nav_conference_schedule;
         src = getIntent().getStringExtra("Source");
         try {
             conference = ConferenceCSVParser.parseCSV(getApplicationContext());

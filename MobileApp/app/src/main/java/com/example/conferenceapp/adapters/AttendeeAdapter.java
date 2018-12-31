@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.example.conferenceapp.R;
@@ -56,10 +57,15 @@ public class AttendeeAdapter extends RecyclerView.Adapter<AttendeeAdapter.Speake
             public void onClick(View view) {
                 String src = fa.getIntent().getStringExtra("Source");
                 if (src.equals("skip")) {
-                    Intent intent = new Intent(Intent.ACTION_SENDTO);
-                    String mailto = "mailto:".concat(user.getEmail());
-                    intent.setData(Uri.parse(mailto));
-                    mCtx.startActivity(intent);
+                    if (user.getEmail().length() != 0) {
+                        Intent intent = new Intent(Intent.ACTION_SENDTO);
+                        String mailto = "mailto:".concat(user.getEmail());
+                        intent.setData(Uri.parse(mailto));
+                        mCtx.startActivity(intent);
+                    } else {
+                        Toast.makeText(mCtx, "This user hasn't provided details.", Toast.LENGTH_SHORT).show();
+                    }
+
                 } else {
                     Intent intent = new Intent(fa, ActivityUserProfile.class);
                     intent.putExtra("email", user.getEmail());
