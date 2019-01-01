@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="os_1">
+        <item>Narratives in ICTD</item>
+        <item>Google’s Design Workshop</item>
+        <item>Beyond IVR</item>
+        <item>Fairwork Foundation</item>
+        <item>Health &amp; Wellness</item>
+    </string-array>
+
+    <string-array name="os_5">
+        <item>Post-Use ICTs</item>
+        <item>Mental Health</item>
+        <item>Last Mile</item>
+        <item>Cambodian Radio</item>
+    </string-array>
+    
+    <string-array name="os_13">
+        <item>Personal Informatics</item>
+        <item>ML for India</item>
+        <item>SM &amp; Politics</item>
+        <item>Theory of Inclusion</item>
+        <item>Is this time different?</item>
+    </string-array>
+
+    <string-array name="os_17">
+        <item>Creating Your Path</item>
+        <item>Child Trafficking</item>
+        <item>Open Government Data</item>
+        <item>ICTD Ethics</item>
+        <item>Data, Women’s Safety, Facebook</item>
+    </string-array>
+
+    <string-array name="os_23">
+        <item>Whither ICTD</item>
+        <item>Gender Equality</item>
+        <item>Intersectional Computing for T &amp; D</item>
+        <item>GDPR</item>
+    </string-array>
+
+
+</resources>
