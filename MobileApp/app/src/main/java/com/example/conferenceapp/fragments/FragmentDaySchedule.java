@@ -84,10 +84,16 @@ public class FragmentDaySchedule extends Fragment implements Serializable {
     public void addFoodView(LinearLayout root, LayoutInflater inflater, Session session) {
         View food_view = inflater.inflate(R.layout.inflator_break_schedule, null);
         ImageView image = food_view.findViewById(R.id.breakImage);
+        TextView papervenue = food_view.findViewById(R.id.paperVenue);
+        ImageView imagebullet = food_view.findViewById(R.id.bulletImageView);
         TextView start = food_view.findViewById(R.id.breakStartTime);
         TextView end = food_view.findViewById(R.id.breakEndTime);
+        papervenue.setText(session.getVenue());
         start.setText(session.getDateTime().getStartTime());
         end.setText(session.getDateTime().getEndTime());
+
+        int bullet_id = getContext().getResources().getIdentifier(session.getBulletDrawable(),"drawable",getContext().getPackageName());
+        imagebullet.setImageResource(bullet_id);
 
         if (session.getTitle().equalsIgnoreCase("Chai/Coffee")) {
             image.setImageResource(R.drawable.chai);

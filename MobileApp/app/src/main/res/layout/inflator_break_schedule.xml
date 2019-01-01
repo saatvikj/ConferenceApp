@@ -16,67 +16,90 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:weightSum="1"
+            android:layout_marginLeft="8dp"
+            android:orientation="horizontal">
 
             <LinearLayout
-                xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:weightSum="3"
-                android:padding="8dp">
+                android:padding="8dp"
+                android:layout_weight="0.9"
+                android:orientation="vertical">
 
-                <TextView
-                    android:layout_width="match_parent"
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1.5"
-                    android:layout_marginLeft="4dp"
-                    android:id="@+id/breakStartTime"
-                    android:textColor="@color/tabtextcolor"
-                    android:textSize="20sp"
-                    android:fontFamily="sans-serif"
-                    android:text="10:30 AM"/>
 
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:id="@+id/breakImage"
-                    android:src="@drawable/coffee"/>
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="match_parent"
+                    <ImageView
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:layout_marginRight="8dp"
+                        android:src="@drawable/triangle"
+                        android:layout_gravity="center"
+                        android:id="@+id/bulletImageView"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/paperVenue"
+                        android:textColor="@color/grey_color"
+                        android:fontFamily="sans-serif-light"
+                        android:textSize="18sp"
+                        android:text="Tower Lawns"/>
+
+                </LinearLayout>
+                
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textSize="20sp"
-                    android:textAlignment="center"
-                    android:id="@+id/breakEndTime"
-                    android:textColor="@color/tabtextcolor"
-                    android:fontFamily="sans-serif"
-                    android:text="10:50 AM"/>
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/breakStartTime"
+                        android:textSize="16sp"
+                        android:textColor="@color/grey_color"
+                        android:fontFamily="sans-serif-light"
+                        android:text="10:30 AM"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:textColor="@color/grey_color"
+                        android:fontFamily="sans-serif-light"
+                        android:text=" - "/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="16sp"
+                        android:textColor="@color/grey_color"
+                        android:id="@+id/breakEndTime"
+                        android:fontFamily="sans-serif-light"
+                        android:text="10:50 AM"/>
+                    
+                </LinearLayout>
 
             </LinearLayout>
 
+
+
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="12dp"
-                    android:layout_height="12dp"
-                    android:layout_marginLeft="28dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_gravity="center"
-                    android:id="@+id/bulletImageView"
-                    android:src="@drawable/triangle"/>
-
-                <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/paperVenue"
-                    android:textSize="18sp"
-                    android:text="Tower Lawns"
-                    android:fontFamily="sans-serif-light"
-                    android:textColor="@color/grey_color" />
+                    android:layout_height="match_parent"
+                    android:id="@+id/breakImage"
+                    android:src="@drawable/chai"/>
 
             </LinearLayout>
 
