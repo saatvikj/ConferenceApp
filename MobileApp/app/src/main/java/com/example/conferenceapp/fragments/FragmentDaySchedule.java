@@ -1,6 +1,7 @@
 package com.example.conferenceapp.fragments;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -10,6 +11,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,11 +27,13 @@ import com.example.conferenceapp.activities.ActivityKeynote;
 import com.example.conferenceapp.activities.ActivityPaperDetails;
 import com.example.conferenceapp.activities.ActivitySessionDetails;
 import com.example.conferenceapp.models.Conference;
+import com.example.conferenceapp.models.Event;
 import com.example.conferenceapp.models.Food;
 import com.example.conferenceapp.models.Paper;
 import com.example.conferenceapp.models.Session;
 import com.example.conferenceapp.utils.ConferenceCSVParser;
 import com.example.conferenceapp.utils.DBManager;
+import com.example.conferenceapp.utils.EventCSVParser;
 import com.example.conferenceapp.utils.PaperCSVParser;
 import com.example.conferenceapp.utils.ProgramCSVParser;
 import com.example.conferenceapp.utils.UserCSVParser;
@@ -43,6 +47,8 @@ public class FragmentDaySchedule extends Fragment implements Serializable {
     public static final String ARG_PAGE = "ARG_PAGE";
     private int mPage;
     public DBManager dbManager;
+    int selected_index = -1;
+    ArrayList<Event> events;
 
     public static FragmentDaySchedule newInstance(int page) {
         Bundle args = new Bundle();
@@ -157,22 +163,57 @@ public class FragmentDaySchedule extends Fragment implements Serializable {
             public void onClick(View view) {
                 boolean check_exists = inMyAgenda(session);
                 if (check_exists == false) {
-                    dbManager.insert(session);
-                    Intent intent = new Intent(Intent.ACTION_INSERT)
-                            .setData(CalendarContract.Events.CONTENT_URI)
-                            .putExtra(CalendarContract.Events.TITLE, session.getTitle())
-                            .putExtra(CalendarContract.Events.EVENT_LOCATION, session.getVenue())
-                            .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, session.getDateTime().getParseStartTime())
-                            .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, session.getDateTime().getParseEndTime());
-                    startActivity(intent);
-                    paperAdd.setImageDrawable(getResources().getDrawable(R.drawable.minus_colored));
-//                    addPaper.setTextColor(Color.parseColor("#C72026"));
-//                    addPaper.setText("Remove");
+
+                    if (session.getTitle().equals("Open Sessions")) {
+                        try {
+                            events = EventCSVParser.parseCSV(getContext(),session.getID());
+                        } catch (Exception e) {
+
+                        }
+                        String name = "os_".concat(Integer.toString(session.getID()));
+                        int array_id = getContext().getResources().getIdentifier(name,"array",getContext().getPackageName());
+                        final String[] singleChoiceItems = getResources().getStringArray(array_id);
+                        int itemSelected = 0;
+                        new AlertDialog.Builder(getContext())
+                                .setTitle("Select session:")
+                                .setSingleChoiceItems(singleChoiceItems, itemSelected, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int selectedIndex) {
+                                        selected_index = selectedIndex;
+                                    }
+                                })
+                                .setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialogInterface, int index) {
+                                        Session os_session = new Session(session.getID(),singleChoiceItems[selected_index],session.getDateTime(),session.getType(),session.isClickable(),session.getIconDrawable(),session.getBulletDrawable(),events.get(selected_index).getRoom());
+                                        dbManager.insert(os_session);
+                                        Intent intent = new Intent(Intent.ACTION_INSERT)
+                                                .setData(CalendarContract.Events.CONTENT_URI)
+                                                .putExtra(CalendarContract.Events.TITLE, os_session.getTitle())
+                                                .putExtra(CalendarContract.Events.EVENT_LOCATION, os_session.getVenue().concat(",").concat(session.getVenue()))
+                                                .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, os_session.getDateTime().getParseStartTime())
+                                                .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, os_session.getDateTime().getParseEndTime());
+                                        startActivity(intent);
+                                        paperAdd.setImageDrawable(getResources().getDrawable(R.drawable.minus_colored));
+                                    }
+                                })
+                                .setNegativeButton("Cancel", null)
+                                .show();
+
+                    } else {
+                        dbManager.insert(session);
+                        Intent intent = new Intent(Intent.ACTION_INSERT)
+                                .setData(CalendarContract.Events.CONTENT_URI)
+                                .putExtra(CalendarContract.Events.TITLE, session.getTitle())
+                                .putExtra(CalendarContract.Events.EVENT_LOCATION, session.getVenue())
+                                .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, session.getDateTime().getParseStartTime())
+                                .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, session.getDateTime().getParseEndTime());
+                        startActivity(intent);
+                        paperAdd.setImageDrawable(getResources().getDrawable(R.drawable.minus_colored));
+                    }
                 } else {
                     dbManager.delete(session);
                     paperAdd.setImageDrawable(getResources().getDrawable(R.drawable.plus_plain));
-//                    addPaper.setTextColor(Color.parseColor("#0F9D57"));
-//                    addPaper.setText("Add");
                 }
             }
         });
@@ -184,9 +225,9 @@ public class FragmentDaySchedule extends Fragment implements Serializable {
         if (cursor != null) {
             if (cursor.moveToFirst()) {
                 do {
-                    String title = cursor.getString(cursor.getColumnIndex("title"));
+                    String id = cursor.getString(cursor.getColumnIndex("id"));
                     String time = cursor.getString(cursor.getColumnIndex("schedule"));
-                    if (title.trim().equalsIgnoreCase(session.getTitle().trim()) && time.trim().equalsIgnoreCase(session.getDateTime().toString().trim())) {
+                    if (Integer.parseInt(id) == session.getID() && time.trim().equalsIgnoreCase(session.getDateTime().toString().trim())) {
                         exists = true;
                     }
                 } while (cursor.moveToNext());

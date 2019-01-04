@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.conferenceapp.R;
 import com.example.conferenceapp.activities.ActivityKeynote;
@@ -200,10 +201,11 @@ public class FragmentMyDaySchedule extends Fragment implements Serializable {
         }
         for (int i = 0; i < sessions.size(); i++) {
             if (sessions.get(i).getType().equals("Food") && sessions.get(i).getDateTime().getDate().equals(date_for_page)) {
-                makeTimeView(root, inflater, last_time, sessions.get(i).getDateTime().getEndTimeInt(), date_for_page, true);
+                makeTimeView(root, inflater, last_time, sessions.get(i).getDateTime().getStartTimeInt(), date_for_page, true);
                 addFoodView(root, inflater, sessions.get(i));
-                last_time = sessions.get(i).getDateTime().getEndTimeInt();
+                last_time = sessions.get(i).getDateTime().getStartTimeInt();
             }
         }
+        makeTimeView(root, inflater,last_time,2359,date_for_page,true);
     }
 }

@@ -58,7 +58,7 @@ public class DBManager {
 
 
     public void delete(Session session) {
-        String title = session.getTitle();
-        database.delete(DatabaseHelper.TABLE_NAME, "title" + "= \'" + title+"\'", null);
+        String id = Integer.toString(session.getID());
+        database.delete(DatabaseHelper.TABLE_NAME, "id" + "= \'" + id+"\'", null);
     }
 }

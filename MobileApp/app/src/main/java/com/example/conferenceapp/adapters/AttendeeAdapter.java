@@ -63,7 +63,7 @@ public class AttendeeAdapter extends RecyclerView.Adapter<AttendeeAdapter.Speake
                         intent.setData(Uri.parse(mailto));
                         mCtx.startActivity(intent);
                     } else {
-                        Toast.makeText(mCtx, "This user hasn't provided details.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mCtx, "No details available.", Toast.LENGTH_LONG).show();
                     }
 
                 } else {

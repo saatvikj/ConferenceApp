@@ -36,7 +36,7 @@ public class ActivitySessionDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_session_details);
-        Toast.makeText(getApplicationContext(), "Click on title to view any additional details if available.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "Click on title for more information.", Toast.LENGTH_LONG).show();
 
         events = new ArrayList<Event>();
         sessions = new ArrayList<>();

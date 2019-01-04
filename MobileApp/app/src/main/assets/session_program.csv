@@ -5,7 +5,7 @@ ID,Title,DateTime,Type,Clickable,IconDrawable,BulletDrawable,Venue
 0,Chai/Coffee,"04/01/2019,11:15-11:45",Food,FALSE,,square,New Campus
 0,Lunch,"04/01/2019,13:00-14:00",Food,FALSE,,triangle,Tower Lawns
 5,Open Sessions,"04/01/2019,15:00-16:30",List,TRUE,opensession,square,New Campus
-2,Doctoral Consortium,"04/01/2019,15:00-16:30",List,TRUE,opensession,square,New Campus
+6,Doctoral Consortium,"04/01/2019,15:00-16:30",List,TRUE,opensession,square,New Campus
 0,Chai/Coffee,"04/01/2019,16:00-16:30",Food,FALSE,,triangle,Tower Lawns
 0,Opening Remarks,"04/01/2019,16:30-16:45",Individual,FALSE,opening,circle,RJM
 7,Keynote: Aruna Roy,"04/01/2019,16:45-18:00",Keynote,TRUE,keynote,circle,RJM
