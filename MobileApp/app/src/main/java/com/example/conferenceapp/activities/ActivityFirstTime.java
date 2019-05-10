@@ -3,7 +3,6 @@ package com.example.conferenceapp.activities;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -52,75 +51,57 @@ public class ActivityFirstTime extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                new EmailAsyncTask().execute();
-            }
-        });
-    }
+                progressBar.show();
+                final String emailId = emailField.getText().toString();
+                final String conference_id = conference.getConference_id();
+                emailField.setText("");
+                mDatabase = FirebaseDatabase.getInstance().getReference();
+                mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for(DataSnapshot d: dataSnapshot.child(conference_id).child("Users").getChildren()){
+                            User c = d.getValue(User.class);
+                            String email = c.getEmail();
+                            if(email.equals(emailId)){
+                                final_joining_code = c.getJoining_code();
+                                final_email_id = email;
+                                String[] details = {final_email_id, final_joining_code};
+                                new EmailClient().execute(details);
 
-    class EmailAsyncTask extends AsyncTask<Void, Void, Void> {
+                                button.setText(R.string.joining_code_verify);
+                                emailField.setHint(R.string.joining_code);
 
-        @Override
-        protected void onPreExecute() {
-            progressBar.show();
-            super.onPreExecute();
-        }
-
-        @Override
-        protected Void doInBackground(Void... voids) {
-            final String emailId = emailField.getText().toString();
-            final String conference_id = conference.getConference_id();
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    emailField.setText("");
-                }
-            });
-            mDatabase = FirebaseDatabase.getInstance().getReference();
-            mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    for(DataSnapshot d: dataSnapshot.child(conference_id).child("Users").getChildren()){
-                        User c = d.getValue(User.class);
-                        String email = c.getEmail();
-                        if(email.equals(emailId)){
-                            final_joining_code = c.getJoining_code();
-                            final_email_id = email;
-                            String[] details = {final_email_id, final_joining_code};
-                            new EmailClient().execute(details);
-                            progressBar.hide();
-                            button.setText(R.string.joining_code_verify);
-                            emailField.setHint(R.string.joining_code);
-                            button.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    String user_input = emailField.getText().toString();
-                                    if(user_input.equals(final_joining_code)){
-                                        Intent intent = new Intent(ActivityFirstTime.this, ActivitySetPassword.class);
-                                        intent.putExtra("email", final_email_id);
-                                        intent.putExtra("Source","paid");
-                                        startActivity(intent);
-                                        finish();
+                                button.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        progressBar.hide();
+                                        String user_input = emailField.getText().toString();
+                                        if(user_input.equals(final_joining_code)){
+                                            Intent intent = new Intent(ActivityFirstTime.this, ActivitySetPassword.class);
+                                            intent.putExtra("email", final_email_id);
+                                            intent.putExtra("Source","paid");
+                                            startActivity(intent);
+                                            finish();
+                                        }
+                                        else{
+                                            Toast.makeText(getApplicationContext(), "Joining code incorrect!", Toast.LENGTH_SHORT).show();
+                                        }
                                     }
-                                    else{
-                                        Toast.makeText(getApplicationContext(), "Joining code incorrect!", Toast.LENGTH_SHORT).show();
-                                    }
-                                }
-                            });
+                                });
+                            }
                         }
                     }
-                }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                }
-            });
-            return null;
-        }
+                    }
+                });
 
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
-        }
+
+            }
+        });
+
+
     }
 }

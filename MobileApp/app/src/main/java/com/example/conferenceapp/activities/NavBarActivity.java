@@ -1,7 +1,6 @@
 package com.example.conferenceapp.activities;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -12,15 +11,12 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.amulyakhare.textdrawable.TextDrawable;
 import com.example.conferenceapp.fragments.FragmentAbout;
 import com.example.conferenceapp.fragments.FragmentConferenceSchedule;
 import com.example.conferenceapp.fragments.FragmentFeed;
@@ -45,15 +41,10 @@ public class NavBarActivity extends AppCompatActivity
 
     public String src;
     Conference conference;
-    ImageView userIcon;
-    int current_screen_id;
-    NavigationView mNavigationView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nav_bar);
-        current_screen_id = R.id.nav_conference_schedule;
         src = getIntent().getStringExtra("Source");
         try {
             conference = ConferenceCSVParser.parseCSV(getApplicationContext());
@@ -68,17 +59,10 @@ public class NavBarActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         final NavigationView navigationView = findViewById(R.id.nav_view);
-        mNavigationView = findViewById(R.id.nav_view);
-        mNavigationView.getMenu().getItem(0).setChecked(true);
-        navigationView.getMenu().getItem(6).setVisible(false);
         if(src.equals("skip")) {
-            userIcon = navigationView.getHeaderView(0).findViewById(R.id.imageView);
-            userIcon.setImageResource(R.drawable.logo);
-            userIcon.getLayoutParams().height= ViewGroup.LayoutParams.MATCH_PARENT;
-            userIcon.getLayoutParams().width= ViewGroup.LayoutParams.MATCH_PARENT;
             disableOptionsNavigationView(navigationView);
             TextView name = navigationView.getHeaderView(0).findViewById(R.id.nameHeading);
-            name.setText("");
+            name.setText("Guest");
             TextView email = navigationView.getHeaderView(0).findViewById(R.id.emailHeading);
             email.setVisibility(View.GONE);
 
@@ -87,7 +71,7 @@ public class NavBarActivity extends AppCompatActivity
             navigationView.setNavigationItemSelectedListener(this);
             navigationView.setItemIconTintList(null);
             displaySelectedScreen(0);
-            userIcon = navigationView.getHeaderView(0).findViewById(R.id.imageView);
+            ImageView userIcon = navigationView.getHeaderView(0).findViewById(R.id.imageView);
             FirebaseDatabase.getInstance().getReference().addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -96,9 +80,7 @@ public class NavBarActivity extends AppCompatActivity
                         if (u.getEmail().equals(getIntent().getStringExtra("email"))) {
                             TextView name = navigationView.getHeaderView(0).findViewById(R.id.nameHeading);
                             TextView email = navigationView.getHeaderView(0).findViewById(R.id.emailHeading);
-                            String initial = u.getName().substring(0, 1);
-                            TextDrawable drawable1 = TextDrawable.builder().buildRound(initial, Color.DKGRAY);
-                            userIcon.setImageDrawable(drawable1);
+
                             name.setText(u.getName());
                             email.setText(u.getEmail());
                         }
@@ -171,7 +153,7 @@ public class NavBarActivity extends AppCompatActivity
                 break;
             case R.id.nav_speaker_wise_schedule:
                 fragment = new FragmentAttendeeSchedule();
-                setActionBarTitle("Attendees");
+                setActionBarTitle("Attendee");
                 break;
             case R.id.nav_feed:
                 fragment = new FragmentFeed();
@@ -198,7 +180,7 @@ public class NavBarActivity extends AppCompatActivity
                 setActionBarTitle("About");
                 break;
             case R.id.nav_logout:
-                Intent intent = new Intent(NavBarActivity.this, MainActivity.class);
+                Intent intent = new Intent(NavBarActivity.this, ActivityLogin.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 finish();
@@ -221,27 +203,9 @@ public class NavBarActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
 
         //calling the method displayselectedscreen and passing the id of selected menu
-        current_screen_id = item.getItemId();
         displaySelectedScreen(item.getItemId());
         //make this method blank
         return true;
-    }
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK && event.getRepeatCount() == 0) {
-            if (current_screen_id != R.id.nav_conference_schedule) {
-                mNavigationView.getMenu().getItem(0).setChecked(true);
-                displaySelectedScreen(R.id.nav_conference_schedule);
-            } else {
-                Intent intent = new Intent(NavBarActivity.this, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-                finish();
-            }
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
     }
 
     public void setActionBarTitle(String input){

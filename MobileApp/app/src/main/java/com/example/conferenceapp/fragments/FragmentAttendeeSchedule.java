@@ -20,7 +20,6 @@ import com.example.conferenceapp.models.User;
 import com.example.conferenceapp.utils.ConferenceCSVParser;
 import com.example.conferenceapp.utils.PaperCSVParser;
 import com.example.conferenceapp.utils.UserCSVParser;
-import com.example.conferenceapp.utils.UserComparator;
 import com.futuremind.recyclerviewfastscroll.FastScroller;
 import com.google.firebase.database.*;
 
@@ -47,7 +46,6 @@ public class FragmentAttendeeSchedule extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
-        Toast.makeText(getContext(), "Tap on name to contact", Toast.LENGTH_LONG).show();
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerview);
         fastScroller = (FastScroller) view.findViewById(R.id.fastscroll);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -59,9 +57,6 @@ public class FragmentAttendeeSchedule extends Fragment {
         } catch (Exception e) {
 
         }
-
-        Collections.sort(users,new UserComparator());
-
         FragmentActivity fa = getActivity();
         AttendeeAdapter adapter = new AttendeeAdapter(users, getContext(), fa);
         recyclerView.setAdapter(adapter);

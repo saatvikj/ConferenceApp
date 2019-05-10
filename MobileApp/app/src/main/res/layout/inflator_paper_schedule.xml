@@ -15,7 +15,7 @@
             android:layout_width="2dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="16dp"
-            android:background="@color/tabtextcolor" />
+            android:background="#bebebe" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -24,65 +24,34 @@
             android:padding="16dp"
             android:orientation="vertical">
 
-            <LinearLayout
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:id="@+id/paperName"
+                android:textColor="@color/colorPrimary"
+                android:text="Quality Assurance"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif"
+                android:textSize="20sp" />
 
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:id="@+id/sessionImageView"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginRight="8dp"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/paperName"
-                    android:textColor="@color/divier"
-                    android:text="Quality Assurance"
-                    android:textStyle="bold"
-                    android:fontFamily="sans-serif"
-                    android:textSize="20sp" />
-
-            </LinearLayout>
-
-
-            <LinearLayout
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="12dp"
-                    android:layout_height="12dp"
-                    android:layout_marginLeft="28dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_gravity="center"
-                    android:id="@+id/bulletImageView"/>
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/paperVenue"
-                    android:textSize="18sp"
-                    android:text="New Campus"
-                    android:fontFamily="sans-serif-light"
-                    android:textColor="@color/grey_color" />
-
-            </LinearLayout>
-
+                android:id="@+id/paperVenue"
+                android:textSize="18sp"
+                android:text="HALL A"
+                android:textStyle="bold"
+                android:fontFamily="sans-serif-light"
+                android:textColor="#00b5be" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/paperTimings"
-                android:layout_marginLeft="28dp"
                 android:fontFamily="sans-serif-light"
                 android:text="10:30am - 11:30am"
                 android:textSize="16sp"
-                android:textColor="@color/grey_color" />
+                android:textColor="@color/divier" />
 
 
         </LinearLayout>
@@ -95,10 +64,10 @@
             android:layout_gravity="right|center_vertical">
 
             <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:id="@+id/addPaperIcon"
-                android:src="@drawable/plus_plain"/>
+                android:src="@drawable/ic_control_point_green_24dp"/>
 
             <TextView
                 android:id="@+id/add"
@@ -106,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:text="Add"
-                android:textColor="@color/grey_color" />
+                android:textColor="#0F9D57" />
 
         </LinearLayout>
 
@@ -114,6 +83,6 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/tabtextcolor" />
+        android:background="@color/greyBackground" />
 
 </LinearLayout>

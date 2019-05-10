@@ -7,7 +7,6 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.example.conferenceapp.models.Paper;
-import com.example.conferenceapp.models.Session;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -34,21 +33,19 @@ public class DBManager {
         dbHelper.close();
     }
 
-    public void insert(Session session) {
+    public void insert(Paper paper) {
         ContentValues contentValue = new ContentValues();
-        contentValue.put("title", session.getTitle());
-        contentValue.put("schedule", session.getDateTime().toString());
-        contentValue.put("id", Integer.toString(session.getID()));
-        contentValue.put("clickable", Boolean.toString(session.isClickable()));
-        contentValue.put("type", session.getType());
-        contentValue.put("icon", session.getIconDrawable());
-        contentValue.put("bullet", session.getBulletDrawable());
-        contentValue.put("venue", session.getVenue());
+        contentValue.put("title", paper.getTitle());
+        contentValue.put("authors", Arrays.toString(paper.getAuthors()));
+        contentValue.put("topics", Arrays.toString(paper.getTopics()));
+        contentValue.put("venue", paper.getVenue());
+        contentValue.put("schedule", paper.getTime().toString());
+        contentValue.put("abstract", paper.getPaper_abstract());
         database.insert(DatabaseHelper.TABLE_NAME, null, contentValue);
     }
 
     public Cursor fetch() {
-        String[] columns = new String[] { "title", "schedule", "id", "clickable","type","icon","bullet","venue"};
+        String[] columns = new String[] { "title", "authors", "topics", "venue", "schedule", "abstract"};
         Cursor cursor = database.query(DatabaseHelper.TABLE_NAME, columns, null, null, null, null, null);
         if (cursor != null) {
             cursor.moveToFirst();
@@ -57,8 +54,8 @@ public class DBManager {
     }
 
 
-    public void delete(Session session) {
-        String id = Integer.toString(session.getID());
-        database.delete(DatabaseHelper.TABLE_NAME, "id" + "= \'" + id+"\'", null);
+    public void delete(Paper paper) {
+        String title = paper.getTitle();
+        database.delete(DatabaseHelper.TABLE_NAME, "title" + "= \'" + title+"\'", null);
     }
 }

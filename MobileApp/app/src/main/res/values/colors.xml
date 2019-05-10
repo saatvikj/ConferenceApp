@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#bfa600</color>
-    <color name="colorPrimaryDark">#8a7800</color>
-    <color name="colorAccent">#f5d747</color>
+    <color name="colorPrimary">#0277bd</color>
+    <color name="colorPrimaryDark">#004c8c</color>
+    <color name="colorAccent">#58a5f0</color>
     <color name="greyBackground">#e4e4e4</color>
     <color name="divier">#333333</color>
-    <color name="break_background">#7d333333</color>
     <color name="white">#ffffffff</color>
     <color name="transparent">#00000000</color>
-    <color name="tabtextcolor">#A75357</color>
-    <color name="grey_color">#868686</color>
-    <color name="tabindicatorcolor">#A75357</color>
-    <color name="selectedtabcolor">#A75357</color>
+    <color name="accent">#40c4ff</color>
+    <color name="tabtextcolor">#868686</color>
+    <color name="tabindicatorcolor">#868686</color>
+    <color name="selectedtabcolor">#525252</color>
 </resources>

@@ -2,18 +2,19 @@ package com.example.conferenceapp.adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.amulyakhare.textdrawable.TextDrawable;
+import com.bumptech.glide.Glide;
 import com.example.conferenceapp.models.FeedPost;
 import com.example.conferenceapp.R;
+import com.example.conferenceapp.activities.ActivityFeedPost;
 
 import java.util.List;
 
@@ -43,18 +44,34 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
         holder.name.setText(feedPost.getName());
         holder.timeStamp.setText(feedPost.getTime());
         holder.content.setText(feedPost.getContent());
-        String initials = feedPost.getName().substring(0,1);
-        TextDrawable textDrawable = TextDrawable.builder().buildRound(initials, Color.GRAY);
-        holder.profilePic.setImageDrawable(textDrawable);
-        holder.share.setOnClickListener(new View.OnClickListener() {
+        Glide.with(mCtx).load("https://upload.wikimedia.org/wikipedia/commons/0/04/Vivian_Bartley_Green-Armytage_IMS.jpg").into(holder.image);
+        holder.numLikes.setText(Integer.toString(feedPost.getLikes()).concat(" likes"));
+        holder.like.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Intent.ACTION_SEND);
-                intent.setType("text/plain");
-                intent.putExtra(Intent.EXTRA_TEXT,feedPost.content);
-                mCtx.startActivity(Intent.createChooser(intent,"Select Application"));
+                if(holder.nLikes.getText().toString().equals("Like")) {
+                    holder.nLikes.setText(Integer.toString(feedPost.getLikes() + 1));
+                    feedPost.likes++;
+                    holder.numLikes.setText(Integer.toString(feedPost.getLikes()).concat(" likes"));
+
+                }
+                else{
+                    holder.nLikes.setText("Like");
+                    feedPost.likes--;
+                    holder.numLikes.setText(Integer.toString(feedPost.getLikes()).concat(" likes"));
+                }
             }
         });
+
+        holder.comments.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mCtx,ActivityFeedPost.class);
+                selectedPost = feedPost;
+                mCtx.startActivity(intent);
+            }
+        });
+
     }
 
     @Override
@@ -67,16 +84,22 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
         TextView name;
         TextView timeStamp;
         TextView content;
-        ImageView profilePic;
-        ImageView share;
+        TextView nLikes;
+        ImageView image;
+        LinearLayout like;
+        LinearLayout comments;
+        TextView numLikes;
 
         public PostViewHolder(View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.name);
             timeStamp = itemView.findViewById(R.id.timestamp);
             content = itemView.findViewById(R.id.txtStatusMsg);
-            profilePic = itemView.findViewById(R.id.profilePic);
-            share = itemView.findViewById(R.id.sharePost);
+            image = itemView.findViewById(R.id.feedImage1);
+            like = itemView.findViewById(R.id.like);
+            nLikes = itemView.findViewById(R.id.nLikes);
+            comments = itemView.findViewById(R.id.comment);
+            numLikes = itemView.findViewById(R.id.number_likes);
         }
     }
 }

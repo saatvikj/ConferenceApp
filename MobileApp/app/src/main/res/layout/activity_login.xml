@@ -111,8 +111,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
-            android:text="Not registered? Click here."
-            android:id="@+id/sign_up"
+            android:text="Skip and continue offline"
+            android:id="@+id/skip"
             android:textAlignment="center"
             android:textColor="#A0A3A7"
             android:textSize="16sp" />

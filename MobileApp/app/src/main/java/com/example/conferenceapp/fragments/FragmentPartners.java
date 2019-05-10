@@ -38,5 +38,15 @@ public class FragmentPartners extends Fragment {
 
         }
 
+        RecyclerView recyclerView = view.findViewById(R.id.mPartnersView);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        List<Partner> partners = new ArrayList<>();
+        for (int i=0; i<conference.getConference_partners().length; i++) {
+            partners.add(conference.getConference_partners()[i]);
+        }
+        PartnerAdapter partnerAdapter = new PartnerAdapter(partners,view.getContext());
+        recyclerView.setAdapter(partnerAdapter);
+
     }
 }

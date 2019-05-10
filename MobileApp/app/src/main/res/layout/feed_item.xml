@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#ffffff"
+    android:background="#d3d6db"
     android:orientation="vertical">
 
     <LinearLayout
@@ -57,8 +57,7 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_share_black_24dp"
-                    android:id="@+id/sharePost"/>
+                    android:src="@drawable/ic_share_black_24dp"/>
 
             </LinearLayout>
 
@@ -73,34 +72,34 @@
             android:paddingRight="@dimen/feed_item_status_pad_left_right"
             android:paddingTop="@dimen/feed_item_status_pad_top" />
 
-        <!--<TextView-->
-            <!--android:id="@+id/txtUrl"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:linksClickable="true"-->
-            <!--android:paddingBottom="10dp"-->
-            <!--android:paddingLeft="@dimen/feed_item_status_pad_left_right"-->
-            <!--android:paddingRight="@dimen/feed_item_status_pad_left_right"-->
-            <!--android:textColorLink="#0a80d1" />-->
+        <TextView
+            android:id="@+id/txtUrl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:linksClickable="true"
+            android:paddingBottom="10dp"
+            android:paddingLeft="@dimen/feed_item_status_pad_left_right"
+            android:paddingRight="@dimen/feed_item_status_pad_left_right"
+            android:textColorLink="#0a80d1" />
 
-        <!--<ImageView-->
-            <!--android:id="@+id/feedImage1"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:background="@color/white"-->
-            <!--android:scaleType="fitXY"-->
-            <!--android:visibility="visible" />-->
+        <ImageView
+            android:id="@+id/feedImage1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:scaleType="fitXY"
+            android:visibility="visible" />
 
-        <!--<TextView-->
-            <!--android:id="@+id/number_likes"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:paddingBottom="5dp"-->
-            <!--android:paddingLeft="@dimen/feed_item_status_pad_left_right"-->
-            <!--android:paddingRight="@dimen/feed_item_status_pad_left_right"-->
-            <!--android:paddingTop="@dimen/feed_item_status_pad_top"-->
-            <!--android:textColor="#a0a3a7"-->
-            <!--android:textSize="@dimen/feed_item_timestamp" />-->
+        <TextView
+            android:id="@+id/number_likes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="5dp"
+            android:paddingLeft="@dimen/feed_item_status_pad_left_right"
+            android:paddingRight="@dimen/feed_item_status_pad_left_right"
+            android:paddingTop="@dimen/feed_item_status_pad_top"
+            android:textColor="#a0a3a7"
+            android:textSize="@dimen/feed_item_timestamp" />
 
         <View
             android:layout_width="match_parent"
@@ -109,64 +108,64 @@
             android:layout_marginRight="14dp"
             android:background="@color/greyBackground" />
 
-        <!--<LinearLayout-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:orientation="horizontal"-->
-            <!--android:paddingBottom="@dimen/feed_item_padding_top_bottom"-->
-            <!--android:paddingTop="@dimen/feed_item_padding_top_bottom"-->
-            <!--android:weightSum="1">-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/feed_item_padding_top_bottom"
+            android:paddingTop="@dimen/feed_item_padding_top_bottom"
+            android:weightSum="1">
 
 
-            <!--<LinearLayout-->
-                <!--android:id="@+id/like"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_weight="0.5"-->
-                <!--android:gravity="center"-->
-                <!--android:orientation="horizontal">-->
+            <LinearLayout
+                android:id="@+id/like"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-                <!--<ImageView-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:background="@drawable/ic_favorite_border_black_24dp"-->
-                    <!--android:padding="4dp" />-->
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_favorite_border_black_24dp"
+                    android:padding="4dp" />
 
-                <!--<TextView-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="match_parent"-->
-                    <!--android:fontFamily="sans-serif"-->
-                    <!--android:id="@+id/nLikes"-->
-                    <!--android:paddingLeft="8dp"-->
-                    <!--android:text="Like"-->
-                    <!--android:textSize="16sp" />-->
-            <!--</LinearLayout>-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="sans-serif"
+                    android:id="@+id/nLikes"
+                    android:paddingLeft="8dp"
+                    android:text="Like"
+                    android:textSize="16sp" />
+            </LinearLayout>
 
-            <!--<LinearLayout-->
-                <!--android:id="@+id/comment"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_weight="0.5"-->
-                <!--android:gravity="center"-->
-                <!--android:orientation="horizontal">-->
+            <LinearLayout
+                android:id="@+id/comment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-                <!--<ImageView-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:background="@drawable/ic_message_grey_24dp"-->
-                    <!--android:padding="4dp" />-->
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_message_grey_24dp"
+                    android:padding="4dp" />
 
-                <!--<TextView-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="match_parent"-->
-                    <!--android:fontFamily="sans-serif"-->
-                    <!--android:paddingLeft="8dp"-->
-                    <!--android:text="Comment"-->
-                    <!--android:textSize="16sp" />-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:fontFamily="sans-serif"
+                    android:paddingLeft="8dp"
+                    android:text="Comment"
+                    android:textSize="16sp" />
 
-            <!--</LinearLayout>-->
+            </LinearLayout>
 
-        <!--</LinearLayout>-->
+        </LinearLayout>
     </LinearLayout>
 
 

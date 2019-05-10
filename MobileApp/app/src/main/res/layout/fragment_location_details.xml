@@ -1,14 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F0EEEF">
+    android:orientation="vertical">
 
-
-    <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
-        android:id="@+id/location_map"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/location"
+            android:id="@+id/location_map"
+            android:layout_gravity="center|center_vertical"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CHI 2018 Montreal, Canada"
+            android:id="@+id/conf_name"
+            android:textSize="18sp"
+            android:layout_marginTop="32dp"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif"
+            android:textAlignment="center"
+            android:padding="6dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Palais des congrès de Montréal"
+            android:id="@+id/conf_location"
+            android:fontFamily="sans-serif-light"
+            android:textAlignment="center" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="48dp"
+            android:layout_gravity="bottom"
+            android:fontFamily="sans-serif-light"
+            android:text="*Tap the map to get directions"
+            android:textAlignment="center" />
 
 
-</RelativeLayout>
+    </LinearLayout>
+
+
+
+</ScrollView>

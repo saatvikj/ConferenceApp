@@ -2,11 +2,8 @@ package com.example.conferenceapp.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 
 import com.example.conferenceapp.R;
@@ -18,14 +15,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_peacock_background);
+        setContentView(R.layout.activity_main_paid);
         Conference conference = null;
         try {
             conference = ConferenceCSVParser.parseCSV(getApplicationContext());
         } catch (Exception e) {
 
         }
-
 
         Button login = findViewById(R.id.loginButton);
         login.setOnClickListener(new View.OnClickListener() {
@@ -36,12 +32,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button first_time = findViewById(R.id.guestButton);
+        Button first_time = findViewById(R.id.firstTimeButton);
         first_time.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, NavBarActivity.class);
-                intent.putExtra("Source", "skip");
+                Intent intent = new Intent(MainActivity.this, ActivityFirstTime.class);
                 startActivity(intent);
             }
         });

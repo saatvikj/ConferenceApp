@@ -39,7 +39,7 @@ public class MyDayPagerAdapter extends FragmentPagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
         // Generate title based on item position
-        return "Jan " + Integer.toString(position+4);
+        return "Day " + Integer.toString(position+1);
     }
 
 }

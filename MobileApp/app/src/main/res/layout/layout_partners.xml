@@ -16,6 +16,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <ImageView
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:padding="8dp"
+                android:id="@+id/partnerImage"
+                android:src="@drawable/femaleuser" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -23,7 +30,7 @@
                 android:layout_marginLeft="8dp">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:fontFamily="sans-serif"
