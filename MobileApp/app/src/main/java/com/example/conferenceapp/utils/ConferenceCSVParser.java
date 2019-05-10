@@ -61,6 +61,9 @@ public class ConferenceCSVParser {
                 String food_time = food[4*i+3];
                 String food_loc = food[4*i+1];
                 String food_type = food[4*i];
+                if (food_type.substring(0,1).equals("'")) {
+                    food_type = food_type.substring(1,food_type.length());
+                }
                 Food food_object = new Food(food_time, food_loc,food_type, food_desc);
                 food_guide[i] = food_object;
             }

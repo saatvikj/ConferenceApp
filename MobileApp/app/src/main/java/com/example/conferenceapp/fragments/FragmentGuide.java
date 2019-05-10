@@ -39,8 +39,7 @@ public class FragmentGuide extends Fragment {
         Food[] food_guide = conference.getConference_food_guide();
         for(int i = 0; i < food_guide.length; i++){
             if(food_guide[i] != null) {
-                Toast.makeText(getContext(),food_guide[i].type,Toast.LENGTH_SHORT).show();
-                if (food_guide[i].type.equalsIgnoreCase("'breakfast")) {
+                if (food_guide[i].type.equalsIgnoreCase("breakfast")) {
                     CardView breakfastCard = view.findViewById(R.id.breakfastCard);
                     breakfastCard.setVisibility(View.VISIBLE);
                     TextView breakfastLabel = view.findViewById(R.id.breakfastLabel);
