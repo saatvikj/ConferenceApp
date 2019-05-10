@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^create3/$', views.create_conference_3),
     url(r'^create4/$', views.create_conference_4),
     url(r'^create5/$', views.create_conference_5),
+    url(r'^create6/$', views.create_conference_6),
     url(r'^thank_you/$',views.thank_you, name='thank_you'),
     url(r'^email/$', views.contact_email, name='email'),
 ]

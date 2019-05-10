@@ -27,47 +27,39 @@
 	</div>
 	
 	<div class="content full-height-signup" style="padding-left: 25%">
-		<div class="content-main-signup row jumbotron" style="width: 75%">
+		<div class="content-main-signup row jumbotron" style="width: 75%; padding-top: 0px;">
+		
 			<div class="content-main-form-left col-md-6">
-				<h3>Final Step!</h3>
+				<h3>Color Scheme</h3>
 			</div>
 
 			<div class="content-main-signup-right col-md-6">
-				<form method="POST" enctype="multipart/form-data" action="/create5/" style="height: 100%;"> {% csrf_token %}
+				
+				<form method="POST" action="/create2/" style="height: 100%;"> {% csrf_token %}
 				<div class="form-group">
-					<label for="schedule_csv">Upload conference schedule as CSV</label>
-					<br>
-					<a href="https://drive.google.com/file/d/1e-Yd0sSwcQ__TrxkyUgUxneX1smv5LLW/view?usp=sharing" target="_blank">Download Sample CSV</a>
-					<input type="file" name="schedule_csv" id="schedule_csv" required="True" class="form-control" style="width:300px">    
+					<label for="about">Primary Color</label>
+					<input type="color" name="primarycolor" value="#0277bd">
 				</div>
-
-				<br>
-
-				<div class="form-group">
-					<label for="users_csv">Upload user details as CSV</label>
-					<br>
-					<a href="https://drive.google.com/file/d/1fYrvo-ZI2fff7cBanm1nC4pcbk4RqFbh/view?usp=sharing" target="_blank">Download Sample CSV</a>
-					<input type="file" name="users_csv" id="users_csv" required="True" class="form-control" style="width:300px">    
-				</div>
-
-				<br>
 				
 				<div class="form-group">
-					<label for="logo_image">Upload conference logo</label>
-					<input type="file" name="logo_image" id="logo_image" required="True" class="form-control" style="width:300px">    
+					<label for="website">Primary Dark Color</label>
+					<input type="color" name="secondarycolor" value="#004c8c">
 				</div>
 				
-				<div class="form-group">                    
-					<div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-3" style="margin-bottom:10px;">
-						<a href="/create6/"><button class="btn btn--form"> <span class="glyphicon glyphicon-upload" style="margin-right:8px;"></span>Next</button></a>
-					</div>
+				<div class="form-group">
+					<label for="facebook">Accent Color</label>
+					<input type="color" name="accentcolor" value="#58a5f0">
+				</div>
+				
+
+				<div align="center" style="display: inline; width: 100%; align-items: center;">
+					<input align="center" type="submit" value="NEXT" class="primary-btn text-uppercase" style="margin-top: 0px; color: white;">
 				</div>
 
 				</form>
-
 			</div>
 		</div>
-
+		
 		<div class="modal" id="my_modal">
 			<div class="login">
 				<span class="close">&times;</span>
@@ -81,6 +73,10 @@
 			</div>
 		</div>
 		<script type="text/javascript" src="../static/Website/js/login_popup.js"> </script>
+
 	</div>
+
+
+
 </body>
 </html>
