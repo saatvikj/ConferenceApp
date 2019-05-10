@@ -111,6 +111,12 @@ def dashboard(request):
 def thank_you(request):
 	if request.method == 'POST':
 
+		conference = Conference.objects(conference_id=global_data[11])
+
+		pColor = conference.conference_primarycolor
+		sColor = conference.conference_secondarycolor
+		aColor = conference.conference_accentcolor
+
 		shutil.copy(os.path.join(settings.MEDIA_ROOT,global_data[11]+'/logo.png'), os.path.join(settings.FILES_DIR,'MobileApp/app/src/main/res/drawable-xxxhdpi/'))
 		shutil.copy(os.path.join(settings.MEDIA_ROOT,global_data[11]+'/conference_data.csv'), os.path.join(settings.FILES_DIR,'MobileApp/app/src/main/assets/'))
 		shutil.copy(os.path.join(settings.MEDIA_ROOT,global_data[11]+'/conference_schedule.csv'), os.path.join(settings.FILES_DIR,'MobileApp/app/src/main/assets/'))
@@ -118,6 +124,7 @@ def thank_you(request):
 
 		subprocess.call([os.path.join(settings.FILES_DIR, 'MobileApp/appnamechange.sh'),global_data[0]])
 		subprocess.call(os.path.join(settings.FILES_DIR, 'MobileApp/generator.sh'))
+		subprocess.call([os.path.join(settings.FILES_DIR, 'MobileApp/colorchange.sh'), pColor, sColor, aColor])
 		apk_path = os.path.join(settings.FILES_DIR, 'MobileApp/app/build/outputs/apk/debug/app-debug.apk')
 		with open(apk_path, 'rb') as fh:
 			response = HttpResponse(fh.read(), content_type="application/binary")
@@ -179,6 +186,20 @@ def create_conference_4(request):
 @login_required
 def create_conference_5(request):
 	if request.POST:
+
+		pColor = ""
+		sColor = ""
+		aColor = ""
+
+		data = request.POST
+		for key, value in data.items():
+			if key == "primarycolor":
+				pColor = value
+			elif key == "secondarycolor":
+				sColor = value
+			elif key == "accentcolor":
+				aColor = value
+
 		conference_ob = Conference(
 			conference_name=global_data[0],
 			conference_venue=global_data[1],
@@ -193,7 +214,10 @@ def create_conference_5(request):
 			conference_food_guide=global_data[10],
 			conference_schedule_csv=request.FILES['schedule_csv'],
 			conference_user_csv=request.FILES['users_csv'],
-			conference_logo=request.FILES['logo_image'])
+			conference_logo=request.FILES['logo_image'],
+			conference_primarycolor=pColor,
+			conference_secondarycolor=sColor,
+			conference_accentcolor=aColor)
 
 		conference_ob.save()
 		user_csv_path = settings.MEDIA_ROOT+"/"+str(conference_ob.conference_id)+"/conference_user.csv"

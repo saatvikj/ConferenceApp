@@ -39,6 +39,9 @@ class Conference(models.Model):
 	conference_schedule_csv = models.FileField(upload_to=get_upload_schedulecsvfilepath, max_length=100)
 	conference_user_csv = models.FileField(upload_to=get_upload_usercsvfilepath, max_length=100)	
 	conference_logo = models.ImageField(upload_to=get_upload_imagefilepath, height_field=None, width_field=None, max_length=100)
+	conference_primarycolor = models.CharField(max_length=255, default="#0277bd")
+	conference_secondarycolor = models.CharField(max_length=255, default="#004c8c")
+	conference_accentcolor = models.CharField(max_length=255, default="#58af0")
 	
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
