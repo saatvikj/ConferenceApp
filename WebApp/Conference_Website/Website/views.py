@@ -111,7 +111,7 @@ def dashboard(request):
 def thank_you(request):
 	if request.method == 'POST':
 
-		conference = Conference.objects(conference_id=global_data[11])
+		conference = Conference.objects.get(conference_id=global_data[11])
 
 		pColor = conference.conference_primarycolor
 		sColor = conference.conference_secondarycolor
