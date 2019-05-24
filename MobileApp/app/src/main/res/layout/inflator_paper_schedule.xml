@@ -42,7 +42,7 @@
                 android:text="HALL A"
                 android:textStyle="bold"
                 android:fontFamily="sans-serif-light"
-                android:textColor="#00b5be" />
+                android:textColor="@color/colorAccent" />
 
             <TextView
                 android:layout_width="match_parent"

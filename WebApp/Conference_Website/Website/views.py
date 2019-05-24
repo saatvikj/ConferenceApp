@@ -87,12 +87,19 @@ def dashboard(request):
 		else:
 			conference = Conference.objects.get(conference_id=conference_id_to_modify)
 			name = conference.conference_name
-			shutil.copy(os.path.join(settings.MEDIA_ROOT,conference_id_to_modify+'/logo.png'), os.path.join(settings.FILES_DIR,'MobileApp/app/src/main/res/drawable-xxxhdpi/'))
-			shutil.copy(os.path.join(settings.MEDIA_ROOT,conference_id_to_modify+'/conference_data.csv'), os.path.join(settings.FILES_DIR,'MobileApp/app/src/main/assets/'))
-			shutil.copy(os.path.join(settings.MEDIA_ROOT,conference_id_to_modify+'/conference_schedule.csv'), os.path.join(settings.FILES_DIR,'MobileApp/app/src/main/assets/'))
-			shutil.copy(os.path.join(settings.MEDIA_ROOT,conference_id_to_modify+'/conference_user.csv'), os.path.join(settings.FILES_DIR,'MobileApp/app/src/main/assets/'))
+			conference_id = str(conference.conference_id)
+			pColor = conference.conference_primarycolor
+			sColor = conference.conference_secondarycolor
+			aColor = conference.conference_accentcolor
+
+			shutil.copy(os.path.join(settings.MEDIA_ROOT,conference_id+'/logo.png'), os.path.join(settings.FILES_DIR,'MobileApp/app/src/main/res/drawable-xxxhdpi/'))
+			shutil.copy(os.path.join(settings.MEDIA_ROOT,conference_id+'/conference_data.csv'), os.path.join(settings.FILES_DIR,'MobileApp/app/src/main/assets/'))
+			shutil.copy(os.path.join(settings.MEDIA_ROOT,conference_id+'/conference_schedule.csv'), os.path.join(settings.FILES_DIR,'MobileApp/app/src/main/assets/'))
+			shutil.copy(os.path.join(settings.MEDIA_ROOT,conference_id+'/conference_user.csv'), os.path.join(settings.FILES_DIR,'MobileApp/app/src/main/assets/'))
 
 			subprocess.call([os.path.join(settings.FILES_DIR, 'MobileApp/appnamechange.sh'),name])
+			subprocess.call([os.path.join(settings.FILES_DIR, 'MobileApp/colorchange.sh'), pColor, sColor, aColor])
+			subprocess.call([os.path.join(settings.FILES_DIR, 'MobileApp/iconcolorchange.sh'), pColor])
 			subprocess.call(os.path.join(settings.FILES_DIR, 'MobileApp/generator.sh'))
 			apk_path = os.path.join(settings.FILES_DIR, 'MobileApp/app/build/outputs/apk/debug/app-debug.apk')
 			with open(apk_path, 'rb') as fh:
@@ -123,8 +130,9 @@ def thank_you(request):
 		shutil.copy(os.path.join(settings.MEDIA_ROOT,global_data[11]+'/conference_user.csv'), os.path.join(settings.FILES_DIR,'MobileApp/app/src/main/assets/'))
 
 		subprocess.call([os.path.join(settings.FILES_DIR, 'MobileApp/appnamechange.sh'),global_data[0]])
-		subprocess.call(os.path.join(settings.FILES_DIR, 'MobileApp/generator.sh'))
 		subprocess.call([os.path.join(settings.FILES_DIR, 'MobileApp/colorchange.sh'), pColor, sColor, aColor])
+		subprocess.call([os.path.join(settings.FILES_DIR, 'MobileApp/iconcolorchange.sh'), pColor])
+		subprocess.call(os.path.join(settings.FILES_DIR, 'MobileApp/generator.sh'))
 		apk_path = os.path.join(settings.FILES_DIR, 'MobileApp/app/build/outputs/apk/debug/app-debug.apk')
 		with open(apk_path, 'rb') as fh:
 			response = HttpResponse(fh.read(), content_type="application/binary")
@@ -258,7 +266,7 @@ class ProfileView(TemplateView):
 	def post(self, request, *args, **kwargs):
 		data = request.POST
 		conference_id = data['conference_id']
-		conference_ob = Conference.objects(conference_id=conference_id)
+		conference_ob = Conference.objects.get(conference_name=conference_id)
 		conference_ob.conference_venue = data['conference_venue']
 		conference_ob.conference_start_date = data['conference_start_date']
 		conference_ob.conference_end_date = data['conference_end_date']
@@ -267,6 +275,9 @@ class ProfileView(TemplateView):
 		conference_ob.conference_facebook = data['conference_facebook']
 		conference_ob.conference_twitter = data['conference_twitter']
 		conference_ob.conference_email = data['conference_email']
+		conference_ob.conference_primarycolor = data.get('primarycolor')
+		conference_ob.conference_secondarycolor = data.get('secondarycolor')
+		conference_ob.conference_accentcolor = data.get('accentcolor')
 		conference_ob.save()
 
 		return redirect('dashboard')
