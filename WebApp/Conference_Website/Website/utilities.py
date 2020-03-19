@@ -6,11 +6,12 @@ import string
 import sys
 
 joining_code_list = []
+
 config = {
-  "apiKey": "AIzaSyCNpkzcclTXDCBdNlApdFOa7i7i1c2UPgM",
-  "authDomain": "conference-portal-deb1c.firebaseapp.com",
-  "databaseURL": "https://conference-portal-deb1c.firebaseio.com/",
-  "storageBucket": "gs://conference-portal-deb1c.appspot.com"
+  "apiKey": "Enter here",
+  "authDomain": "Enter here",
+  "databaseURL": "Enter here",
+  "storageBucket": "Enter here"
 }
 
 
