@@ -1,9 +1,9 @@
 # Website/urls.py
-from django.conf.urls import url
-from django.urls import path, re_path
 from Website import views
-from django.views.generic import TemplateView
+from django.conf.urls import url
 from django.contrib.auth import views as auth_views
+from django.urls import path, re_path
+from django.views.generic import TemplateView
 
 urlpatterns = [
     url(r'^$', views.HomePageView.as_view(), name=''),

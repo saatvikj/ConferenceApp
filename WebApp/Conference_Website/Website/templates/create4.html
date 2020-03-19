@@ -36,10 +36,8 @@
 				<form method="POST" action="/create4/" style="height: 100%;"> {% csrf_token %}
 				
 				<div class="form-group">
-					<label for="choice">Choice</label><br>
-					<input type="radio" name="choice" value="breakfast"><font class="radio-text"> Breakfast</font><br>
-					<input type="radio" name="choice" value="lunch"><font class="radio-text"> Lunch</font><br>
-					<input type="radio" name="choice" value="snacks"><font class="radio-text"> Snacks</font>
+					<label for="event-name">Type of meal</label><br>
+					<input class="form-control" type="text" name="event-name" id="event-name" placeholder="Enter name of meal" required />
 				</div>
 				
 				<div class="form-group">
@@ -53,9 +51,15 @@
 				</div>
 			
 				<div class="form-group">
-					<label for="time">Time</label>
-					<input class="form-control" type="text" name="time" id="time" placeholder="Enter timing" required />
-				</div>      
+					<label for="start-time">Start Time</label>
+					<input class="form-control" type="datetime-local" name="start-time" id="start-time" placeholder="Enter start date" required />
+				</div>
+
+				<div class="form-group">
+					<label for="end-time">End Time</label>
+					<input class="form-control" type="datetime-local" name="end-time" id="end-time" placeholder="Enter end date" required />
+				</div>
+
 				
 				<div class="m-t-lg">
 					<ul class="list-inline">

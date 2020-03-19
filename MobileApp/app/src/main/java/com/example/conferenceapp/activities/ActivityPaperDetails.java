@@ -40,14 +40,14 @@ public class ActivityPaperDetails extends AppCompatActivity implements Serializa
 
         }
 
-        LinearLayout speakerList = (LinearLayout) findViewById(R.id.speakerListLayout);
+        LinearLayout speakerList = findViewById(R.id.speakerListLayout);
         Intent intent = getIntent();
         Paper paper = (Paper) intent.getSerializableExtra("Paper");
         title = findViewById(R.id.paperTitle);
         time = findViewById(R.id.paperTime);
         location = findViewById(R.id.paperLoc);
         paper_abstract = findViewById(R.id.paperAbstract);
-        title.setText(paper.getTitle().toString());
+        title.setText(paper.getTitle());
         time.setText(paper.getTime().displayTime());
         location.setText(paper.getVenue());
         paper_abstract.setText(paper.getPaper_abstract());

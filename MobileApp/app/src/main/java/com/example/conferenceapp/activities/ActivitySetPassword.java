@@ -45,7 +45,7 @@ public class ActivitySetPassword extends AppCompatActivity {
         confirmPasswordField = findViewById(R.id.editTextConfirmPassword);
 
 
-        verifyButton = (Button) findViewById(R.id.verifyButton);
+        verifyButton = findViewById(R.id.verifyButton);
 
         verifyButton.setOnClickListener(new View.OnClickListener() {
             @Override

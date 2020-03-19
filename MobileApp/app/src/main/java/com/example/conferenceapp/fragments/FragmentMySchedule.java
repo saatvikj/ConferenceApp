@@ -28,7 +28,7 @@ public class FragmentMySchedule extends Fragment {
         MyDayPagerAdapter adapter = new MyDayPagerAdapter(getChildFragmentManager(), view.getContext());
         ViewPager viewPager = view.findViewById(R.id.viewpager);
         viewPager.setAdapter(adapter);
-        final SmartTabLayout tabsStrip = (SmartTabLayout) view.findViewById(R.id.viewpagertab);
+        final SmartTabLayout tabsStrip = view.findViewById(R.id.viewpagertab);
         tabsStrip.setViewPager(viewPager);
     }
 }

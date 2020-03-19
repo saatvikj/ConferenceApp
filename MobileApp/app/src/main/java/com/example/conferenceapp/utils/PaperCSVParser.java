@@ -25,7 +25,6 @@ public class PaperCSVParser {
     @TargetApi(19)
     public static void parseCSV(Context context) throws IOException{
 
-        //Path file = FileSystems.getDefault().getPath(".", "paper_details.csv");
         InputStreamReader is = new InputStreamReader(context.getAssets()
                 .open("conference_schedule.csv"));
 
@@ -37,14 +36,13 @@ public class PaperCSVParser {
 
         CsvContainer csv = csvReader.read(reader);
         for (CsvRow row : csv.getRows()) {
-            //System.out.println("First column of line: " + row.getField("name"));
             String title = row.getField("title");
-            String authors[] = row.getField("authors").split(",");
-            String topics[] = row.getField("topics").split("\n");
+            String[] authors = row.getField("authors").split(",");
+            String[] topics = row.getField("topics").split("\n");
             String venue = row.getField("venue");
-            String time[] = row.getField("time").split(",");
+            String[] time = row.getField("time").split(",");
             String date = time[0];
-            String confTime[] = time[1].split("-");
+            String[] confTime = time[1].split("-");
             String startTime = confTime[0];
             String endTime = confTime[1];
             String abs = row.getField("abstract");
@@ -56,5 +54,20 @@ public class PaperCSVParser {
 
 
 
+    }
+
+    public static Paper[] get_papers_for_day(String date) {
+
+        ArrayList<Paper> papers_for_day = new ArrayList<>();
+
+        for (int i = 0; i < papers.size(); i++) {
+            Paper paper = papers.get(i);
+
+            if (paper.getTime().date.equalsIgnoreCase(date)) {
+                papers_for_day.add(paper);
+            }
+        }
+
+        return papers_for_day.toArray(new Paper[papers_for_day.size()]);
     }
 }

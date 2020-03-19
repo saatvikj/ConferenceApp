@@ -4,9 +4,11 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,49 +39,30 @@ public class FragmentGuide extends Fragment {
 
         }
         Food[] food_guide = conference.getConference_food_guide();
-        for(int i = 0; i < food_guide.length; i++){
-            if(food_guide[i] != null) {
-                if (food_guide[i].type.equalsIgnoreCase("breakfast")) {
-                    CardView breakfastCard = view.findViewById(R.id.breakfastCard);
-                    breakfastCard.setVisibility(View.VISIBLE);
-                    TextView breakfastLabel = view.findViewById(R.id.breakfastLabel);
-                    TextView breakfastTime = view.findViewById(R.id.breakfastTime);
-                    TextView breakfastDesc = view.findViewById(R.id.breakfastDescription);
-                    TextView breakfastLoc = view.findViewById(R.id.breakfastLocation);
-                    breakfastLabel.setText(food_guide[i].type.toUpperCase());
-                    breakfastTime.setText(food_guide[i].time);
-                    breakfastLoc.setText(food_guide[i].location);
-                    breakfastDesc.setText(food_guide[i].description);
 
-                } else if (food_guide[i].type.equalsIgnoreCase("lunch")) {
-                    CardView lunchCard = view.findViewById(R.id.lunchCard);
-                    lunchCard.setVisibility(View.VISIBLE);
-                    TextView lunchLabel = view.findViewById(R.id.lunchLabel);
-                    TextView lunchTime = view.findViewById(R.id.lunchTime);
-                    TextView lunchDesc = view.findViewById(R.id.lunchDescription);
-                    TextView lunchLoc = view.findViewById(R.id.lunchLocation);
-                    lunchLabel.setText(food_guide[i].type.toUpperCase());
-                    lunchTime.setText(food_guide[i].time);
-                    lunchLoc.setText(food_guide[i].location);
-                    lunchDesc.setText(food_guide[i].description);
+        LayoutInflater inflater = getLayoutInflater();
+        LinearLayout food_list = view.findViewById(R.id.food_guide);
 
-                } else {
-                    CardView snacksCard = view.findViewById(R.id.snacksCard);
-                    snacksCard.setVisibility(View.VISIBLE);
-                    TextView snacksLabel = view.findViewById(R.id.snacksLabel);
-                    TextView snacksTime = view.findViewById(R.id.snacksTime);
-                    TextView snacksDesc = view.findViewById(R.id.snacksDescription);
-                    TextView snacksLoc = view.findViewById(R.id.snacksLocation);
-                    snacksLabel.setText(food_guide[i].type.toUpperCase());
-                    snacksTime.setText(food_guide[i].time);
-                    snacksLoc.setText(food_guide[i].location);
-                    snacksDesc.setText(food_guide[i].description);
+        for (int i=0; i<food_guide.length; i++) {
 
-                }
-            }
+            View food_item = inflater.inflate(R.layout.inflator_food_guide, null);
+
+            int day_number = food_guide[i].time.time_difference(conference.getConference_start_day());
+
+            TextView name = food_item.findViewById(R.id.foodLabel);
+            name.setText("Day ".concat((Integer.toString(day_number))).concat(" - ").concat(food_guide[i].type));
+
+            TextView time = food_item.findViewById(R.id.foodTime);
+            time.setText(food_guide[i].time.getPrettyTime());
+
+            TextView description = food_item.findViewById(R.id.foodDescription);
+            description.setText(food_guide[i].description);
+
+            TextView location = food_item.findViewById(R.id.foodLocation);
+            location.setText(food_guide[i].location);
+
+            food_list.addView(food_item);
         }
-
-
 
     }
 }

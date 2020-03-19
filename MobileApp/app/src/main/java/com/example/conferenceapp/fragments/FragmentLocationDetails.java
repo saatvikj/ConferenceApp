@@ -18,6 +18,8 @@ import com.example.conferenceapp.R;
 import com.example.conferenceapp.models.Conference;
 import com.example.conferenceapp.utils.ConferenceCSVParser;
 
+import java.text.ParseException;
+
 public class FragmentLocationDetails extends Fragment{
 
     Conference conference;
@@ -35,6 +37,7 @@ public class FragmentLocationDetails extends Fragment{
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
         TextView name = view.findViewById(R.id.conf_name);
+        TextView dates = view.findViewById(R.id.conf_dates);
         TextView location = view.findViewById(R.id.conf_location);
         ImageView map = view.findViewById(R.id.location_map);
         conference = null;
@@ -45,6 +48,11 @@ public class FragmentLocationDetails extends Fragment{
         }
 
         name.setText(conference.getConference_name());
+        try {
+            dates.setText(conference.getConferenceDates());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         location.setText(conference.getConference_venue());
         map.setOnClickListener(new View.OnClickListener() {
             @Override

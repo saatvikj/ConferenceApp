@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class CustomTime implements Serializable {
-    public String months[] = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
+    public String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"};
     public String date;
     public String startTime;
     public String endTime;
@@ -66,7 +66,7 @@ public class CustomTime implements Serializable {
 
         String time = startTime.replace(":", "");
         try {
-            Date dt = sdf.parse(date.replace("/","").concat(time));
+            Date dt = sdf.parse(date.replace("-","").concat(time));
             Long millis = dt.getTime();
             return millis;
 
@@ -78,11 +78,11 @@ public class CustomTime implements Serializable {
 
     public Long getParseEndTime() {
 
-        SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyyHHmm");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmm");
 
         String time = endTime.replace(":", "");
         try {
-            Date dt = sdf.parse(date.replace("/","").concat(time));
+            Date dt = sdf.parse(date.replace("-","").concat(time));
             Long millis = dt.getTime();
             return millis;
 
@@ -102,4 +102,15 @@ public class CustomTime implements Serializable {
         return Integer.parseInt(hour_format);
     }
 
+    public String getPrettyTime() {
+        return startTime.concat("-").concat(endTime);
+    }
+
+    public int time_difference(String date) {
+
+        int start_date = Integer.parseInt(date.split("-")[2]);
+        int time_date = Integer.parseInt(this.date.split("-")[2]);
+
+        return time_date - start_date + 1;
+    }
 }

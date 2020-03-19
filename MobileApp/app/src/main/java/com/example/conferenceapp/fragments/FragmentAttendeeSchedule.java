@@ -20,6 +20,7 @@ import com.example.conferenceapp.models.User;
 import com.example.conferenceapp.utils.ConferenceCSVParser;
 import com.example.conferenceapp.utils.PaperCSVParser;
 import com.example.conferenceapp.utils.UserCSVParser;
+import com.example.conferenceapp.utils.UserComparator;
 import com.futuremind.recyclerviewfastscroll.FastScroller;
 import com.google.firebase.database.*;
 
@@ -29,6 +30,8 @@ import java.util.List;
 
 public class FragmentAttendeeSchedule extends Fragment {
 
+
+    //TODO: Change the fast scroller to something better.
     RecyclerView recyclerView;
     FastScroller fastScroller;
     Conference conference;
@@ -46,8 +49,8 @@ public class FragmentAttendeeSchedule extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
 
-        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerview);
-        fastScroller = (FastScroller) view.findViewById(R.id.fastscroll);
+        recyclerView = view.findViewById(R.id.recyclerview);
+        fastScroller = view.findViewById(R.id.fastscroll);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         users = new ArrayList<User>();
 
@@ -57,10 +60,14 @@ public class FragmentAttendeeSchedule extends Fragment {
         } catch (Exception e) {
 
         }
+
+        Collections.sort(users,new UserComparator());
+
         FragmentActivity fa = getActivity();
         AttendeeAdapter adapter = new AttendeeAdapter(users, getContext(), fa);
         recyclerView.setAdapter(adapter);
-
+        fastScroller.setBubbleColor(R.color.colorPrimary);
+        fastScroller.setHandleColor(R.color.colorPrimaryDark);
         fastScroller.setRecyclerView(recyclerView);
     }
 }

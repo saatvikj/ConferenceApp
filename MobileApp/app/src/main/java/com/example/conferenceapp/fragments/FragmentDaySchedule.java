@@ -29,7 +29,11 @@ import com.example.conferenceapp.utils.PaperCSVParser;
 import com.example.conferenceapp.utils.UserCSVParser;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class FragmentDaySchedule extends Fragment implements Serializable {
 
@@ -81,9 +85,9 @@ public class FragmentDaySchedule extends Fragment implements Serializable {
         TextView start = food_view.findViewById(R.id.breakStartTime);
         TextView desc = food_view.findViewById(R.id.breakDescTextView);
         TextView end = food_view.findViewById(R.id.breakEndTime);
-        start.setText(food.time.split("-")[0]);
+        start.setText(food.time.getStartTime());
         desc.setText(food.type.toUpperCase());
-        end.setText(food.time.split("-")[1]);
+        end.setText(food.time.getEndTime());
         root.addView(food_view);
         food_view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -179,94 +183,62 @@ public class FragmentDaySchedule extends Fragment implements Serializable {
         } catch (Exception e) {
 
         }
-        String date[] = conference.getConference_start_day().split("-");
+
+        String[] date = conference.getConference_start_day().split("-");
         int _date = Integer.parseInt(date[2]) + day;
-        String new_date = _date < 10 ? "0" + Integer.toString(_date) : Integer.toString(_date);
-        String date_for_page = new_date.concat("/").concat(date[1]).concat("/").concat(date[0]);
-        int times[] = new int[conference.getConference_food_guide().length];
-        int number_of_breaks = conference.getConference_food_guide().length;
-        int j = 0;
-        int break_end = 0;
-        for (int i = 0; i < conference.getConference_food_guide().length; i++) {
-            times[i] = conference.getConference_food_guide()[i].getStartTime();
+        String new_date = _date < 10 ? "0" + _date : Integer.toString(_date);
+        String date_for_page = date[0].concat("-").concat(date[1]).concat("-").concat(new_date);
+
+        Food[] guide_for_day = conference.get_guide_for_day(date_for_page);
+        Paper[] papers_for_day = PaperCSVParser.get_papers_for_day(date_for_page);
+
+        int[] times = new int[guide_for_day.length + papers_for_day.length];
+
+        Map<Integer, List<Object>> schedule_map = new HashMap<Integer, List<Object>>();
+
+
+        for (int i = 0; i < guide_for_day.length; i++) {
+            times[i] = guide_for_day[i].time.getStartTimeInt();
+
+            if (schedule_map.containsKey(times[i])) {
+                schedule_map.get(times[i]).add(guide_for_day[i]);
+            } else {
+                ArrayList<Object> objectArrayList = new ArrayList<>();
+                objectArrayList.add(guide_for_day[i]);
+
+                schedule_map.put(times[i], objectArrayList);
+            }
+        }
+
+        for (int i = 0; i < papers_for_day.length; i++) {
+            times[i+guide_for_day.length] = papers_for_day[i].getTime().getStartTimeInt();
+            if (schedule_map.containsKey(times[i+guide_for_day.length])) {
+                schedule_map.get(times[i+guide_for_day.length]).add(papers_for_day[i]);
+            } else {
+                ArrayList<Object> objectArrayList = new ArrayList<>();
+                objectArrayList.add(papers_for_day[i]);
+
+                schedule_map.put(times[i+guide_for_day.length], objectArrayList);
+            }
         }
         Arrays.sort(times);
-        for (int i = 0; i < PaperCSVParser.papers.size(); i++) {
-            Paper paper = PaperCSVParser.papers.get(i);
-            if (paper.getTime().getStartTimeInt() <= times[j]
-                    && paper.getTime().getDate().equals(date_for_page)) {
-                addPaperToView(root, inflater, paper);
-            }
-        }
-        for (int i = 0; i < conference.getConference_food_guide().length; i++) {
-            if (conference.getConference_food_guide()[i].getStartTime() == times[0]) {
-                break_end = conference.getConference_food_guide()[i].getEndTime();
-                addFoodView(root, inflater, conference.getConference_food_guide()[i]);
-                j++;
-            }
-        }
 
-        for (int i = 0; i < PaperCSVParser.papers.size(); i++) {
-            Paper paper = PaperCSVParser.papers.get(i);
+        for (int i = 0; i < times.length; i++) {
 
-            if (j >= number_of_breaks) {
-                if (paper.getTime().getDate().equals(date_for_page)
-                        && paper.getTime().getStartTimeInt() >= break_end) {
-                    addPaperToView(root, inflater, paper);
-                }
-            } else if (paper.getTime().getStartTimeInt() <= times[j]
-                    && paper.getTime().getStartTimeInt() >= break_end
-                    && paper.getTime().getDate().equals(date_for_page)) {
-                addPaperToView(root, inflater, paper);
-            }
+            int time = times[i];
 
-        }
-        if (j < number_of_breaks) {
-            for (int i = 0; i < conference.getConference_food_guide().length; i++) {
-                if (conference.getConference_food_guide()[i].getStartTime() == times[j]) {
-                    break_end = conference.getConference_food_guide()[i].getEndTime();
-                    addFoodView(root, inflater, conference.getConference_food_guide()[i]);
-                    j++;
-                }
-            }
-        }
+            try {
 
+                Food food = (Food) schedule_map.get(time).get(0);
+                schedule_map.get(time).remove(0);
 
-        for (int i = 0; i < PaperCSVParser.papers.size(); i++) {
-            Paper paper = PaperCSVParser.papers.get(i);
-            if (j >= number_of_breaks) {
-                if (paper.getTime().getDate().equals(date_for_page)
-                        && paper.getTime().getStartTimeInt() >= break_end) {
-                    addPaperToView(root, inflater, paper);
-                }
-            } else if (paper.getTime().getStartTimeInt() <= times[j]
-                    && paper.getTime().getStartTimeInt() >= break_end
-                    && paper.getTime().getDate().equals(date_for_page)) {
-                addPaperToView(root, inflater, paper);
-            }
+                addFoodView(root, inflater, food);
 
-        }
-        if (j < number_of_breaks) {
-            for (int i = 0; i < conference.getConference_food_guide().length; i++) {
-                if (conference.getConference_food_guide()[i].getStartTime() == times[j]) {
-                    break_end = conference.getConference_food_guide()[i].getEndTime();
-                    addFoodView(root, inflater, conference.getConference_food_guide()[i]);
-                    j++;
-                }
-            }
-        }
+            } catch (Exception e) {
 
+                Paper paper = (Paper) schedule_map.get(time).get(0);
+                schedule_map.get(time).remove(0);
 
-        for (int i = 0; i < PaperCSVParser.papers.size(); i++) {
-            Paper paper = PaperCSVParser.papers.get(i);
-
-            if (j >= number_of_breaks) {
-                if (paper.getTime().getDate().equals(date_for_page)
-                        && paper.getTime().getStartTimeInt() >= break_end) {
-                    addPaperToView(root, inflater, paper);
-                }
-            } else if (paper.getTime().getStartTimeInt() >= break_end
-                    && paper.getTime().getDate().equals(date_for_page)) {
                 addPaperToView(root, inflater, paper);
             }
 

@@ -7,9 +7,9 @@ public class Paper implements Serializable {
     private String title;
     private String venue;
     private CustomTime time;
-    private String authors[];
+    private String[] authors;
     private String paper_abstract;
-    private String topics[];
+    private String[] topics;
 
     public String getTitle() {
         return title;

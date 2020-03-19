@@ -1,5 +1,12 @@
 package com.example.conferenceapp.models;
 
+import java.text.DateFormatSymbols;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.Timer;
+
 public class Conference {
 
     private String conference_id;
@@ -50,5 +57,31 @@ public class Conference {
 
     public Food[] getConference_food_guide() {
         return conference_food_guide;
+    }
+
+    public String getConferenceDates() throws ParseException {
+
+        SimpleDateFormat simpleDateFormat_1 = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat simpleDateFormat_2 = new SimpleDateFormat("dd MMM");
+        SimpleDateFormat simpleDateFormat_3 = new SimpleDateFormat("YY");
+        Date start_date = simpleDateFormat_1.parse(conference_start_day);
+        Date end_date = simpleDateFormat_1.parse(conference_end_day);
+
+        String dates = simpleDateFormat_2.format(start_date).concat(" - ").concat(simpleDateFormat_2.format(end_date)).concat("'").concat(simpleDateFormat_3.format(start_date));
+
+        return dates;
+    }
+
+    public Food[] get_guide_for_day(String date) {
+
+        ArrayList<Food> days_guide = new ArrayList<>();
+
+        for (int i = 0; i < conference_food_guide.length; i++) {
+            if (conference_food_guide[i].time.date.equalsIgnoreCase(date)) {
+                days_guide.add(conference_food_guide[i]);
+            }
+        }
+
+        return days_guide.toArray(new Food[days_guide.size()]);
     }
 }

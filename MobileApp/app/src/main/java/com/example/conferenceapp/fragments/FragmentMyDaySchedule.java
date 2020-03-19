@@ -26,7 +26,11 @@ import com.example.conferenceapp.utils.ConferenceCSVParser;
 import com.example.conferenceapp.utils.DBManager;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class FragmentMyDaySchedule extends Fragment implements Serializable {
 
@@ -72,9 +76,9 @@ public class FragmentMyDaySchedule extends Fragment implements Serializable {
         TextView start = food_view.findViewById(R.id.breakStartTime);
         TextView desc = food_view.findViewById(R.id.breakDescTextView);
         TextView end = food_view.findViewById(R.id.breakEndTime);
-        start.setText(food.time.split("-")[0]);
+        start.setText(food.time.getStartTime());
         desc.setText(food.type.toUpperCase());
-        end.setText(food.time.split("-")[1]);
+        end.setText(food.time.getEndTime());
         root.addView(food_view);
         food_view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,41 +121,6 @@ public class FragmentMyDaySchedule extends Fragment implements Serializable {
         paperAdd.setVisibility(View.GONE);
     }
 
-    public int makeTimeView(LinearLayout root, LayoutInflater inflater, int startTime, int endTime, String current_date) {
-
-        int count = 0;
-        Cursor cursor = dbManager.fetch();
-        if (cursor != null) {
-            if (cursor.moveToFirst()) {
-                do {
-                    String title = cursor.getString(cursor.getColumnIndex("title"));
-                    String authors[] = cursor.getString(cursor.getColumnIndex("authors")).replace("[", "")
-                            .replace("]", "")
-                            .split(",");
-                    String topics[] = cursor.getString(cursor.getColumnIndex("topics")).replace("[", "")
-                            .replace("]", "")
-                            .split(",");
-                    String venue = cursor.getString(cursor.getColumnIndex("venue"));
-                    String schedule[] = cursor.getString(cursor.getColumnIndex("schedule")).split(",");
-                    String paper_abstract = cursor.getString(cursor.getColumnIndex("abstract"));
-                    String date = schedule[0];
-                    String confTime[] = schedule[1].split("-");
-                    String start_time = confTime[0];
-                    String end_time = confTime[1];
-                    CustomTime paper_schedule = new CustomTime(date, start_time, end_time);
-                    Paper paper = new Paper(title, venue, paper_schedule, authors, topics, paper_abstract);
-                    if (paper.getTime().getStartTimeInt() >= startTime &&
-                            paper.getTime().getStartTimeInt() <= endTime &&
-                            date.equals(current_date)) {
-                        addPaperToView(root, inflater, paper);
-                        count++;
-                    }
-                } while (cursor.moveToNext());
-            }
-        }
-        return count;
-    }
-
     public void addNotificationForNoPapers(LinearLayout root, LayoutInflater inflater) {
         View notification = inflater.inflate(R.layout.inflator_no_paper_notification, null);
         root.addView(notification);
@@ -165,76 +134,97 @@ public class FragmentMyDaySchedule extends Fragment implements Serializable {
         } catch (Exception e) {
 
         }
-        String date[] = conference.getConference_start_day().split("-");
+
+        String[] date = conference.getConference_start_day().split("-");
         int _date = Integer.parseInt(date[2]) + day;
-        String new_date = _date < 10 ? "0" + Integer.toString(_date) : Integer.toString(_date);
-        String date_for_page = new_date.concat("/").concat(date[1]).concat("/").concat(date[0]);
-        int times[] = new int[conference.getConference_food_guide().length];
-        int number_of_breaks = conference.getConference_food_guide().length;
-        int j = 0;
-        int break_end = 0;
-        for (int i = 0; i < conference.getConference_food_guide().length; i++) {
-            times[i] = conference.getConference_food_guide()[i].getStartTime();
+        String new_date = _date < 10 ? "0" + _date : Integer.toString(_date);
+        String date_for_page = date[0].concat("-").concat(date[1]).concat("-").concat(new_date);
+
+        Food[] guide_for_day = conference.get_guide_for_day(date_for_page);
+        Paper[] papers_for_day = get_papers_from_database(date_for_page);
+
+        int[] times = new int[guide_for_day.length + papers_for_day.length];
+
+        Map<Integer, List<Object>> schedule_map = new HashMap<Integer, List<Object>>();
+        for (int i = 0; i < guide_for_day.length; i++) {
+            times[i] = guide_for_day[i].time.getStartTimeInt();
+
+            if (schedule_map.containsKey(times[i])) {
+                schedule_map.get(times[i]).add(guide_for_day[i]);
+            } else {
+                ArrayList<Object> objectArrayList = new ArrayList<>();
+                objectArrayList.add(guide_for_day[i]);
+                schedule_map.put(times[i], objectArrayList);
+            }
+        }
+
+        for (int i = 0; i < papers_for_day.length; i++) {
+            times[i+guide_for_day.length] = papers_for_day[i].getTime().getStartTimeInt();
+            if (schedule_map.containsKey(times[i+guide_for_day.length])) {
+                schedule_map.get(times[i+guide_for_day.length]).add(papers_for_day[i]);
+            } else {
+                ArrayList<Object> objectArrayList = new ArrayList<>();
+                objectArrayList.add(papers_for_day[i]);
+                schedule_map.put(times[i+guide_for_day.length], objectArrayList);
+            }
         }
         Arrays.sort(times);
-        boolean all_added = false;
-        int papers_before_first_break = makeTimeView(root, inflater, 0000, times[0], date_for_page);
-        if (papers_before_first_break == 0) {
-            addNotificationForNoPapers(root, inflater);
-        }
 
-        for (int i = 0; i < conference.getConference_food_guide().length; i++) {
-            if (conference.getConference_food_guide()[i].getStartTime() == times[j]) {
-                break_end = conference.getConference_food_guide()[i].getEndTime();
-                addFoodView(root, inflater, conference.getConference_food_guide()[i]);
-                j++;
-            }
-        }
+        int added_since_last_break = 0;
 
-        if (j>= number_of_breaks) {
-            int papers = makeTimeView(root, inflater, break_end, 2359, date_for_page);
-            if (papers == 0) {
-                addNotificationForNoPapers(root, inflater);
-            }
-
-            all_added = true;
-        } else {
-            int papers = makeTimeView(root, inflater, break_end, times[j], date_for_page);
-            if (papers == 0) {
-                addNotificationForNoPapers(root, inflater);
-            }
-        }
-
-        if (j<number_of_breaks) {
-            for (int i = 0; i < conference.getConference_food_guide().length; i++) {
-                if (conference.getConference_food_guide()[i].getStartTime() == times[j]) {
-                    break_end = conference.getConference_food_guide()[i].getEndTime();
-                    addFoodView(root, inflater, conference.getConference_food_guide()[i]);
-                    j++;
+        for (int i = 0; i < times.length; i++) {
+            int time = times[i];
+            try {
+                if (added_since_last_break == 0) {
+                    addNotificationForNoPapers(root, inflater);
                 }
+
+                added_since_last_break = 0;
+
+                Food food = (Food) schedule_map.get(time).get(0);
+                schedule_map.get(time).remove(0);
+                addFoodView(root, inflater, food);
+            } catch (Exception e) {
+                added_since_last_break += 1;
+                Paper paper = (Paper) schedule_map.get(time).get(0);
+                schedule_map.get(time).remove(0);
+                addPaperToView(root, inflater, paper);
+            }
+
+        }
+
+    }
+
+    public Paper[] get_papers_from_database(String current_date) {
+
+        ArrayList<Paper> papers_for_today = new ArrayList<>();
+        Cursor cursor = dbManager.fetch();
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                do {
+                    String title = cursor.getString(cursor.getColumnIndex("title"));
+                    String[] authors = cursor.getString(cursor.getColumnIndex("authors")).replace("[", "")
+                            .replace("]", "")
+                            .split(",");
+                    String[] topics = cursor.getString(cursor.getColumnIndex("topics")).replace("[", "")
+                            .replace("]", "")
+                            .split(",");
+                    String venue = cursor.getString(cursor.getColumnIndex("venue"));
+                    String[] schedule = cursor.getString(cursor.getColumnIndex("schedule")).split(",");
+                    String paper_abstract = cursor.getString(cursor.getColumnIndex("abstract"));
+                    String date = schedule[0];
+                    String[] confTime = schedule[1].split("-");
+                    String start_time = confTime[0];
+                    String end_time = confTime[1];
+                    CustomTime paper_schedule = new CustomTime(date, start_time, end_time);
+                    Paper paper = new Paper(title, venue, paper_schedule, authors, topics, paper_abstract);
+                    if (date.equals(current_date)) {
+                        papers_for_today.add(paper);
+                    }
+                } while (cursor.moveToNext());
             }
         }
 
-        if (j>= number_of_breaks && !all_added) {
-            int papers = makeTimeView(root, inflater, break_end, 2359, date_for_page);
-            if (papers == 0) {
-                addNotificationForNoPapers(root, inflater);
-            }
-        } else {
-            int papers = makeTimeView(root, inflater, break_end, times[j], date_for_page);
-            if (papers == 0) {
-                addNotificationForNoPapers(root, inflater);
-            }
-        }
-
-        if (j<number_of_breaks) {
-            for (int i = 0; i < conference.getConference_food_guide().length; i++) {
-                if (conference.getConference_food_guide()[i].getStartTime() == times[j]) {
-                    break_end = conference.getConference_food_guide()[i].getEndTime();
-                    addFoodView(root, inflater, conference.getConference_food_guide()[i]);
-                    j++;
-                }
-            }
-        }
+        return papers_for_today.toArray(new Paper[papers_for_today.size()]);
     }
 }
