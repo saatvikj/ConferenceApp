@@ -106,7 +106,6 @@ def dashboard(request):
 
 			subprocess.call([os.path.join(settings.FILES_DIR, 'MobileApp/appnamechange.sh'),name])
 			subprocess.call([os.path.join(settings.FILES_DIR, 'MobileApp/colorchange.sh'), pColor, sColor, aColor])
-			subprocess.call([os.path.join(settings.FILES_DIR, 'MobileApp/iconcolorchange.sh'), pColor])
 			subprocess.call(os.path.join(settings.FILES_DIR, 'MobileApp/generator.sh'))
 
 			apk_path = os.path.join(settings.FILES_DIR, 'MobileApp/app/build/outputs/apk/debug/app-debug.apk')
@@ -143,7 +142,6 @@ def thank_you(request):
 
 		subprocess.call([os.path.join(settings.FILES_DIR, 'MobileApp/appnamechange.sh'),basic_conference_details.loc[0,'conference-name']])
 		subprocess.call([os.path.join(settings.FILES_DIR, 'MobileApp/colorchange.sh'), pColor, sColor, aColor])
-		subprocess.call([os.path.join(settings.FILES_DIR, 'MobileApp/iconcolorchange.sh'), pColor])
 		subprocess.call(os.path.join(settings.FILES_DIR, 'MobileApp/generator.sh'))
 
 		apk_path = os.path.join(settings.FILES_DIR, 'MobileApp/app/build/outputs/apk/debug/app-debug.apk')

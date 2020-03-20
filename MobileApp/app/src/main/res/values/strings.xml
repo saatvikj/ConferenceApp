@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ICTDX</string>
+    <string name="app_name">ASONAM</string>
     <string name="title_activity_nav_bar">Conference</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
