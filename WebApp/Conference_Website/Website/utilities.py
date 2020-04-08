@@ -8,11 +8,12 @@ import sys
 joining_code_list = []
 
 config = {
-  "apiKey": "Enter here",
-  "authDomain": "Enter here",
-  "databaseURL": "Enter here",
-  "storageBucket": "Enter here"
+  "apiKey": "AIzaSyCNpkzcclTXDCBdNlApdFOa7i7i1c2UPgM",
+  "authDomain": "conference-portal-deb1c.firebaseapp.com",
+  "databaseURL": "https://conference-portal-deb1c.firebaseio.com/",
+  "storageBucket": "gs://conference-portal-deb1c.appspot.com"
 }
+
 
 
 def joining_code_generator():

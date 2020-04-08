@@ -2,19 +2,22 @@ package com.example.conferenceapp.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
+import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.example.conferenceapp.models.FeedPost;
 import com.example.conferenceapp.R;
-import com.example.conferenceapp.activities.ActivityFeedPost;
+import com.example.conferenceapp.activities.ActivityHashtags;
+import com.example.conferenceapp.models.FeedPost;
+import com.luseen.autolinklibrary.AutoLinkMode;
+import com.luseen.autolinklibrary.AutoLinkOnClickListener;
+import com.luseen.autolinklibrary.AutoLinkTextView;
 
 import java.util.List;
 
@@ -22,11 +25,12 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
 
     private List<FeedPost> mPosts;
     private Context mCtx;
-    public static FeedPost selectedPost;
+    private String email;
 
-    public PostAdapter(List<FeedPost> mPosts, Context mCtx) {
+    public PostAdapter(List<FeedPost> mPosts, Context mCtx, String email) {
         this.mPosts = mPosts;
         this.mCtx = mCtx;
+        this.email = email;
     }
 
 
@@ -42,36 +46,30 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
     public void onBindViewHolder(@NonNull final PostViewHolder holder, int position) {
         final FeedPost feedPost = mPosts.get(position);
         holder.name.setText(feedPost.getName());
-        holder.timeStamp.setText(feedPost.getTime());
-        holder.content.setText(feedPost.getContent());
-        Glide.with(mCtx).load("https://upload.wikimedia.org/wikipedia/commons/0/04/Vivian_Bartley_Green-Armytage_IMS.jpg").into(holder.image);
-        holder.numLikes.setText(Integer.toString(feedPost.getLikes()).concat(" likes"));
-        holder.like.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(holder.nLikes.getText().toString().equals("Like")) {
-                    holder.nLikes.setText(Integer.toString(feedPost.getLikes() + 1));
-                    feedPost.likes++;
-                    holder.numLikes.setText(Integer.toString(feedPost.getLikes()).concat(" likes"));
+        holder.timeStamp.setText(DateUtils.getRelativeTimeSpanString(feedPost.getTime()));
+        holder.content.addAutoLinkMode(AutoLinkMode.MODE_HASHTAG, AutoLinkMode.MODE_URL);
 
-                }
-                else{
-                    holder.nLikes.setText("Like");
-                    feedPost.likes--;
-                    holder.numLikes.setText(Integer.toString(feedPost.getLikes()).concat(" likes"));
+        holder.content.setHashtagModeColor(ContextCompat.getColor(mCtx, R.color.urlColor));
+        holder.content.setUrlModeColor(ContextCompat.getColor(mCtx, R.color.urlColor));
+
+        holder.content.setAutoLinkOnClickListener(new AutoLinkOnClickListener() {
+            @Override
+            public void onAutoLinkTextClick(AutoLinkMode autoLinkMode, String matchedText) {
+                if (autoLinkMode.equals(AutoLinkMode.MODE_URL)) {
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(matchedText));
+                    mCtx.startActivity(browserIntent);
+                } else {
+                    Intent intent = new Intent(mCtx, ActivityHashtags.class);
+                    intent.putExtra("hashtag", matchedText);
+                    intent.putExtra("email", email);
+                    mCtx.startActivity(intent);
                 }
             }
         });
 
-        holder.comments.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(mCtx,ActivityFeedPost.class);
-                selectedPost = feedPost;
-                mCtx.startActivity(intent);
-            }
-        });
+        holder.content.setAutoLinkText(feedPost.getContent());
 
+        //TODO: Add share on click!
     }
 
     @Override
@@ -83,23 +81,14 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.PostViewHolder
 
         TextView name;
         TextView timeStamp;
-        TextView content;
-        TextView nLikes;
-        ImageView image;
-        LinearLayout like;
-        LinearLayout comments;
-        TextView numLikes;
+        AutoLinkTextView content;
+
 
         public PostViewHolder(View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.name);
             timeStamp = itemView.findViewById(R.id.timestamp);
-            content = itemView.findViewById(R.id.txtStatusMsg);
-            image = itemView.findViewById(R.id.feedImage1);
-            like = itemView.findViewById(R.id.like);
-            nLikes = itemView.findViewById(R.id.nLikes);
-            comments = itemView.findViewById(R.id.comment);
-            numLikes = itemView.findViewById(R.id.number_likes);
+            content = (AutoLinkTextView) itemView.findViewById(R.id.txtStatusMsg);
         }
     }
 }

@@ -57,15 +57,14 @@ public class ActivityCreatePost extends AppCompatActivity {
                             if(email.equals(input_email)){
                                 String name = c.getName();
                                 String content = contentEditText.getText().toString();
-                                String time = "0 h";
-                                Integer likes = 0;
-                                Toast.makeText(getApplicationContext(),content,Toast.LENGTH_SHORT).show();
-                                FeedPost post = new FeedPost(name, time, content, null, likes, null);
+                                long time = System.currentTimeMillis();
+                                FeedPost post = new FeedPost(name, time, content);
                                 mDatabase = FirebaseDatabase.getInstance().getReference();
                                 mDatabase.child(conference_id).child("Posts").push().setValue(post);
                                 Intent intent = new Intent(ActivityCreatePost.this, NavBarActivity.class);
                                 intent.putExtra("Source","paid");
                                 intent.putExtra("email",email);
+                                startActivity(intent);
                                 break;
                             }
                         }

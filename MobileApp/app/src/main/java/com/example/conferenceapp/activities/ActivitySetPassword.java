@@ -52,6 +52,10 @@ public class ActivitySetPassword extends AppCompatActivity {
             public void onClick(View v) {
                 enteredPassword = newPasswordField.getText().toString();
                 confirmedPassword = confirmPasswordField.getText().toString();
+
+                newPasswordField.setText("");
+                confirmPasswordField.setText("");
+
                 if(enteredPassword.equals(confirmedPassword)){
                     final String conference_id = conference.getConference_id();
                     mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -62,7 +66,6 @@ public class ActivitySetPassword extends AppCompatActivity {
                                 User c = d.getValue(User.class);
                                 if (email.equals(c.getEmail())) {
                                     c.setPassword(enteredPassword);
-                                    Toast.makeText(getApplicationContext(), c.getPassword(), Toast.LENGTH_LONG).show();
                                     mDatabase.child(conference_id).child("Users").child(d.getKey()).setValue(c);
                                     Intent intent = new Intent(ActivitySetPassword.this, ActivityMyProfile.class);
                                     intent.putExtra("Source", "paid");

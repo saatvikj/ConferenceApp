@@ -22,6 +22,7 @@ public class EmailClient extends AsyncTask<String, Integer, Void> {
     protected Void doInBackground(String... strings) {
         String email = strings[0];
         String joining_code = strings[1];
+        String name = strings[2];
 
 
 
@@ -52,9 +53,8 @@ public class EmailClient extends AsyncTask<String, Integer, Void> {
             message.setFrom (new InternetAddress (username));
             message.setRecipients (Message.RecipientType.TO, InternetAddress.parse(email));
             message.setSubject ("Your joining code is here!");
-            message.setText (("Greetings from the team at Conference portal!").concat("\n").concat("Here is your joining code for the appplication: ")
-            .concat(joining_code).concat("\n").concat("We hope you have a good experience!").concat("\n").concat("Thanks and regards").concat("\n")
-            .concat("The Conference Portal Team"));
+            message.setText(("Dear ").concat(name).concat(",").concat("\n\n").concat("Greetings from the team at Conference Portal. Your joining code to login at the application is: ")
+                    .concat(joining_code));
 
             Transport.send (message);
 

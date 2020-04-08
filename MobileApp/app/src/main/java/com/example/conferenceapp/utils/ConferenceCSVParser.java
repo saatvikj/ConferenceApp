@@ -40,8 +40,8 @@ public class ConferenceCSVParser {
             String name = row.getField("company");
             String type = row.getField("type");
             String website = row.getField("website");
-
-            partners.add(new Partner(0, name, type, website, 0));
+            String imageID = row.getField("image");
+            partners.add(new Partner(0, name, type, website, imageID));
         }
 
         Partner[] partners_list = partners.toArray(new Partner[partners.size()]);

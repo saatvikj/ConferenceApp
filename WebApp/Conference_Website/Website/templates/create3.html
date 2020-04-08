@@ -33,7 +33,7 @@
 			</div>
 
 			<div class="content-main-signup-right col-md-6">
-				<form method="POST" action="/create3/" style="height: 100%;"> {% csrf_token %}
+				<form method="POST" enctype="multipart/form-data" action="/create3/" style="height: 100%;"> {% csrf_token %}
 				<div class="form-group">
 					<label for="company">Company Name</label>
 					<input class="form-control" type="text" name="company" id="company" placeholder="Enter company name" required />
@@ -49,6 +49,11 @@
 					<input class="form-control" type="text" name="website" id="website" placeholder="Enter website" required />
 				</div>
 				
+		        <div class="form-group">
+		          <label for="logo_image">Upload sponsor logo</label>
+		          <input type="file" name="logo_image" id="logo_image" required="True" class="form-control" style="width:300px">    
+		        </div>
+
 				<div class="m-t-lg">
 					<ul class="list-inline">
 						<li>

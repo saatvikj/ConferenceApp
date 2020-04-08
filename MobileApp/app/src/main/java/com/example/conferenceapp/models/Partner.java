@@ -5,9 +5,9 @@ public class Partner {
     private String sponsorName;
     private String sponsorType;
     private String sponsorWebsite;
-    private int imageID;
+    private String imageID;
 
-    public Partner(int id, String sponsorName, String sponsorType, String website, int imageID) {
+    public Partner(int id, String sponsorName, String sponsorType, String website, String imageID) {
         this.id = id;
         this.sponsorName = sponsorName;
         this.sponsorType = sponsorType;
@@ -27,7 +27,7 @@ public class Partner {
         return sponsorType;
     }
 
-    public int getImageID() {
+    public String getImageID() {
         return imageID;
     }
 

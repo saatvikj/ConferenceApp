@@ -19,6 +19,7 @@ import com.example.conferenceapp.adapters.PostAdapter;
 import com.example.conferenceapp.R;
 import com.example.conferenceapp.activities.ActivityCreatePost;
 import com.example.conferenceapp.utils.ConferenceCSVParser;
+import com.example.conferenceapp.utils.PostComparator;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -28,12 +29,11 @@ import com.google.firebase.database.ValueEventListener;
 import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class FragmentFeed extends Fragment {
 
-    URI uri = null;
-    URL url = null;
     RecyclerView recyclerView;
     FloatingActionButton fab;
     Conference conference = null;
@@ -98,7 +98,8 @@ public class FragmentFeed extends Fragment {
                     posts.add(fp);
                 }
 
-                PostAdapter postAdapter = new PostAdapter(posts,ctx);
+                Collections.sort(posts, new PostComparator());
+                PostAdapter postAdapter = new PostAdapter(posts,ctx, getActivity().getIntent().getStringExtra("email"));
                 recyclerView.setAdapter(postAdapter);
             }
 

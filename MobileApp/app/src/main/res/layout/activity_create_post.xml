@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1"
     android:orientation="vertical"
+    android:weightSum="1"
     tools:context=".activities.ActivityCreatePost">
-    
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -15,76 +15,42 @@
         android:orientation="vertical">
 
         <EditText
+            android:id="@+id/postContentEditText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/postContentEditText"
-            android:padding="8dp"
             android:backgroundTint="@color/greyBackground"
             android:gravity="top|left"
-            android:hint="Share an article, photo or idea"
-            android:textColorHint="@color/divier"/>
+            android:hint="Share something. Use hashtags for better reach!"
+            android:padding="8dp"
+            android:textColorHint="@color/divier" />
 
     </LinearLayout>
-    
+
+
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="0.1"
-        android:weightSum="1"
-        android:orientation="horizontal">
+        android:layout_gravity="center"
+        android:layout_marginRight="12dp"
+        android:layout_marginBottom="12dp"
+        android:gravity="right"
+        android:layout_weight="0.1">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/createPostButton"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.3">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:background="@drawable/ic_insert_link_black_24dp"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.3">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:background="@drawable/ic_camera_alt_black_24dp"/>
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:layout_marginBottom="4dp"
-            android:layout_marginRight="12dp"
-            android:gravity="right"
-            android:layout_weight="0.4">
-
-            <Button
-                android:layout_width="match_parent"
-                android:id="@+id/createPostButton"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ghostbutton"
-                android:includeFontPadding="false"
-                android:layout_marginLeft="4dp"
-                android:layout_marginRight="4dp"
-                android:textSize="18sp"
-                android:textColor="@color/colorPrimary"
-                android:layout_gravity="end"
-                android:text="POST"/>
-
-        </LinearLayout>
-
+            android:layout_gravity="end"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:background="@drawable/ghostbutton"
+            android:includeFontPadding="false"
+            android:text="POST"
+            android:textColor="@color/colorPrimary"
+            android:textSize="18sp" />
 
     </LinearLayout>
+
 
 </LinearLayout>
+

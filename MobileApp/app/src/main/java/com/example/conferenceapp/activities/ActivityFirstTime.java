@@ -59,13 +59,13 @@ public class ActivityFirstTime extends AppCompatActivity {
                 mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        for(DataSnapshot d: dataSnapshot.child(conference_id).child("Users").getChildren()){
+                        for (DataSnapshot d : dataSnapshot.child(conference_id).child("Users").getChildren()) {
                             User c = d.getValue(User.class);
                             String email = c.getEmail();
-                            if(email.equals(emailId)){
+                            if (email.equals(emailId)) {
                                 final_joining_code = c.getJoining_code();
                                 final_email_id = email;
-                                String[] details = {final_email_id, final_joining_code};
+                                String[] details = {final_email_id, final_joining_code, c.getName()};
                                 new EmailClient().execute(details);
 
                                 button.setText(R.string.joining_code_verify);
@@ -76,14 +76,13 @@ public class ActivityFirstTime extends AppCompatActivity {
                                     public void onClick(View v) {
                                         progressBar.hide();
                                         String user_input = emailField.getText().toString();
-                                        if(user_input.equals(final_joining_code)){
+                                        if (user_input.equals(final_joining_code)) {
                                             Intent intent = new Intent(ActivityFirstTime.this, ActivitySetPassword.class);
                                             intent.putExtra("email", final_email_id);
-                                            intent.putExtra("Source","paid");
+                                            intent.putExtra("Source", "paid");
                                             startActivity(intent);
                                             finish();
-                                        }
-                                        else{
+                                        } else {
                                             Toast.makeText(getApplicationContext(), "Joining code incorrect!", Toast.LENGTH_SHORT).show();
                                         }
                                     }

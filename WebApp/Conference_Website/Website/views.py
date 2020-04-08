@@ -16,6 +16,7 @@ from django.conf import settings
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.core.files.storage import FileSystemStorage
+from django.core.files.storage import default_storage
 from django.core.mail import send_mail
 from django.http import HttpResponse
 from django.shortcuts import render
@@ -25,7 +26,7 @@ from django.views.generic import TemplateView
 from .forms import ConferenceData
 
 basic_conference_details = pd.DataFrame(columns=['id','conference-name','conference-venue','start-date','end-date','about','website','facebook','twitter','contact'])
-conference_sponsors = pd.DataFrame(columns=['company','type','website'])
+conference_sponsors = pd.DataFrame(columns=['company','type','website','image'])
 conference_food_events = pd.DataFrame(columns=['event-name','location','details','start-time','end-time'])
 
 def signup(request):
@@ -183,6 +184,10 @@ def create_conference_3(request):
 		if key != "csrfmiddlewaretoken":
 			conference_sponsors.loc[number_of_items, key] = value
 
+	file = request.FILES['logo_image']
+	file_name = default_storage.save('sponsor'+str(number_of_items)+'.png', file)
+	conference_sponsors.loc[number_of_items, 'image'] = 'sponsor'+str(number_of_items)
+
 	return render(request, 'create3.html', {})	
 
 @login_required
@@ -247,6 +252,8 @@ def create_conference_5(request):
 		conference_sponsors_csv_path = os.path.join(settings.FILES_DIR, 'WebApp/Conference_Website/media/' + basic_conference_details.loc[0,'id'] + '/conference_sponsors.csv')
 		conference_sponsors.to_csv(conference_sponsors_csv_path)
 
+		for i in range(conference_sponsors.shape[0]):
+			destination = shutil.move(os.path.join(settings.MEDIA_ROOT,'sponsor'+str(i)+'.png'), os.path.join(settings.MEDIA_ROOT, str(conference_ob.conference_id)+'/'))
 
 		return redirect('thank_you')
 	else:
