@@ -2,7 +2,6 @@ package com.example.conferenceapp.adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -12,8 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.conferenceapp.models.Partner;
 import com.example.conferenceapp.R;
+import com.example.conferenceapp.models.Partner;
 
 import java.util.List;
 
@@ -43,7 +42,7 @@ public class PartnerAdapter extends RecyclerView.Adapter<PartnerAdapter.PartnerV
         holder.type.setText(partner.getSponsorType());
 
         int image_id = mCtx.getResources().getIdentifier(partner.getImageID(), "drawable", mCtx.getPackageName());
-        holder.photo.setImageDrawable(mCtx.getDrawable(image_id));
+        holder.photo.setImageDrawable(mCtx.getDrawable(R.drawable.adobe));
         final String partnerEmail = partner.getSponsorWebsite();
         holder.name.setOnClickListener(new View.OnClickListener() {
             @Override

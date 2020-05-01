@@ -3,19 +3,19 @@ package com.example.conferenceapp.fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.CardView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.conferenceapp.R;
 import com.example.conferenceapp.models.Conference;
 import com.example.conferenceapp.models.Food;
 import com.example.conferenceapp.utils.ConferenceCSVParser;
+import com.example.conferenceapp.utils.FoodComparator;
+
+import java.util.Arrays;
 
 public class FragmentGuide extends Fragment {
 
@@ -39,6 +39,8 @@ public class FragmentGuide extends Fragment {
 
         }
         Food[] food_guide = conference.getConference_food_guide();
+
+        Arrays.sort(food_guide, new FoodComparator());
 
         LayoutInflater inflater = getLayoutInflater();
         LinearLayout food_list = view.findViewById(R.id.food_guide);

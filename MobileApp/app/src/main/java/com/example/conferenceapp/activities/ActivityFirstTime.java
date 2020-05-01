@@ -3,21 +3,25 @@ package com.example.conferenceapp.activities;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.conferenceapp.models.User;
-import com.example.conferenceapp.utils.EmailClient;
-import com.google.firebase.database.*;
 import com.example.conferenceapp.R;
 import com.example.conferenceapp.models.Conference;
+import com.example.conferenceapp.models.MainApplication;
+import com.example.conferenceapp.models.User;
 import com.example.conferenceapp.utils.ConferenceCSVParser;
+import com.example.conferenceapp.utils.EmailClient;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class ActivityFirstTime extends AppCompatActivity {
 
@@ -63,6 +67,7 @@ public class ActivityFirstTime extends AppCompatActivity {
                             User c = d.getValue(User.class);
                             String email = c.getEmail();
                             if (email.equals(emailId)) {
+                                progressBar.hide();
                                 final_joining_code = c.getJoining_code();
                                 final_email_id = email;
                                 String[] details = {final_email_id, final_joining_code, c.getName()};
@@ -74,12 +79,11 @@ public class ActivityFirstTime extends AppCompatActivity {
                                 button.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        progressBar.hide();
                                         String user_input = emailField.getText().toString();
                                         if (user_input.equals(final_joining_code)) {
                                             Intent intent = new Intent(ActivityFirstTime.this, ActivitySetPassword.class);
-                                            intent.putExtra("email", final_email_id);
-                                            intent.putExtra("Source", "paid");
+                                            ((MainApplication) getApplication()).setType("paid");
+                                            ((MainApplication) getApplication()).setEmail(emailId);
                                             startActivity(intent);
                                             finish();
                                         } else {

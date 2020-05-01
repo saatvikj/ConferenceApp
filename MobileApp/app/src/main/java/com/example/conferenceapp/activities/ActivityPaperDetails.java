@@ -3,9 +3,7 @@ package com.example.conferenceapp.activities;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.CalendarContract;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.conferenceapp.R;
+import com.example.conferenceapp.models.MainApplication;
 import com.example.conferenceapp.models.Paper;
 import com.example.conferenceapp.models.User;
 import com.example.conferenceapp.utils.UserCSVParser;
@@ -28,12 +27,20 @@ public class ActivityPaperDetails extends AppCompatActivity implements Serializa
     TextView time;
     TextView location;
     TextView paper_abstract;
+    public String src;
     ArrayList<User> users;
+
+    @Override
+    protected void onResume() {
+        src = ((MainApplication) getApplication()).getType();
+        super.onResume();
+    }
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_paper);
-
+        src = ((MainApplication) getApplication()).getType();
         try {
             users = UserCSVParser.parseCSV(getApplicationContext());
         } catch (Exception e) {
@@ -72,7 +79,7 @@ public class ActivityPaperDetails extends AppCompatActivity implements Serializa
             speakers.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (getIntent().getStringExtra("Source").equals("skip")) {
+                    if (src.equals("skip")) {
                         Intent intent = new Intent(Intent.ACTION_SENDTO);
                         String mailto = "mailto:".concat(user.getEmail());
                         intent.setData(Uri.parse(mailto));
@@ -99,10 +106,6 @@ public class ActivityPaperDetails extends AppCompatActivity implements Serializa
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.guide_home) {
             Intent intent = new Intent(ActivityPaperDetails.this, NavBarActivity.class);
-            intent.putExtra("Source", getIntent().getStringExtra("Source"));
-            if (!(getIntent().getStringExtra("Source")).equals("skip")) {
-                intent.putExtra("email", getIntent().getStringExtra("email"));
-            }
             startActivity(intent);
             return true;
         }

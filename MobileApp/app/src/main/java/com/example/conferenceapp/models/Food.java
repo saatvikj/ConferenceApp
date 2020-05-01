@@ -26,5 +26,7 @@ public class Food {
         return description;
     }
 
-
+    public CustomTime getTime() {
+        return time;
+    }
 }

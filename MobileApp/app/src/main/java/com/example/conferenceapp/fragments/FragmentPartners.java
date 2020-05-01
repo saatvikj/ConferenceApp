@@ -9,10 +9,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.conferenceapp.R;
+import com.example.conferenceapp.adapters.PartnerAdapter;
 import com.example.conferenceapp.models.Conference;
 import com.example.conferenceapp.models.Partner;
-import com.example.conferenceapp.adapters.PartnerAdapter;
-import com.example.conferenceapp.R;
 import com.example.conferenceapp.utils.ConferenceCSVParser;
 
 import java.util.ArrayList;

@@ -26,18 +26,23 @@
 		</div>
 	</div>
 	
-	<div class="content-thank-you full-height">
-		<div class="content-thank-you-main">
 
-			<h1>THANK YOU!<br>
-			<i class="fa fa-check" aria-hidden="true" style="color:#24B663"></i></h1>
-			<p>Your application is ready to be downloaded, click on the button below to generate the APK.</p>
+
+	<div class="content-thank-you full-height">
+		<div class="jumbotron text-center">
+		  <hi class="thank-you"><i class="fa fa-check" aria-hidden="true" style="color:#24B663"></i></h1>
+		  <h1 class="display-3">Thank You!</h1>
+		  <p class="lead"><strong>Please click on the button below</strong> to download the APK.</p>
+		  <p class="lead">You can edit information by visiting the dashboard.</p>
+		  <hr>
+		  <p class="lead">
 			<form method="POST" action="."> 
 				{% csrf_token %}
-				<input class="btn btn--form" type="submit" value="Download" />
+				<input class="btn btn-primary btn-sm" type="submit" value="Download" />
 			</form>
-
+		  </p>
 		</div>
+
 		
 		<div class="modal" id="my_modal">
 			<div class="login">

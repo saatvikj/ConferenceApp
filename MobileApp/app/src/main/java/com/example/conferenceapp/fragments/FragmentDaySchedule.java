@@ -125,10 +125,6 @@ public class FragmentDaySchedule extends Fragment implements Serializable {
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), ActivityPaperDetails.class);
                 intent.putExtra("Paper", copy);
-                intent.putExtra("Source", getActivity().getIntent().getStringExtra("Source"));
-                if (!(getActivity().getIntent().getStringExtra("Source").equals("skip"))) {
-                    intent.putExtra("email",getActivity().getIntent().getStringExtra("email"));
-                }
                 startActivity(intent);
             }
         });

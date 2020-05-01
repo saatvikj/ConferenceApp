@@ -1,19 +1,19 @@
 package com.example.conferenceapp.activities;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.conferenceapp.R;
 import com.example.conferenceapp.models.Conference;
 import com.example.conferenceapp.models.FeedPost;
+import com.example.conferenceapp.models.MainApplication;
 import com.example.conferenceapp.models.User;
 import com.example.conferenceapp.utils.ConferenceCSVParser;
 import com.google.firebase.database.DataSnapshot;
@@ -28,7 +28,6 @@ public class ActivityCreatePost extends AppCompatActivity {
     Button createButton;
     Conference conference = null;
     private DatabaseReference mDatabase;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,7 +41,7 @@ public class ActivityCreatePost extends AppCompatActivity {
         final String conference_id = conference.getConference_id();
         contentEditText = findViewById(R.id.postContentEditText);
         createButton = findViewById(R.id.createPostButton);
-        final String email = getIntent().getStringExtra("email");
+        final String email = ((MainApplication) getApplication()).getEmail();
         createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,12 +57,10 @@ public class ActivityCreatePost extends AppCompatActivity {
                                 String name = c.getName();
                                 String content = contentEditText.getText().toString();
                                 long time = System.currentTimeMillis();
-                                FeedPost post = new FeedPost(name, time, content);
+                                FeedPost post = new FeedPost(name, time, content, email);
                                 mDatabase = FirebaseDatabase.getInstance().getReference();
                                 mDatabase.child(conference_id).child("Posts").push().setValue(post);
                                 Intent intent = new Intent(ActivityCreatePost.this, NavBarActivity.class);
-                                intent.putExtra("Source","paid");
-                                intent.putExtra("email",email);
                                 startActivity(intent);
                                 break;
                             }
@@ -94,8 +91,6 @@ public class ActivityCreatePost extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.create_cancel) {
             Intent intent = new Intent(ActivityCreatePost.this, NavBarActivity.class);
-            intent.putExtra("Source", "paid");
-            intent.putExtra("email",getIntent().getStringExtra("email"));
             startActivity(intent);
             return true;
         }

@@ -33,7 +33,6 @@ public class PaperCSVParser {
         Reader reader = new BufferedReader(is);
         CsvReader csvReader = new CsvReader();
         csvReader.setContainsHeader(true);
-
         CsvContainer csv = csvReader.read(reader);
         for (CsvRow row : csv.getRows()) {
             String title = row.getField("title");

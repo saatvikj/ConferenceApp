@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import com.example.conferenceapp.R;
 import com.example.conferenceapp.activities.ActivityUserProfile;
-import com.example.conferenceapp.activities.NavBarActivity;
 import com.example.conferenceapp.models.User;
 import com.futuremind.recyclerviewfastscroll.SectionTitleProvider;
 
@@ -24,11 +23,13 @@ public class AttendeeAdapter extends RecyclerView.Adapter<AttendeeAdapter.Speake
     private List<User> mSpeakersList;
     private Context mCtx;
     private FragmentActivity fa;
+    private String src;
 
-    public AttendeeAdapter(List<User> mSpeakersList, Context mCtx, FragmentActivity fa) {
+    public AttendeeAdapter(List<User> mSpeakersList, Context mCtx, FragmentActivity fa, String src) {
         this.mSpeakersList= mSpeakersList;
         this.mCtx = mCtx;
         this.fa = fa;
+        this.src = src;
     }
 
 
@@ -44,11 +45,11 @@ public class AttendeeAdapter extends RecyclerView.Adapter<AttendeeAdapter.Speake
     public void onBindViewHolder(@NonNull SpeakerViewHolder holder, int position) {
         final User user = mSpeakersList.get(position);
         holder.name.setText(user.getName());
-        holder.bio.setText(user.getTypeOfUser());
+        holder.bio.setText(user.getCompany());
+
         holder.name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String src = fa.getIntent().getStringExtra("Source");
                 if (src.equals("skip")) {
                     Intent intent = new Intent(Intent.ACTION_SENDTO);
                     String mailto = "mailto:".concat(user.getEmail());
@@ -57,7 +58,6 @@ public class AttendeeAdapter extends RecyclerView.Adapter<AttendeeAdapter.Speake
                 } else {
                     Intent intent = new Intent(fa, ActivityUserProfile.class);
                     intent.putExtra("email", user.getEmail());
-                    intent.putExtra("Source","paid");
                     mCtx.startActivity(intent);
                 }
             }

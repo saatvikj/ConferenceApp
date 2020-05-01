@@ -8,8 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.conferenceapp.models.Comment;
 import com.example.conferenceapp.R;
+import com.example.conferenceapp.models.Comment;
 
 import java.util.List;
 

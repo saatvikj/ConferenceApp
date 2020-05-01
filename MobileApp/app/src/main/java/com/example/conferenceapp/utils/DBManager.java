@@ -8,7 +8,6 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.example.conferenceapp.models.Paper;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 
 public class DBManager {

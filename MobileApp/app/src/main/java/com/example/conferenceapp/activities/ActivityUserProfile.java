@@ -4,10 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -134,26 +131,8 @@ public class ActivityUserProfile extends AppCompatActivity {
                         User u = d.getValue(User.class);
                         if (u.getEmail().equals(email_of_user)) {
                             AboutPage about = new AboutPage(getApplicationContext()).isRTL(false);
-                            Element email = new Element();
-                            email.setTitle("Contact me on mail");
-                            email.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    Intent intent = new Intent(Intent.ACTION_SENDTO);
-                                    String mailto = "mailto:".concat(email_of_user);
-                                    intent.setData(Uri.parse(mailto));
-                                    startActivity(intent);
-                                }
-                            });
-
-                            if (u.getInterests().length() != 0) {
-                                String description = u.getBio();
-                                description.concat("/n");
-                                description.concat("Research Interests and fields for collaboration: ");
-                                description.concat(u.getInterests());
-
-                                about.setDescription(description);
-                            }
+                            about.setDescription("This user hasn't created a profile yet, you can still contact them on their email ID.");
+                            about.addEmail(email_of_user, "Contact now");
 
                             View aboutView = about.create();
                             root.addView(aboutView);
@@ -179,8 +158,6 @@ public class ActivityUserProfile extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.guide_home) {
             Intent intent = new Intent(ActivityUserProfile.this, NavBarActivity.class);
-            intent.putExtra("Source", getIntent().getStringExtra("Source"));
-            intent.putExtra("email", getIntent().getStringExtra("email"));
             startActivity(intent);
             return true;
         }

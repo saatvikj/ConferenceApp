@@ -1023,3 +1023,13 @@ form .form-row p {
   font-size: 24px;
   font-family: 'Roboto', sans-serif;
 }
+
+.thank-you {
+  margin-top: 96px;
+  text-align: center;
+  color: black;
+  font-weight: bold;
+  font-size: 100px;
+  text-transform: uppercase;
+  font-family: 'Raleway', sans-serif;  
+}

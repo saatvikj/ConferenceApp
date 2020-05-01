@@ -1,11 +1,9 @@
 package com.example.conferenceapp.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,13 +14,13 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.conferenceapp.R;
 import com.example.conferenceapp.models.Conference;
-import com.example.conferenceapp.models.User;
+import com.example.conferenceapp.models.MainApplication;
 import com.example.conferenceapp.utils.ConferenceCSVParser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 public class ActivityLogin extends AppCompatActivity {
 
@@ -30,6 +28,7 @@ public class ActivityLogin extends AppCompatActivity {
     EditText emailEditText;
     EditText passwordEditText;
     private DatabaseReference mDatabase;
+    private FirebaseAuth mAuth;
     Button signInButton;
     Conference conference = null;
 
@@ -56,34 +55,25 @@ public class ActivityLogin extends AppCompatActivity {
             public void onClick(View v) {
                 final String email = emailEditText.getText().toString();
                 final String password = passwordEditText.getText().toString();
-                final String conference_id = conference.getConference_id();
-                mDatabase = FirebaseDatabase.getInstance().getReference();
-                mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+
+                mAuth = FirebaseAuth.getInstance();
+                mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        for(DataSnapshot d: dataSnapshot.child(conference_id).child("Users").getChildren()){
-                            User c = d.getValue(User.class);
-                            String input_email = c.getEmail();
-                            String input_pass = c.getPassword();
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (!task.isSuccessful()) {
+                            Toast.makeText(getApplicationContext(), "Error logging in, try again!", Toast.LENGTH_LONG).show();
+                        } else {
 
-                            if(input_email.equals(email) && input_pass.equals(password)){
-                                Intent intent = new Intent(ActivityLogin.this, NavBarActivity.class);
-                                intent.putExtra("Source", "paid");
-                                intent.putExtra("email", input_email);
-                                startActivity(intent);
+                            Intent intent = new Intent(ActivityLogin.this, NavBarActivity.class);
+                            ((MainApplication) getApplication()).setType("paid");
+                            ((MainApplication) getApplication()).setEmail(email);
 
-                                break;
-                            }
-                            else if(input_email.equals(email)){
-                                Toast.makeText(getApplicationContext(),"Incorrect credentials provided, try again!" , Toast.LENGTH_SHORT).show();
-                            }
+                            startActivity(intent);
                         }
                     }
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
                 });
+
+
             }
         });
 
@@ -92,7 +82,7 @@ public class ActivityLogin extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ActivityLogin.this, NavBarActivity.class);
-                intent.putExtra("Source", "skip");
+                ((MainApplication) getApplication()).setType("skip");
                 startActivity(intent);
             }
         });

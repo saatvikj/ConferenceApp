@@ -8,56 +8,23 @@ public class User {
     private String name;
     private String email;
     private String company;
-    private String location;
-    private String bio;
-    private String interests;
-    private String presentedPapers;
-    private String typeOfUser;
     private String joining_code;
-    private String password;
-    private ArrayList<Paper> myAgenda;
 
     public User() {
-
     }
 
-    public User(String name, String company) {
-        this.name = name;
-        this.company = company;
-    }
-
-    public User(String name, String email, String company, String location) {
+    public User(String name, String email, String company) {
         this.name = name;
         this.email = email;
         this.company = company;
-        this.location = location;
     }
 
-    public String getJoining_code() {
-        return joining_code;
-    }
-
-    public void setJoining_code(String joining_code) {
-        this.joining_code = joining_code;
-    }
-
-    public User(String ID, String name, String email, String company, String location, String bio, String interests, String presentedPapers, String typeOfUser, ArrayList<Paper> myAgenda, String joining_code) {
+    public User(String ID, String name, String email, String company, String joining_code) {
         this.ID = ID;
         this.name = name;
         this.email = email;
         this.company = company;
-        this.location = location;
-        this.bio = bio;
-        this.interests = interests;
-        this.presentedPapers = presentedPapers;
         this.joining_code = joining_code;
-        this.typeOfUser = typeOfUser;
-        this.myAgenda = myAgenda;
-
-    }
-
-    public User(String ID) {
-        this.ID = ID;
     }
 
     public String getID() {
@@ -92,59 +59,12 @@ public class User {
         this.company = company;
     }
 
-    public String getLocation() {
-        return location;
+    public String getJoining_code() {
+        return joining_code;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setJoining_code(String joining_code) {
+        this.joining_code = joining_code;
     }
 
-    public String getBio() {
-        return bio;
-    }
-
-    public void setBio(String bio) {
-        this.bio = bio;
-    }
-
-    public String getInterests() {
-        return interests;
-    }
-
-    public void setInterests(String interests) {
-        this.interests = interests;
-    }
-
-    public String getPresentedPapers() {
-        return presentedPapers;
-    }
-
-    public void setPresentedPapers(String presentedPapers) {
-        this.presentedPapers = presentedPapers;
-    }
-
-    public String getTypeOfUser() {
-        return typeOfUser;
-    }
-
-    public void setTypeOfUser(String typeOfUser) {
-        this.typeOfUser = typeOfUser;
-    }
-
-    public ArrayList<Paper> getMyAgenda() {
-        return myAgenda;
-    }
-
-    public void setMyAgenda(ArrayList<Paper> myAgenda) {
-        this.myAgenda = myAgenda;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }

@@ -2,8 +2,6 @@ package com.example.conferenceapp.utils;
 
 import android.annotation.TargetApi;
 import android.content.Context;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.example.conferenceapp.models.About;
 import com.example.conferenceapp.models.Conference;

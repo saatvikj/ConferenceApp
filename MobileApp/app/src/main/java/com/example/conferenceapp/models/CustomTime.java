@@ -59,10 +59,9 @@ public class CustomTime implements Serializable {
         return Integer.parseInt(this.endTime.split(":")[1]);
     }
 
-
     public Long getParseStartTime() {
 
-        SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyyHHmm");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmm");
 
         String time = startTime.replace(":", "");
         try {

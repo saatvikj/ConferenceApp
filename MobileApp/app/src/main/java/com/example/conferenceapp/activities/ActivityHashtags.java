@@ -11,13 +11,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.conferenceapp.R;
+import com.example.conferenceapp.adapters.PostAdapter;
 import com.example.conferenceapp.models.Conference;
 import com.example.conferenceapp.models.FeedPost;
-import com.example.conferenceapp.adapters.PostAdapter;
-import com.example.conferenceapp.R;
+import com.example.conferenceapp.models.MainApplication;
 import com.example.conferenceapp.utils.ConferenceCSVParser;
 import com.example.conferenceapp.utils.PostComparator;
 import com.google.firebase.database.DataSnapshot;
@@ -37,12 +39,22 @@ public class ActivityHashtags extends AppCompatActivity {
     DatabaseReference mDatabase;
     List<FeedPost> posts;
     Context ctx;
+    public String email;
+    public LinearLayout no_posts;
+
+    @Override
+    protected void onResume() {
+        email = ((MainApplication) getApplication()).getEmail();
+        super.onResume();
+    }
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hashtags);
+        email = ((MainApplication) getApplication()).getEmail();
 
+        no_posts = (LinearLayout) findViewById(R.id.no_posts);
         final String hashtag = getIntent().getStringExtra("hashtag");
         try {
             conference = ConferenceCSVParser.parseCSV(getApplicationContext());
@@ -69,10 +81,15 @@ public class ActivityHashtags extends AppCompatActivity {
                     }
 
                 }
-                Collections.sort(posts, new PostComparator());
+                if (posts.size() > 0) {
+                    no_posts.setVisibility(View.GONE);
+                    Collections.sort(posts, new PostComparator());
+                    PostAdapter postAdapter = new PostAdapter(posts, ctx, email, conference.getConference_id(), no_posts);
+                    recyclerView.setAdapter(postAdapter);
+                } else {
 
-                PostAdapter postAdapter = new PostAdapter(posts,ctx, getIntent().getStringExtra("email"));
-                recyclerView.setAdapter(postAdapter);
+                    no_posts.setVisibility(View.VISIBLE);
+                }
             }
 
             @Override
@@ -87,8 +104,6 @@ public class ActivityHashtags extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent intent = new Intent(ActivityHashtags.this, NavBarActivity.class);
-        intent.putExtra("Source", "paid");
-        intent.putExtra("email", getIntent().getStringExtra("email"));
 
         startActivity(intent);
         return true;

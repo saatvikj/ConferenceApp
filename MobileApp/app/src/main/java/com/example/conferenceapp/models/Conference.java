@@ -1,11 +1,9 @@
 package com.example.conferenceapp.models;
 
-import java.text.DateFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Timer;
 
 public class Conference {
 
@@ -63,7 +61,7 @@ public class Conference {
 
         SimpleDateFormat simpleDateFormat_1 = new SimpleDateFormat("yyyy-MM-dd");
         SimpleDateFormat simpleDateFormat_2 = new SimpleDateFormat("dd MMM");
-        SimpleDateFormat simpleDateFormat_3 = new SimpleDateFormat("YY");
+        SimpleDateFormat simpleDateFormat_3 = new SimpleDateFormat("yy");
         Date start_date = simpleDateFormat_1.parse(conference_start_day);
         Date end_date = simpleDateFormat_1.parse(conference_end_day);
 

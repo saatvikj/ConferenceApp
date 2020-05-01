@@ -110,10 +110,6 @@ public class FragmentMyDaySchedule extends Fragment implements Serializable {
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), ActivityPaperDetails.class);
                 intent.putExtra("Paper", copy);
-                intent.putExtra("Source",getActivity().getIntent().getStringExtra("Source"));
-                if (!(getActivity().getIntent().getStringExtra("Source")).equals("skip")) {
-                    intent.putExtra("email", getActivity().getIntent().getStringExtra("email"));
-                }
                 startActivity(intent);
             }
         });
@@ -176,7 +172,7 @@ public class FragmentMyDaySchedule extends Fragment implements Serializable {
             int time = times[i];
             try {
                 if (added_since_last_break == 0) {
-                    addNotificationForNoPapers(root, inflater);
+//                    addNotificationForNoPapers(root, inflater);
                 }
 
                 added_since_last_break = 0;

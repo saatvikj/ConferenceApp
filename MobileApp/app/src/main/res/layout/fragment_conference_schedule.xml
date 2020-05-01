@@ -21,6 +21,11 @@
         app:stl_underlineColor="@color/transparent"
         />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/greyBackground" />
+
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager"

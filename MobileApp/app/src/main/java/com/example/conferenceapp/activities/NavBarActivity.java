@@ -1,10 +1,11 @@
 package com.example.conferenceapp.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -17,7 +18,9 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.conferenceapp.R;
 import com.example.conferenceapp.fragments.FragmentAbout;
+import com.example.conferenceapp.fragments.FragmentAttendeeSchedule;
 import com.example.conferenceapp.fragments.FragmentConferenceSchedule;
 import com.example.conferenceapp.fragments.FragmentFeed;
 import com.example.conferenceapp.fragments.FragmentGuide;
@@ -25,12 +28,11 @@ import com.example.conferenceapp.fragments.FragmentLocationDetails;
 import com.example.conferenceapp.fragments.FragmentMessages;
 import com.example.conferenceapp.fragments.FragmentMySchedule;
 import com.example.conferenceapp.fragments.FragmentPartners;
-import com.example.conferenceapp.fragments.FragmentProfile;
-import com.example.conferenceapp.fragments.FragmentAttendeeSchedule;
-import com.example.conferenceapp.R;
 import com.example.conferenceapp.models.Conference;
+import com.example.conferenceapp.models.MainApplication;
 import com.example.conferenceapp.models.User;
 import com.example.conferenceapp.utils.ConferenceCSVParser;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -40,12 +42,23 @@ public class NavBarActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     public String src;
+    public String email;
     Conference conference;
+    private FirebaseAuth mAuth;
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        src = ((MainApplication) getApplication()).getType();
+        email = ((MainApplication) getApplication()).getEmail();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nav_bar);
-        src = getIntent().getStringExtra("Source");
+        src = ((MainApplication) getApplication()).getType();
+        email = ((MainApplication) getApplication()).getEmail();
         try {
             conference = ConferenceCSVParser.parseCSV(getApplicationContext());
         } catch (Exception e) {
@@ -77,7 +90,7 @@ public class NavBarActivity extends AppCompatActivity
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     for (DataSnapshot d: dataSnapshot.child(conference.getConference_id()).child("Users").getChildren()) {
                         User u = d.getValue(User.class);
-                        if (u.getEmail().equals(getIntent().getStringExtra("email"))) {
+                        if (u.getEmail().equals(email)) {
                             TextView name = navigationView.getHeaderView(0).findViewById(R.id.nameHeading);
                             TextView email = navigationView.getHeaderView(0).findViewById(R.id.emailHeading);
 
@@ -96,8 +109,6 @@ public class NavBarActivity extends AppCompatActivity
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(NavBarActivity.this, ActivityMyProfile.class);
-                    intent.putExtra("email",getIntent().getStringExtra("email"));
-                    intent.putExtra("Source", "paid");
                     startActivity(intent);
                 }
             });
@@ -180,6 +191,8 @@ public class NavBarActivity extends AppCompatActivity
                 setActionBarTitle("About");
                 break;
             case R.id.nav_logout:
+                mAuth = FirebaseAuth.getInstance();
+                mAuth.signOut();
                 Intent intent = new Intent(NavBarActivity.this, ActivityLogin.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);

@@ -2,19 +2,15 @@ package com.example.conferenceapp.utils;
 
 import android.os.AsyncTask;
 
-import java.util.Arrays;
 import java.util.Properties;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
-import javax.mail.Multipart;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
 
 public class EmailClient extends AsyncTask<String, Integer, Void> {
 
@@ -53,7 +49,7 @@ public class EmailClient extends AsyncTask<String, Integer, Void> {
             message.setFrom (new InternetAddress (username));
             message.setRecipients (Message.RecipientType.TO, InternetAddress.parse(email));
             message.setSubject ("Your joining code is here!");
-            message.setText(("Dear ").concat(name).concat(",").concat("\n\n").concat("Greetings from the team at Conference Portal. Your joining code to login at the application is: ")
+            message.setText(("Dear ").concat(name).concat(",").concat("\n\n").concat("Greetings from the team at Conference Portal. \nYour joining code to login at the application is: ")
                     .concat(joining_code));
 
             Transport.send (message);

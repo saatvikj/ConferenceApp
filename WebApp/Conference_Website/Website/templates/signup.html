@@ -28,27 +28,10 @@
 				{% csrf_token %}
 				<div class="signup-form-field">
 					{{ form.first_name.label_tag }}<br>
-					{{ form.first_name }}<br>
+					{{ form.first_name  }}<br>
 					{{ form.first_name.errors.0 }}
 				</div>
-  
-				<div class="signup-form-field">
-					{{ form.email.label_tag }}<br>
-					{{ form.email }}<br>
-					{{ form.email.errors.0 }}
-				</div>
-				
-				<div class="signup-form-field">
-					{{ form.password1.label_tag }}<br>
-					{{ form.password1 }}<br>
-					{{ form.password1.errors.0 }}
-				</div>
 
-				<div class="signup-form-field">
-					{{ form.organization.label_tag }}<br>
-					{{ form.organization }}<br>
-					{{ form.organization.errors.0 }}
-				</div>
 			</div>
 
 			<div class="content-main-signup-right col-md-6">
@@ -58,19 +41,58 @@
 					{{ form.last_name }}<br>
 					{{ form.last_name.errors.0 }}
 				</div>
-				
+			</div>
+
+			<div class="content-main-signup-left col-md-6">
+				{% csrf_token %}
+				<div class="signup-form-field">
+					{{ form.email.label_tag }}<br>
+					{{ form.email }}<br>
+					{{ form.email.errors.0 }}
+				</div>
+
+			</div>
+
+			<div class="content-main-signup-right col-md-6">
+				{% csrf_token %}
 				<div class="signup-form-field">
 					{{ form.username.label_tag }}<br>
 					{{ form.username }}<br>
 					{{ form.username.errors.0 }}
 				</div>
-				  
+			</div>
+
+			<div class="content-main-signup-left col-md-6">
+				{% csrf_token %}
+				<div class="signup-form-field">
+					{{ form.password1.label_tag }}<br>
+					{{ form.password1 }}<br>
+					{{ form.password1.errors.0 }}
+				</div>
+
+			</div>
+
+			<div class="content-main-signup-right col-md-6">
+				{% csrf_token %}
 				<div class="signup-form-field">
 					{{ form.password2.label_tag }}<br>
 					{{ form.password2 }}<br>
 					{{ form.password2.errors.0 }}
 				</div>
+			</div>
 
+			<div class="content-main-signup-left col-md-6">
+				{% csrf_token %}
+				<div class="signup-form-field">
+					{{ form.organization.label_tag }}<br>
+					{{ form.organization }}<br>
+					{{ form.organization.errors.0 }}
+				</div>
+
+			</div>
+
+			<div class="content-main-signup-right col-md-6">
+				{% csrf_token %}
 				<div class="signup-form-field">
 					{{ form.location.label_tag }}<br>
 					{{ form.location }}<br>
@@ -78,7 +100,7 @@
 				</div>
 			</div>
 
-			<div align="center" style="display: inline; width: 100%">
+			<div align="center" style="display: inline; width: 100%; margin-top: 24px">
 				<input align="center" type="submit" value="REGISTER" class="primary-btn text-uppercase" style="margin-top: 0px; color: white;">
 			</div>
 		</div>

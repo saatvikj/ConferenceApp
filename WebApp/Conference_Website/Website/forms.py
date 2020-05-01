@@ -12,7 +12,7 @@ class ConferenceData(forms.Form):
 	partners = forms.CharField(label='Partners')
 
 class SignUpForm(UserCreationForm):
-	first_name = forms.CharField(max_length=30, required=True, widget=forms.TextInput(attrs={'placeholder': 'First Name'}))
+	first_name = forms.CharField(max_length=30, required=True, widget=forms.TextInput(attrs={'placeholder': 'First Name', 'autofocus' : True}))
 	last_name = forms.CharField(max_length=30, required=True, widget=forms.TextInput(attrs={'placeholder': 'Last Name'}))
 	email = forms.EmailField(max_length=254, required=True, widget=forms.TextInput(attrs={'placeholder': 'Email ID'}))
 	organization = forms.CharField(max_length=1023, required=True, widget=forms.TextInput(attrs={'placeholder': 'Organization'}))

@@ -3,8 +3,6 @@ package com.example.conferenceapp.utils;
 import android.annotation.TargetApi;
 import android.content.Context;
 
-import com.example.conferenceapp.models.CustomTime;
-import com.example.conferenceapp.models.Paper;
 import com.example.conferenceapp.models.User;
 
 import java.io.BufferedReader;
@@ -39,11 +37,7 @@ public class UserCSVParser {
             String name = row.getField("Name");
             String email = row.getField("Email");
             String company = row.getField("Company");
-            String location = row.getField("Location");
-            String bio = row.getField("Bio");
-            String interest = row.getField("Interests");
-            String typeOfUser = row.getField("Type of User");
-            User user = new User(null, name, email, company, location, bio, interest, null, typeOfUser, null, null);
+            User user = new User(null, name, email, company, null);
             users.add(user);
 
         }

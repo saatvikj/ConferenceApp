@@ -35,13 +35,7 @@ def populate_db_with_users(csv_name,conference_id):
 			user_dictionary["name"] = row[0]
 			user_dictionary["email"] = row[1]
 			user_dictionary["company"] = row[2]
-			user_dictionary["location"] = row[3]
-			user_dictionary["bio"] = row[4]
-			user_dictionary["interests"] = row[5]
-			user_dictionary["presentedPapers"] = row[6]
-			user_dictionary["typeOfUser"] = row[7]
 			user_dictionary["joining_code"] = joining_code_generator()
-			user_dictionary["password"] = ""
 			db.child(conference_id).child("Users").push(user_dictionary)
 
 def delete_conference_from_db(conference_id):

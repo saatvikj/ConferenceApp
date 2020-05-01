@@ -4451,7 +4451,7 @@ tbody.collapse.show {
   margin-right: 25%;
   margin-bottom: 2rem;
   margin-top: 40px;
-  background: rgba(123,130,138,0.5); 
+  background: rgba(123,130,138,0.1); 
 }
 
 .jumbotron-fluid {
