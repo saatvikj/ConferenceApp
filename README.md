@@ -13,16 +13,16 @@ This project was done as an Independent Project by [Saatvik Jain](https://www.gi
 # Features
 
 The application downloaded from this web service is divided into two sections: **Online** and **Offline**. Common features in both online and offline are:
-- [Day wise event schedule]()
-- [Event information and socials]()
-- [Food breaks during the event]()
-- [Event location details]()
-- [Event attendees]()
+- [Day wise event schedule](#day-wise-event-schedule)
+- [Event information and socials](#event-information-and-socials)
+- [Food breaks during the event](#food-breaks)
+- [Event location details](#location-details)
+- [Event attendees](#attendee-details)
 
 These features do not require an internet connection. The online mode takes advantage of internet connection to add several more features. These features are:
-- [Attendee profiles]()
-- [Social media feed]()
-- [Networking opportunities]()
+- [Attendee profiles](#attendee-profiles)
+- [Social media feed](#social-media-feed)
+- [Networking opportunities](#networking-opportunities)
 
 #### Day wise event schedule
 #### Event information and socials
