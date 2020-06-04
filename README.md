@@ -8,7 +8,7 @@ Conference Portal is a web-based service to generate a customized android applic
 </p>
 <br>
 
-This project was done as an Independent Project by [Saatvik Jain](https://www.github.com/saatvikj) & [Meghna Gupta](https://www.github.com/gupta-meghna64) under the guidance of [Dr. Pushpendra Singh](pushpendrasingh.org) at [IIIT Delhi](https://www.iiitd.ac.in).
+This project was done as an Independent Project by [Saatvik Jain](https://www.github.com/saatvikj) & [Meghna Gupta](https://www.github.com/gupta-meghna64) under the guidance of [Dr. Pushpendra Singh](https://www.pushpendrasingh.org/) at [IIIT Delhi](https://www.iiitd.ac.in).
 
 # Features
 
@@ -25,14 +25,29 @@ These features do not require an internet connection. The online mode takes adva
 - [Networking opportunities](#networking-opportunities)
 
 #### Day wise event schedule
+This features lets you view the entire schedule along with breaks. Need to know about what is being presented where? Its on the schedule page. Want to know more about a particular event? Click on it in the schedule page and see all details like abstracts, speakers and more. Create your own agenda by simple click of a button and view it separately for segregration. All events in personal agenda get their own reminder system linked to your Google Calendar.
+The event schedule can be edited by the organizers through the webapp and users recieve push notifications to notify them accordingly.
+
 #### Event information and socials
+This feature provides detailed information about the conference and its edition. It also provides one touch access to the website and various social media handles of the conference like Facebook, twitter, etc. which can be used by the users to know more.
+
 #### Food breaks
+No conference is complete without snack and lunch break. This features lets the attendees know information like time, venue, description, etc. regarding the food breaks that are scheduled to happen throughout the conference.
+
 #### Location details
+Through this feature, attendees can get to know the exact venue and dates of the conference and also navigate their journey to the location with the help of Google Maps.
+
 #### Attendee details
+To connect with the fellow attendees, this features provides a comprehensive list of all the attendees to the users. It displays the name, and affiliation of the attendee. The participants can connect with another by sending an email through just a click.
 
 #### Social media feed
+Once a user is logged in, they can post content in an in-app social media feed. Content supports clickable links and hashtags and tapping on a particular hashtag brings up all posts with that hashtag. Hashtags help with better specific outreach and posts facilitate attendee interaction.
+
 #### Attendee profiles
+Each attendee recieves a mail on their email ID with a one-time joining code that lets them create a profile on the application. Profile includes information like interests, contact details and images. These profiles help identify attendees better.
+
 #### Networking opportunites
+With user profiles, you can view extra information about all users once you are registered. Social media handles, email, collaboration opportunities, all within one place. It helps in hassle-free networking.
 
 # Demo of Webapp
 
