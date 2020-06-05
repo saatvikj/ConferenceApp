@@ -78,7 +78,7 @@ public class ActivityMyProfile extends AppCompatActivity {
                         if (p.getLinkedin().length() != 0) {
                             linkedinEditText.setText(p.getLinkedin());
                         }
-                        
+
                     }
 
                 }

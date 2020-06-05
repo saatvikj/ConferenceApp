@@ -205,7 +205,6 @@ body {
   padding-right: 120px;
   height: 100%;
   text-align: center;
-  top: 130px;
 }
 
 .content-main-signup-right {
@@ -1032,4 +1031,16 @@ form .form-row p {
   font-size: 100px;
   text-transform: uppercase;
   font-family: 'Raleway', sans-serif;  
+}
+
+.screenshot-img {
+  padding: 0px;
+  height: 400px;
+  width: 225px;
+}
+
+
+.screenshot-img:hover {
+  opacity: 1;
+  cursor: default;
 }
