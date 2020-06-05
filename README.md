@@ -50,6 +50,11 @@ Each attendee recieves a mail on their email ID with a one-time joining code tha
 With user profiles, you can view extra information about all users once you are registered. Social media handles, email, collaboration opportunities, all within one place. It helps in hassle-free networking.
 
 # Demo of Webapp
+<br>
+<p align="center">
+<img src="Screenshots/demo.gif">
+</p>
+<br>
 
 # Generated Application
 
