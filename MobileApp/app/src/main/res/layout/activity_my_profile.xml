@@ -43,7 +43,6 @@
                 android:layout_marginTop="8dp"
                 android:background="#f1f1f1"
                 android:hint="Research Interest (seperated by commas)"
-                android:inputType="number"
                 android:padding="12dp"
                 android:textSize="16sp" />
 
