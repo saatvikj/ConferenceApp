@@ -23,7 +23,7 @@ These features do not require an internet connection. The online mode takes adva
 - [Customized joining codes](#joining-codes)
 - [Attendee profiles](#attendee-profiles)
 - [Social media feed](#social-media-feed)
-- [Networking opportunities](#networking-opportunities)
+- [Networking opportunities](#networking-opportunites)
 
 #### Day wise event schedule
 This features lets you view the entire schedule along with breaks. Need to know about what is being presented where? Its on the schedule page. Want to know more about a particular event? Click on it in the schedule page and see all details like abstracts, speakers and more. Create your own agenda by simple click of a button and view it separately for segregration. All events in personal agenda get their own reminder system linked to your Google Calendar.
@@ -76,7 +76,7 @@ With user profiles, you can view extra information about all users once you are 
 # Generated Application
 <br>
 <p align="center">
-<img src="Screenshots/app_demo.gif">
+<img src="Screenshots/app_demo.gif" style="height:432px; width:268px">
 </p>
 <br>
 
