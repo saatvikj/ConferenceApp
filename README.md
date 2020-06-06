@@ -76,7 +76,7 @@ With user profiles, you can view extra information about all users once you are 
 # Generated Application
 <br>
 <p align="center">
-<img src="Screenshots/app_demo.gif" style="height:432px; width:268px">
+<img src="Screenshots/app_demo.gif" height="432px" width=268px">
 </p>
 <br>
 
