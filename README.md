@@ -20,6 +20,7 @@ The application downloaded from this web service is divided into two sections: *
 - [Event attendees](#attendee-details)
 
 These features do not require an internet connection. The online mode takes advantage of internet connection to add several more features. These features are:
+- [Customized joining codes](#joining-codes)
 - [Attendee profiles](#attendee-profiles)
 - [Social media feed](#social-media-feed)
 - [Networking opportunities](#networking-opportunities)
@@ -46,6 +47,8 @@ To connect with the fellow attendees, this features provides a comprehensive lis
 </p>
 <br>
 
+#### Joining Codes
+Each conference, once registered has unique joining codes generated for each attendee. Upon sign up for the first time, users can enter their email and recieve the joining code for verification. Once verified, user can then set a password and log in to the application. This helps in uniquely identifying the participants and at the same time security in terms of only registered participants being allowed to sign up.
 
 #### Social media feed
 Once a user is logged in, they can post content in an in-app social media feed. Content supports clickable links and hashtags and tapping on a particular hashtag brings up all posts with that hashtag. Hashtags help with better specific outreach and posts facilitate attendee interaction.
@@ -56,6 +59,13 @@ Each attendee recieves a mail on their email ID with a one-time joining code tha
 #### Networking opportunites
 With user profiles, you can view extra information about all users once you are registered. Social media handles, email, collaboration opportunities, all within one place. It helps in hassle-free networking.
 
+<br>
+<p align="center">
+<img src="Screenshots/Combined_Online.png">
+</p>
+<br>
+
+
 # Demo of Webapp
 <br>
 <p align="center">
@@ -64,6 +74,11 @@ With user profiles, you can view extra information about all users once you are 
 <br>
 
 # Generated Application
+<br>
+<p align="center">
+<img src="Screenshots/app_demo.gif">
+</p>
+<br>
 
 # Development
 The portal service contains of a web application and produces an android apk specific to the requirements of the conference. Necessary libraries for recreating the web and android application are listed below. 
