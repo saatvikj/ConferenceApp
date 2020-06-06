@@ -40,6 +40,13 @@ Through this feature, attendees can get to know the exact venue and dates of the
 #### Attendee details
 To connect with the fellow attendees, this features provides a comprehensive list of all the attendees to the users. It displays the name, and affiliation of the attendee. The participants can connect with another by sending an email through just a click.
 
+<br>
+<p align="center">
+<img src="Screenshots/Combined_Offline.png">
+</p>
+<br>
+
+
 #### Social media feed
 Once a user is logged in, they can post content in an in-app social media feed. Content supports clickable links and hashtags and tapping on a particular hashtag brings up all posts with that hashtag. Hashtags help with better specific outreach and posts facilitate attendee interaction.
 
